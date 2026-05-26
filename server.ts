@@ -394,6 +394,273 @@ app.post("/api/generate-ai-gear-pitch", async (req, res) => {
   }
 });
 
+// 9. API: Dynamic Scene News Generation
+app.post("/api/generate-ai-scene-news", async (req, res) => {
+  const { currentGenre, playerPrestige, hotTopic, sceneCity } = req.body;
+  
+  if (!ai) {
+    const fallbacks = [
+      `The underground ${currentGenre || 'techno'} scene in ${sceneCity || 'Berlin'} is heating up! New labels popping up every month.`,
+      `Industry insiders predict a major shift towards ${currentGenre || 'electronic music'} in the coming months.`,
+      `The ${sceneCity || 'underground'} club circuit is buzzing with excitement over new talent emerging.`,
+      `Major festival organizers reportedly scouting artists from the ${currentGenre || 'underground'} scene.`
+    ];
+    return res.json({
+      headline: fallbacks[Math.floor(Math.random() * fallbacks.length)],
+      body: `This could be a pivotal moment for ${currentGenre || 'electronic music'} artists everywhere.`,
+      isFallback: true
+    });
+  }
+
+  try {
+    const prompt = `You are writing breaking news for an underground electronic music scene blog.
+      Generate 1 exciting news headline and short paragraph about what's happening in the ${currentGenre || 'electronic music'} scene right now.
+      
+      Context:
+      - Player prestige level: ${playerPrestige || 25}/100
+      - Hot topic: ${hotTopic || 'new artist breakthrough'}
+      - Scene city: ${sceneCity || 'Berlin'}
+      
+      Return as JSON:
+      {
+        "headline": "Your exciting headline here",
+        "body": "2-3 sentence news paragraph with scene details"
+      }
+      Keep it authentic, use underground music slang, mention specific venues or events. Output raw JSON only.`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.85,
+        systemInstruction: "You write authentic, engaging underground electronic music scene journalism."
+      }
+    });
+
+    const data = JSON.parse(response.text?.trim() || "{}");
+    res.json({ 
+      headline: data.headline || "Scene heating up!",
+      body: data.body || "New releases flooding the underground market.",
+      isFallback: false
+    });
+  } catch (err) {
+    console.error("Gemini scene news error:", err);
+    res.json({
+      headline: `The underground scene is evolving rapidly`,
+      body: "Major shifts happening in the electronic music landscape.",
+      isFallback: true
+    });
+  }
+});
+
+// 10. API: Dynamic Forum Discussion
+app.post("/api/generate-ai-forum-post", async (req, res) => {
+  const { category, currentGenre, playerName } = req.body;
+  
+  const categoryContext: Record<string, string> = {
+    tech: "gear, production techniques, DAW discussions",
+    scene: "live events, club culture, underground parties",
+    gossip: "artist drama, label controversies, industry rumors",
+    drama: "heated debates about music authenticity, scene gatekeeping",
+    tips: "production advice, mixing techniques, workflow improvements"
+  };
+
+  if (!ai) {
+    const fallbacks: Record<string, { title: string; content: string }> = {
+      tech: { 
+        title: "What's your go-to bass processing chain?",
+        content: "Been experimenting with OTT + LFO tool + SaaS. Curious what combinations work best for that punchy sub-bass sound everyone's going for in 2026."
+      },
+      scene: { 
+        title: "Best underground venues in 2026?",
+        content: "With so many venues closing, where are the real underground parties happening now? Looking for intimate warehouse vibes with proper sound systems."
+      },
+      gossip: { 
+        title: "Major label drama brewing",
+        content: "Hearing whispers about a big underground artist potentially signing with one of the major EDM networks. Could change everything for their sound."
+      },
+      drama: { 
+        title: "Is digital production killing authenticity?",
+        content: "Hot take: most bedroom producers have no idea what real analog warmth sounds like. The over-reliance on plugins is making everything sound samey."
+      },
+      tips: { 
+        title: "Sidechain secrets for cleaner mixes",
+        content: "Finally figured out that 1/16 note sidechain with subtle attack release gives that pumping without killing the low-end. Anyone else doing this?"
+      }
+    };
+    const post = fallbacks[category] || fallbacks.tips;
+    return res.json({
+      title: post.title,
+      content: post.content,
+      isFallback: true
+    });
+  }
+
+  try {
+    const prompt = `Generate an authentic underground electronic music forum discussion post.
+      
+      Category: ${category || 'tech'} - ${categoryContext[category] || 'general discussion'}
+      Popular genre: ${currentGenre || 'techno'}
+      Original poster: ${playerName || 'Anonymous Producer'}
+      
+      Return as JSON:
+      {
+        "title": "Catchy discussion title (max 80 chars)",
+        "content": "2-3 paragraph forum post with authentic discussion starter content"
+      }
+      
+      Use realistic forum tone - passionate, sometimes opinionated, using underground slang. Mix technical terms with casual language. Output raw JSON only.`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.9,
+        systemInstruction: "You write realistic underground electronic music forum posts."
+      }
+    });
+
+    const data = JSON.parse(response.text?.trim() || "{}");
+    res.json({
+      title: data.title || "What's everyone working on?",
+      content: data.content || "Drop your latest projects in the thread.",
+      isFallback: false
+    });
+  } catch (err) {
+    console.error("Gemini forum post error:", err);
+    res.json({
+      title: "Production question thread",
+      content: "Anyone else struggling with the same mixing challenges?",
+      isFallback: true
+    });
+  }
+});
+
+// 11. API: Dynamic Social Feed Posts
+app.post("/api/generate-ai-social-feed", async (req, res) => {
+  const { artistName, genre, mood, recentActivity } = req.body;
+  
+  if (!ai) {
+    const fallbacks = [
+      `@${artistName || 'UndergroundProducer'}: Studio session going hard tonight 🔥 Working on something special for the ${genre || 'underground'} scene.`,
+      `Just discovered this absolute gem of a ${genre || 'techno'} track. The bass sound is insane! @${artistName || 'Producer'} know what's good.`,
+      `@${artistName || 'RaveCrew'}: Tomorrow's warehouse party is going to be legendary. Sound system test confirmed 💪`,
+      `The ${genre || 'techno'} revival is REAL. Finally proper kick drums are back in style.`,
+      `Mixing tip of the day: Always check your mix on multiple sound systems before finalizing. Studio monitors lie!`
+    ];
+    return res.json({
+      posts: fallbacks,
+      isFallback: true
+    });
+  }
+
+  try {
+    const prompt = `Generate 5 authentic social media posts/reactions about underground electronic music.
+      
+      Context:
+      - Artist/Producer: ${artistName || 'Unknown Producer'}
+      - Genre: ${genre || 'techno'}
+      - Mood: ${mood || 'excited'}
+      - Recent activity: ${recentActivity || 'new studio session'}
+      
+      Return as JSON array of strings:
+      ["post 1", "post 2", "post 3", "post 4", "post 5"]
+      
+      Mix of:
+      - Excited fan reactions
+      - Producer updates
+      - Scene observations
+      - Technical tips
+      - Hype/energy posts
+      
+      Keep them short (under 100 chars each), use hashtags, emojis, lowercase, raver slang. Output raw JSON array only.`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.9,
+        systemInstruction: "You write authentic, engaging social media posts for underground electronic music culture."
+      }
+    });
+
+    const posts = JSON.parse(response.text?.trim() || "[]");
+    res.json({ posts, isFallback: false });
+  } catch (err) {
+    console.error("Gemini social feed error:", err);
+    res.json({
+      posts: [
+        `@UndergroundBeat: Studio sessions are fire today 🔥`,
+        `That bass sound on the new release is absolutely crushing it!`,
+        `Underground scene going crazy right now`,
+        `Mix tip: reference on multiple systems before mixing down`,
+        `The ${genre} scene is absolutely heating up`
+      ],
+      isFallback: true
+    });
+  }
+});
+
+// 12. API: Dynamic Artist Bio Generator
+app.post("/api/generate-ai-artist-bio", async (req, res) => {
+  const { artistName, genre, fame, style, personality } = req.body;
+  
+  if (!ai) {
+    const bios = [
+      `${artistName || 'Unknown Artist'} is a ${genre || 'techno'} producer known for their distinctive approach to ${style || 'dark, driving rhythms'}. Building a reputation in the underground scene with releases that push sonic boundaries.`,
+      `Born from the underground, ${artistName || 'Unknown Artist'} crafts ${genre || 'electronic'} music that blurs the line between nostalgia and future sounds. Their work reflects a deep understanding of ${style || 'club culture'}.`,
+      `${artistName || 'Unknown Artist'} represents the new wave of ${genre || 'electronic'} artists who blend traditional hardware with modern production techniques. Their sets are known for ${style || 'energy and technical precision'}.`
+    ];
+    return res.json({
+      bio: bios[Math.floor(Math.random() * bios.length)],
+      isFallback: true
+    });
+  }
+
+  try {
+    const prompt = `Write a compelling, authentic artist bio for an underground electronic music producer.
+      
+      Artist details:
+      - Name: ${artistName || 'Unknown Artist'}
+      - Primary genre: ${genre || 'techno'}
+      - Fame level: ${fame || 30}/100
+      - Production style: ${style || 'dark, hypnotic, warehouse-ready'}
+      - Personality: ${personality || 'dedicated, slightly mysterious'}
+      
+      Return as JSON:
+      {
+        "bio": "2-3 paragraph artist biography that sounds authentic and engaging"
+      }
+      
+      Use underground music terminology. Mention influences, sound characteristics, scene involvement. Keep it realistic - not overly promotional. Output raw JSON only.`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.85,
+        systemInstruction: "You write authentic, compelling underground electronic music artist biographies."
+      }
+    });
+
+    const data = JSON.parse(response.text?.trim() || "{}");
+    res.json({ 
+      bio: data.bio || `${artistName} is a rising talent in the underground electronic music scene.`,
+      isFallback: false
+    });
+  } catch (err) {
+    console.error("Gemini artist bio error:", err);
+    res.json({
+      bio: `${artistName || 'Unknown Artist'} continues to make waves in the underground ${genre || 'electronic'} music scene.`,
+      isFallback: true
+    });
+  }
+});
+
 
 // Mounting Vite middleware in development or serving static files in production
 async function startServer() {
