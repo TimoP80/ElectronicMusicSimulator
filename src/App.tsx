@@ -25,6 +25,7 @@ import UpgradableGearShop from "./components/UpgradableGearShop";
 import DataModEditor from "./components/DataModEditor";
 import AIDashboard from "./components/AIDashboard";
 import ReleaseManagement from "./components/ReleaseManagement";
+import VirtualBrowser from "./components/VirtualBrowser";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
 
@@ -198,7 +199,8 @@ export default function App() {
   const [selectedEthos, setSelectedEthos] = useState<EthosArchetype>(ETHOS_DB[0]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyConfig>(DIFFICULTY_DB[1]); // Default to Normal
   const [onboardingName, setOnboardingName] = useState("");
-  const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "editor">("workspace");
+  const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "editor" | "web">("workspace");
+  const [showVirtualBrowser, setShowVirtualBrowser] = useState(false);
   const [preSelectedTrackId, setPreSelectedTrackId] = useState<string>("");
   const [onboardingShowEditor, setOnboardingShowEditor] = useState(false);
   const [showCreateLabelModal, setShowCreateLabelModal] = useState(false);
@@ -887,6 +889,14 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
 
   return (
     <div className="min-h-screen bg-[#050507] text-[#E0E0E0] flex flex-col font-sans selection:bg-[#00FF95]/30 selection:text-white relative overflow-hidden">
+      {/* Virtual Browser Modal */}
+      {showVirtualBrowser && (
+        <VirtualBrowser
+          gameState={gameState}
+          onClose={() => setShowVirtualBrowser(false)}
+        />
+      )}
+      
       {/* Subtle Scanline Retro Overlay */}
       <div className="absolute inset-0 pointer-events-none scanline opacity-[0.03] z-[999]" />
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(255,0,255,0.08),transparent_50%)] z-0" />
@@ -1130,6 +1140,18 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
               >
                 <span className="flex items-center gap-2"><Database className="h-4 w-4" /> Modding & Editor</span>
                 <span className="text-[9px] font-mono bg-[#00FF95]/10 border border-[#00FF95]/20 px-1.5 py-0.2 rounded text-[#00FF95] font-bold">DEV V2</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("web")}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold font-sans flex items-center justify-between transition-all cursor-pointer ${
+                  activeTab === "web"
+                    ? "bg-[#111114] text-[#FF00FF] font-bold border-l-4 border-[#FF00FF] neon-glow"
+                    : "text-slate-400 hover:bg-[#111114]/60 hover:text-white"
+                }`}
+              >
+                <span className="flex items-center gap-2"><Globe className="h-4 w-4" /> Scene Browser</span>
+                <span className="text-[9px] font-mono bg-[#FF00FF]/10 border border-[#FF00FF]/20 px-1.5 py-0.2 rounded text-[#FF00FF] font-bold">🌐</span>
               </button>
 
               {/* SAVE / LOAD & NEW GAME SYSTEM */}
@@ -1449,6 +1471,18 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                   gameState={gameState}
                   setGameState={setGameState}
                 />
+              )}
+
+              {activeTab === "web" && (
+                <div className="text-center py-8">
+                  <p className="text-slate-400 font-mono text-sm mb-4">Virtual Scene Browser opens in full screen mode</p>
+                  <button
+                    onClick={() => setShowVirtualBrowser(true)}
+                    className="px-6 py-3 bg-[#00FF95] text-black font-bold rounded-lg hover:bg-[#00FF95]/90 transition-colors"
+                  >
+                    🌐 Open Virtual Browser
+                  </button>
+                </div>
               )}
 
             </div>
