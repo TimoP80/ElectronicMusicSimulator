@@ -489,17 +489,61 @@ export function composeTrack(
   const complexityFactor = Math.min(100, baseComplexity + (stems.synth.length % 7) * 4);
   const experimentalFactor = secondary ? 40 + (ideasSpent * 6) : 10 + (ideasSpent * 3);
 
-  // GEAR BONUSES (Aggregate owned gear bonuses)
+  // GEAR BONUSES (Aggregate all owned gear bonuses)
+  // Core production stats
   let gearSoundDef = 10;
   let gearMixing = 5;
   let gearCatchiness = 10;
+  let gearEnergy = 5;
+  let gearGroove = 5;
+  let gearOriginality = 5;
+  let gearInspiration = 10;
+  
+  // Performance & DJ stats returned for use
+  let gearDjUsability = 0;
+  let gearHypeGeneration = 0;
+  let gearGigQuality = 0;
+  let gearGigPayBonus = 0;
+  
+  // Career & Business stats
+  let gearLabelSigningBonus = 0;
+  let gearStreamPerformance = 0;
+  let gearViralPotential = 0;
+  let gearFanSatisfaction = 0;
+  
+  // Quality of life
+  let gearBurnoutReduction = 0;
+  let gearMixPrecision = 0;
+  let gearRecordingQuality = 0;
 
   ownedGearIds.forEach(gid => {
     const item = GEAR_DB.find(g => g.id === gid);
     if (item && item.statBonus) {
+      // Core production
       if (item.statBonus.soundDesign) gearSoundDef += item.statBonus.soundDesign;
       if (item.statBonus.mixing) gearMixing += item.statBonus.mixing;
       if (item.statBonus.catchiness) gearCatchiness += item.statBonus.catchiness;
+      if (item.statBonus.energy) gearEnergy += item.statBonus.energy;
+      if (item.statBonus.groove) gearGroove += item.statBonus.groove;
+      if (item.statBonus.originality) gearOriginality += item.statBonus.originality;
+      if (item.statBonus.inspiration) gearInspiration += item.statBonus.inspiration;
+      
+      // Performance & DJ
+      if (item.statBonus.djUsability) gearDjUsability += item.statBonus.djUsability;
+      if (item.statBonus.hypeGeneration) gearHypeGeneration += item.statBonus.hypeGeneration;
+      if (item.statBonus.gigQuality) gearGigQuality += item.statBonus.gigQuality;
+      if (item.statBonus.gigPayBonus) gearGigPayBonus += item.statBonus.gigPayBonus;
+      
+      // Career & business
+      if (item.statBonus.labelSigningBonus) gearLabelSigningBonus += item.statBonus.labelSigningBonus;
+      if (item.statBonus.streamPerformance) gearStreamPerformance += item.statBonus.streamPerformance;
+      if (item.statBonus.viralPotential) gearViralPotential += item.statBonus.viralPotential;
+      if (item.statBonus.fanSatisfaction) gearFanSatisfaction += item.statBonus.fanSatisfaction;
+      
+      // Quality of life
+      if (item.statBonus.burnoutReduction) gearBurnoutReduction += item.statBonus.burnoutReduction;
+      if (item.statBonus.mixPrecision) gearMixPrecision += item.statBonus.mixPrecision;
+      if (item.statBonus.recordingQuality) gearRecordingQuality += item.statBonus.recordingQuality;
     }
   });
 
@@ -512,14 +556,15 @@ export function composeTrack(
 
   // Track calculations
   const soundDesignScore = Math.min(100, Math.round(gearSoundDef * (1 + (designSkill - 1) * 0.15)));
-  const mixingScore = Math.min(100, Math.round((gearMixing + (eqSkill * 10) + (limitSkill * 8))));
+  const mixingScore = Math.min(100, Math.round((gearMixing + (eqSkill * 10) + (limitSkill * 8) + gearMixPrecision)));
   const catchinessScore = Math.min(100, Math.round(gearCatchiness + (samplingSkill * 12) + (stems.vocal !== STEM_LOOPS.vocal[0] ? 15 : 0)));
-  const grooveScore = Math.min(100, Math.round(50 + (arrangeSkill * 8) + (primary === MusicGenre.HOUSE ? 20 : 0)));
-  const originalityScore = Math.min(100, Math.round(30 + (designSkill * 5) + (secondary ? 25 : 0)));
+  const grooveScore = Math.min(100, Math.round(gearGroove + (arrangeSkill * 8) + (primary === MusicGenre.HOUSE ? 20 : 0)));
+  const originalityScore = Math.min(100, Math.round(gearOriginality + (designSkill * 5) + (secondary ? 25 : 0)));
+  const inspirationMultiplier = 1 + (gearInspiration / 100);
 
   const stats: TrackStats = {
     bpm,
-    energy: Math.min(100, Math.round(baseEnergy + (limitSkill * 5))),
+    energy: Math.min(100, Math.round(baseEnergy + (limitSkill * 5) + gearEnergy)),
     groove: grooveScore,
     soundDesign: soundDesignScore,
     mixingQuality: mixingScore,

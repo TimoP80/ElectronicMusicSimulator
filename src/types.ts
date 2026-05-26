@@ -162,17 +162,46 @@ export interface RecordLabel {
 export interface GearItem {
   id: string;
   name: string;
-  category: "laptop" | "daw" | "headphones" | "synth" | "drum_machine" | "acoustic" | "utility";
+  category: 
+    | "laptop" | "computer" | "daw" | "monitoring" | "synth" 
+    | "drum_machine" | "acoustic" | "utility" | "midi" 
+    | "microphone" | "mixing" | "effects" | "dj" 
+    | "collaboration" | "education" | "field_recording" 
+    | "studio_furniture" | "brand" | "service";
   cost: number;
   statBonus: {
+    // Core production stats
     soundDesign?: number;
     mixing?: number;
     catchiness?: number;
     inspiration?: number;
+    energy?: number;
+    groove?: number;
+    originality?: number;
+    
+    // Performance & DJ
+    djUsability?: number;
+    hypeGeneration?: number;
+    gigQuality?: number;
+    gigPayBonus?: number;
+    
+    // Career & business
+    labelSigningBonus?: number;
+    streamPerformance?: number;
+    viralPotential?: number;
+    fanSatisfaction?: number;
+    
+    // Quality of life
+    burnoutReduction?: number;
+    mixPrecision?: number;
+    recordingQuality?: number;
+    loadingSpeed?: number;
+    fieldRecording?: number;
   };
   description: string;
   owned: boolean;
   unlockedAtPrestige: number;
+  tier?: "starter" | "basic" | "utility" | "advanced" | "custom" | "legendary";
 }
 
 export interface CharacterSkill {
