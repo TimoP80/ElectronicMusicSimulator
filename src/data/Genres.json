@@ -1,0 +1,963 @@
+{
+  "Genrelist": {
+    "Genre": [
+      {
+        "@name": "Trance",
+        "Subgenre": [
+          {
+            "@name": "Progressive Trance",
+            "BPM": {
+              "min": "125",
+              "max": "135"
+            },
+            "Length": {
+              "min": "340",
+              "max": "590"
+            },
+            "Popularity": {
+              "@modifier": "25",
+              "#text": "54"
+            },
+            "GenreAttributes": {
+              "Attrib": [
+                "Ambient sounds",
+                "Sidechained bassline",
+                "Sidechained pads",
+                "Cut up vocal samples",
+                "Slow Buildup",
+                "Anthem",
+                "Movie samples"
+              ]
+            }
+          },
+          {
+            "@name": "Melodic Trance",
+            "BPM": {
+              "min": "136",
+              "max": "142"
+            },
+            "Length": {
+              "min": "380",
+              "max": "579"
+            },
+            "Popularity": {
+              "@modifier": "16",
+              "#text": "45"
+            },
+            "GenreAttributes": {
+              "Attrib": [
+                "Epic melody",
+                "Supersaw",
+                "Catchy vocals",
+                "Epic buildup"
+              ]
+            }
+          },
+          {
+            "@name": "Tech Trance",
+            "BPM": {
+              "min": "138",
+              "max": "145"
+            },
+            "Length": {
+              "min": "323",
+              "max": "550"
+            },
+            "Popularity": {
+              "@modifier": "46",
+              "#text": "15"
+            },
+            "GenreAttributes": {
+              "Attrib": [
+                "Raw lead sound",
+                "Monster bassline",
+                "Distorted sounds",
+                "Pounding Beat",
+                "Monotonic Progression",
+                "Focus on rhythm"
+              ]
+            }
+          },
+          {
+            "@name": "Uplifting Trance",
+            "BPM": {
+              "min": "137",
+              "max": "140"
+            },
+            "Length": {
+              "min": "360",
+              "max": "636"
+            },
+            "Popularity": {
+              "@modifier": "48",
+              "#text": "18"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Hard Dance",
+        "Subgenre": [
+          {
+            "@name": "Hard House",
+            "BPM": {
+              "min": "143",
+              "max": "155"
+            },
+            "Length": {
+              "min": "300",
+              "max": "541"
+            },
+            "Popularity": {
+              "@modifier": "26",
+              "#text": "57"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Hard Trance",
+            "BPM": {
+              "min": "144",
+              "max": "149"
+            },
+            "Length": {
+              "min": "330",
+              "max": "589"
+            },
+            "Popularity": {
+              "@modifier": "48",
+              "#text": "46"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Hardstyle",
+            "BPM": {
+              "min": "144",
+              "max": "155"
+            },
+            "Length": {
+              "min": "259",
+              "max": "539"
+            },
+            "Popularity": {
+              "@modifier": "36",
+              "#text": "39"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Freeform",
+            "BPM": {
+              "min": "160",
+              "max": "190"
+            },
+            "Length": {
+              "min": "180",
+              "max": "480"
+            },
+            "Popularity": {
+              "@modifier": "48",
+              "#text": "56"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "UK Hardcore",
+            "BPM": {
+              "min": "170",
+              "max": "200"
+            },
+            "Length": {
+              "min": "180",
+              "max": "350"
+            },
+            "Popularity": {
+              "@modifier": "36",
+              "#text": "53"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Jumpstyle",
+            "BPM": {
+              "min": "140",
+              "max": "150"
+            },
+            "Length": {
+              "min": "180",
+              "max": "328"
+            },
+            "Popularity": {
+              "@modifier": "26",
+              "#text": "68"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Hardcore",
+        "Subgenre": [
+          {
+            "@name": "Gabber",
+            "BPM": {
+              "min": "160",
+              "max": "210"
+            },
+            "Length": {
+              "min": "251",
+              "max": "392"
+            },
+            "Popularity": {
+              "@modifier": "17",
+              "#text": "45"
+            },
+            "GenreAttributes": {
+              "Attrib": [
+                "Hoovers",
+                "Distorted bassdrum",
+                "Movie samples",
+                "Fast lead riff",
+                "Breakbeats",
+                "Oldschool samples"
+              ]
+            }
+          },
+          {
+            "@name": "Nustyle Hardcore",
+            "BPM": {
+              "min": "155",
+              "max": "190"
+            },
+            "Length": {
+              "min": "260",
+              "max": "510"
+            },
+            "Popularity": {
+              "@modifier": "36",
+              "#text": "65"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Speedcore",
+            "BPM": {
+              "min": "200",
+              "max": "450"
+            },
+            "Length": {
+              "min": "121",
+              "max": "472"
+            },
+            "Popularity": {
+              "@modifier": "46",
+              "#text": "28"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Metalcore",
+            "BPM": {
+              "min": "180",
+              "max": "260"
+            },
+            "Length": {
+              "min": "252",
+              "max": "400"
+            },
+            "Popularity": {
+              "@modifier": "8",
+              "#text": "15"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Terrorcore",
+            "BPM": {
+              "min": "190",
+              "max": "270"
+            },
+            "Length": {
+              "min": "350",
+              "max": "450"
+            },
+            "Popularity": {
+              "@modifier": "35",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Noisecore",
+            "BPM": {
+              "min": "210",
+              "max": "290"
+            },
+            "Length": {
+              "min": "270",
+              "max": "400"
+            },
+            "Popularity": {
+              "@modifier": "25",
+              "#text": "15"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Rave",
+            "BPM": {
+              "min": "150",
+              "max": "175"
+            },
+            "Length": {
+              "min": "185",
+              "max": "542"
+            },
+            "Popularity": {
+              "@modifier": "35",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Frenchcore",
+            "BPM": {
+              "min": "190",
+              "max": "220"
+            },
+            "Length": {
+              "min": "240",
+              "max": "600"
+            },
+            "Popularity": {
+              "@modifier": "5",
+              "#text": "45"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Industrial",
+            "BPM": {
+              "min": "140",
+              "max": "190"
+            },
+            "Length": {
+              "min": "218",
+              "max": "643"
+            },
+            "Popularity": {
+              "@modifier": "17",
+              "#text": "35"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "House",
+        "Subgenre": [
+          {
+            "@name": "Disco House",
+            "BPM": {
+              "min": "125",
+              "max": "129"
+            },
+            "Length": {
+              "min": "300",
+              "max": "460"
+            },
+            "Popularity": {
+              "@modifier": "26",
+              "#text": "46"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Electro House",
+            "BPM": {
+              "min": "125",
+              "max": "129"
+            },
+            "Length": {
+              "min": "300",
+              "max": "600"
+            },
+            "Popularity": {
+              "@modifier": "14",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "French House",
+            "BPM": {
+              "min": "125",
+              "max": "125"
+            },
+            "Length": {
+              "min": "300",
+              "max": "560"
+            },
+            "Popularity": {
+              "@modifier": "35",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Tech House",
+            "BPM": {
+              "min": "125",
+              "max": "125"
+            },
+            "Length": {
+              "min": "300",
+              "max": "560"
+            },
+            "Popularity": {
+              "@modifier": "52",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Progressive House",
+            "BPM": {
+              "min": "125",
+              "max": "125"
+            },
+            "Length": {
+              "min": "360",
+              "max": "569"
+            },
+            "Popularity": {
+              "@modifier": "36",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Jackin House",
+            "BPM": {
+              "min": "125",
+              "max": "130"
+            },
+            "Length": {
+              "min": "300",
+              "max": "540"
+            },
+            "Popularity": {
+              "@modifier": "35",
+              "#text": "23"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Deep House",
+            "BPM": {
+              "min": "122",
+              "max": "127"
+            },
+            "Length": {
+              "min": "240",
+              "max": "743"
+            },
+            "Popularity": {
+              "@modifier": "24",
+              "#text": "13"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Drum'n'Bass",
+        "Subgenre": [
+          {
+            "@name": "Techstep",
+            "BPM": {
+              "min": "160",
+              "max": "180"
+            },
+            "Length": {
+              "min": "260",
+              "max": "532"
+            },
+            "Popularity": {
+              "@modifier": "74",
+              "#text": "16"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Hardstep",
+            "BPM": {
+              "min": "180",
+              "max": "192"
+            },
+            "Length": {
+              "min": "382",
+              "max": "458"
+            },
+            "Popularity": {
+              "@modifier": "48",
+              "#text": "27"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Crossbreed",
+            "BPM": {
+              "min": "170",
+              "max": "180"
+            },
+            "Length": {
+              "min": "240",
+              "max": "480"
+            },
+            "Popularity": {
+              "@modifier": "25",
+              "#text": "10"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Neurofunk",
+            "BPM": {
+              "min": "172",
+              "max": "175"
+            },
+            "Length": {
+              "min": "320",
+              "max": "555"
+            },
+            "Popularity": {
+              "@modifier": "15",
+              "#text": "16"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Liquid Funk",
+            "BPM": {
+              "min": "168",
+              "max": "175"
+            },
+            "Length": {
+              "min": "300",
+              "max": "540"
+            },
+            "Popularity": {
+              "@modifier": "14",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Ragga Jungle",
+            "BPM": {
+              "min": "160",
+              "max": "175"
+            },
+            "Length": {
+              "min": "240",
+              "max": "350"
+            },
+            "Popularity": {
+              "@modifier": "25",
+              "#text": "15"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Dubstep",
+            "BPM": {
+              "min": "140",
+              "max": "140"
+            },
+            "Length": {
+              "min": "240",
+              "max": "340"
+            },
+            "Popularity": {
+              "@modifier": "7",
+              "#text": "28"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Dance",
+        "Subgenre": [
+          {
+            "@name": "Eurodance",
+            "BPM": {
+              "min": "130",
+              "max": "137"
+            },
+            "Length": {
+              "min": "170",
+              "max": "300"
+            },
+            "Popularity": {
+              "@modifier": "30",
+              "#text": "40"
+            }
+          },
+          {
+            "@name": "Eurotrance",
+            "BPM": {
+              "min": "132",
+              "max": "140"
+            },
+            "Length": {
+              "min": "340",
+              "max": "461"
+            },
+            "Popularity": {
+              "@modifier": "25",
+              "#text": "50"
+            }
+          },
+          {
+            "@name": "Hands Up",
+            "BPM": {
+              "min": "142",
+              "max": "150"
+            },
+            "Length": {
+              "min": "300",
+              "max": "568"
+            },
+            "Popularity": {
+              "@modifier": "18",
+              "#text": "60"
+            }
+          },
+          {
+            "@name": "Club Trance",
+            "BPM": {
+              "min": "140",
+              "max": "147"
+            },
+            "Length": {
+              "min": "300",
+              "max": "480"
+            },
+            "Popularity": {
+              "@modifier": "25",
+              "#text": "50"
+            }
+          }
+        ]
+      },
+      {
+        "@name": "Psychedelic",
+        "Subgenre": [
+          {
+            "@name": "Dark psy",
+            "BPM": {
+              "min": "140",
+              "max": "155"
+            },
+            "Length": {
+              "min": "320",
+              "max": "578"
+            },
+            "Popularity": {
+              "@modifier": "26",
+              "#text": "3"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Full On",
+            "BPM": {
+              "min": "144",
+              "max": "149"
+            },
+            "Length": {
+              "min": "360",
+              "max": "595"
+            },
+            "Popularity": {
+              "@modifier": "15",
+              "#text": "18"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Goa Trance",
+            "BPM": {
+              "min": "139",
+              "max": "146"
+            },
+            "Length": {
+              "min": "340",
+              "max": "650"
+            },
+            "Popularity": {
+              "@modifier": "5",
+              "#text": "19"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Progressive Psytrance",
+            "BPM": {
+              "min": "125",
+              "max": "130"
+            },
+            "Length": {
+              "min": "350",
+              "max": "600"
+            },
+            "Popularity": {
+              "@modifier": "4",
+              "#text": "7"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Breakbeat",
+        "Subgenre": [
+          {
+            "@name": "Big Beat",
+            "BPM": {
+              "min": "110",
+              "max": "128"
+            },
+            "Length": {
+              "min": "240",
+              "max": "470"
+            },
+            "Popularity": {
+              "@modifier": "24",
+              "#text": "55"
+            }
+          },
+          {
+            "@name": "Nu skool breaks",
+            "BPM": {
+              "min": "135",
+              "max": "145"
+            },
+            "Length": {
+              "min": "300",
+              "max": "590"
+            },
+            "Popularity": {
+              "@modifier": "57",
+              "#text": "35"
+            }
+          },
+          {
+            "@name": "Raggacore",
+            "BPM": {
+              "min": "170",
+              "max": "190"
+            },
+            "Length": {
+              "min": "200",
+              "max": "400"
+            },
+            "Popularity": {
+              "@modifier": "46",
+              "#text": "24"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Chemical breaks",
+            "BPM": {
+              "min": "135",
+              "max": "145"
+            },
+            "Length": {
+              "min": "266",
+              "max": "477"
+            },
+            "Popularity": {
+              "@modifier": "35",
+              "#text": "25"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Progressive breaks",
+            "BPM": {
+              "min": "125",
+              "max": "130"
+            },
+            "Length": {
+              "min": "288",
+              "max": "599"
+            },
+            "Popularity": {
+              "@modifier": "35",
+              "#text": "25"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Acid",
+        "Subgenre": [
+          {
+            "@name": "Acid House",
+            "BPM": {
+              "min": "125",
+              "max": "133"
+            },
+            "Length": {
+              "min": "300",
+              "max": "750"
+            },
+            "Popularity": {
+              "@modifier": "5",
+              "#text": "4"
+            },
+            "GenreAttributes": {
+              "Attrib": [
+                "Distorted 303 acid line",
+                "Plain 303 with reverb",
+                "Monotonic"
+              ]
+            }
+          },
+          {
+            "@name": "Acid Trance",
+            "BPM": {
+              "min": "135",
+              "max": "142"
+            },
+            "Length": {
+              "min": "355",
+              "max": "600"
+            },
+            "Popularity": {
+              "@modifier": "6",
+              "#text": "35"
+            },
+            "GenreAttributes": ""
+          }
+        ]
+      },
+      {
+        "@name": "Finnish Psytrance",
+        "Subgenre": {
+          "@name": "Suomisaundi",
+          "BPM": {
+            "min": "138",
+            "max": "155"
+          },
+          "Length": {
+            "min": "225",
+            "max": "525"
+          },
+          "Popularity": {
+            "@modifier": "25",
+            "#text": "35"
+          },
+          "GenreAttributes": {
+            "Attrib": [
+              "Funk influence",
+              "Silly vocals",
+              "Psychedelic structure",
+              "Finnish vocal samples",
+              "Retro video game samples",
+              "Organ sounds",
+              "8 bit sounds",
+              "C64 SID",
+              "Lo Fi Effects",
+              "Jazz influence",
+              "Blues influence",
+              "Exotic instruments",
+              "Female Vocals",
+              "Spoken word",
+              "Psychedelic effects",
+              "Weird noises"
+            ]
+          }
+        }
+      },
+      {
+        "@name": "Techno",
+        "Subgenre": [
+          {
+            "@name": "Detroit Techno",
+            "BPM": {
+              "min": "127",
+              "max": "134"
+            },
+            "Length": {
+              "min": "349",
+              "max": "583"
+            },
+            "Popularity": {
+              "@modifier": "36",
+              "#text": "12"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Minimal Techno",
+            "BPM": {
+              "min": "125",
+              "max": "133"
+            },
+            "Length": {
+              "min": "351",
+              "max": "692"
+            },
+            "Popularity": {
+              "@modifier": "36",
+              "#text": "12"
+            },
+            "GenreAttributes": ""
+          },
+          {
+            "@name": "Schranz",
+            "BPM": {
+              "min": "147",
+              "max": "157"
+            },
+            "Length": {
+              "min": "309",
+              "max": "579"
+            },
+            "Popularity": {
+              "@modifier": "14",
+              "#text": "24"
+            }
+          }
+        ]
+      },
+      {
+        "@name": "Ambient",
+        "Subgenre": {
+          "@name": "Downtempo",
+          "BPM": {
+            "min": "60",
+            "max": "110"
+          },
+          "Length": {
+            "min": "400",
+            "max": "800"
+          },
+          "Popularity": {
+            "@modifier": "0",
+            "#text": "0"
+          },
+          "GenreAttributes": ""
+        }
+      }
+    ]
+  }
+}

@@ -6,12 +6,113 @@
 import { Track, TrackStats, MusicGenre, RecordLabel, MusicTrend, ReleasedTrack, GameState, EventLog, GearItem } from "../types";
 import { GENRES_DB } from "../data/genres";
 import { GEAR_DB } from "../data/gear";
+import { 
+  getSubgenreBPMRange, 
+  getSubgenreLengthRange, 
+  getSubgenreAttributes, 
+  getSubgenrePopularity,
+  getAllSceneGroups,
+  getRandomReleaseNote,
+  getSongGeneratorGenreData,
+  getCompilationNames,
+  getReleaseTypes,
+  getTrackVersions,
+  GENRES_DATA,
+  getRandomSongName,
+  getAllSongNames
+} from "../data/database";
+import { getExtendedLabelsDB } from "../data/recordLabels";
 
 // Procedural song naming components
 const ADJECTIVES = ["Analog", "Digital", "Gated", "Subharmonic", "Rhythmic", "Modular", "Industrial", "Darkroom", "Sunset", "Glitched", "Liquid", "Heavy", "Midnight", "Eevolving", "Futuristic", "Saturated", "Unstable", "Resonant", "Hypnotic", "Acid", "Cosmic", "Warehouse", "Strobe", "Retro", "Spectral"];
 const NOUNS = ["Dreams", "Protocol", "Rumble", "Sledgehammer", "Transit", "Siren", "Oscillator", "LFO", "Vibe", "Vapor", "Apocalypse", "Reverb", "Jungle", "Dunes", "Symmetry", "Delay", "Drums", "Algorithm", "Rave", "Frequency", "Hologram", "Horizon", "Ghost", "Circuit", "Echoes"];
 
-export function generateRandomTrackName(primary: MusicGenre, secondary: MusicGenre | null): string {
+// Cache for all available song names from the database
+let allSongNamesCache: string[] | null = null;
+
+// Get all genre names including new subgenres from JSON
+const ALL_GENRE_NAMES = Object.values(MusicGenre);
+
+// Scene group names for naming conventions
+const SCENE_GROUPS = getAllSceneGroups();
+
+// Get current year for scene releases
+const getCurrentYear = () => {
+  // This will be called from game state but for naming we use a baseline year
+  return 2024;
+};
+
+// Generate scene-style release names
+function generateSceneReleaseName(genre: MusicGenre): string {
+  const groups = SCENE_GROUPS;
+  if (groups.length === 0) {
+    // Fallback if no scene groups loaded
+    return `${genre}_Release_${Math.floor(Math.random() * 999)}`;
+  }
+  
+  const group = groups[Math.floor(Math.random() * groups.length)];
+  const prefix = group.prefix || group.name.substring(0, 3).toUpperCase();
+  const cdNumber = Math.floor(Math.random() * 3) + 1;
+  const catNumber = Math.floor(Math.random() * 9999) + 1;
+  
+  return `${prefix}-${cdNumber}CD-${catNumber}`;
+}
+
+// Generate release format based on SongGeneratorDatabase
+function getRandomReleaseFormat(): { name: string; tag: string; trackCount: number } {
+  const releaseTypes = getReleaseTypes();
+  if (releaseTypes.length === 0) {
+    // Default fallback
+    return { name: "EP", tag: "WEB", trackCount: 4 };
+  }
+  
+  const releaseType = releaseTypes[Math.floor(Math.random() * releaseTypes.length)];
+  const trackCount = Math.floor(Math.random() * 4) + 2; // 2-5 tracks
+  
+  return {
+    name: releaseType["@displayname"],
+    tag: releaseType["@sourceTag"],
+    trackCount
+  };
+}
+
+// Generate track version suffix based on release type
+function getTrackVersionSuffix(trackNum: number, releaseType: string): string {
+  const versions = getTrackVersions(releaseType);
+  if (versions.length === 0) {
+    // Default fallback
+    return trackNum === 1 ? "Original Mix" : "Remix";
+  }
+  
+  const version = versions.find(v => v["@TrackNum"] === String(trackNum));
+  if (!version) return trackNum === 1 ? "Original Mix" : "Remix";
+  
+  const types = Array.isArray(version.type) ? version.type : [version.type];
+  if (types.length === 0) return "Original Mix";
+  
+  return types[Math.floor(Math.random() * types.length)];
+}
+
+// Get all unique song names from database (with caching)
+function getCachedSongNames(): string[] {
+  if (!allSongNamesCache) {
+    allSongNamesCache = getAllSongNames();
+  }
+  return allSongNamesCache;
+}
+
+// Get a random song name from the pre-built database
+function getRandomSongNameFromDatabase(): string {
+  const allNames = getCachedSongNames();
+  if (allNames.length === 0) {
+    // Fallback to procedural generation
+    return `${ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)]} ${NOUNS[Math.floor(Math.random() * NOUNS.length)]}`;
+  }
+  return allNames[Math.floor(Math.random() * allNames.length)];
+}
+
+// Procedural fallback for track name generation
+function generateProceduralTrackName(primary: MusicGenre): string {
   const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
   const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
   
@@ -31,8 +132,48 @@ export function generateRandomTrackName(primary: MusicGenre, secondary: MusicGen
     const retroNouns = ["Racer", "Cruiser", "Chrome", "Cove", "Synth", "Arcade"];
     return `${retroAdjs[Math.floor(Math.random() * retroAdjs.length)]} ${retroNouns[Math.floor(Math.random() * retroNouns.length)]}`;
   }
-
+  
+  // New subgenre-specific naming
+  if (primary === MusicGenre.GABBER) {
+    const gabberAdjs = ["Rotterdam", "Thunder", "Hoover", "Distorted", "Brutal", "Rotten"];
+    const gabberNouns = ["Anthem", "Attack", "Drop", "Destroyer", "Fire", "Mayhem"];
+    return `${gabberAdjs[Math.floor(Math.random() * gabberAdjs.length)]} ${gabberNouns[Math.floor(Math.random() * gabberNouns.length)]}`;
+  }
+  if (primary === MusicGenre.TECH_TRANCE || primary === MusicGenre.UPLIFTING_TRANCE) {
+    const tranceAdjs = ["Euphoric", "Epic", "Celestial", "Transcendent", "Sonic", "Aurora"];
+    const tranceNouns = ["Horizon", "Voyage", "Euphoria", "Melody", "Dream", "Serenity"];
+    return `${tranceAdjs[Math.floor(Math.random() * tranceAdjs.length)]} ${tranceNouns[Math.floor(Math.random() * tranceNouns.length)]}`;
+  }
+  if (primary === MusicGenre.ACID_HOUSE || primary === MusicGenre.ACID_TRANCE) {
+    const acidAdjs = ["303", "Acid", "Squelchy", "Resonant", "Squelsh", "Raw"];
+    const acidNouns = ["Acid", "Squelch", "Line", "Sequence", "Patternd", "Loop"];
+    return `${acidAdjs[Math.floor(Math.random() * acidAdjs.length)]} ${acidNouns[Math.floor(Math.random() * acidNouns.length)]}`;
+  }
+  if (primary === MusicGenre.JUMPSTYLE) {
+    const jumpAdjs = ["Jump", "Bouncy", "Happy", "Energy", "Jumpin", "Hard"];
+    const jumpNouns = ["Style", "Anthem", "Floor", "Rave", "Jumper", "Dance"];
+    return `${jumpAdjs[Math.floor(Math.random() * jumpAdjs.length)]} ${jumpNouns[Math.floor(Math.random() * jumpNouns.length)]}`;
+  }
+  
   return `${adj} ${noun}`;
+}
+
+// Extended track name generator with scene-style names
+function generateExtendedTrackName(primary: MusicGenre, secondary: MusicGenre | null, addSceneStyle: boolean = true): string {
+  // Try to get a random pre-existing song name from the database
+  const dbSongName = getRandomSongNameFromDatabase();
+  
+  // 70% chance to use database name, 30% chance for procedural
+  if (dbSongName && Math.random() < 0.7) {
+    return dbSongName;
+  }
+  
+  // Fall back to procedural generation
+  return generateProceduralTrackName(primary);
+}
+
+export function generateRandomTrackName(primary: MusicGenre, secondary: MusicGenre | null): string {
+  return generateExtendedTrackName(primary, secondary);
 }
 
 export const STEM_LOOPS = {
@@ -160,6 +301,11 @@ export const LABELS_DB: RecordLabel[] = [
   }
 ];
 
+// Combined labels: base labels + extended JSON labels
+export function getAllLabels(): RecordLabel[] {
+  return [...LABELS_DB, ...getExtendedLabelsDB()];
+}
+
 export const WORLD_TRENDS: MusicTrend[] = [
   {
     id: "default",
@@ -204,7 +350,7 @@ export const WORLD_TRENDS: MusicTrend[] = [
   {
     id: "ambient_meditation",
     name: "Post-Burnout Chillout Sanctuary",
-    description: "Exhausted by constant high-energy kicks, ravers are turning to beatless modular environments and field recordings.",
+    description: "Exhausted by constant high-energy kicks, ravers are turning beatless modular environments and field recordings.",
     hotGenre: MusicGenre.AMBIENT,
     decayingGenre: MusicGenre.HARDSTYLE,
     hypeMultiplier: 1.35,
@@ -220,6 +366,67 @@ export const WORLD_TRENDS: MusicTrend[] = [
     hypeMultiplier: 1.6,
     durationMonths: 4,
     source: "Raw Energy Overdrive",
+  },
+  // New trends for imported subgenres
+  {
+    id: "euphoric_trance_wave",
+    name: "Epic Trance Anthem Revival",
+    description: "Supersaw leads, epic buildups, and emotional melodies are dominating festival mainstages worldwide.",
+    hotGenre: MusicGenre.UPLIFTING_TRANCE,
+    decayingGenre: MusicGenre.MINIMAL_TECHNO,
+    hypeMultiplier: 1.55,
+    durationMonths: 5,
+    source: "Festival Season Energy",
+  },
+  {
+    id: "gabber_rotterdam_return",
+    name: "Rotterdam Gabber Comeback",
+    description: "The Dutch hardcore scene is experiencing a massive revival with hoover basslines and 180+ BPM distortions.",
+    hotGenre: MusicGenre.GABBER,
+    decayingGenre: MusicGenre.DOWNTEMPO,
+    hypeMultiplier: 1.7,
+    durationMonths: 4,
+    source: "Nostalgia Wave",
+  },
+  {
+    id: "acid_wave_303",
+    name: "303 Acid Squelch Renaissance",
+    description: "Classic TB-303 acid lines are making a comeback in both house and trance forms.",
+    hotGenre: MusicGenre.ACID_HOUSE,
+    decayingGenre: MusicGenre.NU_SKOOL_BREAKS,
+    hypeMultiplier: 1.4,
+    durationMonths: 6,
+    source: "Classic Roland Vibes",
+  },
+  {
+    id: "suomisaundi_finnish_psy",
+    name: "Suomisaundi Global Expansion",
+    description: "Finnish psychedelic trance with its unique silly vocals and retro game samples is gaining international traction.",
+    hotGenre: MusicGenre.SUOMISAUNDI,
+    decayingGenre: MusicGenre.HANDS_UP,
+    hypeMultiplier: 1.45,
+    durationMonths: 5,
+    source: "Nordic Scene Export",
+  },
+  {
+    id: "jumpstyle_party_hard",
+    name: "Jumpstyle International Party",
+    description: "The bouncy jumping style with happy hardcore influences is sweeping through European festivals.",
+    hotGenre: MusicGenre.JUMPSTYLE,
+    decayingGenre: MusicGenre.DETROIT_TECHNO,
+    hypeMultiplier: 1.5,
+    durationMonths: 4,
+    source: "Party Hard Anthems",
+  },
+  {
+    id: "psytrance_forest",
+    name: "Dark Psy Forest Energy",
+    description: "Dark psychedelic forest sounds with nocturnal hypnotic grooves are dominating night events.",
+    hotGenre: MusicGenre.DARK_PSY,
+    decayingGenre: MusicGenre.BIG_BEAT,
+    hypeMultiplier: 1.35,
+    durationMonths: 6,
+    source: "Forest Rave Culture",
   }
 ];
 
@@ -242,10 +449,30 @@ export function composeTrack(
   const primaryDb = GENRES_DB[primary];
   const secondaryDb = secondary ? GENRES_DB[secondary] : null;
 
-  // Initialize base stats directly influenced by chosen genres balance
+  // Try to get BPM from JSON database first for subgenres
   let bpm = primaryDb.bpmRange.default;
+  let bpmMin = primaryDb.bpmRange.min;
+  let bpmMax = primaryDb.bpmRange.max;
+  
+  // Look up more specific BPM range from JSON data for the primary genre
+  const genreGenres = GENRES_DATA.Genrelist.Genre;
+  const matchingGenre = genreGenres.find(g => {
+    const subgenres = Array.isArray(g.Subgenre) ? g.Subgenre : [g.Subgenre];
+    return subgenres.some(s => s["@name"] === primary);
+  });
+  
+  if (matchingGenre) {
+    const subgenres = Array.isArray(matchingGenre.Subgenre) ? matchingGenre.Subgenre : [matchingGenre.Subgenre];
+    const matchingSubgenre = subgenres.find(s => s["@name"] === primary);
+    if (matchingSubgenre?.BPM) {
+      bpmMin = parseInt(matchingSubgenre.BPM.min, 10);
+      bpmMax = parseInt(matchingSubgenre.BPM.max, 10);
+      bpm = Math.floor((bpmMin + bpmMax) / 2);
+    }
+  }
+  
   if (secondaryDb) {
-    bpm = Math.round((primaryDb.bpmRange.default + secondaryDb.bpmRange.default) / 2);
+    bpm = Math.round((bpm + secondaryDb.bpmRange.default) / 2);
   }
 
   let baseEnergy = primaryDb.defaultEnergy;

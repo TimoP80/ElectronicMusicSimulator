@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { 
   Music, Sparkles, Disc, MapPin, Calendar, Heart, ShieldAlert, 
   Trash2, DollarSign, Users, Zap, TrendingUp, Trophy, ArrowUpRight, Award, MessageCircle, HelpCircle, Flame,
-  Database
+  Database, Globe
 } from "lucide-react";
 
 import { GameState, Track, ReleasedTrack, MusicGenre, MusicTrend } from "./types";
@@ -21,6 +21,7 @@ import SocialDramaForum from "./components/SocialDramaForum";
 import SkillsTree from "./components/SkillsTree";
 import UpgradableGearShop from "./components/UpgradableGearShop";
 import DataModEditor from "./components/DataModEditor";
+import AIDashboard from "./components/AIDashboard";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
 
@@ -207,6 +208,15 @@ export default function App() {
 
   const handleStartNewGame = () => {
     const name = onboardingName.trim() || "DJ BedRoomer";
+    
+    // Initialize virtual artists pool (top 20 predefined artists as active competitors)
+    const { getTopPredefinedArtists } = require('./data/artists');
+    const virtualArtists = getTopPredefinedArtists(20).map(artist => ({
+      ...artist,
+      relationship: 0,
+      status: artist.fame > 70 ? "rival" : "neutral"
+    }));
+    
     const initial: GameState = {
       artistName: name,
       pseudonym: name,
@@ -244,7 +254,13 @@ export default function App() {
       ],
       currentCityId: "bedroom",
       completedGigsCount: 0,
-      allTimeEarnings: 0
+      allTimeEarnings: 0,
+      
+      // AI Simulation data
+      aiReleases: [],
+      aiNews: [],
+      labelActivities: [],
+      virtualArtists
     };
     saveState(initial);
   };
@@ -603,6 +619,9 @@ export default function App() {
   const handleRestAndMasterCycle = async () => {
     if (!gameState) return;
 
+    // Import AI simulation
+    const { simulateAIScene, updateArtistFame } = require('./utils/aiSimulation');
+
     // Advance calendar by 1 week
     let week = gameState.gameDate.week + 1;
     let month = gameState.gameDate.month;
@@ -665,12 +684,31 @@ export default function App() {
       } catch (err) {}
     }
 
+    // Simulate AI scene for this week
+    const simulationResult = simulateAIScene(gameState, 1);
+    
+    // Update virtual artists' fame
+    const updatedVirtualArtists = updateArtistFame(
+      gameState.virtualArtists || [],
+      simulationResult.fameChanges
+    );
+
+    // Limit stored AI data to last 50 items each
+    const maxStoredAI = 50;
+    const newAIReleases = [...(simulationResult.newReleases || []), ...(gameState.aiReleases || [])].slice(0, maxStoredAI);
+    const newAINews = [...(simulationResult.newNews || []), ...(gameState.aiNews || [])].slice(0, maxStoredAI);
+    const newLabelActivities = [...(simulationResult.newActivities || []), ...(gameState.labelActivities || [])].slice(0, maxStoredAI);
+
     // Build the updated state object
     let updated: GameState = {
       ...gameState,
       gameDate: { year, month, week },
       releases: recalculatedReleases,
       currentTrend: nextTrend,
+      aiReleases: newAIReleases,
+      aiNews: newAINews,
+      labelActivities: newLabelActivities,
+      virtualArtists: updatedVirtualArtists,
       stats: {
         ...gameState.stats,
         inspiration: finalInspiration,
@@ -680,11 +718,21 @@ export default function App() {
       }
     };
 
+    // Build simulation summary for log
+    const aiSummaryParts = [];
+    if (simulationResult.newReleases.length > 0) {
+      aiSummaryParts.push(`${simulationResult.newReleases.length} releases`);
+    }
+    if (simulationResult.newNews.length > 0) {
+      aiSummaryParts.push(`${simulationResult.newNews.length} news posts`);
+    }
+    const aiSummary = aiSummaryParts.length > 0 ? ` | AI Scene: ${aiSummaryParts.join(', ')}` : '';
+
     // Log the rested outcomes
     updated = appendLog(
       updated,
       `Master Loop Calendar Tick: Week ${year}.${month}.${week}`,
-      `Took a baseline break. Refueled +${recoveryInspiration} creative ideas and recovered stress. Passive plays generated $${Math.round(residualPayout)} streaming royalties. ${trendLogMsg}`,
+      `Took a baseline break. Refueled +${recoveryInspiration} creative ideas and recovered stress. Passive plays generated $${Math.round(residualPayout)} streaming royalties. ${trendLogMsg}${aiSummary}`,
       "system"
     );
 
@@ -910,6 +958,20 @@ export default function App() {
               >
                 <span className="flex items-center gap-2"><Trophy className="h-4 w-4" /> Skills Academy</span>
                 <span className="text-[10px] text-[#00FF95] font-bold bg-[#00FF95]/10 px-1 py-0.2 border border-[#00FF95]/30 rounded">{gameState.stats.skillPoints} SP</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("scene")}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold font-sans flex items-center justify-between transition-all cursor-pointer ${
+                  activeTab === "scene"
+                    ? "bg-[#111114] text-[#FF00FF] font-bold border-l-4 border-[#FF00FF] neon-glow"
+                    : "text-slate-400 hover:bg-[#111114]/60 hover:text-white"
+                }`}
+              >
+                <span className="flex items-center gap-2"><Globe className="h-4 w-4" /> Scene Monitor</span>
+                <span className="text-[9px] font-mono bg-[#050507] border border-[#1A1A1E] px-1.5 py-0.2 rounded text-[#FF00FF] font-bold">
+                  {(gameState.aiReleases || []).length + (gameState.aiNews || []).length}
+                </span>
               </button>
 
               <button
@@ -1216,6 +1278,10 @@ export default function App() {
                 />
               )}
 
+              {activeTab === "scene" && (
+                <AIDashboard gameState={gameState} />
+              )}
+
               {activeTab === "editor" && (
                 <DataModEditor
                   gameState={gameState}
@@ -1266,29 +1332,30 @@ export default function App() {
           </main>
         </>
       ) : onboardingShowEditor ? (
-        /* Editor view on onboarding splash screen */
-        <div className="flex-1 max-w-7xl w-full mx-auto px-4 py-8 z-10 relative flex flex-col min-h-[calc(100vh-140px)] overflow-y-auto">
-          <div className="bg-[#0A0A0C] border border-[#1A1A1E] rounded-3xl p-6 md:p-8 shadow-2xl space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#1A1A1E]">
-              <div className="space-y-1">
-                <h1 className="text-xl md:text-2xl font-display font-bold text-white flex items-center gap-2.5 uppercase tracking-tight">
-                  <Database className="h-6 w-6 text-[#00FF95]" /> Developer Modding Studio & Editor
-                </h1>
-                <p className="text-xs text-slate-400 font-sans">
-                  Design, modify, and inspect custom genres, artists, and script parameters before starting your career.
-                </p>
-              </div>
-              <button
-                onClick={() => setOnboardingShowEditor(false)}
-                className="bg-[#111114] hover:bg-[#1A1A1E] text-slate-300 hover:text-white border border-[#1A1A1E] hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase cursor-pointer transition-all active:scale-95 self-start sm:self-center"
-              >
-                &larr; Back to Artist Selection
-              </button>
+        /* Editor view - full screen standalone mod editor */
+        <div className="fixed inset-0 z-[100] bg-[#0A0A0C] overflow-hidden flex flex-col">
+          {/* Back button header */}
+          <div className="bg-[#050507] border-b border-[#1A1A1E] px-4 py-3 flex items-center justify-between flex-shrink-0">
+            <button
+              onClick={() => setOnboardingShowEditor(false)}
+              className="flex items-center gap-2 bg-[#111114] hover:bg-[#1A1A1E] text-slate-300 hover:text-white border border-[#1A1A1E] hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all active:scale-95"
+            >
+              <span className="text-lg">←</span>
+              <span>Back to Artist Selection</span>
+            </button>
+            <div className="flex items-center gap-4">
+              <span className="text-[10px] font-mono text-slate-500">MODDING STUDIO // WORKSHOP</span>
+              <div className="h-6 w-px bg-[#1A1A1E]" />
+              <span className="text-xs font-mono text-[#00FF95]">Ready to create!</span>
             </div>
-            
+          </div>
+          
+          {/* Editor content - takes remaining space */}
+          <div className="flex-1 overflow-hidden">
             <DataModEditor
               gameState={null}
               setGameState={setGameState}
+              standaloneMode={true}
             />
           </div>
         </div>

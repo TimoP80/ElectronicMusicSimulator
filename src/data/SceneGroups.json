@@ -1,0 +1,1829 @@
+{
+  "ReleaseGroupDB": {
+    "SceneGroup": [
+      {
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": {
+          "MsgData": [
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_SELFGRP",
+              "RandomMsg": [
+                "Oops, we totally fucked up the previous release so let's try again with a proper bitrate.",
+                "Fucked up the last release, with the incorrect bitrate %BITRATE%, let's try again.",
+                "Wrong bitrate in the last release, here's the proper. Apologies for this amateurish fuckup.",
+                "Sht happens, we used the bitrate %BITRATE% in our previous release, trying again."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_NOTSELFGRP",
+              "RandomMsg": [
+                "The previous release, %SRCREL%, by %SRCGROUP% was fucked up because they used the wrong bitrate (%BITRATE%), here's the proper with the correct bitrate and other shit.",
+                "Lame faggots %SRCGROUP% can't get theit bitrates right, so here's our proper of %SRCREL%.  Stop being such faggots, %SRCGROUP%. Watch out for more stuff from us, over'n'out.",
+                "%SRCGROUP% messed up %SRCREL% by using the wrong bitrate, here's our release, done correctly and BY THE FUCKING BOOK!",
+                "%SRCREL% had an invalid bitrate, so we come to the rescue with this proper one.",
+                "My god, %SRCGROUP% are such lame ass fags. We are propering their shitty crap %BITRATE%kbps release which was %SRCREL%.",
+                "Fuck you %SRCGROUP% and your shitty encoding, this is our proper of %SRCREL%. Enjoy the proper scene quality from SQ!"
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_SELFGRP",
+              "RandomMsg": [
+                "Our release had some skips so here is the rerip from a different source.",
+                "Oops, %SRCREL% was a skip-fest, we bring you the proper. Apologies for the mistake.",
+                "This is a proper of our release %SRCREL%, some tracks were skipping. Happens quite a lot when using cd or vinyl. Apologies and enjoy the proper!",
+                "There were some skips in the previous release so here's the proper one, enjoy!"
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_NOTSELFGRP",
+              "RandomMsg": [
+                "The release %SRCREL% by %SRCGROUP% contained skips in some tracks so here's the proper one without skips!",
+                "%SRCREL% had skips in some tracks so here's the proper.",
+                "There were skips in %SRCREL% so we are propering it with this one. Happens to the best of us. But we have a non-skipping source so there.",
+                "This is a proper of %SRCREL%. %SRCGROUP% didnt seem to notice the skips in their release so we decided to do this proper.",
+                "%SRCGROUP% messed up their release, tracks are skipping like mad, so we bring the proper.",
+                "%SRCREL% had skips, this is the proper, enjoy!",
+                "%SRCREL% is a mad skipping mess, so this is our proper. Hope you guys get it right next time!",
+                "The previous release by %SRCGROUP% had skips on the following tracks: %SKIPPINGTRACKS%, so here's our proper."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_SELFGRP",
+              "RandomMsg": [
+                "We forgot to rip the disc as image + cue, so here's the proper, apologies.",
+                "Fucked up our own release, how the hell did that happen? Anyway, here's the proper with cue and mp3 and shit.",
+                "We made a mistake in the previous release of %SRCNAME% so here's a proper with cue and the image."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_NOTSELFGRP",
+              "RandomMsg": [
+                "Previous release %SRCREL% was released as separate tracks even though the tracks on the CD are mixed together, shame on you, lamers from %SRCGRP%! Here's the proper with the cue and the audio image.",
+                "%SRCGRP% can't seem to comprehend scene rules which clearly state that digitally mixed sources must be released as .cue and .mp3! (or FLAC if you're in to that lossless shit)",
+                "Previous release of %SRCNAME% by %SRCGRP% was released as separate tracks, which is clearly not allowed so we are propering that one right now.",
+                "%SRCGRP% fucked up and released %SRCNAME% as separate tracks, so here's the proper with cue and shit.",
+                "Lamers from %SRCGRP% cannot comprehend scene rules, they released %SRCNAME% as separate tracks, here's the proper with the appropriate audio image and the .cue file.",
+                "%SRCGROUP%, get your shit together! Mixed CDs are supposed to be released as .mp3 and .cue! Faggots. Here's the proper of %SRCREL%."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_NOTSELFGRP",
+              "RandomMsg": [
+                "The lamer faggots of the group %SRCGROUP% released a 128kbps mp3, shame on you! This is not allowed by the scene, so here's our proper according to scene rules.",
+                "%SRCREL% was encoded at 128kbps so fuck you, %SRCGROUP%, this is the proper. Don't do that shit again, motherfuckers or we'll nuke your ass."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_NOTSELFGRP",
+              "RandomMsg": [
+                "Lamer group %SRCGROUP% released a vinyl at 320kbps, that shit is not welcome to the scene, so here's the VBR version.",
+                "%SRCREL% is not valid scene because it was encoded at 320kbps! Here's our VBR proper.",
+                "%SRCGROUP%, fuck off you lamers! Vinyl is not allowed at 320kbps, maybe in some lame shit p2p crap it is allowed."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_SELFGRP",
+              "RandomMsg": "Somehow the files in our previous release got corrupted, so here's a proper that should not contain errors."
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_NOTSELFGRP",
+              "RandomMsg": "The release by %SRCGROUP% had crc errors, so here's a proper."
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_NOTSELFGRP",
+              "RandomMsg": [
+                "Web as VBR? Really, %SRCGROUP%? Nope. 320kbps is the way to go, so here's our proper.",
+                "%SRCREL% was a WEB release encoded as VBR, nope we don't do that shit, here's the proper."
+              ]
+            }
+          ]
+        },
+        "NFOSettings": {
+          "WordWrapWidth": "80",
+          "MaxTitleLength": "90",
+          "TrackListFormatLine": "",
+          "TrackListTotalsOneCD": "",
+          "TrackListTotalsMultiCD": "",
+          "CenteringLength": "50"
+        },
+        "Name": "Swiss Quality",
+        "Abbreviation": "SQ",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Hardcore / Gabber",
+            "Hardcore / Speedcore",
+            "Hardcore / Terrorcore",
+            "Hardcore / Noisecore",
+            "Hardcore / Nustyle Hardcore",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hardstyle",
+            "Hard Dance / Hard Trance",
+            "Hardcore / Metalcore",
+            "Hardcore / Rave",
+            "Hardcore / Frenchcore",
+            "Hardcore / Industrial"
+          ]
+        },
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320",
+            "MP3 192"
+          ]
+        },
+        "GroupComment": "Swiss Quality Rules da Scene!",
+        "NFOTemplate": "Ripdate ...... : %RIPDATE%\nArtist ....... : %ARTIST%\nTitle ........ : %TITLE%\nLabel ........ : %LABEL%\nCatalog ...... : %CATALOG%\nGenre ........ : %GENRE%\nType ......... : %TYPE%\nSource ....... : %SRC%\nEncoder ...... : %ENCODER%\nQuality ...... : %QUALITY%\nTracks ....... : %TRACKS%\nLength ....... : %TOTALLENGTH%\nFilesize ..... : %SIZE%\n   \n     S w i s s                               S w i s s\nQUALiTY                                         QUALiTY\n\n              Only The Best in Gabba Noize\n\nR e l e a s e  n o t e s\n\n   %RELEASENOTES%\n\nT r a c k  l i s t\n\n   %TRACKLIST%\n\nG r e e t z \n\n   %GREETS%",
+        "IncludeCatalogNo": "true",
+        "GroupSkill": "9"
+      },
+      {
+        "Name": "Psychedelic Cyber Zone",
+        "Abbreviation": "PsyCZ",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Psychedelic / Dark psy",
+            "Psychedelic / Progressive Psytrance",
+            "Psychedelic / Full On",
+            "Psychedelic / Goa Trance",
+            "Finnish Psytrance / Suomisaundi",
+            "Ambient / Downtempo"
+          ]
+        },
+        "GroupComment": "\\\\ PsyCZ %YEAR% //",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "Psychedelic Cyber Zone\n\nArtist.....: %ARTIST%\nAlbum......: %TITLE%\nType.......: %TYPE%\nGenre......: %GENRE%\nLabel......: %LABEL%\nCatalogNr..: %CATALOG%\nUrl........: %LABELURL%\nRel.date...: %RIPDATE%\nStr.date...: %RELDATE%\nSource.....: %SRC%\nEncoder....: %ENCODER%\nQuality....: %QUALITY%\nTracks.....: %TRACKS%\nSize.......: %SIZE%\nLength.....: %TOTALLENGTH%\n\nTracklist\n\n%TRACKLIST%\n\nTotal Time: %TOTALTIME%\n\nRelease Notes\n\n%RELEASENOTES%\n\nPsychedelic Cyber Zone\nest. 2001",
+        "IncludeCatalogNo": "false",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "10",
+        "ReleaseNoteMessages": {
+          "MsgData": [
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_NOTSELFGRP",
+              "RandomMsg": [
+                "The lamers of the group %SRCGROUP% used a wrong bitrate (%BITRATE%) so this is our proper. We are so sick of propering your half assed shit!",
+                "%SRCREL% was encoded at a really low bitrate so we are propering it with this release.",
+                "%SRCGROUP% ruined the great release of %SRCNAME% by using a wrong bitrate so here's our proper."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_SELFGRP",
+              "RandomMsg": [
+                "Our previous release of %SRCNAME% had skipping tracks, so we ripped it again, should be good now!",
+                "Fuck! Had skips in the previous release, had to find another source because the original one was damaged beyond repair.",
+                "Goddamnit! Fucked up our own release, skips in some tracks, here's a proper."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_NOTSELFGRP",
+              "RandomMsg": [
+                "The release by %SRCGROUP% was messed up with skipping racks, propering it right here. We know how to do shit right!",
+                "%SRCREL% contained skips in some tracks, happens with CD and vinyl occasionally, so here's the proper from a different non-skipping source.",
+                "%SRCREL% had skipping tracks so we come to the rescue and release a proper.",
+                "For some %SRCGROUP% had skips in their release so here's a proper."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_NOTSELFGRP",
+              "RandomMsg": [
+                "%SRCREL% was released as separate tracks while the CD is clearly digitally mixed so fuck you lamers, this is the proper.",
+                "This is a proper release of %SRCNAME%, %SRCGROUP% forgot about scene rules and didn't use the .mp3 + cue method, instead they released the CD as separate tracks which is fucking not allowed according to scene rules."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_SELFGRP",
+              "RandomMsg": [
+                "For some reason, the encoder went nuts and put our previous one out as 128kbps, here's the proper.",
+                "Fuck, let's try this again, this time with the proper bitrate."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_NOTSELFGRP",
+              "RandomMsg": [
+                "Lamers at %SRCGROUP% encoded their release at 128kbps which is just fucking ridiculous, here's our proper of %SRCNAME%.",
+                "Silly %SRCGROUP%, you don't encode mp3s at 128kbps and expect not to be nuked, fuck off the scene, lamers! This is our proper.",
+                "Some faggots just can't get their shit right. 128kbps is ancient history, here's our proper. %SRCGROUP%, we spit at your incompetence!",
+                "Why can't %SRCGROUP% use the proper bitrates? Fucking 128bkps my ass. Here's the proper of %SRCREL%"
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_NOTSELFGRP"
+            }
+          ]
+        },
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Underground Psychedelic Energy",
+        "Abbreviation": "UPE",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Psychedelic / Full On",
+            "Psychedelic / Goa Trance",
+            "Psychedelic / Dark psy",
+            "Psychedelic / Progressive Psytrance",
+            "Finnish Psytrance / Suomisaundi"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "Ripdate ...... : %RIPDATE%\nArtist ....... : %ARTIST%\nTitle ........ : %TITLE%\nLabel ........ : %LABEL%\nCatalog ...... : %CATALOG%\nGenre ........ : %GENRE%\nType ......... : %TYPE%\nSource ....... : %SRC%\nEncoder ...... : %ENCODER%\nQuality ...... : %QUALITY%\nTracks ....... : %TRACKS%\nLength ....... : %TOTALLENGTH%\nFilesize ..... : %SIZE%\n\nTracklist\n\n%TRACKLIST%\n\nTotal Time: %TOTALTIME%\n\nRelease Notes\n\n%RELEASENOTES%\n\n-- Underground Psychedelic Energy --\n\nGreetz to: %GREETS%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "10",
+        "ReleaseNoteMessages": {
+          "MsgData": [
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_NOTSELFGRP",
+              "RandomMsg": [
+                "%SRCREL% was fucked up, way to go %SRCGROUP%! Here's the proper.",
+                "%SRCGROUP%, is %BITRATE%kbps a proper bit rate for the scene? No! So fuck you. This is the proper one.",
+                "Fucking lamers at %SRCGROUP% releasing low quality shit. Here's the proper one of %SRCNAME%."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_NOTSELFGRP",
+              "RandomMsg": [
+                "%SRCREL% had skips, so we decided to release a proper and nuke the old one. Fucking lamers from %SRCGROUP%, can't do anything right.",
+                "There were some skipping tracks in %SRCREL% so here comes our proper.",
+                "%SRCREL% had some really bad skipping in a few tracks so here's a clean proper.",
+                "%SRCGROUP% needs to get their shit together, as they released %SRCNAME% with a fucking nasty amount of skips in some tracks. Here's our proper without skipping.",
+                "%SRCREL% skipped like a kangaroo, so here's our non-bouncing proper."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_NOTSELFGRP",
+              "RandomMsg": [
+                "Silly lamers, %SRCGROUP%, you are not supposed to rip a mixed CD as separate tracks! Read the fucking rules you clowns!",
+                "Propering %SRCREL% due to lame shit crap mistakes. CUE and the audio disc image, true proper scene style.",
+                "Lamers at %SRCGROUP% can't get their shit right, they released %SRCNAME% as separate tracks, so we nuke that shit and release a proper rip. Enjoy!",
+                "%SRCREL% was released as separate tracks, so this is a proper of that. Learn from your mistakes, %SRCGROUP%!"
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_NOTSELFGRP"
+            }
+          ]
+        },
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "MYCEL",
+        "Abbreviation": "MYCEL",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Psychedelic / Full On",
+            "Psychedelic / Progressive Psytrance",
+            "Finnish Psytrance / Suomisaundi"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "Ripdate ...... : %RIPDATE%\nArtist ....... : %ARTIST%\nTitle ........ : %TITLE%\nLabel ........ : %LABEL%\nCatalog ...... : %CATALOG%\nGenre ........ : %GENRE%\nType ......... : %TYPE%\nSource ....... : %SRC%\nEncoder ...... : %ENCODER%\nQuality ...... : %QUALITY%\nTracks ....... : %TRACKS%\nLength ....... : %TOTALLENGTH%\nFilesize ..... : %SIZE%\n\nTracklist\n\n%TRACKLIST%\n\nTotal Time: %TOTALTIME%\n\nRelease Notes\n\n%RELEASENOTES%\n\n-- MYCEL %YEAR% --",
+        "IncludeCatalogNo": "true",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": {
+          "MsgData": [
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_NOTSELFGRP",
+              "RandomMsg": [
+                "%SRCREL% had a strangely low bitrate, so here's a proper with no crap like that.",
+                "Previous release of %SRCNAME% had a weird non-standard bitrate, so this is our proper.",
+                "%SRCGROUP% has some weird shit going on encoding stuff at %BITRATE%kbps, so this is the proper with the standard VBR bitrate."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_SELFGRP",
+              "RandomMsg": [
+                "Our release of previous release of %SRCNAME% had skips in some tracks so here it is again without skips. Truly sorry about such shit but it does happen with physical media.",
+                "Previous release skipped like mad, so here it is again. Can't believe shit like this happens to us, we are fucking elites!"
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_NOTSELFGRP",
+              "RandomMsg": "%SRCREL% had skips in some tracks so here's a propah."
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_NOTSELFGRP"
+            }
+          ]
+        },
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "groov[e]mission",
+        "Abbreviation": "gEm",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Psychedelic / Dark psy",
+            "Psychedelic / Goa Trance",
+            "Psychedelic / Progressive Psytrance",
+            "Psychedelic / Full On",
+            "Finnish Psytrance / Suomisaundi"
+          ]
+        },
+        "GroupComment": "Another fine gEm Release",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "Ü\n                                            ß          Ü²Ü      Ü\n            ß     Ü    ÜÜÛÜÜ  ßÜÜÜÜ°°    ° ÜÜÜß  ÜÜÛÜÜ  ß Ü°\n             ÜÜÛßß ÜÜÛÛÛÛÛÛÛÛÛÜÜÜ ßßÛÜÜÜÜÛßß ÜÜÛÛÛÛÛÛÛÛÛÜÜ ßßÛÜÜ    ß\n    Ü    ÜÜÛßß ÜÜÛÛÛÛ²²²ÛÛ²²²²²ÛÛÛÛÜÜ ßß ÜÜÛÛÛ²²²²²ÛÛ²²²²ÛÛÛÜÜ ßßÛÜÜ\n      ÜÛßß ÜÜÛÛÛÛ²²°°²²ÛÛ²²°°° °°°²²²Û  ÛÛ²°°°°°°°²²ÛÛ²²°°²²ÛÛÛÛÜÜ ßßÛÜ\n     ß ÜÜÛÛÛÛ²²°°°°°°°°ÛÛ²²°°     °²ÛÝ  ÞÛ°°   °°°²²ÛÛ²°°°°°°°²²ÛÛÛÛÜÜ ß\n    ÜÛÛÛÛ²²°°°  °° °°°ÞÛÛ²²°     °°²ß    ß°°°   °°²²ÛÛÝ°°  ° °°°°²²²ÛÛÛÛÜ\n   ÛÛÛ²°°°°   °°°°°°° ÛÛ²²°°    ÜÜÜÜÛÛÛ²²²ÜÜÜ°   °°²²ÛÛ°°°°°°°  °° °°²²ÛÛÛ\n  ÞÛÛ²° ° ÜÜÛÛÜ °°°° ÞÛÛ²²°  ÜÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²Ü  °²²ÛÛÝ °°°° ÜÛÛÜÜ   °²ÛÛÝ\n  ÛÛ²° ° ÛÛ²°ÜÛÛ °°° ÛÛ²²°° ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ² °°²²ÛÛ °°  ÛÛÜ°²ÛÛ  °°²ÛÛ\n ÞÛÛ²°°° ßÛÛÛÛß °°° ÞÛÛ²²° ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ °²²ÛÛÝ °°  ßÛÛÛÛß °° °²ÛÝ\n ÛÛ²²°° °  ÜÜÜÜ  °° ÛÛÛ²²°ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°²²ÛÛÛ °°° ÜÜÜÜ   °°°°²ÛÛ\nÞÛÛ²° ÜÜÛÛÛÛÛÛÛÛÛ ° ÛÛ²²° ÛÛÛÛßÛ²ÛÛÛÛÛÛÛÛÛÛÛ²ÛßÛÛÛÛ °²²ÛÛ ° ÛÛÛÛÛÛÛÛÛÜÜ °°²ÛÝ\nÛÛ²° ÛÛÛ²²²²²²ÛÛÛÛ ÞÛÛ²²° ÛÛÛ  ßÛ²ÛÛÛÛÛÛÛÛÛ²Ûß  ÛÛÛ °²²ÛÛÝ ÛÛÛÛ²²²²²²ÛÛÛ  ²ÛÛ\nÛÛ° ÛÛ²²°° °°°²ÛÛÛÝÞÛÛ²²°  ÛÛ    ß²²ÛÛÛÛÛ²²ß    ÛÛ  °²²ÛÛÝÞÛÛÛ²°°° °°²²ÛÛ  ²Û\nÛ° ÛÛ²²°    °°²²ÛÛÝÛÛ²²°°   ²Ý     Û²ÛÛÛ²Û     ÞÛ   °°²²ÛÛÞÛÛ²²°°    °²²ÛÛ °ÛÝ\n² ÛÛ²²°      °²²ÛÛ ÛÛ²²°°°   ÛÜ     ÛÛÛÛÛ     ÜÛ   °°°²²ÛÛ ÛÛ²²°      °²²ÛÛ ÛÝ\n° ÛÛ²²°     °°²ÛÛÝ Û²²°°°°°   ßÜ   °ÛÛÛÛÛ°   Üß   °°°°°²²Û ÞÛÛ²°°     °²²ÛÛ ÛÛ\n°  ÛÛ²²°   °°²ÛÛÛ ÛÛ²²°° ÜÜ²²ÛÜ ßÜÜÛÛÛÛÛÛÛÜÜß ÜÛ²²ÜÜ °°²²ÛÛ ÛÛÛ²°°   °²²ÛÛ  ÛÛ\n°°  ÛÛ²²°°°²ÛÛÛß ²Û²²° ÜÛÛÛÛÛÛÛÛÜ°ßÛÛÛÛÛÛÛß ÜÛÛÛÛÛÛÛÛÜ °²²Û  ßÛÛÛ²°°°²²ÛÛ  °ÛÛÝ\n° °° ßßÛÛÛÛßß °°°° ÜÜÛÛÛÛÛÛß²ÛÛÛÛÛÜ ßÛÛÛß ÜÛÛÛÛÛ²ßÛÛÛÛÛÛÜÜ °°°  ßßÛÛÛÛßß  °°ÛÛÝ\n ° °°°      °° ÜÜÛÛÛÛÛÛßß  °°²²ÛÛÛÛÛÜ ß ÜÛÛÛÛÛÛ²°   ßßÛÛÛÛÛÛÜÜ°°°       °°°°²ÛÛ\n°°° ° °°°°°° ÜÛÛ²ÜÛÜÜÜ   Ü   Þ²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÝ  Ü   ÜÜÜÜÛ²²ÛÛÜ °°°°°°°°°°°²ÛÛ\n °°°     ÜÜÛÛÛÛÛÛÛÛßßÛÛÛÛß   °ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°  ßÛÛÛßßßßÛÛÛÛÛÛÛÛÜÜ  °°°  °²ÛÛ\n  °  ÜÜ²²ÛÛÛÛÛßß          Ü²Ü °ßß ÜÜÜÜÜÜÜÜÜ ßß²°             ßßÛÛÛÛÛÛÛÜÜ   °²²Û\n    ²ÛÛÛÛßßß   ÜÜÜÜÜÜÜÜÜÜÜ ß  ÜÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜ   ÜÜÜÜÜÜÜÜÜÜÜ   ßßßÛÛÛÛÛ °²²²²\n°   ÜÜÜÜÜÛÛÛÛÛÛÛÛßßßßß°°²ÛÛÛ °ÛÛÛ²²°°°    °²²ÛÛÛ °ÛÛÛ²²ßßßßßßÛÛÛÛÛÛÛÛÜÜÛÜÜ  °°²\n   ÛÛÛ²²°°           °°²²²ÛÛ °ÛÛ²²°°        °²²Û °ÛÛ²²°°            °°²²ÛÛÛ  °°\n   ÛÛ²²°°          °°°²²²ÛÛÛ ÜÛÛ²ÜÜÜÜÜÜÜÜÜÜÜÜÜ²ÛÜ ÛÛÛ²²°°            °°²²ÛÛ\n°  ÛÛÛ²ÜÜÜÜÜÜÜÜÛÛÛÛÛßßßßßßÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛßßßßßß²²ÛÛÛÛÛÜÜÜÜÜÜÜÜ²ÛÛÛ  °\nÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²ß ÜÜÜÜßßßßÜÜ ßÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛß ÜÜÜÜßßßßÜÜ ß²ÛÛÛÛÛÛÛßÛÛÛÛÛÛÛÛÛ²°\n²ÛÛÛÛÛÛÛÛÛÛÛÛ²² ÛÛÛ²°      Û ²ÛÛÛÛÛÛÛÛ² ÜÜ ßÛ ÛÛÛ²° °    Û ²²ÛÛÛÛÛÜ°ÜÛÛÛÛÛÛÛÛ²\n²ÛÛÛÛß°ßÛÛÛÛÛÛÝÞÛÛ²°  ÜÜÜ ß Ü²²ÛÛÛÛÛÛ²²  ÛÛ ÝÞÛÛ²°  ÜÜÜ ß°Ü²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²\n²²ßßßß ßßßßßßßß ÛÛÛÛÜÜÜ ßßßßßßß²ßßßß ÜÜÜÛÛß ß ÛÛÛÛÜÜÜ ßßßßßßß²ßßßßßß²ßßßßßßßÛ²\n² ÜÛÛÛÛÛÛÛÛÛÛÛÛÜ ÛÛÜÛÛÛÛÛÛÛÛÛÛÜ ÜÛÛÛÛÛÛÛÛÛÛÛÛÜ ÛÛÛÛÛÛÛÛÛÛÛÛÛÜ ÜÛÛÛ²°Û °²ÛÛÛÜ Û\n° ÛÜÛÛß °  ßÛÛÛÛ ÛÛÛÛß    ßÛÛÛÛ ÛÛÛÛß    ßÛÛÛÛ ÛÛ²²°°   ßÛÛÜÛ ÛÛ²²ß    ßÛÛÛÛ ²\n  ÛÛÛÛ  °   ßßßß ÛÛÛÛ     °ÛÛÛÛ ÛÜÛÛ   Ü  ÛÛÛÛ ÛÛÛ²°     ÛÛÛÛ ÛÛÛ²°Ü²ÛÜ ÛÛÛÛ °\n  ÛÛÛÛ  ²ÛÛÛÛÛÛÛ ÛÛÛÛ ÛÛÜÜÜ²ÛÛ  ÛÛÛÛ  Û   ÛÛÛÛ ÛÛÛÛ°  Ü²ÜÛÛÛÛ ÛÜÛÛ  ßß  ÛÛÛÛ\n° ÛÛÛÛ  ßßß°²²ÛÛ ÛÛÛÛ ßßßßÛÛÛÛÝ ÛÛÛÛ°  þÜ ÛÛÛÛ ÛÛÛÛ    ß ÛÛÛÛ ÛÛÛÛ      ÛÛÛÛ °\n² ÛÛÛ²°     ²ÛßÛ ÛÛÛÛ °    ÛÛÛÛ ÛÛÛÛ     Û²ÛÛÛ ÛÛÛÛ     °²ÛÛÛ ÛÛÛÛÛÜ  ÜÛÛÛÛÛ ²\nÛ ÛÛ²²°°   ÜÛÜ Ü ÛÛÛÛ ²    ÛÛÛÛ ²ÛÛ²°°Üþß ²²ÛÛ ÛÛÛßÜ   °°²²ÛÛ  ßÛÛÛÛÛÛÛÛ²Ûß ÜÛ\nÛ ßÛÛÛÛÛÛÛÛÛÛÛÛ² ßÛÛÛ Û  Û ²ÛÛÛ ß²²ÛÛÛÛÛÛÛÛÛÛß ßÛÛÛÛÛÛÛÛÛÛÛÛÛ ßÜ ßÛÛÛÛ²Ûß ÜÛß\nßÛÜÜÜÜÜ   ßßßÛÛÛÛ  Û ÜÛßßÛÜÜÜÜÜ  Ü°ßß         ßÜÜÜÜ    ßßß²ÛÛÛ ÛÛÜÜÜÜÜÜÜÜÛßÛ\n   Ûß Ü        ÛÛÝ ² Û     Ûß Üþ Ü²ÛÛÛÛÛÛÛÛÛÛÛÜ Ûß Üß ßßÛÜ°²ÛÛÝÞÛ   Û      Û\n   Û Û        ÛÛÛ  °      ÜÛ Û   ÛÛÛÛß    ßÛÛÛÛ ß ÛÛÜ   °ÜÜÛÛÛ Û    ²      Û\n   ²  ßßÜÜÜÜßßßß   °     Ûß°Ü ßÜ ÛÛÛÛ   Ü  ÛÛÛ²°°  ÛßÛÛÛÛßßßß Üß    °      ²\n   °                    Û Ü²ÛÛÜ ßÛÛÛÛ²ÛÛÛ     °  ÜÛÛ²Ü  ÜÜÛßßß   ß  °      °\n   °   Ü         ÜÜÜÜÛßßß  ßÛß Ü ÛÛÛÛ°  ß  °  ßßÜ ßÛß  ßßßßßÛÜÜ       ß    °\n                Ûß ÜÜÜÜßßßßÜÜ ßÛ ÛÛÛ²°ßÜÜ  ²²ÛÛ Ûß ÜÜÜÜßßßßÜÜ ßÛ       ÜÜÛßßß\n ÜÛßßÜ   Ü²Ü   ÜÛ ÛÛÛ²°     °Û Û ÛÛÛ²Ü   ßÛÛÛÛÛ Û ÛÛÛ²°     °Û Û Ü²Ü  Ûß ÜÜßßÜ\nÛÛß °     ß   ÜÛÝÞÛÛ²° ÜÜÜÜ ß ÜÛ ß²ÛÛÛÛÛÛÛÛÛÛÛß ÝÞÛÛ²° ÜÜÜÜ ß ÜÛÜ ß  ÜÛ ÛÛ\nÞÛÜ °ÛÜ ÛßßßßßÛßß ÛÛÛÛÜÜÜ ßßßßßßÛ °           Üß  ÛÛÛÛÜÜÜ ßßßßßßÛßßßßßÛ ²ÛÜ\n ÛÛÛ²°ÛÜÛ ÛÛÛÜ Ü²Ü ÛÛÜÛÛÛÛÛÛÛÛÛÜ ÜÛÛÛÛÛÛÛÛÛÛÛÜ Ü²Ü ÛÛÛÛÛÛÛÛÛÛÛÛÜ ÜÛÛ² Û °ÛÛÛÛÝ\n ÛÛÛÛÜ ß ÜÛÛÛ²°ÜÛÜÜÛÛÛ²ß   ßÛÛÛÛ ÛÛÛ²ß   ßÛÛÛÛÜÜÛÜ ÛÛÛ²    ß²ÛÛÛ°²ÛÛÛ    °²ÛÛÛ\n ÛÛÛÛÛÛÜÛÛÛÛÛÛ ÛÛÛ ÛÛÛÛÜÜÜÜÜÜÜÜ  ÛÛÛÛÜÜÜÜÜÜÜÜ  ÛÛÛ ÛÛÛÛÜ²Ü  ÛÛÛÛ ÛÛÛÛÛÜ   ÛÛÛÜ\n ÛÛÛÛ ßÛß ²ÛÛÛ ÛÛÛ ßÛÛÛÛÛÛÛÛÛÛÛÛ ßÛÛÛÛÛÛÛÛÛÛÛÛ ÛÛÛ ÛÛÛÛ ß   ÛßÛÛ ÛÛÛÛßÛÛÜ ÛÛÛÛ\n ÛÛÛÛ     ÛÛÛÛ ÛÛÛ °      °°²²ÛÛ    °   °²²ÛÛÛ ÛÛÛ Ûß ß     ÛÛÛÛ ÛÛÛÛ  ßÛÛÛÛÛÛ\n ÛÛÛ²     ÛÛÛÛ ÛÛÛ ²ÜÜÛ     ²ÛÛÛ ÜÜÜ²     ²ÛÛÛ ÛÛÛ ÛÛÜÛ°    ²ÛÛÛ ÛÛÛÛ    ß²ÛÛÛ\n Ûß²²°°   ÛÛÛÛ ÛÛÜ ÛÛÛÛÜ    ÜÛÛÛ ²ÛÛÛÜ   °ÜÛÛÛ ÛÛÛ ÛÛÛ²²°  °²²ÛÛ ÛÛÜ²   °°²²ÛÛ\n ÛÛÛ²Üßß  ÛÛÛß ²ÛÛ ßÛÛÛÛÛÛÛÛÛÛÛÛ ßÛÛÛÛÛÛÛÛÛÛÛÛ ÛÛ² ßÛÛÛÛÛÛÛÛÛÛÛÛ ßÛ²²  ßßÜÛÛÛÛ\nÞÛÛß°ÜÜÜÜ°Û ÜÜÜ°ÜÜÜÜÜÜÜÜÜ ßßßÛÛÛÛ ÜÜÜÜÜÜ ßßßÛÛÜ  °ÜÜÜÜÜ°Ü ßßßÛÛÛÛ ÜÜÜÜÛÜÜÜ ßÛÛÝ\nÛÛ  ßß    ²       ßß  Ü ßßßß °²ÛÛÝÞÛß  ßßßÛÜÜ ßÛ °    Ü°ßßßß °²ÛÛÝÞÛ     ßß  ÛÛ\nßÛÛÜÜß    °      ÜÜÜ Û°     °²ÛÛÛ ß           ß      Û °    °²ÛÛÛ Ûß     ßÜÜÛ²ß\n           ÜÜÜÛÛÛÛÛÛÛÛÛÛÜÜÜÜÛßßß                      ßßÜÜÜÜÛßßß ÜÛÜ         °\n ÜÜÜÜÜÜÛÛÛÛÛÛÛÛßß                                            ßßÛÛÛÛÛÛÛÛÜÜÜÜÜÜ\n ²ÛÜÛßßßßßßßßÛÛ                                                 ÛÛßßßßßßßßÛÛÛ²\n ÛÛÛ ÜÜÜÜÜÜ °ÛÛ                  groov[e]mission                ÛÛ° ÜÜÜÜÜÜ Û²²\n ÛÛÛ Û ß  Û ²ÛÛ                     presents                    ÛÛ² Û    Û ÛÛ²\n ÛÛÛ ÛÜÜÜÜÛ ÛÛÛ                                                 ÛÛÛ ÛÜÜ²ÜÛ ÛÛÛ\n ßÛ²°       ÛÛ²°                                                ²ÛÛ       ÜÛÛÛ\n ²²ÛÛÛÛÛÛÛÛÛÛÛÛßßßÛÛßßß ß                              ß ßßÛÛßßß²²ßÛÛÛÛÛÛÛÛÛÛÛ\n  °   °           Û                                         Û   °       °\n       Artist ....... %ARTIST%\n       Title .......  %TITLE%\n       Genre ........ %GENRE%\n       Source ....... %SRC%\n       Label ........ %LABEL%\n       Catalog Nr. .. %CATALOG%\n       Release Date . %RELDATE%\n       Tracks ....... %TRACKS%\n       Length ....... %TOTALLENGTH%\n       Quality ...... %QUALITY%\n       Encoder ...... %ENCODER%\n       Size ......... %SIZE%\n                                                 \n R e le a s e    n o t e s     \n\n       %RELEASENOTES%\n\n T r a c k l i s t :\n\n       %TRACKLIST%\n\n Ü ²ÛÛÛÛÛÛÛÛÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ                                   ÜÜÜÛÛÛÛÛÛÛÛÛ²\n   ÛÛ     ²ÛÛ                                                     ÛÛ²     ÛÛ\n   ÜÛ ß   ²²Û  Currently groov[e]mission is looking for talented  Û²²°  ß ÛÜ\n   ²ÛÛÛÛÛÛÛ²Û  rippers  who can  supply quality electronic music  Û²ÛÛÛÛÛÛÛ² Ü\n   °   Û   °Û  (CD's / vinyl / promos or livesets,  at least you  Û°   Û   °ß²ß\nÛÛÛ²ÛÛÛÛÛ  ß²  should  be  able  to  order  from  online  stores  Û   ÛÛÛÛÛ²ÛÛÛ\nÛÛ Ü   ÛÛÜÜÜÛ  *frequently*!) mainly  psychedelic & ambient  but  ÛÜÜÜÛÛ   Ü ÛÛ\nÛÛß²ß  ²Û   Û  all  other  good   electronic  music  is  welcome ÞÛ   Û²  ß²ßÛÛ\n²ÛÛÛÛÜÛÛÛ ÛßÛ  aswell! If  you think  you can  contribute to the °ÛßÛ ÛÛÛÜÛÛÛÛ²\n°  ßßÛÛÛÛÜÛ Û  legend  don't  hesitate  to  send  an  email  to:  Û ÛÜÛÛÛÛßß  °\n       ßÛÛÛÛÛ                groovemission@hush.com               ÛÛÛÛÛß\n ÜÜ     °²ÛÛÝ              °                                   Ü °ÞÛÛ²°     ÜÜ\nÛÛ     °²ÛÛÛ   Group Notes ²°°                                  þ  ÛÛÛ²°     ÛÛ\n ßÛÛÜÜÛÛÛßÛÜÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ                                   ÜÜÜÛÜÛßÛÛÛÜÜÛÛß\n    ßß     ßÛß                                                   °Ûß     ßß\n            Û  After more than a half decade we think it is time  Û\n            Û  to change this message. The scene changed so much  Û\n            Û  in the past few years. Many lamers hangin' around  Û\n            ²  sharing scene  releases on  public places such as  ²\n            °  FXP-Pubs, DC++ hubs,  P2P  networks  and  so  on.  °\n            °                                                     °\n            °       WE  DON'T  WANT  OUR  RELEASES  GETTiNG       °\n            °          SPREAD  TO  SUCH  LAME  PLACES!!!          °\n            °                                                     °\n            °  The psytrance scene is kinda small and needs YOUR  °\n            °  SUPPORT. If  you LOVE  this  music  (like we do),  °\n            °  please BUY the music  (like we do)!  Artists work  °\n            °  long & hard on their music.  Please be honest and  °\n            °  support the  artists & labels  to make more great  °\n            °  music in the future too.  Every sold  CD  counts!  °\n            °  Our  releases are  meant  for promotion only - to  °\n            °  give  you  a  sample  of  the   retail   product.  °\n            °                                                     °\n            °  NEVER FORGET - THiS iS NOT A COPY, iT'S JUST MP3!  °\n            °                                                     °\n            °  Furthermore we wanna say thanks to all the people  °\n            ²  who made this  whole thing  happen,  in the past,  °\n            Û  present and future.  And finally, we want to send  Û\n           °²Ý  greetings  to  all our  fellow  friends  within  Þ²°\n           ÞÛÛ  the    scene!   You   know    who    you   are!  ÛÛÝ\n      ÛÛÛÛÛÛÛÛ²                                                 ²ÛÛÛÛÛÛÛÛ\n      ÛÛ  ß  ²Û  MUSiC WORTH LiSTENiNG iS MUSiC WORTH BUYiNG!!  Û²  ß  ÛÛ\n     ÜÛ² ß   ÛÛ                                                 ÛÛ   ß ²ÛÜ\n  ÜÛÛÛÛÛÛÛÛÛÛÛÛ  groov[e]mission - quality & pride since 2ooo   ÛÛÛÛÛÛÛÛÛÛÛÛÜ\n ÛÛÛÛßßß    Û                                                 ß   Û    ßßßÛÛÛÛ\nÞÛÛ²      ÜÛÛÛ²ÛÛÛÛÛ   Ü²Ü ALL YOUR PSY ARE BELONG TO US!  ÛÛÛÛÛ²ÛÛÛ       ²ÛÛÝ\n ÛÛÛ²ÜÜ    ÛÛ Ü   ²ÛÜÜ  ß                                ÜÜÛ²     ÛÛß   ÜÜ²ÛÛÛ\n  ßßÛÛÛÛÛÜÜÛÛß²ß  ²²ßßÛÛÛÜÜÜ                       ÜÜÜÛÛÛßß²²  ß  ÛÛÜÜÛÛÛÛÛßß °\n²ÛÛÛÛÛÛÛÛßß²ÛÛÛÛÜÛÛ²     ßß nfo update : 06/05/2oo7 ßß     ²ÛÛÜÛÛÛÛ²ßß²ÛÛÛÛÛÛÛ²\nÛÛ     ²Û      ßßßÛÛÛ                                     ÛÛÛßßß      Ûß     ²²\nÜÛ ß   ²²  ß        ÛÛ  * artwork by cpN of cRo in o4 *  ÛÛ         Ü ÛÛ   °°²Û\n²ÛÛÛÛÛÛÛ²          ßß                                     ßß       ß²ß²ÛÛÛÛÛÛÛÛ",
+        "IncludeCatalogNo": "True",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": {
+          "MsgData": [
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_NOTSELFGRP"
+            }
+          ]
+        },
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Musical Overdose",
+        "Abbreviation": "MOD",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hard Trance",
+            "Acid / Acid House",
+            "Acid / Acid Trance",
+            "Hard Dance / Hardstyle",
+            "Breakbeat / Nu skool breaks",
+            "Breakbeat / Chemical breaks"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "Musical Over Dose\n              is proud to present\n\n\n     Rls Name   : %RELNAME%\n  \n     Artist     : %ARTIST%\n     Title      : %TITLE%\n\n     Rls Date   : %RELDATE%\n     Street Date: %RIPDATE%\n     Rls Type   : %TYPE%\n     Company    : %LABEL%\n     Genre      : %GENRE%\n     Source     : %SRC%\n\n     Quality    : %QUALITY%\n\n     %TRACKLIST%\n\n     Release Notes\n\n     %RELEASENOTES%\n\n     Enjoy it!\n\n     MOD is currently looking for new people\n     feel free to msg us\n\n     mod@burp.afraid.org",
+        "IncludeCatalogNo": "true",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "We Rock The Web",
+        "Abbreviation": "WTW",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance",
+            "Trance / Uplifting Trance",
+            "Finnish Psytrance / Suomisaundi"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": "Digital"
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 320"
+        },
+        "NFOTemplate": "Artist(s) .........:: %ARTIST%\nTitle .............:: %TITLE%\n\nGenre .............:: %GENRE%\nRecord Label ......:: %LABEL%\nCatalogue Number ..:: %CATALOG%\n\nSource ............:: %SRC%\nQuality ...........:: %QUALITY%\nDuration ..........:: %TOTALHMS%\nSize...............:: %SIZE%\nRelease Date ......:: %RELDATE%\n\nTracklist\n\n%TRACKLIST%\n\nRelease Notes\n\n%RELEASENOTES%",
+        "IncludeCatalogNo": "false",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "BitHack",
+        "Abbreviation": "BiTHACK",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hardstyle",
+            "Hardcore / Gabber",
+            "Hardcore / Speedcore",
+            "Psychedelic / Dark psy",
+            "Breakbeat / Nu skool breaks"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "FLAC HIGH",
+            "FLAC LOW"
+          ]
+        },
+        "NFOTemplate": "Artist..................... %ARTIST%\nTitle...................... %TITLE%\n\nGenre ..................... %GENRE%\nLabel ..................... %LABEL%\nCatalogue Number .......... %CATALOG%\n\nSource .................... %SRC%\nEncoder / Quality ......... %ENCODER% / %QUALITY%\nDuration .................. %TOTALHMS%  (%SIZE%)\nRelease Date .............. %RELDATE%\n\nTracklist\n\n%TRACKLIST%\n\nRelease Notes\n\n%RELEASENOTES%\n\nGreets\n\n%GREETS%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Give A Fuck",
+        "Abbreviation": "GAF",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hard Trance"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": "Digital"
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "FLAC HIGH",
+            "FLAC LOW"
+          ]
+        },
+        "NFOTemplate": "Give A Fuck Proudly   P r e s e n t s\n\niNFO\n\nRELEASE..:: %RELNAME%\nARTiST ..:: %ARTIST%\nTiTLE ...:: %TITLE%\n\nLABEL ...:: %LABEL%\nCAT.NO ..:: %CATALOG%\nGENRE ...:: %GENRE%\n\nENCODER..:: %ENCODER%\nSOURCE ..:: %SRC%\n\nQUALiTY .:: %QUALITY%\nTRACKs...:: %TRACKS%\n\nRLS.DATE.:: %RIPDATE%\nSTR.DATE.:: %RELDATE%\nSiZE ....:: %SIZE%\n\nYEAR.....:: %YEAR%\nRiPPER...:: GAF\n\nNOTES ...:: GAF = The New BLING BLING\n\nNOTES\n\nLike = Buy What We Did\nDon't steal Our Releases PS\n\nEnJOY\n\nTRACKS\n\n%TRACKLIST%\n\n%SIZE%\n%TOTALLENGTH% min\n\nGREETS\n\n%GREETS%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "UKHx",
+        "Abbreviation": "UKHx",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Hard Dance / Hard House",
+            "Trance / Tech Trance",
+            "Breakbeat / Big Beat",
+            "Breakbeat / Nu skool breaks"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 320"
+        },
+        "NFOTemplate": "Artist(s) .........:: %ARTIST%\nTitle .............:: %TITLE%\n\nGenre .............:: %GENRE%\nRecord Label ......:: %LABEL%\nCatalogue Number ..:: %CATALOG%\n\nSource ............:: %SRC%\nQuality ...........:: %QUALITY%\nDuration ..........:: %TOTALHMS% (%SIZE%)\nRelease Date ......:: %RELDATE%\n\nTracklist\n\n%TRACKLIST%\n\nRelease Notes\n\n%RELEASENOTES%\n\nGreetingz to these grps:\n\n%GREETS%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "10",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Spugedelik Euphoria",
+        "Abbreviation": "SPG",
+        "ReleaseGenres": {
+          "RelGenreData": "Finnish Psytrance / Suomisaundi"
+        },
+        "GroupComment": "Spugedelik Euphoria - Mega Spugedelik!",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320",
+            "MP3 192"
+          ]
+        },
+        "NFOTemplate": "-- Spugedelik Euphoria presents -- \n\nArtist.....: %ARTIST%\nAlbum......: %TITLE%\nType.......: %TYPE%\nGenre......: %GENRE%\nLabel......: %LABEL%\nCatalogNr..: %CATALOG%\nUrl........: %LABELURL%\nRel.date...: %RIPDATE%\nStr.date...: %RELDATE%\nSource.....: %SRC%\nEncoder....: %ENCODER%\nQuality....: %QUALITY%\nTracks.....: %TRACKS%\nSize.......: %SIZE%\nLength.....: %TOTALLENGTH%\n\nTracklist\n\n%TRACKLIST%\n\nTotal Time: %TOTALTIME%\n\nRelease Notes\n\n%RELEASENOTES%\n _________________________\n//                       \\\\\n\\\\  Spugedelik Euphoria  //\n// Bringing you the best \\\\\n\\\\ in Finnish psytrance  //\n \\_______________________/",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "4",
+        "ReleaseNoteMessages": {
+          "MsgData": [
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INVALIDBITRATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_TRACKSKIPS_NOTSELFGRP",
+              "RandomMsg": [
+                "Ugh, skipping tracks from the release by %SRCGROUP% release so here is the proper.",
+                "Vittu perkele! %SRCGROUP% had some skipping tracks in their release of %SRCREL% so here is the shit again with no skips! Jumalauta!",
+                "Haistakaa %SRCGROUP% mursut paska! Skippi shittia! Tassa on vittu properia, ja paskat siita että puhutaanko enklantia vai ei, me ollaan suamest ja suamee puhutaa sattana!",
+                "Nyt jumankauta %SRCGROUP% get your act together. You keep releasing this skippy dippy shit and we wil find you and explode your brain with sausages. Here is the propah."
+              ]
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_MIXED_NO_CUE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_INCORRECT_DATE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_FAKE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_128KBPS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_320_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_VINYL_FLAC_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_LOWQUALITYSOURCE_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_CRCERRORS_NOTSELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_SELFGRP"
+            },
+            {
+              "@id": "PROPER_NOTES_WEBASVBR_NOTSELFGRP"
+            }
+          ]
+        },
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "WAV",
+        "Abbreviation": "WAV",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Trance / Tech Trance"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": "Digital"
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 320"
+        },
+        "NFOTemplate": "Artist(s) .........:: %ARTIST%\nTitle .............:: %TITLE%\n\nGenre .............:: %GENRE%\nRecord Label ......:: %LABEL%\nCatalogue Number ..:: %CATALOG%\n\nSource ............:: %SRC%\nQuality ...........:: %QUALITY%\nDuration ..........:: %TOTALHMS% (%SIZE%)\nRelease Date ......:: %RELDATE%\n\nTracklist\n\n%TRACKLIST%\n\nRelease Notes\n\n%RELEASENOTES%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "ASOT",
+        "Abbreviation": "ASOT",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 320"
+        },
+        "NFOTemplate": "Artist(s) .........:: %ARTIST%\nTitle .............:: %TITLE%\n\nGenre .............:: %GENRE%\nRecord Label ......:: %LABEL%\nCatalogue Number ..:: %CATALOG%\n\nSource ............:: %SRC%\nQuality ...........:: %QUALITY%\nDuration ..........:: %TOTALHMS% (%SIZE%)\nRelease Date ......:: %RELDATE%\n\nTracklist\n\n%TRACKLIST%\n\nRelease Notes\n\n%RELEASENOTES%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "6",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "MiNiMAL",
+        "Abbreviation": "MiNiMAL",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "FLAC HIGH"
+        },
+        "NFOTemplate": "iNFO\n\nARTiST..: %ARTIST%\nTiTLE...: %TITLE%\n\nLABEL...: %LABEL%\nCAT#....: %CATALOG%\nGENRE...: %GENRE%\n\nRLS DATE: %RELDATE%\nPRE DATE: %RIPDATE%\n\nSOURCE..: %SRC%\nENCODER.: %ENCODER%\nQUALiTY.: %QUALITY%\n\nSiZE....: %SIZE%\nTRACKS..: %TRACKS%\n\nTRACKS\n\n%TRACKLIST%\n\nTotal time: %TOTALTIME%\n\nNOTES\n\n%RELEASENOTES%\n\n\nROUP\n\nMiNiMAL release in lossless format. We believe\nquality music should be heard in a quality format,\nand with that in mind we bring you this great release\n\n\"Live for Lossless",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "8",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "FLACFTW",
+        "Abbreviation": "FLACFTW",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "FLAC HIGH",
+            "WAVPACK",
+            "WAV"
+          ]
+        },
+        "NFOTemplate": "Artist....: %ARTIST%\nTitle.....: %TITLE%\nLabel.....: %LABEL%\nCat. No...: %CATALOG%\nQuality...: %QUALITY%\nCodec.....: %ENCODER%\nDate......: %RIPDATE%\nSource....: %SRC%\nGenre.....: %GENRE%\nSize......: %SIZE%\n\n\nTracklist:\n\n%TRACKLIST%\n\nNotes:\n\n%RELEASENOTES%\n\nFLAC For The Win!\n\nGreets to %GREETS%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "8",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "Finski DigiTrax",
+        "Abbreviation": "FDT",
+        "ReleaseGenres": {
+          "RelGenreData": "Finnish Psytrance / Suomisaundi"
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 320",
+            "FLAC HIGH"
+          ]
+        },
+        "NFOTemplate": "°±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²±°\n °±±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²±°\n°±²Û                                                                      Û²±°  \n°±²Û                     ú Finski Digi Trax ú                              Û²°\n°±²Û                     þþþþþþþþþþþþþþþþþþþþ                              Û²°\n°±²Û                                                                       Û²°\n°±²Û   °±²ÛÛÛ²±°°                                        °±²ÛÛÛ²±°°        Û²°  \n°±²Û  °±²ÛÛÛÛÛ²±°  ÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛ   ÛÛÛÛÛÛÛÛÛ     °±²ÛÛÛÛÛ²±°        Û²°  \n°±²Û   °±²ÛÛÛ²±°   ÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛ  ±ÛÛÛ  ÛÛÛÛÛÛÛÛÛ      °±²ÛÛÛ²±°         Û²° \n°±²Û    °±²Û²±°    ÛÛÛÛ       ÛÛÛÛ   ÛÛÛ     ÛÛÛ          °±²Û²±°          Û²\n°±²Û     °±²±°     ÛÛÛÛÛÛÛÛ   ÛÛÛÛ   ÛÛÛ     ÛÛÛ           °±²±°           Û²° \n°±²Û      °±°      ÛÛÛÛÛÛÛ    ÛÛÛÛ   ÛÛÛ     ÛÛÛ            °±°            Û²°\n°±²Û       °       ÛÛÛÛ       ÛÛÛÛ  ²ÛÛÛ     ÛÛÛ             °             Û²°  \n°±²Û               ÛÛÛÛ       ÛÛÛÛÛÛÛÛÛ      ÛÛ                            Û²°\n°±²Û                                                                       Û²°  \n°±²Û                                                                       Û²°  \n°±²Û                          P r e s e n t s                              Û²°  \n°±²Û                                                                       Û²°  \n°±²Û  ARTiST....: %ARTIST%                                                 Û²°  \n°±²Û  TiTLE.....: %TITLE%                                                  Û²°  \n°±²Û  LABEL.....: %LABEL%                                                  Û²°  \n°±²Û  CAT.NO....: %CATALOG%                                                Û²°  \n°±²Û  TYPE......: %TYPE%                                                   Û²°  \n°±²Û  QUALiTY...: %QUALITY%                                                Û²°  \n°±²Û  SiZE......: %SIZE%                                                   Û²°  \n°±²Û  SOURCE....: %SRC%                                                    Û²°  \n°±²Û  GENRE.....: %MAINGENRE%                                              Û²°  \n°±²Û  URL.......: %LABELURL%                                               Û²° \n°±²Û  ENCODER...: %ENCODER%                                                Û²°  \n°±²Û  TRACKS....: %TRACKS%                                                 Û²°  \n°±²Û  LENGTH....: %TOTALLENGTH%                                            Û²°  \n°±²Û                                                                       Û²°  \n°±²Û                                                                       Û²°  \n°±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛþú TRACKLiST úþÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²° \n°±²Û                                                                       Û²°  \n°±²Û  %TRACKLIST%                                                          Û²°  \n°±²Û                                                                       Û²°  \n°±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛþú Release Notes úþÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²°\n°±²Û                                                                       Û²° \n°±²Û  %RELEASENOTES%                                                       Û²°  \n°±²Û                                                                       Û²°  \n°±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛþúGROUP iNFO úþÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²°  \n°±²Û                                                                       Û²° \n°±²Û  FiNSKi DiGiTrax is a scene group releasing Finnish psytrance         Û²°  \n°±²Û  We do not release any other genres so please fuck off if you are     Û²°  \n°±²Û  a fag. KTHXBYE!                                                      Û²°  \n°±²Û                                                                       Û²°\n°±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛþúGReeTZ úþÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²°\n°±²Û                                                                       Û²°\n°±²Û  Greets fly out to: %GREETS%                                          Û²°\n°±²Û                                                                       Û²°  \n °±±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²±°\n   °±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²±°",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "67",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "4",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "USF",
+        "Abbreviation": "USF",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance",
+            "House / Disco House",
+            "House / French House",
+            "House / Electro House",
+            "Breakbeat / Big Beat",
+            "Breakbeat / Chemical breaks",
+            "Breakbeat / Nu skool breaks"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "Artist.....: %ARTIST%\nTitle......: %TITLE%\nLabel......: %LABEL%\nCatalogue :: %CATALOG%\nGenre......: %GENRE%\nRipped on..: %RIPDATE%\nQuality....: %QUALITY%\nSize.......: %SIZE%\nPlaytime...: %TOTALLENGTH%\nEncoder....: %ENCODER%\n\n%TRACKLIST%\n\nRelease Notes:\n\n%RELEASENOTES%\n\nGreets:\n\n%GREETS%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "QMI",
+        "Abbreviation": "QMI",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Hardcore / Gabber",
+            "Hardcore / Speedcore",
+            "Trance / Tech Trance",
+            "Acid / Acid House"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "Artist...: %ARTIST%\nTitle....: %TITLE%\nLabel....: %LABEL% / %CATALOG%\nGenre....: %GENRE%\nQuality..: %QUALITY%\nSource...: %SRC%\nRipdate..: %RIPDATE%\nEncoder..: %ENCODER%\nTracks...: %TRACKS%\nSize.....: %SIZE%\n\nTracklist\n\n%TRACKLIST%\n\nNotes:\n\n%RELEASENOTES%",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "Electronic Sound Transformers",
+        "Abbreviation": "eST",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Trance / Tech Trance",
+            "Hard Dance / Hard House",
+            "House / Disco House",
+            "Hardcore / Nustyle Hardcore",
+            "Hardcore / Gabber"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "electronic Sound Transformers\n\nPresents\n\nArtist  :   %ARTIST%\nAlbum   :   %TITLE%\nYear    :   %YEAR%\nDate    :   %RIPDATE%\nSource  :   %SRC%\nRipper  :   Team eST\nGenre   :   %GENRE%\nLabel   :   %LABEL%\nCat.Nr  :   %CATALOG%\nUrl     :   %LABELURL%\nEncoder :   %ENCODER%\nBitrate :   %QUALITY%\nSize    :   %SIZE%\nRuntime :   %TOTALTIME%\n\nRelease Notes\n\n%RELEASENOTES%\n\nTracklist\n\n%TRACKLIST%\n\nTotal: %TOTALTIME%\n\nGroup Notes\n\nWe are only about to give you the best in electronic dance music  If you\nlike this release,please go and buy it like we did  Support the artists\nCurrently we are searching legit affilsites, .se .nl not needed 100Mbit\nContact us: est78mail.ru\n\nGreetz fly out to %GREETS%\n\nteam  eST",
+        "IncludeCatalogNo": "False",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "WAVE",
+        "Abbreviation": "WAVE",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance",
+            "Trance / Uplifting Trance",
+            "Trance / Epic Trance",
+            "Hard Dance / Hard House",
+            "Breakbeat / Big Beat",
+            "Acid / Acid House"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 320",
+            "FLAC HIGH"
+          ]
+        },
+        "IncludeCatalogNo": "False",
+        "NFOTemplate": "°°°\n                             °°°°°°°°°    °°±±±°°             °°\n °°°°°°°                  °°°±±±±±±±±±°° °±±²²²±±°          °°±±°\n°±±±±±±±°               °°±±±²²²²²²²²²±±°±²²±±±²²±°        °±±²²±°°\n±²²²²²²²±°            °°±±²²²±±±±±±±±±²²±²±±°°°±±²±°      °±²²±±²±±°°°°°°\n²±±±±±±±²±°    °°°°° °±±²²±±±°°°°°°°°°±±²±°°   °°±²±°    °±²±±°°±²²±±±±±±°°\n±°°°°°°°±²±° °°±±±±±°±²²±±°°°  ÜÜÜÜÜ  °°±° ÜÛÛÛÜ °±²±°  °±²±°°  °±±²²²²²²±±°°\n°  ÜÜÜÜ °±²±°±±²²²²²±²±±°° ÜÜÛÛÛÛÛÛÛÛÛÜ ° ÜÛÛÛÛÛÜ °±²±°°±²±° ÜÛÛ °°±±±±±±²²±±°\nÜÛÛÛÛÛÛÛ °±²±²²±±±±±²±°° ÜÛÛÛßß     ßÛÛÛ ° ÛÛÛ ÛÛÛ °±²±±²±° ÜÛÛÛÛÜ °°°°°°±±²²±°\nßÛÛÛß ßÛÛ °±²±±°°°°°±° ÜÛÛßß °°°°°°°° ßÛÛÜ  Û  ßÛÛÜ °±²±²±° ÛÛ ÛÛÛ °     °°±±²±\n° ßß ° ÛÛ °±±°° ÜÜÜ °° ÛÛÛÜ  °°±±±±±±°° ÛÛÜ  °° ÛÛÛ °±²²±° ÛÛÛ  ß  ÜÛÛÛÛÛÜ °°±²\n±°°°° ÛÛ °±±° ÜÛÛÛßÛÜ ° ßÛÛÛÛÜ °±²²²²±±° ÛÛÜ °° ÛÛÛ °±²±° ÛÛÛ °  ÜÛÛßzfrßÛÛÜ °±\n²±±° ÛÛ °±²±° ßÛÛ  ßÛÛ °° ßßÛ °°°°°±±²²±° ÛÛ °° ÛÛÛÛ °±±° ÛÛÛ ° ÛÛß °°°°° ßÛÛ °\n²±° ÛÛ °±²±²±°°  °° ÛÛ °±°°° °     °°±²²±°ßÛÛ °  ÛÛÛ °±° ÛÛÛÛ  ÛÛß  Ü °±±°° ÛÛ\n±° ÛÛß °±±°±±±±°°° ÜÛÛ °±° ÜÜÜÛÛÛÛÛÜ °±²±° ÛÛÛ ° ÛÛÛ °±° ÛÛÛ  ÛÛß  ÜÛÜ °±±° ßÛÛ\n° ÛÛÛ °±±° °°±²±° ÜÛÛ °° ÜÛÛÛÛÛÛßßÛÛÛ °±±° ÛÛÛ °° ÛÛÛ °° ÛÛÛ  ÛÛ  ÛÛÛÛß °°° ÜÛÛ\n ÜÛÛß °±° ÛÜ °±° ÜÛÛß  ÜÛÛÛß    ° ÜÛÛÛ °±° ÛÛÛ °° ÛÛÛ °° ÛÛ  ÛÛß ° ÛÛÛÜ    ÜÛÛ\n ÛÛÛ °±° ÜÛß °° ÜÛÛß  ÜÛÛß °°°°°±° ßÛÛß ° ÛÛÛ °±°  ÛÛÛ  ÛÛÛ  ÛÛ °±° ßßÛÛÛÛÛÛß °\n° ÛÛÜ °° ÛÛ °° ÜÛÛß ° ÛÛÛ °°°±±±±±°°  °° ÛÛÛ °±²±° ÛÛÛ  ÛÛ ° ÛÛÜ °±°°°      °°±\n±° ÛÛÜ  ÜÛÛ   ÛÛÛß °±° ÛÛÛÜ  °°°°°°°°°  ÛÛÛ °±²±²±° ÛÛ ÛÛ °° ßÛÛ °°°±± ÜÛÛÜÜ °±\n²±° ßÛÛÛÛÛÛÛÛÛÛÛß °±²±° ßÛÛÛÛÜ       ÜÛÛÛÛ °±²±±²±° ßÛÛÛ °±±°° ÛÛÜ  °° ß ÛÛÛÛ °\n±²±°°   ßßßßß   °°±²±²±°°  ßÛÛÛÛÛÛÛÛÛÛÛÛ  °±²±°°±²±° Ûß °±²²±±° ßÛÛÛÜÜÜÜÛÛÛß °±\n°±²±±°°°°°°°°°°°±±²±°±²±±°°°   ßßßßßßß  °°±²±°  °±²±° °°±²±±²²±°°  ßßßßßß  °°±²\n °±²²±±±±±±±±±±±²²±° °±²²±±±°°°°°°°°°°°°±±²±°    °±²±°±±²±°°±±²±±°°°°°°°°°°±±²±\n  °±±²²²²²²²²²²²±±°   °±±²²²±±±±±±±±±±±±²²±°      °±²±²²±°  °°±²²±±±±±±±±±±²²±°\n   °°±±±±±±±±±±±°°     °°±±±²²²²²²²²²²²²±±°        °±²±±°     °±±²²²²²²²²²²±±°\n   ° °°°°°°°°°°°         °°°±±±±±±±±±±±±°°          °±°°       °°±±±±±±±±±±°°\n   °                        °°°°°°°°°°°°             °           °°°°°°°°°°°\n   ±                                                                       ±\n   ±    WAVE PRESENTS                                                      ±\n   ²                                                                       ²\n   ²                                                                       ²\n     °°°°°                                                           °°°°°\n    °°±±±±°                 ÛÜ                                      °±±±±°°\n   °°±±±²  ÜÜÜÜ     ÜÜÜ    ÛÛ      ÜÜÜ      ÜÜÜÜ      ÜÜÜÜÜ     ÜÜÜ   ²±±±°°\n  °°±±²² ÛÛÛßßÛÛ  ÜÛÛßßÛÛÜ ÛÛ    ÜÛÛßßÛÛÜ  ßÛßßßÛÛ  ÜÛÛßßßÛß  ÜÛÛßßÛÛÜ ²²±±°°\n °°±±²² ÛÛß      ÛÛß    ÛÛ ßÛÛ  ÛÛß    ÛÛ  ÜÜÜÜ  ÛÛ ÛÛ       ÛÛß    ÛÛ ²²±±°°\n°°±±²²² ÛÛ       ÛÛ ÜÛÜÜÛÛ  ÛÛ  ÛÛ ÜÛÜÜÛÛ ÛÛßßÛß ÛÛ  ßÛÛÛÜÜ  ÛÛ ÜÛÜÜÛÛ ²²²±±°°\n °°±±²²² ÛÛ      ÛÛ  ßßßß   ßÛÛ ÛÛ  ßßßß  ÛÛ    ÜÛÛ       ÛÛ ÛÛ  ßßßß ²²²²±±°°\n  °°±±±²² ÛÛ      ÛÛÜÜÜÛÜ    ÛÛ  ÛÛÜÜÜÛÜ  ßÛÛÜÜÛÛß  ÜÛÜÜÜÜÛß  ßÛÜÜÜÛÜ ²²±±±°°\n   °°°±±±² ß        ßßßß      ßß   ßßßß      ßßß     ßßßß       ßßßß ²±±±°°°\n     °°±±±±°                                                       °±±±±°°\n      °°°°°                                                         °°°°°\n   °                                                                       °\n   °     °                                                           °     °\n   °    °±                                                           ±°    °\n   ±   °±²±                                                         ±²±°   ±\n   ±    °±² ARTiST.........: %ARTIST%                               ²±°    ±\n   ²    °±² TiTLE..........: %TITLE%                                ²±°    ²\n   ²    °±²                                                         ²±°    ²\n   ²    °±² LABEL..........: %LABEL%                                ²±°    ²\n   Û    °±² CATALOGUE......: %CATALOG%                              ²±°    Û\n   Û    °±² GENRE..........: %GENRE%                                ²±°    Û\n   ²    °±²                                                         ²±°    ²\n   ²    °±² SOURCE.........: %SRC%                                  ²±°    ²\n   ±    °±² QUALiTY........: %QUALITY%                              ²±°    ±\n   ±    °±² SiZE...........: %SIZE%                                 ²±°    ±\n   °    °±²                                                         ²±°    °\n   °    °±² RELEASE DATE...: %RELDATE%                              ²±°    °\n   °    °±² RiP DATE.......: %RIPDATE%                              ²±°    °\n       °±²±                                                         ±²±°\n        °±                                                           ±°\n         °                                                           °\n\n  °°°°                                                                     °°°\n  °±±±°                                                                   °±±±°\n°°°±² ÜÛÜ                              ÜÜ          ÛÜ  ÛÜ           ÜÛÜ     ²±±\n°±±±²² ÛÛ  ÜÜÛ  ÜÜÜÜ   ÜÜÜÜ       ÜÜÜÜ  ÛÛÜ    Ü  ÛÛ  ßÛ     ÜÜÜÜÜ   ÛÛ  ÜÜÛ ²²\n±±²² ÜÛÛÛÛÛßß ÛÛÛßßÛÛ ßÛßßßÛÛ   ÛÛßßßÛÛÜ ÛÛ   ÜÛß ÛÛ       ÜÛÛßßßÛßÜÛÛÛÛÛßß ±²±\n²²² Ûß  ÛÛ   ÛÛß      ÜÜÜÜ  ÛÛ ÛÛ     ß  ÛÛ  ÜÛß  ßÛÛ ßÛÜ  ÛÛ     Ûß  ÛÛ °°±²²±\n±²²²    ÛÛ   ÛÛ      ÛÛßßÛß ÛÛ ÛÛ        ÛÛÜÛÛÜ    ÛÛ  ÛÛ   ßÛÛÛÜÜ    ÛÛ °±²²±°\n±±±²²²² ßÛÛ   ÛÛ     ÛÛ    ÜÛÛ ÛÛ        ÛÛß ßßÛÜ  ßÛÛ ßÛÛ       ÛÛ   ßÛÛ ±²²±°\n°°±±±±²² ÛÛ    ÛÛ    ßÛÛÜÜÛÛß   ÛÛÜÜÜÛÜ   ÛÛ    ÛÛ  ÛÛ  ÛÛ ÜÛÜÜÜÜÛß    ÛÛ ±²±°\n °°°°±±±² ßß    ß       ßßß       ßßßß     ßß    ßß  ßß  ßß ßßßß        ßß ²±°\n  °°°°±±±±°                                                              °±±±°\n     °°°°°                                                                °°°\n  \n               %TRACKLIST%\n\n\n   ²                                                                       ²\n   ²             °°°°°°                                   °°°°°            ²\n   ²            °°±±±±±°                    ÜÛÜ          °±±±±°°           ²\n   Û           °°±±±±² ÜÜÜÜ      ÜÜÜÜ       ÛÛ  ÜÜ   ÜÜÜ   ²±±±°°          Û\n   Û          °°±±²² ÜÛÛßßÛÛÜ   ÛÛßßßÛÛ   ÜÛÛÛÛÛßß ÜÛÛßßÛÛÜ ²²±±°°         Û\n   ²         °°±±²² ÜÛß    ßÛÜ ÛÛ     ÛÛ Ûß  ÛÛ   ÛÛß    ÛÛ ²²±±°°         ²\n   ²        °°±±²²² ÛÛ      ÛÛ ÛÛ     ÛÛ     ÛÛ   ÛÛ ÜÛÜÜÛÛ ²²²±±°°        ²\n   ²        °°±±²²² ÛÛ      ÛÛ ÛÛ     ÛÛ     ßÛÛ  ÛÛ  ßßßß ²²²²±±°°        ²\n   ±         °°±±²² ßÛÜ    ÛÛ  ßÛÛÜÜÜÛß       ÛÛ   ßÛÜÜÜÛÜ ²²±±±°°         ±\n   ±          °°±±±² ß     ß      ßßß          ßß    ßßßß ²±±±°°°          ±\n   °           °°±±±±°                                  °±±±±°°            °\n   °            °°°°°                                    °°°°°             °\n   °                                                                       °\n\n               %RELEASENOTES_C%                                   \n\n   °   °±²±                                                         ±²±°   °\n   ±    °±                                                           ±°    ±\n   ±     °                                                           °     ±\n   ²                                                                       ²\n   ²         °°°°°                                              °°°°°      ²\n   ²        °°±±±±°                                            °±±±±°°     ²\n   Û       °°±±±²  ÜÜ       ÜÜÜÜ    ÜÜÜÜ      Ü    Ü       ÜÜÜÜÜ ²±±±°°    Û\n   Û      °°±±² ÜÛÛÛßÛÜ   ÛÛÛßßÛÛ  ÛÛßßßÛÛ   ÛÛ    ÛÛ   ÜÛÛßßßßßÛÜ ²±±°°   Û\n   ²     °°±±² ÛÛß   ßÛÜ ÛÛß      ÛÛ     ÛÛ ÛÛ      ÛÛ ÛÛÛ       ÛÛ ²±±°°  ²\n   ²    °°±±² ÛÛ      ÛÛ ÛÛ       ÛÛ     ÛÛ ÛÛ      ÛÛ  ÛÛ       ÛÛ ²±±°°  ²\n   ²    °°±±² ÛÛÜ    ÜÛÛ  ÛÛ      ÛÛ     ÛÛ ßÛÜ    ÜÛß  ßÛÛ   ÜÜÛÛß ²±±°°  ²\n   ±     °°±±² ßÛÛÛÛÛßÛÛ   ÛÛ     ßÛÛÜÜÜÛß   ßÛÛÜÜÛÛß    ÛÛÛÛÛßßß ²±±±°°   ±\n   ±     °°±±²        ÛÛ    ß        ßßß       ßßßß      ÛÛ   ²±±±±±°°°    ±\n   °    °°±±² Ü      ÛÛ                                  ßÛÜ ²±±°°°°°      °\n   °   °°±±² ßÛÛÜÜÜÜÛÛ                                    ÛÛ ²±±°°°        °\n   °    °°±±²  ßßßßßß                                      ß ²±±°°         °\n         °°±±±°                                            °±±±°°\n          °°°°                                              °°°°\n\n   °                                                                       °\n   °     °                                                           °     °\n   °    °±                                                           ±°    °\n   ±   °±²±                                                         ±²±°   ±\n   ±    °±² Established                                             ²±°    ±\n   ²    °±² 2009-02-28                                              ²±°    ²\n   ²    °±²                                                         ²±°    ²\n   ²    °±² Contact Us                                              ²±°    ²\n   Û    °±² wav@lavabit.com                                         ²±°    Û\n   Û    °±²                                                         ²±°    Û\n   ²    °±² Greetings to the lossless scene                         ²±°    ²\n   ²    °±²                                                         ²±°    ²\n   ²    °±²                                                         ²±°    ²\n   ±    °±²                                                         ²±°    ±\n   ±    °±²                                                         ²±°    ±\n   °    °±²                                                         ²±°    °\n   °   °±²±                                                         ±²±°   °\n   °    °±                                                           ±°    °\n         °                                                           °\n   °                                                                       °\n   ±                                                                       ±\n   ²°                                                                     °²\n    ±                                                                     ±\n    ²°                                                                   °²\n     ±°                                                                 °±\n     ²±°                                                               °±²\n      ²±°                                                             °±²\n       ²±°°                                                         °°±²\n        ²±±°°                                                     °°±±²\n         ²²±±°°°                                               °°°±±²²\n           ²²±±±°°                                           °°±±±²²\n             ²²²±±°°°°            3LT NO1 L4L            °°°°±±²²²\n                ²²±±±±°°°°°  CALI CHEEMO GAF GSTAR  °°°°°±±±±²²\n                  ²²²²±±±±±°°°°°    MiNiMAL    °°°°°±±±±±²²²²\n                      ²²²²²±±±±±°°°°  WAG  °°°°±±±±±²²²²²\n                           ²²²²²±±±±°°   °°±±±±²²²²²\n                                ²²²²±±° °±±²²²²\n                                    ²²±°±²²\n                                      ²±²\n                                       ²",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "WEB",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "WEB",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Tech Trance",
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "House / Disco House",
+            "House / Electro House",
+            "House / French House",
+            "Techno / Minimal Techno",
+            "Hard Dance / Hard House"
+          ]
+        },
+        "GroupComment": "The Web Has Caught Ya!",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "+-------------------[A New Pre(y) Was Trapped In The WEB...]-----------------+\n|                                                                  \\   )_.-'/|\n| Artist : %ARTIST%                                                /_.-'.  / |\n| Album  : %TITLE%                                                :-. |  :/.-|\n| Label  : %LABEL%                                                   '|  /'  |\n| Cat.#  : %CATALOG%                                                  |\"/.--.|\n| Url    : %LABELURL%                                                 |`     |\n|                                                                     #      |\n+-------------------------------[Release Info]-------------------------------+\n                                                                                    \n  Rip Date : %RIPDATE%          Quality  : %QUALITY%\n  Rls Date : %RELDATE%          Source   : %SRC%\n  Genre    : %GENRE%            Size     : %TOTALHMS% (%SIZE%)\n                                                                                       \n+--------------------------------[Track List]--------------------------------+\n\n   %TRACKLIST%\n\n+-------------------------------[Release Notes]------------------------------+\n\n   %RELEASENOTES%\n\n+----------------------------------[Greets]----------------------------------+\n\n   %GREETS%\n\n+----------------------------------------------------------------------------+",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "DPS",
+        "IncludeCatalogNo": "True",
+        "Abbreviation": "DPS",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Techno / Detroit Techno",
+            "Techno / Minimal Techno",
+            "Techno / Schranz",
+            "Hard Dance / Hard House",
+            "Hard Dance / UK Hardcore",
+            "Hardcore / Gabber",
+            "Hardcore / Nustyle Hardcore",
+            "Hardcore / Terrorcore",
+            "Psychedelic / Full On",
+            "Psychedelic / Dark psy"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "ß\n          ß\n         ÜÜ\n        ÛÛÛ ÛÛÛ\n        ÛÛÛ ßßß\n    ÜÜÜÜÛÛÛ  ÜÜ  ÜÜÜÜÜÜÜÜ ÜÜÜÜÜÜÜÜÜÜÜ ÜÜ Ü\n   ÛÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛÛ ÛÛÛÛ ÛÛÛ ÛÛÛÛ        Ü ÜÜ Ü Ü\n   ÛÛ²Û ÛÛ² ÛÛÛ ÛÛÛÛ ÛÛ²Û Û²Û ÛÛ²ÛÜ ÜÜÜ Ü\n   Û²±Û Û²² ÛÛ± ÛÛ²Û ÛÛ±Û Û²Û Û²±Û\n   Û±°Û Û±± Û°± Û°±Û Û±°Û °±Û Û±±Û\n   Û° Û Û°  Û ° Û°°Û Û±°Û  °Û Û±°Û  ÜÜÜ               ÜÜÜ      ÜÜÜ\n   Û  Û Û   Û   Û  Û Û° Û   Û Û° Û ÛÛÛÛ              ÛÛÛÛ     ÛÛÛÛ\n    ßßßßßßß ßßß ßßßßßÛ  Û ÜÜÜÜÜÜÜÜ ÛÛÛÛÜÜÜ   ÜÜÜÜÜÜÜ ÛÛÛÛÜÜÜÜ  ÜÜÜ ÜÜÜÜÜÜÜÜÜ\n                     Û °Û ÛÛÛÛ ÛÛÛ ÛÛÛÛ ÛÛÛ ÛÛÛÛ ÛÛÛ ÛÛÛÛ ÛÛÛ ÛÛÛÛ ÛÛÛ ÛÛÛÛ\n                ÛÛÛ  Û  Û ÛÛÛÛ ÛÛ² Û²ÛÛ ÛÛÛ ÛÛÛÛ ÛÛÛ ÛÛÛÛ ÛÛ² ÛÛÛÛ Û²Û ÛÛ²Û\n                Û  Û Û  Û ÛÛ²Û ÛÛ² Û²±Û ÛÛ² ÛÛ²Û ÛÛ² ÛÛ²Û ÛÛ² ÛÛ±Û Û²Û Û²±Û\n                Û ²Û Û  Û Û²±Û Û²± Û±°Û Û°± Û±°Û Û²± Û²±Û Û²± Û°±Û °±Û Û±±Û\n                 ßßßßßßß  Û±°Û Û±° Û°°Û Û°  Û° Û Û°° Û±°Û Û±° Û °Û  °Û Û±°Û\n                          Û° Û Û   Û  Û Û   Û  Û Û   Û° Û Û   Û  Û   Û Û° Û\n             ß    ßß  ßßß Û  Ûßßßß ßßßßßßßß  ßßßßßßß ßßßßßßßß ßßßß ßßßßßßßßß\n                          Û° Û\n                          Û  Û   P U B L I C . S O U N D\n                          Û  Û\n                          Û  Û   presenting our latest release\n                          ßßßß\n\n  \n\n     r e l e a s e  .  i n f o\n\n\n\n     Artist.....: %ARTIST%\n     Title......: %TITLE%\n\n     Rip Date...: %RIPDATE%          Style......: %GENRE%\n     Cat.No.....: %CATALOG%          Source.....: %SRC%\n     Url........: %LABELURL%         Size.......: %SIZE%\n     Label......: %LABEL%\n     Quality....: %QUALITY%\n\n     r e l e a s e  .  n o t e s\n\n     %RELEASENOTES%\n\n     p l a y l i s t\n\n     %TRACKLIST%\n\n     g r e e t i n g s\n\n     %GREETS%\n\n     respect to music lovers worldwide\n\n\n     never forget  :  go to the show. buy the t-shirt. order the vinyl",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "SiBERIA",
+        "IncludeCatalogNo": "True",
+        "Abbreviation": "SiBERIA",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Hard Dance / Hard House",
+            "Techno / Detroit Techno",
+            "Techno / Minimal Techno",
+            "House / Disco House",
+            "House / Electro House",
+            "House / Tech House",
+            "House / Progressive House",
+            "Finnish Psytrance / Suomisaundi",
+            "Hardcore / Gabber"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "Ü  .    .  Ü°   þ.   Ü  Ü  .ß   .  ßÛß    Ü   þ . Ü  þ . Ü   Ü°    ß  .   Ü .\n    Ü ß    ßÛß .    Ü   ßÛß    Ü°ß .    . ßÛß   Ü        Ü   ßÛß .   .    ßÛß\n . ßÛß  þ .      Ü ßÛß .    þ ßÛß  Ü  Ü      . ß±ßÜ  ß  ßÛß    Ü    Ü   þ .  þ\n       .   ÜÜÜÜ     .    ß   ±    ßÛß    Ü .     ßÛß .      .      ßÛß .\nÛÜ  ß   Üß±ÛÛÛÜß°Ü   .  Ü   ßÛß  .  .   ßÛß   þ       . þ      Ü          Ü°ß\nß      ÞßÜÛÛßßÛÛÛÛÝß   ßÛß            þ         .  .       .  ßÛß .   .  ßÛß\n .  .  ÛÛÛÛ²±° Ûß ß  .       ß   Ü°ß     .    .   .  . .  þ        .    ß    Ü\n   Ü   ÞßÛÛÛ²±°ÛÛÜÝ     Ü       ßÛß   .     .    Ü      .    .    .   .\n  ßÛß   ß°ÛÛÜÜÛÛÜß  .  ßÛß .   ß     .         ÜÛÞÛÜ     .       .þ.      þ .\n þ         ß Üß       Ü        .             ÜÛÛÛÞÛÛÛÜ       .    .  .   .\n    þ  ß    ßÛß  . þ     .   .     .       ÜÛÛÛÛÛÞÛÛÛÛÛÜ       .  .          .\n .    .   .            .  .            ÜÜ²ÛÛÛÛÛÛÛÝÛÛÛÛÛ²²ÜÜ           .    .\n    .    þ  .   .    .   .        ÜÜÜÛÛÛÛÛÛÛ²²ÛÛÛ²²²Û²ÛÛÛÛÛÛÛÜÜÜ\n   .     .           .       ÜÜÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÝÛÛÛÛÛÛÛÛÛÛÛÛÛßßß    Ü  ÜßÜ\n       .     .                    ßßßßßÛÛÛÛÛÛÛÛÛÛÛÝÛÛÛÛÛÛÛÛßß  Ü  ÜßÜ ß Û °Üß°\n                                    °      ßßßßÛÛÛÛÞÛÛßß  Ü ° ß Û°°Üß°Ü²ÜÜÜÛÛ²\n                                    ± ÜßßÜ ÜßßÜ  °ßß    Û   ± ÜßÜÜÛÛ²ÛÛÛÛÛÛÛÛÛ\n                            ÜßßÜ Üß ²  Ü Û  Ü Û  ±ÞÝ   ßÜÜÛ ² ÛÛÜßÛÛÛÛÛÛÛÛÛÛÛÛ\n   Ý               ÜßßÜ ÜßßÜ Ü Û  Ü ²  °ß°°ÜÜ°°ßß ÞÝßßÜÜ ßß ² ÛÛÛÜ±ÛÛÛÛÛÛÛÛÛÛÛ\n   ²      ÜßßÜ ÜßßÜ Ü Û  Ü Û °ß°°°  ² ÜÜßßß       ÞÝ    ßßÜÜ² ÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÜß\nÜ  Û ÜßßÜ  Ü Û  Ü Û °ß°°°°ß  ÜÜÜÜ²² ²±Ü           ÞÝ       kÛ ÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛ°\n Û Û  Ü Û   ß°°°°ß°°°ÜÜÜÜÛÛÛÛÛÛ²²²± ²ÛÛÛÛÛÜÜÜ     ÞÝ     ÜÜÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²\nÜß Û°°°ß°°°°ÜÜÜÜÜÛÛÛÛÛÛÛÛÛÛ²²²±±±°  Û±ÛÛÛÛÛÛÛÛÛÛÜÜÞÝÜÜÛÛÛÛÛÛÛ ßÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ\n°°°ÜÜÜÜÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²²²²±±°° ÜÜ² Û±²ÛÛÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛ°ÜÜ ßßÛÛÛÛÛÛÛßß\nÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²²²±°° ÜÜ²²±±± Û±²²ÛÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛ°±±±±ÜÜ ßß\nÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛ²²±° Üßß±±±±±²² Û²²²²ÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛ ßßß±±±±±ßÜÜ\nÛÛÛÛÛÛÛÛ°ÛÛÛÛÛÛÛÛÛÛÛÛ²±° ÛÛÛÜÜ ßß   Û²²±²²²ÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛ       ÜÜÛ°Û\nÛÛÛßÜÜßßÜÛÛÛ²±ßÛÛÛÛÛÛ²±° Û±ÛÛÛÛÛÛÜÜ  ßß²²²²²²ÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛ   ÜÜÛÛÛÛÛ°Û\nÛÛÛ°ÛÛÛÛÛÛÛÛÛÜÛÛÛÛÛÛÛ²²± Û±ÛÛÛÛÛÛÛÛÛÛÜÜÜ  ßßßÛÛÛÛÛ²ÛÛÛÛÛÛßß ÜÜÛÛÛÛÛÛÛÛÛ°Û\nÛÛ±ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²± Û±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜÜ   ßß²Ûßß  ÜÜÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛßßÛÛ²± Û±²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜÜ  ÜÜÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛÛÛÛÛß°ßÛÛÛÛÛÛÛ ÝÞÛ²² Û±²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛÛÛÛÛÛÜÛÛÛÛÛÛÛÛ Û ÛÛ² Û±²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛß Ü°Ü Ûß Û±±²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ ßÛÛÛÝ   Û±±²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛÛÛÛÛÛÛÛÛßßß þ²ÛÛ²    Û±±²²²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÛÛÛÛßßßß         ßß°     Û±±±²²²²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nß                 °Û     Û±±±²²²²²²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\n                   Û     Û±±±²²²²²²²²²²²ÛÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\n                   Û     ÛÛ²±±±²²²²²²²²²²²ÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ°Û\nÜß                 Û      ßßÛÛÛ²±²²²²²²²²²²²ÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛßß   ßÜ\nß                  ²          ßßÛÛÛ²²²²²²²²²²²ÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛÛÛÛßß        ß\n ßÛÜÜ        ÜÜ²²ÛÛ²ÛÜÜÜ          ßßÛÛ²²²²²²²²²²ÛÛÛ ÛÛÛÛÛÛÛÛÛÛßß        ÜÜÛß\n  ÛÛÛ°Ü    °±²²ÛÛÛÛÛÛÛÛÛÛÜ            ßßßÛÛ²²²²²²ÛÛ ÛÛÛÛÛÛßß          Ü°ÛÛÛ\n  ÛÛÛ  ßßÛÜÜ°±²ÛÛÛÛÛÛÛÛÛÛÛÝ±ÛÜÜ             ßßßÛ²²Û ÛÛßß         ÜÜÛßß  ÛÛÛ\n  ÛÛÛ     ÛÛ²°²²ÛÛÛÛÛÛÛÛÛÛß°²ÛÛÝßÜ Ü                            ²ÛÛ     ÛÛÛ\n  ÛÛÛ     ÞÛÛÝ°²²Ûßßßßßß  °±²²ÛÛ Û  Û               ÜßßßßßÜ    ÞÛÛÝ     ÛÛÛ\n  ÛÛÛ      ÛÛÛ ±± Ü²ÛÛÛ²Ü± °°ßß Üß Üß ßßßßÜ       ÜßÜ²ÛÛÛ²ÜßÜ  ÛÛÛ      ÛÛÛ\n  ÛÛÛ      ÞÛÛÝ° ²ÛÛ²ß±ÛÛÛ°   ßß  ÜÜ²²ÛÛ²²ÜßßßßÜ ² ±ßÛÛÛ²ÛÛ² ²ÞÛÛÝ      ÛÛÛ\n  ÛÛÛ       ßÛÛÜ°ÛÛ± ²Û²ß²ÛÜ  ÜÛÛÛ²ßÜÛ±±ÛÜß²ÛÛÛÜß ÜÛ² ²Û²±ÛÛ°ÜÛÛß       ÛÛÛ\n  ÛÛ²         ßß²ÛÛÝ ±ÛÝ ²ÛÝßßß²ÛÛ° ÞÛ  ÛÝ °ÛÛ²ßßßÞÛ± ÞÛ±ÞÛÛ²ßß         ²ÛÛ\n  Ûß              ßßÜ ß²Ü ßßÜ   ßÛÜ  ßÝÞß  ÜÛß   Üßß Ü²ßÜßß              ßÛ\n              ÜÜ   °     ß         ß      ß         ß    °\n         ÜÜ±ßÛÛÛ  Ü²Ü     ÜÜÛÛ²²   ÜÜÛÛÛÛÜÜ  ²²ÛÛÛ²ÜÜ   Ü²Ü   ÜÜÛÛÛ²Ü\n       ÛÛÛ   Ûß   ßÛß ÜÜÛÛßß ÛÛÝ  ²ÛÛßßß²ÛÛ  ÛÛÛ  ßÛÛ²  ßÛß  ²ÛÜßß²ÛÛ²\n       ÛÛÛÜÜ          ÞÛÛÛ  °ÛÛ   ÛÛÛ   ßßß  ÛÛÛ   ÛÛÝ       ÛÛÛ   ÛÛÛ\n        ßß²ÛÛÛÜ   ÛÜÛ  ÛÛÛÛÛÛß    ÛÛÛÛ±°     ÛÛÛÛÛÛ²ß   ÛÜÛ  ÛÛÛÛ²±ÛÛÛ\n         Ü  ßÛÛÝ  ÛÛÛ  ÛÛÝ  ßÛÛÜ  ÛÛÛ   ÜÜÜ  ÛÛÛ  ßÛÛÜ  ÛÛÛ  ÛÛÛ   ÛÛÛ\n       ÜÛÛ  ÜÛÛ²  ÛÛ²  ²²ÛÜÜ±ÛÛÛ  ÛÛÛ  ÜÛÛÛ  ÛÛÛ   ÛÛÛ  ÛÛ²  ÛÛÛ   ÛÛÛ\n       ÛÛÛÛ²ßß °   ± Ü  ßßßÛÛÛ²²  ²ÛÛÛÛÛßß   ²²Û   ßß  Ü ±         ²²Û\n       ßß         ÜÜß  Üß    Ü    ßßß          Ü    ßÜ  ßÜÜ\n              ÜÜ²ÛÛÝ  ²ÛÝ  ÜÛÛÝ   ÜÝ    ÞÜ    ÞÛÛÜ  ÞÛ²  ÞÛÛ²ÜÜ\n            ÜÛÛß°ÛÛ± ÞÛÛ²ÜÛßÜßÛÜ ÞÛ²Ü  Ü²ÛÝ ÜÛßÜÜßÛÜ²ÛÛÝ ±ÛÛ°ßÛÛÜ\n           ÞÛÛÝ² ²ÛÛ²Ü±ÛÛÛ ² ßÜÜßßß²ÛÛÛÛ²ßßßÜÜß  ² ÛÛÛ±Ü²ÛÛ² ²ÞÛÛÝ\n           ÛÛÛ  ßÜß²ÛÛÛ²ßÜß     ßßÜÜÜÜÜÜÜÜßß      ßÜß²ÛÛÛ²ßÜß  ÛÛÛ\n          ÞÛÛÝ    ßßÜÜÜÜß                           ßÜÜÜÜßß    ÞÛÛÝ\n          ÛÛ²                                                   ²ÛÛ\n   ÜÛ  ÜÜÛßß                                                     ßßÛÜÜ  ÛÜ\n  ²ÛÛ°ß                                                               ß°ÛÛ²\n  ÛÛÛ          Artist ...... %ARTIST%                                   ÛÛÛ\n  ÛÛÛ          Title ....... %TITLE%                                    ÛÛÛ\n  ÛÛÛ          Type ........ %TYPE%                                     ÛÛÛ\n  ÛÛÛ          Label ....... %LABEL%                                    ÛÛÛ\n  ÛÛÛ          Cat.Number .. %CATALOG%                                  ÛÛÛ\n  ÛÛÛ          Genre ....... %MAINGENRE%                                ÛÛÛ\n  ÛÛÛ          Style ....... %SUBGENRE%                                 ÛÛÛ\n  ÛÛÛ          Street date . %RELDATE%                                  ÛÛÛ\n  ÛÛÛ          Rip date .... %RIPDATE%                                  ÛÛÛ\n  ÛÛÛ          Source ...... %SRC%                                      ÛÛÛ\n  ÛÛÛ          Url ......... %LABELURL%                                 ÛÛÛ\n  ÛÛÛ          Encoder ..... %ENCODER%                                  ÛÛÛ\n  ÛÛÛ          Quality ..... %QUALITY%                                  ÛÛÛ\n  ÛÛÛ          Tracks ...... %TRACKS%                                   ÛÛÛ\n  ÛÛÛ          Size ........ %SIZE%                                     ÛÛÛ\n  ÛÛÛ°Ü                                                               Ü°ÛÛÛ\n  ÛÛÛ  ßßÛÜÜ                                                     ÜÜÛßß  ÛÛÛ\n  ÛÛÛ     ÛÛ²                                                   ²ÛÛ     ÛÛÛ\n  ÛÛÛ     ÞÛÛÝ                                                 ÞÛÛÝ     ÛÛÛ\n  ²ÛÛÝ     ÛÛÛ    Ü²ÛÛÛ²Ü                           Ü²ÛÛÛ²Ü    ÛÛÛ     ÞÛÛ²\n  ±ÛÛÛ     ÞÛÛÝ  ²ÛÛ²ßßßÛÛ                         ÛÛßßß²ÛÛ²  ÞÛÛÝ     ÛÛÛ±\n  °±²ÛÛÜÜ   ßÛÛÜ°ÛÛ±     ßÝ                       Þß     ±ÛÛ°ÜÛÛß   ÜÜÛÛ²±°\n  °  ß²²ÛÛÛÛÜÜßß²ÛÛÝ                                     ÞÛÛ²ßßÜÜÛÛÛÛ²²ß  °\n  °    °ÜÜ ß°±ÛÛÜ ßßÜ                                   Üßß ÜÛÛ±°ß ÜÜ°    °\n  ° Ü²ÛÛÛÝ Ü²ßßßßßÜ  ß                                 ß  Üßßßßß²Ü ÞÛÛÛ²Ü °\n  °ÛÛÛß ß ß                                                       ß ß ßÛÛÛ°\n  ²ÛÛÝ                                                                 ÞÛÛ²\n  ÛÛ²                                                                   ²ÛÛ\n ²ßß                                                                     ßß²\n               %TRACKLIST%\n\n ²ÜÜ°                                                                   °ÜÜ²\n  ²Û±                                                                   ±Û²\n  ÞÛÛÝ                                                                 ÞÛÛÝ\n   ²ÛÛÜ Ü Ü        Ü                                     Ü        Ü Ü ÜÛÛ²\n    ßß²ÛÛÝ  ß°ÜÜÜ±ß  Ü                                 Ü  ß±ÜÜÜ°ß  ÞÛÛ²ßß\n        ßß±ÜÜ²ÛÛß°ÜÜß                                   ßÜÜ°ßÛÛ²ÜÜ±ßß\n     ÜÜÛÛÛÛ²ßßÜÜ²ÛÛÝ                                     ÞÛÛ²ÜÜßß²ÛÛÛÛÜÜ\n   ÜÛÛ²ßß  °ÜÛÛßÜÛÛ      ÜÝ                       ÞÜ      ÛÛÜßÛÛÜ°  ßß²ÛÛÜ\n  ÞÛÛ²     ÛÛÛÝ ßÛÛÛÛÜÜÜÛÛ                         ÛÛÜÜÜÛÛÛÛß ÞÛÛÛ     ²ÛÛÝ\n  ÛÛÛ°    ÞÛÛ±    ßß²ÛÛ²ß                           ß²ÛÛ²ßß    ±ÛÛÝ    °ÛÛÛ\n  ÛÛÛ     ÛÛÛ    °°ß                                     ß°°    ÛÛÛ     ÛÛÛ\n  ²ÛÛ     ÞÛÛÝ °° Ü²ÛÛÛ²Ü                           Ü²ÛÛÛ²Ü °° ÞÛÛÝ     ÛÛ²\n  ±²ÛÛ     ²ÛÛ°  ²ÛÛ²ßßßÛÛ                         ÛÛßßß²ÛÛ²  °ÛÛ²     ÛÛ²±\n  °±²ÛÛÜÜ   ß²ÛÜ°ÛÛ±     ßÝ                       Þß     ±ÛÛ°ÜÛ²ß   ÜÜÛÛ²±°\n  °  ß²²ÛÛÛÛÜÜ±ß²ÛÛÝ                                     ÞÛÛ²ß±ÜÜÛÛÛÛ²²ß  °\n  °    °ÜÜßß°±ÛÛÜ ßßÜ                                   Üßß ÜÛÛ±°ßßÜÜ°    °\n  ° Ü²ÛÛÛÝ Ü²ßßßßßÜ  ß                                 ß  Üßßßßß²Ü ÞÛÛÛ²Ü °\n  °ÛÛÛß ß ß                                                       ß ß ßÛÛÛ°\n  ²ÛÛÝ                                                                 ÞÛÛ²\n  ÛÛ²                                                                   ²ÛÛ\n ²ßß                                                                     ßß²\n\n            %RELEASENOTES%                                              \n                        \n ²ÜÜ                                                                    ÜÜ²\n  ÛÛ²      °                                                     °      ²ÛÛ\n  ²ÛÛ  Üß      Provide your feedback to us: siberia(a)hush.com      ßÜ  ÛÛ²\n  ÞÛÛÝ Û          Ü                                       Ü          Û ÞÛÛÝ\n   ²ÛÛÜ°²     ÜÜßß                                         ßßÜÜ     ²°ÜÛÛ²\n    ±ßÛÛÛÛÜÜÛßß ÜÜß  Ü                                 Ü  ßÜÜ ßßÛÜÜÛÛÛÛß±\n    °  °ßßßÜÜÜÛÛß ÜÜß                                   ßÜÜ ßÛÛÜÜÜßßß°  °\n    °ÜÜ²ÛÛÛ²ßßÜÜÛßÜÝ                                     ÞÜßÛÜÜßß²ÛÛÛ²ÜÜ°\n   ÜÛÛÛßß  °ÜÛÛßÜÛÛ      ÜÝ                       ÞÜ      ÛÛÜßÛÛÜ°  ßßÛÛÛÜ\n  ÞÛÛÛ     ÞÛÛÝ ßÛÛÛÛÜÜÜÛÛ                         ÛÛÜÜÜÛÛÛÛß ÞÛÛÝ     ÛÛÛÝ\n  ÛÛÛÝ     ÛÛÛ    ßß²ÛÛ²ß          °     °          ß²ÛÛ²ßß    ÛÛÛ     ÞÛÛÛ\n  ²ÛÛ      ÞÛÛÛÜÜ    ± °           ±     ±           ° ±    ÜÜÛÛÛÝ      ÛÛ²\n  ÞÛÛÝ      ßÛÛÛ²ßß  °          ÜÜÛ²     ²ÛÜÜ        ° °  ßß²ÛÛÛß      ÞÛÛÝ\n   ²ÛÛÜ       ß°ÜÜÛß °     ÜÜÛÛÛÛÛ²Û     Û²ÛÛÛÛÛÜÜ     ° ßÛÜÜ°ß       ÜÛÛ²\n   °ßÛÛÛÜÜ    ßß ÛÛ  ° ÜÜÛÛÛ²ß²ß  ÛÛ     ÛÛ  ß²ßÛ²ÛÛÜÜ °  ÛÛ ßß    ÜÜÛÛÛß°\n      ßß²ÛÛÛÜÜÜ  ÛÛ  ²ÛÛÛßß ßß±ÜÜ ÛÛ     ÛÛ ÜÜ±ßß ßßÛÛÛ²  ÛÛ  ÜÜÜÛÛÛ²ßß\n          ßß²ÛÛÛÛÛ² ±ÛÛß         ßß²Ü   Ü²ßß         ßÛÛ± ²ÛÛÛÛÛ²ßß\n               ß²Û²°ÛÛ   o5 / 2009   ß±ß   korma[67]   ÛÛ°²Û²ß\n                 ß                                         ß",
+        "NFOSettings": {
+          "WordWrapWidth": "63",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "DJ",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "DJ",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Trance / Tech Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hardstyle",
+            "Hardcore / Gabber",
+            "House / Disco House",
+            "House / Electro House",
+            "House / Tech House",
+            "Psychedelic / Dark psy",
+            "Acid / Acid House",
+            "Hardcore / Industrial"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "ÛÛÛÛÛÛÛÛ\n         ÛÛ ÛÛÛÛÛÛ        ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ\n     ÛÛÛÛÛÛÛ  ÛÛÛÛ     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ\n   ÛÛÛÛÛÛÛÛÛ ÛÛÛÛ     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ\n   ÛÛÛÛ ÛÛÛ ÛÛÛÛ    ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ\n    ÛÛÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛÛÛÛÛÛ              ÛÛÛÛÛÛÛÛÛÛÛÛÛ\n     Û   ÛÛÛÛ    ÛÛÛÛÛÛÛÛÛ                      ÛÛÛÛÛÛÛÛÛ\n     Ý   Û      ÛÛÛÛÛÛÛÛÛ                        ÛÛÛÛÛÛÛÛÛÛ\n     Ý        ÛÛÛÛÛÛÛÛÛ     ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ      ÛÛÛÛÛÛÛÛ\n     Ý   Þ   ÛÛÛÛÛÛÛÛ      ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ      ÛÛÛÛÛÛÛÛ\n     Û   Þ  ÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛÛÛÛ\n         Û ÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛÛÛ±±±±±±±±±±±±ÛÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛ\n           ÛÛÛÛÛÛ     ÛÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛÛ     ÛÛÛÛÛÛ\n          ÛÛÛÛÛÛÛ   ÛÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛ\n         ÛÛÛÛÛÛ    ÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛÛ   ÛÛÛÛÛÛ\n        ÛÛÛÛÛÛ   ÛÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛ       ÛÛÛÛÛÛ\n        ÛÛÛÛÛÛ   ÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛ    ÛÛÛÛÛÛÛÛÛÛ\n       ÛÛÛÛÛÛ   ÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛ   ÛÛÛÛÛÛÛÛÛÛ\n       ÛÛÛÛÛ   ÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛ  ÛÛÛÛÛÛÛÛÛÛÛ\n       ÛÛÛÛÛ  ÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛÛ\n      ÛÛÛÛÛ   ÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛ  ÛÛÛÛÛÛÛÛÛÛ\n     ÛÛÛÛÛÛ  ÛÛÛÛÛ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±ÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛ\n     ÛÛÛÛÛÛ  ÛÛÛÛ                                         ÛÛÛÛ ÛÛÛÛÛÛÛÛÛ\n     ÛÛÛÛÛ   ÛÛÛ                                          ÛÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n    ÛÛÛÛÛ   ÛÛÛÛ                                          ÛÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n    ÛÛÛÛÛ  ÛÛÛÛ     ÛÛ                               ÛÛ    ÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛ\n    ÛÛÛÛÛ  ÛÛÛÛ     ÛÛÛ                             ÛÛÛ    ÛÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n    ÛÛÛÛ   ÛÛÛÛ      ÛÛÛ                           ÛÛÛÛ     ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n    ÛÛÛÛ   ÛÛÛ        ÛÛ                           ÛÛÛÛ     ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n    ÛÛ     ÛÛÛ         ÛÛÛ                        ÛÛÛÛÛ      ÛÛ  ÛÛÛÛÛÛÛÛÛ\n   ÛÛÛÛÛÛ  ÛÛÛ         ÛÛÛÛ                      ÛÛÛÛÛÛ      ÛÛ  ÛÛÛÛÛÛÛÛÛÛ\n ÛÛÛÛÛÛÛÛ ÛÛÛÛ         ÛÛÛÛÛÛÛ                 ÛÛÛÛÛÛÛ       ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n ÛÛÛÛÛÛÛÛ ÛÛÛÛ         ÛÛÛÛÛÛÛ               ÛÛÛÛÛÛÛÛ        ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\nÛÛÛÛÛÛÛÛÛ ÛÛÛ          ÛÛÛÛÛÛÛÛÛÛÛÛ        ÛÛÛÛÛÛÛÛÛÛ        ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\nÛÛÛÛÛÛÛÛÛ ÛÛÛ                                                ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\nÛÛÛÛÛÛÛÛÛ ÛÛÛ                                                ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\nÛÛÛÛÛÛÛÛÛ ÛÛÛÛ                                               ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\nÛÛÛÛÛÛÛÛÛ ÛÛÛÛ                                               ÛÛÛ  ÛÛÛÛÛÛÛÛÛ\n ÛÛÛÛÛÛÛÛ  ÛÛÛ                                               ÛÛ   ÛÛÛÛÛÛÛÛ\n ÛÛÛÛÛÛÛÛ  ÛÛÛ                                               ÛÛ   ÛÛÛÛÛÛÛÛ\n ÛÛÛÛÛÛÛÛ  ÛÛÛ                                              ÛÛÛ   ÛÛÛÛÛ\n ÛÛÛÛÛÛÛÛÛ ÛÛÛ                                              ÛÛÛ\n ÛÛÛÛÛÛÛÛÛ ÛÛÛÛ                                            ÛÛÛÛ\n  ÛÛÛÛÛÛÛÛÛÛÛÛÛ                                            ÛÛÛÛ\n  ÛÛÛÛÛÛÛÛÛ ÛÛÛÛ                                           ÛÛÛ\n  ÛÛÛÛÛÛÛÛÛ  ÛÛÛÛ                                         ÛÛÛÛ\n  ÛÛÛÛÛÛÛÛÛ  ÛÛÛÛ                              ÛÛÛÛ       ÛÛÛ\n  ÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛ                              ÛÛÛ       ÛÛÛÛ\n  ÛÛÛÛÛÛÛÛÛÛ  ÛÛÛÛ                             ÛÛÛ      ÛÛÛÛ\n   ÛÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛ                           ÛÛÛ       ÛÛÛÛ\n   ÛÛÛÛÛÛÛÛÛÛ  ÛÛÛÛÛ                          ÛÛ       ÛÛÛÛ\n    ÛÛÛÛÛÛÛÛÛÛ  ÛÛÛÛÛ                         ÛÛ      ÛÛÛÛÛ\n    ÛÛÛÛÛÛÛÛÛÛ   ÛÛÛÛ                        ÛÛ      ÛÛÛÛ\n    ÛÛÛÛÛÛÛÛÛÛÛ  ÛÛÛÛÛÛ                     ÛÛ      ÛÛÛÛÛ\n     ÛÛÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛ                 ÛÛÛ     ÛÛÛÛÛÛ\n       ÛÛÛÛ         ÛÛÛÛÛÛ              ÛÛÛÛ     ÛÛÛÛÛ\n                    ÛÛÛÛÛÛÛÛ            ÛÛ     ÛÛÛÛÛÛÛ      ÜÛÛÛÛÛÛÜ\n                      ÛÛÛÛÛÛÛÛÛÛ           ÛÛÛÛÛÛÛÛÛ      ÛÛÛ²²²²²ÛÛÛÛÛ²ÜÛÛÛ\n                         ÛÛÛÛÛÛÛÛÛÛ    ÛÛÛÛÛÛÛÛÛÛÛ       Û²±²²±±±±²²²ÛÛÛÛ  ±ÛÛ²\n     Ý °                  ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ        Û² ²±±±±ÛÛÛÛÛÛÛÛÛ²   ²Û\n    ÞÝ° °                    ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ          ÛÛ²°²°±°Û²±°   °ÛÛÛ²   Û\n    Þ                                                  Û± ±°°°°Û±±±°°  °ÛÛÛ²° Û\n   ÞÛ  °                                               Û± ±° °°Û°ÛÛ±°°°ÜÛ²Û²²²Û\n   ÛÝ °                                        ßÛ±     ÛÛ  ± ° Û±±ÛÛÛÛÛ±Û±ÛÛÛÛ²\n   Û²±Ü°Ü                                       ßÛ² °  ±Û² ±°  °Û±°°±±±±Û±ÛÛ±\n    ß°ß±²Û                                        ² ±   ÛÛ  ²    ÛÛÛÜÛÛÛ±±Û±\n      ° ÞÛ                                               ÛÛ  ±±    ±ß±°°±²Û\n     °  ÛÝ   TiTLE.: %TITLE%                              ÛÛ  °±±°    ±±°Û±\n        Ý                                            ² ±   ÛÛ²    °°°  °ÛÛ\n    ° °ÞÝ    ARTiST: %ARTIST%                      ÜÛ² °    °ÛÛÛÛ²²²²ÛÛÛ\n             SRC...: %SRC%                        ÜÛ±           ßÛÛÛÛß\n    ° °ÞÝ    TYPE..: %TYPE%\n        Ý    Rdate.: %RELDATE%                                 Þ\n     °  ÛÝ   Label.: %LABEL%                                   ÞÛ  °\n      ° ÞÛ   Genre.: %MAINGENRE%                                ÛÝ °\n    Ü°Ü±²Û   Quali.: %QUALITY%                                  Û²±Ü°Ü\n   Û²±ß°ß    \t\t\t\t\t\t         ß°ß±²Û\n   ÛÝ °                                                            ° ÞÛ\n   ÞÛ  °                                                          °  ÛÝ\n    Þ       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ      Ý\n    ÞÝ° °             Ä T R A C K L i S T Ä                      ° °ÞÝ\n     Ý°                                                         °  °Þ\n     Ý°                                                         °  °Þ\n     Ý°   %TRACKLIST%                                           °  °Þ\n     Ý°                                                         °  °Þ\n     Ý°                                                         °  °Þ\n      °  ÛÝ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ  ÞÛ  °\n      ° ÞÛ           Ä G R O U P i N F O Ä                       ÛÝ °\n    Ü°Ü±²Û                                                       Û²±Ü°Ü\n   Û²±ß°ß   Born on 9th january 2005!                             ß°ß±²Û\n   ÛÝ °                                                              ° ÞÛ\n   ÞÛ  °                                                            °  ÛÝ\n    Þ       We will bring you all the hot promos from the              Ý\n       ³    european dj scene. Our goal is to have more quality   ³\n       ³    than quantity! We do not support any way of making    ³\n       ³    profit with scene stuff. Remember and respect the     ³\n       ³    artists. We don't want our releases to be spreaded    ³\n       ³    to public!                                            ³\n       ³                                                          ³\n       ÀÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÙ\n            ³                                               ³\n            ³                                               ³\n ÚÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄ¿\n ³                        Ä N O T E S Ä                                  ³\n ³                                                                       ³\n ³   %RELEASENOTES%                                                      ³\n ³                                                                       ³\n ÀÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÙ\n            ³                                               ³\n            ³                                               ³\nÚÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿\n³          .. Our Respect goes to all the following groups ..              ³\n³                                                                          ³\n³     %GREETS_C%                                                           ³\n³                                                                          ³\n³         ...and to all the leet pimps which are supportin us...           ³\n³                                                                          ³\n³ /artwork by r!sc                                                         ³\nÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ",
+        "NFOSettings": {
+          "WordWrapWidth": "75",
+          "MaxTitleLength": "90",
+          "CenteringLength": "65"
+        },
+        "GroupSkill": "5",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Doom Generation Noises",
+        "IncludeCatalogNo": "True",
+        "Abbreviation": "DGN",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hard Trance",
+            "Hard Dance / Hardstyle",
+            "Trance / Tech Trance",
+            "Hard Dance / UK Hardcore",
+            "Hardcore / Nustyle Hardcore",
+            "Hardcore / Gabber",
+            "Hardcore / Speedcore",
+            "Techno / Detroit Techno",
+            "Techno / Minimal Techno"
+          ]
+        },
+        "GroupComment": "- DGN CREW %YEAR% -",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "ÜÜÜÜ\n                                                                 ÜÛ²²ÛÜÜÿ\n                                                                 Û²±±²²ÛÜÜ\n                                                          ÜÜÜÜÜÜÜÛÛ²±±²²²ÛÜÜ\n                 ÜÜÜÜÜÜÜÜÜ          ÜÜÜÜÜÜÜÜ   ÜÜÜÜ      ÜÛ²²²²²²²²±° Ü ±²²ÛÜÜ\n           ÿÿÿÜÜÜÛ²²²²²²²ÛÜÜ      ÜÜÛ²²²²²²ÛÜÜÜÛ²²ÛÜÜ   ÜÛ²±±±±±±±±°  ÞÛÜ ±²²ÛÜ\n           ÜÜÜÛ²²²±°±±°±±²²ÛÜ   ÜÜÛ²²±±±°±±²²²Û²±±²²ÛÜÜÜÛ²±°°   ÜÜ ÜÜÿÜÛÛÛÜ ±²ÛÜ\n        ÜÜÜÛ²²²±°±°°°°°°°±±²ÛÜÜÜÛ²²±±° °° °±±°²±°°°±±²²Û²±°  ÜÛÛÛÛÝÞÛÝÞÛÛÛÛÛÿ±²Û\n       ÜÛ²²²±±°°°ÿÜÜÜÜÜÜÜ °±²ÛÛ²²±° ÜÜÜÜÜÜÜÜ  °± ÜÜÜ °±²²±° ÛÛÛÛÛÛÛ ÛÛ ÛÛÛÛÝ ²Ûß\n     ÿÜÛ²±±°°ÿÜÜÛÛÛÛÛÛÛÛÛÛÜ°±²²±° ÜÛÛÛÛÛÛÛÛÛÛ ±°ÞÛÛÛÛ °±²± ÞÛÛÛÛÛÛÛÝÞÛÝÞÛÛÛ ±²Û\n     ÿÛ²±°ÿÜÛÛÛÛÛÛÛÛÛßßÛÛÛÛÝ°±° ÜÛÛÛßßßßßßßÛÝÿ°° ÛÛÝÞÛ °±²± ÛÛÛÛÛßßß ßß°ßÛÝ ²Ûß\n    ÜÜÛ²±°ÞÛÛÛÛÛßßÿ°°°°ÿ ÛÛÛ °ÜÛÛÛßÿ°°°ÿÜÜÜÜÜÜÜÿÿÛÛÝÿÞÛ  ±° ÞÛÛÛ  °±±±°°ÿÞ ±²Û\n   ÜÛ²²±±°ÿÛÛÛ  °°°   °°ÿÞÛÛÝÞÛÛßÿ°°ÿÿÿÞÛÛÛÛÛÛÛÛÝÞÛÛ  ÞÛ  ° ÞÛÛÝ °±²²²²±°°°²Ûß\n  ÜÛ²±±°°  ÿÛÛÝ°° ÿ    ÿ° ÛÛÝÛÛÝ °°ÿÿÿÿÿßÛÛÛßßÛÛÛÞÛÛÝ  ÞÛÝ ° ÛÛ °±²ÛßßÛ²²±²Ûß\n ÜÛ²±°° ÜÛÛÜÞÛÛÝ °     ° ÿÛÛÞÛÛÝ°ÿ ÿÿÿÿÿÿÿß °ÿÞÛÛÝÛÛÛ ° ÞÛÿÿ ÞÛ °±²Û  ßßÛ²Ûß\nÜÛ²°° ÜÛÛÛÛÛÝÞÛÛÛ°ÿÿ °°ÿÜÛÛÝÿÛÛÝÿ°° ÿÿÿÿÿÿ°°ÿÿÜÛÛÝÛÛÛÝ °ÿÞÛÿÿ ÛÝ°±²Û    ßÛß\nÛ²° ÞÛÛÛÛÛÛÛÛ Ûß °°   ÜÛÛÛß °ÞÛÛÜ  °°°°°°°ÿÿÜÛÛÛß°ÞÛÛÛ ±° ÞÛÿÿÛÝ ±²Û\nÛ²° ÛÛÛÛÛÛÛßß °°  ÜÜÛÛÛÛß °±± ßÛÛÛÜÿÿÿÿÿÿÿÜÛÛÛß°± ÞÛÛÛÝ ±° ÞÛÿÿÛ ±²Û\nÛ²± ÞÛÛÛÛÛÜÜÜÜÜÜÛÛÛÛÛßß°±±²²²±° ßÛÛÛÛÛÛÛÛÛÛÛß°°±²±ÞÛÛÛÝ±²±  ÞÛÛÝ ±²Û\nßÛ²±°° ßßÛÛÛÛÛÛÛÛßß °±±²²²ÛßÛ²±±°ÿßßßßßßßßß°±°±²Û² ßßß °±²±° ßß °±²Û\n ßßÛ²±±°°°  °°   °°±²²²Ûßßß ßÛ²²±±±°°±±°±±±±±²²ÛÛ²±°±±±±²Û²±±°°±±²Ûß\n   ßßÛ²²²²²²²²²²²²²Ûßßßß     ßßÛ²²²²²²²²²²²²²ÛßßßÛ²²²²²²ÛßÛ²²²²²²²Û\n     ßßßßßßßßßßßßßßß           ßßßßßßßßßßßßßßßÿ  ßßßßßßßß ßßßßßßßßß\n                                                            [dmc]\n\n\n\n\n   ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ  Doom    Generation    Noises   ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\n\nÄÄÄÄ[rlsnfo]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\n\n     Artist   : %ARTIST%\n     Title    : %TITLE%\n     Year     : %YEAR%\n     Label    : %LABEL%\n     Catalog  : %CATALOG%\n     Genre    : %MAINGENRE%\n     Type     : %TYPE%\n\nÄÄÄÄ[ripnfo]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\n\n     Ripped on: %RIPDATE%\n     Ripper   : DGN\n     Quality  : %QUALITY%\n     Size     : %SIZE%\n     Playtime : %TOTALTIME%\n     Encoder  : %ENCODER%\n\nÄÄÄÄ[trax]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\n \n     %TRACKLIST%\n   \nÄÄÄÄ[Release Note]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\n\n     %RELEASENOTES%                                                           \n\nÄÄÄÄ[Group Notes]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ\n\n     Dgn is around since 1998...\n\n     After a few years, a few rippers who left, a few who joined, people\n     greeting,people yelling, people threatening, people helping, people\n     watching, we're still enjoying our aime: Let ppl listen to what they\n     are gonna buy b4 they pay a single penny.\n\n\n     There have been also some people and groups that helped out during the\n     last few years, maybe it's because of them that (against all odds) we\n     are still releasing and doing well, those know who they are, and we'll\n     thank forever.\n\n\n     We remind our beloved public, we're against all kind of distrubution,\n     don't search our rips neither in your preferred XDcc channel, nor in\n     your local 127.0.0.1 p2p program, We do not distribute ! But it's not\n     nice to buy when you do not know what you're buying.\n     As a matter of fact, DGN is a private group, and do not need rippers,\n     fast or slow shells, traders, t1+ sites, couriers, prewhores, and hw\n     suppliers, we need only a nice chalet in Switzerland/Canada or a Villa\n     in the Caribbean sea where to listen to some chillout music.\n     If you can supply any of those, for free, feel free to contact us for\n     an application form.\n\n\n     Remember to support the artists.\n\n                                                                  DGN Crew, 2003\n\nÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\nÛßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßÛÛÛÛÛÛÛßßßßßßßßßßßßßßßßßßßßßÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ ÛÛÛÿÛÛÛßÛÛÛÿÛÛÛßÛÛÛÿÛÛÛÜÜÜÜÜÜÜÜÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÿÿÿÛ²²²²²²±±±±°°°ÿÿÿÜÜÜÜÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÿÿÿ°°°±±±±²²²²²²ÛÿÿÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÿÛ²²²²²²±±±±°°°ÿÿÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÿ°°°±±±±²²²²²²ÛÿÿÿÿÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÿÿÿÿÛ²²²²²²±±±±°°°ÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÿÿÿÿ°°°±±±±²²²²²²ÛÿÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÿÿÛ²²²²²²±±±±°°°ÿÿÿÿÛÛÛÜÛÛÛÿÛÛÛÜÛÛÛÿÛÛÛÜÛÛÛÿÛÛÛÿÛÛÛÿÜÜÜÿÿÿ°°°±±±±²²²²²²ÛÿÿÿÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÛÛÛßÛÛÛÿÿÛÛÛßÛÛÛÿÛÛÛÜÜÜÜÿÛÛÛßÛÛÛÿÛÛÛÜÜÜÜÿÛÛÛßÛÛÛÿÜÜÛÛÛÜÜÿßßßÿÛÛÛßÛÛÛÿÛÛÛÜÜÜÜÿÛ\nÛÿÛÛÛÿÛÛÛÿÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÝÛÛÛÞÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛ\nÛÿÛÛÛÿÜÜÜÜÿÛÛÛÜÜÜÜÿÛÛÛÿÛÛÛÿÛÛÛÜÜÜÜÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÝÛÛÛÞÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛ\nÛÿÛÛÛÿÛÛÛ ÿÛÛÛ ÜÜÜÿÛÛÛÿÛÛÛÿÛÛÛ ÜÜÜÿÛÛÛÿÜÜÜÿÛÛÛßÛÛÛÿÜÿÛÛÛÿÜÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛ\nÛÿÛÛÛÿÛÛÛ ÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÿÿÿÿÛÛÛÿÛÛÛÿÿÿÛÛÛÿÿÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛ\nÛÿÛÛÛÿÛÛÛÿÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÿÿÿÿÛÛÛÿÛÛÛÿÿÿÛÛÛÿÿÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛ\nÛÿÛÛÛÿÛÛÛÿÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÿÿÿÿÛÛÛÿÛÛÛÿÿÿÛÛÛÿÿÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÿÛ\nÛÿÛÛÛÜÛÛÛÿÿÛÛÛÜÛÛÛÿÛÛÛÿÜÜÜÿÛÛÛÜÛÛÛÿÛÛÛÿÿÿÿÿÜÜÜÿÛÛÛÿÿÿÛÛÛÿÿÿÛÛÛÿÛÛÛÜÛÛÛÿÛÛÛÿÜÜÜÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÛ²²²²²²±±±±°°°ÿÿÛÛÛÜÜÜÜÿÛÛÛßÛÛÛÿßßßÿÛÛÛßÛÛÛÿÛÛÛßÛÛÛÿÛÛÛßÛÛÛÿÿ°°°±±±±²²²²²²ÛÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛÜÜÜÜÿÛÛÛ ÛÛÛÿÛÛÛÜÜÜÜÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÛ²²²²²²±±±±°°°ÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÜÜÜ ÛÛÛÿÛÛÛÜÜÜÜÿÜÜÜ ÛÛÛÿÿÿ°°°±±±²²²²ÛÿÿÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÜÜÜÿÛÛÛ ÛÛÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÿÛ²²²²²²±±±±°°°ÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿ°°°±±±±²²²²²²ÛÿÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÿÿÛ²²²²²²±±±±°°°ÿÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÛÛÛ ÛÛÛÿÿ°°°±±±±²²²²²²ÛÿÛ\nÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛÛÛ ÜÜÜÿÛÛÛÜÛÛÛÿÛÛÛÿÛÛÛÜÛÛÛÿÛÛÛÜÛÛÛÿÛÛÛÜÛÛÛÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÛ\nÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ",
+        "NFOSettings": {
+          "WordWrapWidth": "75",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Mind Scare",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "MS",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Hard Dance / Hard House",
+            "Hardcore / Nustyle Hardcore",
+            "Psychedelic / Progressive Psytrance",
+            "Acid / Acid House"
+          ]
+        },
+        "GroupComment": "MiND SCARE - DiGiTALLY UNiTED",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "þÜÜÜÜÜÜÜÛÛÜ\n                                                               ßÛÛÛÛÛÛÛßß\n >Quality Since 1997<   þ                           ß ßß ßßßßßßÝÛÛÛÛÛ²ÛÝßÛ\n            ÜÜÜÜÜ     ÜÜÛÜÜ                     þ               ÛÛÛÛÛ²Û ÝÛ\n ÜÜÜÛßßßßÛÜÛß Ü ßßßÛÜÛß Ü ßßßßÛÜÜÜÛßßßßßÛÜÜÜ    Ü      ÛßßßßßßßÝÛÛÛÛÛÛÛ ÞÛ\n ÛÝ ÜÜÛÛÜÜÜÜÜÛÛÛÛÛÜÜÜ ÜÛÛÛÛÛÛÜÜÜ ß ÜÛÛÛÜ Ü ÛÜßßßßßßßÛÜß ÜÛÛÛÛÛÛÜÛÛÛÛÛ²Û ÞÛ\n ÛÞ ÝÛ²ÛÛÛÛÛÝ ÛÛÛÛÛ²ÛÛÜßÛÛÛÛÛ²ÛÛÛÜÞÛÛÛÜÛ ÛÜÜÜÜÛÛÛÛÛÜÜÜÞÛÛÛ²ÛÛÛÝÝÛÛÛÛÛ²Û ÞÛ\n ÛßÛ ÛÛÛÛÛÛÛ ²ÝÛÛÛÛ²ÛÛÛ ÝÛÛÛÛÛ²ÛÛÛ ßÛÛÛßÞÛÛÛÛÝ ÛÛÛ²²ÛÛÜÝÛ²²ÛÛÝ² ÛÛÛÛÛ²Û Ûß\n þ Û Û²ÛÛÛÛÛ ² ÛÛÛÛ²²ÛÛ² ÛÛÛÛÛ²²ÛÛÞÜÜÜÜÜþ²ÛÛÛ ²ÝÛÛÛ²ÛÛÛÞÛÛÛÛÛ ² ÛÛÛÛÛ²Û Û\n  ÜÛ Û²ÛÛÛÛÛ ²ÞÛÛÛÛÛ²ÛÛ ÞÛÛÛÛÛÛ²ÛÛ ÛÛÛß ÜÛÛÛÛ ² ÛÛÛ²²ÛÛ ÛÛÛÛÛ ² ÛÛÛÛÛÛÛ Û   þ\n  ÛÝ ÛÛÛÛÛÛÛ ÞÛÛÛÛÛÛÛÛÛ ÛÛÛÛÛÛÛÛÛÛ ÛÛÛÝÛÛ²ÛÛÛ ²ÞÛÛÛÛ²ÛÛ ÛÛÛÛÛÞ² ÛÛÛÛÛ²Û Û Üß\n  ÛÜÜÜÜÜÜÜÜÜÝßßßßßßÛÛßÞßßßßßßßÛÛßÞÜÛÛÛ ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛÞÛÛÛÛÛÛÜÞÛÛÛÛÛÛÛÞßßÛ\n   ÜÜÜÜÜÜÜÜßßßßßßßÛÜÜÜÛßßßßßß  ÝÜÛÛÛ²Û Ý Þ   ÝßßßßßÛÛÛÞÜÜÜÞßßß þßÝßßßßßßß ÛÜÜÜ\n Ûßß ÜÜÜÜÜÜÜÛÛÛÛÛÜÜÜÝÜÜÜÜÜÜÛÛÛÛ ÛÛ²²ÛÛ ßÛÛÛÛÜÜ ßß þÜÜÜÜÜÜÜÜÛÛÛÛÜÜÜ ÞÜÛÛÛÛÜÜÜ ßÛ\n ßÞÛÛÛÛÛÛß ßßÛÛÛÛÛ²²Ü ÛÛÛÛÛÝßÛÛÞßÛÛÛÛÛÛÜ ÛßÝßÛÛÛÛÜÜÝÛÛÛÛÛßÝßÛÛÛ²²²Û ÝßÛÛÛ²ÛÛÛÜ\n  ÛÛÛ²ÛÛÛÞ ² ÝÛÛÛÛÛÛÛ ÛÛÛÛÝ  ÛÛÛÜÜÜ ÝÜÜÜÜÛÞ² ÛÛÛÛÛÛ ßÛÛ²Û ² ÝÛÛÛÛ²ÛÛ  ÞÛÛÛ²²ÛÛ\n ÜÞÛÛÛÛÛÛÛÞ þßßßßßßÝÜÛÛ²ÛÛ ² ÛÛÛÛ²ÛÛ ÛÛÛÛßß ÞÛÛÛÛ²ÛÛÝÛÛ²Û ²  ÛÛÛÛÛÛÛ ÜÛÛÛÛÛÛß Ü\n ÛÜ ßßßÛÛÛÛÜÜÜÜÜÜÜÜ ßÛÛÛÛÛ ² ßÛÛÛÛÛßÞ ÜÜÜÜÜÛßÛÛÛÛ²ÛÛ ÛÛ²Û þÜÛÛÛßßßß ÝÞ      ÝßÛ\n ÜÛßßßÝ     ßÛÛÛÛÛÛÛÜ Û²ÛÛ ²ÝÜÜÜÜÜÜÝÛÛÛÛÛß Ý ÛÛÛÛ²ÛÛ ÛÛ²ÛÜ ² ÜÜÜÛÛÛÛ ²ÜÛÛÛÛÛÛÜ\n ßÝÜÛÛÛÛÛßþ² ÝÛÛÛ²²ÛÛ Û²ÛÛÞ  ÛÛÛÛÛÛÜ ²ÛÛÛ ²  ÛÛÛÛÛÛÛ ÛÛÛÛÛÞ  Û²ÛÛÛÛÛÞ ÝÛÛÛÛ²ÛÛ\n  ÛÛ²ÛÛÛÛÞ ²ÞÛÛÛ²ÛÛÛÞÜÛÛÛÛÛÞÜÛÛÛÛ²ÛÛ ÛÛÛÛÞ²²ÞÛÛÛÛ²ÛÛÞÛÛÛÛÛÛÛÜ  ßßÛÛÛÛÜÜÛÛÛÛÛÛß\n ÜÞßßÛÛÛÛÛÜÜÛÛÛÛßßß ÜÜÜ ßßßßßßßßßßßÝÜÛÛÛÛÛÜÜÛÛÛÛÛßßß Ü ß ÜÜÜÜÜÛßÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ\n ßßÛÜÜÜÜÜÜÜÜÜÜÜÜÜÛßßß ßßßßßßßßßßßßÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛßß ßÛßß          nmls^BAFH\n     ß                                                 þ\n     þ                 D-i-G-i-T-A-L-L-Y  U-N-i-T-E-D\n      ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿\n      ³ %ARTIST_TITLE_CENTER%                                          ³\n      ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄ¿\n       ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÙ\n       ³                                                              ³³\n       ³ Artist........ %ARTIST%                                      ³³\n       ³ Title......... %TITLE%                                       ³³\n       ³ Label......... %LABEL%                                       ³³\n       ³ Cat. Nr....... %CATALOG%                                     ³³\n       ³ Year.......... %YEAR%                                        ³³\n       ³ Genre......... %MAINGENRE%                                   ³³\n       ³ Street Date... %RELDATE%                                     ³³\n       ³ Size.......... %SIZE%                                        ³³\n       ³ Tracks........ %TRACKS%                                      ³³\n       ³ Length........ %TOTALLENGTH%                                 ³³\n       ³ Source........ %SRC%                                         ³³\n       ³ Encoder....... %ENCODER%                                     ³³\n       ³ Quality....... %QUALITY%                                     ³³\n       ³                                                              ³³\n       ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÄÄÄ-ú\n                                                                      ³³\n      ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿                             ³³\n      ³ R E L E A S E   C O M M E N T S ³¿                            ³³\n      ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄ¿\n       ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÙ\n       ³                                                              ³³\n       ³ %RELEASENOTES%                                               ³³\n       ³                                                              ³³\n       ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÄÄÄ-ú\n                                                                      ³³\n      ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿                                         ³³\n      ³ T R A C K   L i S T ³¿                                        ³³\n      ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄ¿\n       ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÙ\n       ³                                                              ³³\n       ³  %TRACKLIST%                                                 ³³\n       ³                                                              ³³\n       ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÄÄ-ú\n                                                                      ³³ÄÄ¿\n       ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÙ\n       ³                                                              ³³\n       ³ Greeting to all the groups that continue to truly support    ³³\n       ³ the scene. Our releases are meant for the scene only and     ³³\n       ³ not for the public.                                          ³³\n       ³ If you want to contact us you know how.                      ³³\n       ³                                                              ³³\n       ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ³ÄÄÄÄÄ-ú",
+        "NFOSettings": {
+          "WordWrapWidth": "45",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "5",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "Nervous Breakdown",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "NBD",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hard Trance",
+            "Hard Dance / Hardstyle",
+            "Hard Dance / UK Hardcore",
+            "Hardcore / Nustyle Hardcore",
+            "Hardcore / Gabber",
+            "Trance / Tech Trance",
+            "Psychedelic / Full On",
+            "Finnish Psytrance / Suomisaundi"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "ÜÜ\n    °ÛÛÜÜ                             ß        Ü°       Ü              °ÛÛÛÛ²\n °Ü°Û°ßÛÛÛÜ    ÜÜÜ ß     Ü     ÜÜÜÜÛÛÛÛÛÛÛÛÛÜÜÜÜ  ßßßÛÜÜÜ° ßßÛÜ        ÛÛß°Û°\n °ÛÛ°  °ÛÛß   ßß°ÜÜÛßßß ÜÜÜÛÛÛÛÛÛ²²²²°°°°°²²²²ÛÛÛÛÛÛÜÜÜ ßßßÛÜÜ°ß       °Û° ßÛ\n      °Û²    °²Ûßß°ÜÜÛÛÛÛÛÛÛ²²²°°°°°°°   °°°°°°°²²²ÛÛÛÛÛÛÛÜÜ°ßßÛ²       Û²\n  °ÛÛ°Û°    °Ûß ÜÛÛÛÛßÛÛÛ²°°°°°°               °°°°°°²ÛÛÛßÛÛÛÛÜ ß°      ²Û\n   ßÛÛ°    °ß ÜÛÛßß °ÛÛ²°°°°                       °°°°²ÛÛ° ßßÛÛÜ ß     °Û°\n       Ü  ß ÜÛÛß°  °Û²°°°        °°°       °°°        °°°²Û°  °ÛÛÛÜ    ÜÛÛ° °\n      ß²ß °ÛÛß²   °ÛÛ°°    ÜÜÛÛÛÜ   °°   °°   ÜÛÛÛÜÜ    °°ÛÛ°  Û°ßÛÛ°  ÛÛß\n    ß    °ÛÛ° °   ²Û²°   ÜÛÛÛÛÛÛÛÛ²   ° °   ²ÛÛÛÛÛÛÛÛÜ   °²Û²  ²  °ÛÛ°\n     °  °ÛÛ²     °ÛÛ°° °ÛÛß  ßßßÛÛÛ²       ²ÛÛÛßßß °ßÛÛ° °°ÛÛ° °   ²ÛÛ°     °\n        ²ÛÛ°  °  °Û²° Üßß   ÜÜÜ   ß²²     ²²ß   ÜÜÜ   ßßÜ °²Û°     °ÛÛ²\n     ° °ÛÛ²° ÜÛÛÜ²Û²°    ÜÛßß°ßßÛÜ  ²²   ²²  ÜÛßß ßßÛÜ    °²Û²ÜÛÛÜ °²ÛÛ° °\n     ² °ÛÛ²°Û²²°²ÛÛ²°  °Û° °   ° °Û°   °   °Û°  °° ° °Û°   ²ÛÛ²°²²Û°²ÛÛ° ² °\n     Û °ÛÛÛÜÛ²° °²Û°  °Û° ÛÛÜ° °  °Û°     °Û° °°  ²   °Û°  °Û²° °²ÛÜÛÛÛ° Û Û\n   ° Û °²ÛÛ²Û²° °²Û°  °Û °Û²Û° ²°  °Û°²° °Û°    °  ÜÜ° Û°  °Û²   ²Û²ÛÛ²° Û Û°\n  °° °Û °ÛÛ°Û°   °Û°  °Û°  ß° °  ° °Û°Û° °Û° °°² °Û²Û °Û°  °Û²°  °Û°ÛÛ° Û° Û°\n  °   ÛÛ °Û Û°  °²Û°°  °Û° ° ° ²  °Ûß Û°  ßÛ°  °  ÛÛß°Û°  °°Û²°  °Û Û° Û² Û²\n      Û²Û °ßÛ² °²ÛÛ²°   ßÛÜÜ°  °ÜÜß °Û°  ß  ß Ü°   ÜÜÛß   °²ÛÛ²°°²Ûß° Û² °\n      Û °ÛÜ ßÛÛÛÛßÛ²°°     ßßßßß  ß  ÜÜÜÜÛÛÛÛÜÜ ßßßß     °°²ÛßÛÛÛÛß ÜÛ°\n  °   ²   °ß °Ûß  ß  ß ß°°    °Ûß ÜÛÛÛÛÛÛ²²²ÛÛÛÛ° Û²°°ÜÛßß  ÜÜÜ    ß°  ascii by\n      °    Ü   ÜÜÛÛÛÛÛÛÜ ßÛ° °Û °ÛÛÛ²²°°°   °°²ÛÛ° ÛÛß ÜÜÛÛÛÛÛÛÛÛÛÜÜ   olli^cro\n       °Ü  ÜÜÛÛÛÛÛ²°°²ÛÛÛ° Û²Û °ÛÛ²°°    ²    °²ÛÛ°ß °ÛÛÛ²²²°°°°²²ÛÛÛÛÜ  Ü\n     °Ûß ÜÛÛÛ²ÛÛ²°   °°²ÛÛ° ÛÛ ÛÛ²°    °°Û°    °²Û² ²ÛÛ²°²²°     °°°²ÛÛÛ° Û°\n    ²Û °ÛÛÛ²°°Û°       °²ÛÛ° Û ßß°°  °ÜÜÛÛÛÜÜ   °ÛÛ°ÛÛ²°° °²°       °°²ÛÛ° Û²\n   ²Û °ÛÛ²°°  °         °²Û²° ÜÛÛÛÜ   °ßÛÛÛß°   °²Û°Û²°°    °°        °²ÛÛ° Û°\n  °Û °ÛÛ²°   °           °ÛÛ²ÛÛÛ²²ÛÛ° °Ûß°ßÛ°   °²Û°ÛÛ°°     °         °²ÛÛ° Û\n °Û °ÛÛ²°    °           °²ÛÛÛ²°°°²Û²  °°      °²ÛÛ°²Û²°     °  °       °ÛÛ² Û°\n ²Û ²Û²°           °      °Û²°    °ÛÛ°       °²ÛÛÛ° °ÛÛ°        Û       °²ÛÛ° ²\n Û °ÛÛ°             °°     Û°      ²Û² °  °°²ÛÛ²²ÛÛÛ°ßÛ²°  °  °ÜÛÜ°      ²ÛÛ°\n ² °Û²°             °²     °       °ÛÛ°°     °°°°°²ÛÛ°ß²°   ßÛÛÛÛÛÛÛß°   °ÛÛ°\n ° °ÛÛ°              Û°    °       °²Û°     °    °°²ÛÛ°²°°    ²ÛÛÛ²      °ÛÛ° °\n   °²Û²°             ÛÛ°           °²Û°   °°Û°     °²Û²°²°   °ÛÛßÛÛ°     ²ÛÛ° ²\n    °ÛÛ²°            ²Û²°          °ÛÛ°  ÜÜÛÛÛÜÜ    °ÛÛ°²°   Ûß   ßÛ    °²Û² Û\n Ü²Ü °ÛÛ²°          °ÛÛÛ²°        °²Û²  °°ßÛÛÛß °   °²Û°Û²°            °²ÛÛ° Û\n  ß  °ÛÛÛ²°°       °²Û²ÛÛ²°°    °°²ÛÛ°   °Ûß°ßÛ°    °ÛÛ°Û²°°         °°²ÛÛ° Û°\nÞ  ß  Û°ÛÛÛ²²°°  °²²ÛÛ°°ÛÛÛ²°°°°²ÛÛÛ° °   °°  °    °²Û²°ÛÛ²°°°    °°°²²ÛÛ° Û²  Ý\nÞÜ    Û  ßÛÛÛÛ²²²²ÛÛÛ° Ü ßÛÛÛ²²ÛÛÛß Ü²°°°        °°²ÛÛ° ÛÛ²²²°°°°²²²ÛÛÛß ÜÛ²  ÜÝ\nÞ²    ²  Ü  ßßÛÛÛÛÛß ÜÛ²ÛÜ ßÛÛÛßß ÜÛÛÛÛÛ²²°°°°°°²²ÛÛÛ° °²ÛÛÛÛÛÛÛÛÛßßß  Üß°Û°  ²Ý\nÞ²Ü   ° ß²ß  Ü  Ü Ü°ß°   °ÛÜÜ Ü     ßßßÛÛÛÛÛÛÛÛÛÛÛßß ÜÛÜÜ Ü °Û°      ß    Û  Ü²Ý\nÞ²²   °                                                      ß            ²  ²²Ý\n ²²ÛÜ  Ü²²Ü                                                                ÜÛ²²\n ß²²ÛÜ  ßß   NERVOUS BREAKDOWN - YOUR FAVOURiTE MP3-DEALER! - 1997-2007   ÜÛ²²ß\n  ß²²ÛÜ      Ü                                                           ÜÛ²²ß\n   ßÛ²²Û    ßÛß                                            Ü²²Ü         Û²²Ûß\n    ßÛÛ²²ÜÜ      ÜÛ²Ü    T.E.A.M  N.B.D  P.R.E.S.E.N.T.S    ßß       ÜÜ²²Ûß\n      ßÛÛ²²ÛÜÜ    ßß                                              ÜÜÛ²²Ûß\n        ßßÛ²²ÛÛÛÜ                                              ÜÛÛÛ²²Ûß\n           ÜÜ²²ÛÛÝ    Artist: %ARTIST%                        ÞÛÛ²²ÜÜ\n         ÜÛ²²ÛÛÛß   Title...: %TITLE%                          ßÛÛÛ²²ÛÜÜ\n       ÜÛ²²Ûßß                                                    ßßÛ²²ÛÛÜ\n     ÜÛ²²ßß                                                           Û²²ÛÛÜ\n   ÜÛ²²Û     Label: %LABEL%                       Rel.Date.:%RELDATE%   Û²²ÛÜ\n  Ü²²Ûß    Cat. no: %CATALOG%                      Rip.Date.:%RIPDATE%   ßÛ²²Ü\n Ü²²Ûß   Format...: %QUALITY%                                             ßÛ²²Ü\nÞ²ÛÛÛÝ     Tracks.: %TRACKS%                                              ÞÛÛÛ²Ý\nÞ²²ÛÛÝ        Time: %TOTALTIME%                                           ÞÛÛ²²Ý\n ß²²ÛÛÜÜ                                                                ÜÜÛÛ²²ß\n  ß²²²ÛÛÛÛÜÜÜÜ                                                    ÜÜÜÜÛÛÛÛ²²²ß\n    ± ßßÛÛÛÛÛÛÛÛÛÛÜÜÜ                                      ÜÜÜÛÛÛÛÛÛÛÛÛÛßß ±\n    °      ßßßßßÛÛÛÛÛÛÛÛÜ                              ÜÛÛÛÛÛÛÛÛßßßßß      °\n    °             ßßßÛÛÛÛ²²Ü                        Ü²²ÛÛÛÛßßß             °\n                     ßß²ÛÛÛ²ÛÜ                    ÜÛ²ÛÛÛ²ßß\n                           ßÛÛÜ       ÜÜÜ       ÜÛÛÛß\n                             ßÛÜ    Ü²²²²²Ü    ÜÛß\n                              ßÛ   Þ²²²ÛÛ²²Ý   Ûß\n                                ß  Þ²²ÛÛÛÛÛÝ  ß\n                                    ß²²ÛÛÛß\n                                      ßßß\n\n                              ÚÄÄÂÄÂÄÂÄÂÂÂ¿ÚÂÄÂ¿\n                              À¿Ú´³³³³Ú´³³Ã´³À³À¿\n                               ³³³ ´ ³À´ ´³³³¿³Ú´\n ÜßßÛÜ         þ ÜÜ þßßß       ÀÙÀÁÁÁÁÄÁÁÁÄÁÁÄÁÄÙ       ßßßþ ÜÜ þß        ÜÛßßÜ\nÜ    ²ÛÜ                                                                ÜÛ²    Ü\nßÜ    ß²ÛÜ   ÜÜÜß                                              ßÜÜÜ   ÜÛ²ß    Üß\n  ß ÜÜ ßßß ß²²Ûß                                                ßÛ²²ß ßßß ÜÜ ß\n      ßÛ²ÛÜ ßÛß                                                  ßÛß ÜÛ²Ûß\n       ÜÛ²Û                                                          Û²ÛÜ\n      ÜÛ²ß                                                            ß²ÛÜ\n     Ü²ß                                                                ß²Ü\n    ß                                                                      ß\n                 \n            %TRACKLIST%\n                       \n\n                   ÜÜÜ                                    ÜÜÜ\n                 Ü²²²²²Ü    ÚÄÂÄÂ¿ÚÄÂÄÂÄÂÄ¿ ÚÂÄÂÄÂÄ¿    Ü²²²²²Ü\n                Þ²²ÛÛ²²²Ý   ³³³³³Ã´³³³³À´³³ Ã´³³À´³³   Þ²²²ÛÛ²²Ý\n                ÞÛÛÛÛÛ²²Ý   ³ ´Ú´³³Ú´ Ã¿³Ú´ ³³³³Ú´³³   Þ²²ÛÛÛÛÛÝ\n                 ßÛÛÛ²²ß    ÀÁÁÄÁÄÁÄÁÁÁÄÁÄÙ ÀÁÁÁÙÀÄÙ    ß²²ÛÛÛß\n                   ßßß                                    ßßß\n\n\n            %RELEASENOTES_C%                                         \n    Ü                                                                      Ü\n     ß²Ü                                                                Ü²ß\n      ßÛ²Ü                                                            Ü²Ûß\n        Û²Û                                                          Û²Ûß\n      Ü²²Ûß ÜÛÜ                                                  ÜÛÜ ßÛ²ÛÜ\n  Ü ßß ÜÜÜ Ü²²ÛÜ                                                ÜÛ²²Ü ÜÜÜ ßß Ü\nÜß    Ü²Ûß   ßßßÜ                                              Üßßß   ßÛ²Ü    ßÜ\nß    ²Ûß      Üþ ßß þÜÜÜ                                ÜÜÜþ ßß þÜ      ßÛ²    ß\n ßÜÜÛß     þß        ß²²ÛÛÜ     ÚÄÂÄÂÄÂ¿ÚÄÂÄÂ¿       ÜÛÛ²²ß        ßþ     ßÛÜÜß\n                 ÜÜÜÜ²²ÛÛ²Ûß    ³Ú´³³³³À´³³Ú´À¿     ßÛ²ÛÛ²²ÜÜÜ\n                 ÜÜÜÜ²²ÛÛÛ      ³À´³³³³Ú´ ³À´Ú´       ÛÛÛ²²ÜÜÜ\n           ÜÜÜÜÜÛÛÛ²²ÛÛÛß       ÀÄÁÄÁÁÁÄÁÁÁÄÁÄÙ        ßÛÛÛ²²ÛÛÛÜÜÜÜÜ\n       ÜÛ²ÛÛÛÛ²ÛÛÛßßß                                      ßßßÛÛÛÛÛ²ÛÛÛÛÜ\n     ÜÛ²ÛÛßßßß                                                    ßßßßÛÛ²ÛÜ\n   ÜÛ²ßß                                                                ßß²ÛÜ\n  ÜÛ²ß                                                                    ß²ÛÜ\nÜÛ²ß       IRC   : If you don't know. you surly don't need it!             ß²ÛÜ\nÞÛ²ß       EMAiL : Removed for Security Reasons.                            ß²ÛÝ\nÞ²ß        WWW   : www.soon.com                                              ß²Ý\n ß                                                                            ß\n   ÜÜÜ     We are always looking for:                                     ÜÜÜ\n ÜÛ²²²ÛÜ                                                                ÜÛ²²²²Ü\nÞÛÛÛ²²²²Ý   PRE/PROMO Rippers/Suppliers from Europe or USA             ÞÛÛÛ²²²²Ý\nÞÛÛÛÛ²²²Ý   Experienced/Talented (!!!) DJ's, Vinyl/CD Rippers          ÞÛÛÛÛ²²²Ý\n ßÛÛ²²²ß    T1/100GB+ Siteops (linux/unix/bsd ONLY !)                   ßÛÛ²²²ß\n   ßßß      LEGAL Hardware Suppliers                                      ßßß\n Ü          Designer (Web, Graphic, Multimedia, Ascii, Ansi)                  Ü\nÞ²Ü         Supplier (LEGAL Unix Shells for eggdrops, bnc, mail)             Ü²Ý\nÞÛ²Ü        Coder (Shell, TCL And/Or C/C++)                                 Ü²ÛÝ\n ßÛ²Ü                                                                      Ü²Ûß\n  ßÛ²Ý                                                                    Þ²Ûß\n   ßÛ²ÜÜ              If you're interested then contact us !            ÜÜ²Ûß\n     ßÛÛÛÛÜÜÜÜ                                                    ÜÜÜÜÛÛÛÛß\n       ßßÛÛÛ²ÛÛÛÛÛÜÜÜ                                      ÜÜÜÛÛÛÛ²ÛÛÛÛßß\n           ßßßßßÛ²ÛÛÛÛÛÛÜ                              ÜÛÛÛÛ²ÛÛÛßßßßß\n                  ßßßÛÛÛÛ²²Ü                        Ü²²ÛÛÛÛßßß\n            þÜ        ÛÛ²²ßß                        ßß²²ÛÛ        Üþ\n              ßþ ÜÜ þßßß    Ascii header by olli^cro    ßßßþ ÜÜ þß\n                            Ascii layout by ut3X!BAFH",
+        "NFOSettings": {
+          "WordWrapWidth": "58",
+          "MaxTitleLength": "90",
+          "CenteringLength": "58"
+        },
+        "GroupSkill": "8",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "Xtreme Delicious Sound",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "XDS",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Hard Dance / Hard House",
+            "Hardcore / Gabber"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "°  ß\n                           Ü²Ü     ²\n                            ß   ÜÜÜÛ²±°° °\n                           ÜÜ      ± Ü\n                        Ü²ß        °\n                        ßÛÜ þ\n                           ßßßß±ÜÜÜÜÜÜ        ß\n                                     ßßßßßß±²ÛÜÜÜÜÜ\n                                               ßßß±²ÛÛÜÜÜ\n                                                    ß²²ÛÛÛ²Ü\n                         ÜÜÜÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜÜÜ         ÛßÛÛÛ²²\n                     Ü²²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²Ü     ÞÝÞÛÛ²²\n                    °²²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²² þ ÜßÜÛÛ²²\n                    °²ÛÛÛÛ²±²²ÛÛÛÛÛÛÛÛÛ²²²²ÛÛÛÛÛÛ²Ý°±²²ßßß\n                     ß²±°±²ÛÛÛÛ²ß²ßßÛÛßÛÛÛ²±±²ÛÛ²ß       ß\n          Ü²Ü   ß  þ   °°²ÛÛÛÛÛÛ ÞÝ ²Ý ²ÛÛÛ²²±²ß      Ü\n           ß ÜÜÜÛßß²²°  ±ÛÛÛÛÛÛ² ÞÝ ²Ý ²ÛÛÛÛ²±°\n          ÜÛÛÛßÜ²ßß     ²Û²²ÛÛÛÝ ²Ý ²² ÞÛÛÛ²Û²°  Xtreme Delicious Sounds!\n         ²ÛÛÛÝÞ²       °ßßÜÛÛÛÛÝ ²² Þ² ÞÛÛÛ±²²±°\n         ²ÛÛÛÝÞÝ  ß    ²±ÜÛÛÛÛ² ÞÛ² Þ²Ý ²Ûß°ßÛÛ± °°²²ÛÛÜÜÜ   Ü²Ü\n          ²²ÛÛÜßÜ     ²²²ÛÛÛÛÛ±²ÛÛÛÜÜ²²ÛÛÛÛÜÛ²²²²  þ   ßÜßÛÛÜ ß\n            ßßß²²ÛÛÜÜÜÜÜ ßßßßßßßÛÛÛ²²±±²ÛÛÛÛÛÛ²²²²     °²ÝÞÛ²²\n           °       ßßßßßÛÛÛÛÛÛÛÜÜÜÜÜÜÜÜ ßßßßßßßßßß ÜÜÜÛÛÛÜÛßß\n           ²Ü Ü²Ü  ±²²ÛÜÜÜÜÜÜÜ ßßßßßßßßÛÛÛÛÛÛÛÛÛ²²²ßßßßß    ß\n           ÛÝ  ß  ²²ÛÛÛÛÛÛ²±²ÛÛÜÛÛÛÛ²° ÜÜÜÜÜÜÜÜÜÜÜÜÜ²   ß   °\n          ßÛÛÜ   ²ÛÛÛÛ²ÛÛÛ²ÛÛÛÛÛÛÛÛ²ÛÛ±²²ÛÛÛÝ±Û²ÛÛÛ²Û²      °\n        Ü ÝÛÛ²ß ²ÛÛÛ²²ÛÛÛ²ÛÛÛÛÛÛÛÛ²²²ÛÛ²ÛÛÛÛÛ ²±²²Û²ÛÛ²    °±Üß\n  Ü²Ü   Þ²ÛÛ²ß ²ÛÛÛÛ²ÛÛÛ±±²ÛÛÛÛÛÛÛ² ÛÛÛÛÛÛÛÛÛÝ ²°±²ÛÛÛÛÛ  °±²Ý\n   ß Ü ÜßÛß   ²ÝßÛÛÛÛÛÛ±  ²²ÛÛÛ²ÛÛ²ÝÞ²ÛÛÛÛÛÛÛ²  ²²ÛÛßÛÛÛÛ ßÛÛ²\n²Ü  ÛÝ  Ûß ± ²²°ÛÛÛÛÛÛ± ° °²ÛÛ²°±ÛÛ² ±²ÛÛÛÛÛÛ²Ý  ²Û²±²ÛÛÛÛ ßÛÝ    ß °\nß  Ü²ÛÜÛß ² ²²±ÞÛÛ²²ßß °±  ²²ÛÛ²²²Û²Ý °±²ÛÛÛÛÛ²   ²Û²ÛÛÛÛÛÛ ²ßÜ     ²\nÜ  Þ²²Ûß ²±° ß ßß ÜÜÜ²²±±° °²ÛÛÛÛ²ÛÛ² Þ²ÛÛÛÛÛÛÛ²   ²²ÛÛÛÛÛÛÝÞ² Û  °²Û²° °\n  ÜÞ²²ß ²²²²²²ÛÛÛÛÛÛÛÛ²²²±° ²²ÛÛß°ßÛ²Ý Þ²ÛÛÛÛÛÛßÝ Ü ±²ÛÛÛßÛ ÛÛÝÞÝ   ÛÝ\n  ÞÝ²ß ²²²ÛÛÛ²²²ÛÛÛßßßß ÜÜÜ °²²ÛÛÜÛÛÛ²  ²ÛÛÛÛÛÛÛ² ÜÜ ß²²²ß ÜÛßÜß ß ÜÛ   Ü\n  Û²ß ²²ÛÛÛÛ²²ßß ÜÜÜÛÛÛÛßßßß °²²ÛÛÛÛÛ²Ý  ÛÛÛÛÛÛÛÛÝ ßßÜÜ ÜÜÛÛßÛÝ Ü²ÜÞÛÜß\nÜ²Üß ²ÛÛÛÛßß ÜÜÛÛßßß          °²²²ÛÛ²²²   ²ÛÛÛÛÛÛ± °Ü  ßßÛÛÝÞÛÛÜ ÛÜ²ÛÝÜß   ß  °\nÜÛß ²ÛÛÛß ÜÛÛßß                °²²²²²²ß    ²ÛÛÛ²²ß °±°²²ÜÜ ßÛÜÛÛÛ²²²Û²Ý Ü²Ü  Ü²\nÛß ²ÛÛß±ÜÛÛßÜß             Ü²ÛÜ  ßßß   °°°  ßßßß ÜÜ °±±²²ÛÛÛÜÜ ßß²²ßßÜ²Ü ß   ÞÛ\nß ²ÛÛ°²ÛÛß ß          Ü  ÜÜÜÛß  ß °°  °°         ßÛÛ ß²²²²²±°ßÛÛÜÜ ßß²²ÛÛÛÜÜÜÛÛ\n ²ÛÛ°²ÛÛ ß         ß Ü ßß           °°          Ü  ÛÛ ßÛ²±±°    ßßÛÛÜÜ ßß²ÛßÛÛ²\n²ÛÛ±²ÛÛ ß      Üß Üß             ß   °°Ü²Ü       Û  ÛÛ Û±±° Ü²²ÛÜÜ  ²²ÛÛÜÜ ßß²²\nÛÛ°²ÛÛÝ       Û Üß       ÜÜÜÜÜÜÜÜ       ß        ÞÝ ÞÛÝÞÛ²ÝÞ²²ÛÛÛÝßÜ Ûßß²²ÛÛÜÜ\nÛ² ±ÛÛ       Û Û°     ÜÛÛßÜÜÜÜÜÜßß²Ü        ÜÜ    Û  ÛÛ ²ÛÛ ßßÛÛß Ü²  ÜÜ ±²ÛÛÛÛ\n²°°²ÛÛ      ÞÝÞÝ     ÛÛ ßßßßßßßßßßß²²   Ü° Þ²ÛÛÜ  ²  ÛÛ± ÛÛ²Ü   ßßß  ²²ÛÛ°²²ÛÛ°\n°±°²ÛÝ      ÞÝÞÝ    Û² ÛÝÞÛÞ²²Ü ÜÛßßÞ²   ° Þ²ÛÛ²Ý °  ÞÛ² ²ß           ßß °²ÛÛ ²\n° °²ÛÝÞÝ      Þ     Û² ÜÝÛÜÞÛ ßÛßßÞÛÞ²   ° Þ²²ÛÛ² °  ÞÛ² ±       °±     °²Ûß°²°\n° °²ÛÝÞÝ            ²² ÛÝÞ²ÞÛÞÜÝ²ÜÜÛÞÛ    ° ²ÛÛÛ²    ÞÛ² °      ²²     °±ÛÜ Ü±°\n   ±ÛÝÞ²       ß     ²² ÜÜÜÜÜÜÜÜÜÜÜÜÛ      ° ²ÛÛ     ÛÛ± °   Ü Û²   ° °±ÛÛ ²²±°\n   °ÛÛ Û              ß²ÜÜßßßßßßÜÜÜß       ° ²ÛÛ     ÛÛ       Û²ßß ° °²ÛÛ ²²²²±\n    ÞÛÝÞÝ                ßßßßßßßß      ß   ° ²ÛÛ    ÞÛÝ    Ü Û²   ° °²ÛÛ ²²Û²Û²\n °°  ÛÛ Û        ß                   ß     ° ÞÛÛÝ   ÛÛ      ÛÜÜ  ° °²ÛÛ ²²ÛÛ°ÛÛ\n  °°  ÛÛ ß         ßÜÜ                 ÜÛÜ  °Þ²ÛÝ  ÛÛ      Û²   ° °²ÛÛ ²Û²ÛÛÜÛÛ\n       ÛÛÜ            ßß ÜÜ   Ü   Ü ß   ß   °Þ²ÛÝ ÛÛ      Û²     °²ÛÛ ²²ÛÛÛßÛÛ²\nß  Ü    ßÛÛÜ               Ü²Ü              °Þ²²ÝÞß      Û²     °²ÛÛ ²Û²ÛÛÜ°ÜÛ±\nÜß        ßÛÛÜÜ             ß               ° ²ÛÛ       ²±     °²ÛÛ ²²Û±ÛßÛÛÛ°Û\nÝÜß   ß  °   ßßÛÛÜÜÜ      cpN^cRo      ÜÜÜÛÛ± ²²Û      °±     °²ÛÛ°²Û²Û°ÛÛÛÛ°Û\n²Ý Ü²Ü  Ü²       ßßßÛÛÛÛÜÜÜÜÜÜÜÜÜÜÜÛÛÛÛßßß  ° ±²Û    Ü       °²ÛÛ±²²Û±ÛÜÛÛÛ±Û\nÜ²Ü ß  ÜÛÛÜÜ            ßßßßßßßßßßß         ° ±²Û    Þ²Ü    °²ÛÛ²ÛÛ²Û°ÛÛÛÛ²Û\n²²ÛÛÛßßß  ß Ü ßßßÛÜÜÜÜ Ü ÜÜÛßßßßßßßßßßßÛÜ²²ÜÜ²±²ÛÜ²ÜÜÛßßß ÜÜÜÜÜÜÜ ß±ß°ÛÛÛ²Û\n ²²Û  Ý²Û²Ü ÛÛÛß  Û  ÜÜ   ÜÜÜÛÛÛÛÛÛÛÛÛÜÜÜÜ ßß °°ÛÜÛß ÜÜÛÛÛÛÛ²²²ßßßÛ²Ü ß²²Û\n  ²Ý  Þ²ÛÛÛÛÛÛÝ      Þ²²ÛÛÛÛÛÛß     ßßß²²ÛÛÛÛÜÜ ßßÛ ÛÛÛÛÛÛ²²ß      ²²Û °²\n  °ß  ²²²ÛÛÛÛÛÝ      Þ²ÛÛÛÛÛÛÝÜ²Ü      ° ßÛÛÛÛÛÛÛÜ ÞÛÛÛÛÛ²²ÝÞÝ  ß ßßßß ±\n  °   ²²²ÛÛÛÛ² ÞÝ    ²²ÛÛÛÛÛÛ  ß  Ü²Ü      ²ÛÛÛÛÛÛÛÛÛÛÛÛÛ²² ÛÜÜÜÜ Ü Ü\n     Þ²²²ÛÛÛÛ² ÛÜ Ü  ²²ÛÛÛÛÛÝ Þ²²ÜßÛÛÝ      ²²ÛÛÛÛÛÛÛÛÛÛÛÛÛ²Ü ß\n     Þ²²ÛÛÛÛÛÝ ß    Þ²²ÛÛÛÛÛÝ Þ²²ÛÛÛÛÝ       ²²ÛÛÛÛÛ  ßßßßÛÛÛÛÛÛÜÜÜÜÜ\n     ßß   ßßßÛÛÛÛÜÜ²ÛÛÛÛßßßßß Û²²ÛÛÛÛ ²      Þ²²ÛÛÛÛÝ          ßß²²ÛÛÛÛÛÛÜÜ\n        ÜÜÜÜÜÛ²²ßßßÛÛÛÜÜÜÜ    ²²ÛÛÛÛÛ ÛÜ Ü  ÜÜ²²ÛÛÛÛÝpresents ÞÜÜ ²²²ÛÛÛÛ²\n    ²²ÛÛÛÛÛÛß      Þ²²ÛÛÛÛÛÛÛÞ²²ÛÛÛÛÝÞÝ      Þ²²ÛÛÛÛÝ         ÛÜ Ü²²²ÛÛÛÛÝ\n    ²²ÛÛÛÛÛÛ ÛÜ     ²ÛÛÛÛÛÛÛ Þ²Û²ÛÛÛÝÞÝ Ü²Ü  ²²ÛÛÛÛ²ÜÜÜÜÜÜÜ²ÝÞÝ  Þ²²ÛÛÛÛÛÝ\n   Þ²²ÛÛÛÛÛÝÞÛÜÜÜÜ  ÜßÛÛÛÛÛÝ ²²²ÛÛÛ² ÛÛÜÜÛ ÜÞ²²ÛÛÛÛÞ²²²ÛÛÛÛ² Ûß ß²²²ÛÛÛÛÛ °\n   Þ²²²ÛÛÛÛÝÞÝ ÛÜ ÜÞ²²ÛÛÛÛÛÝ ²²²ÛÛÛ² ÛÜÜ   Ü²²ÛÛÛß ²²²ÛÛÛÛÛÝÜÜ Ü²²²ÛÛÛÛÛÛ Û\n  Ü²²²Û²ÛÛÛ²Ü ÞÝ  Ü²²²ÛÛÛÛÛ²ÞÛ²²²ÛÛÝ ÜÜÜÜÛÛÛÛÛßß Ü²ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛßß Ü²²ÜÜ\n ß²ÛÜÜÜÜÜ Ü ÜÜÛÛÜÜÜÜÜÜ ÜÜÜÜÜÜÜÜÜ ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛÛÛÛÛ²ßß\n  ÞÛß  Û    ²Û Û²ßß          ßß²ÛÛÛÛßßßß      Ûß           ßßÛÛß Ü²Ü ²ß   ßÛÝ\n  ßÛ °    i ÞÛ ²           Ü²ÛÜ ²ß            Ü               ß   ß      ° Ûß\n   Û ² °  N ÞÛ              ßß                                         ° ² Û\n   Û ² ²  F Þ²                                                         ² ² Û\n   Û Û ²  o Þ²    Artist : %ARTIST%                                    Û Û Û\n   Û Û Û   Ü²²     Title : %TITLE%                                     Û Û Û\n   Û Û Û Ü²ßß   Rls.Date : %RELDATE%                                   Û Û Û\n   Û Û ÛÛß       Encoder : %ENCODER%                                   Û Û Û\n   Û Û ÛÝ         Ripper : Team XDS                                    Û Û Û\n   Û Û Û           Genre : %MAINGENRE%                                 Û Û Û\n   Û Û Û          Source : %SRC%                                   Ü   Û Û Û\n   Û°Û Û          Tracks : %TRACKS%              ß                   ßÜÛ Û°Û\n   Û²Û Û            Time : %TOTALTIME%                  Ü²Ü  °  ß   ßÜÞÛ Û²Û\n   ßßÛ°ÛÜ           Size : %SIZE%           Üß   ß       ß  Ü²Ü  Ü²Ü Þ²Û°Ûßß\n     Û²ÛÝ                                  ÞÝ Ü²Ü      ß    ÞÛÝ   ß Ü²ÜÛ²Û\n     ßßÛÛÜÜ ÜÜ                             Þ²Ü ß   ß      ÜÜÛÛ²ÜÜÜÛÛÛßßßß  °\n       Û     ßßÛÛ                           ß²²ÛÜÜÜ   ÜÜÛßßß²ÛÛßßÛÜÜ     ° °\n       ² Track  Û                               ßßßÛÛ²ß Ü   ÞÛ      ßÛ ° ° ²\n       ²   List ²                                  Þ²Ý ß²ß  ß²        Û² ² Û\n   °   ° ÜÜ  ÜÜÜ²                                  ÞÝßÜ   Ü  °        ÞÛ Û Û\n   ° °   ÞÛ²ßßß                                     ßÜ                 Û Û Û\n   ² ° ÛÛß                                             ß               Û Û Û\n   Û ² Û                                                               Û Û Û\n   Û Û Û  %TRACKLIST%                                                  Û Û Û\n   Û Û Û                                                           Ü   Û Û Û\n   Û°Û Û                                                             ßÜÛ Û°Û\n   Û²Û Û                                                        ß   ßÜÞÛ Û²Û\n   ßßÛ°ÛÜ                                                   Ü²Ü  Ü²Ü Þ²Û°Ûßß\n     Û²ÛÝ                                                   ÞÛÝ   ß Ü²ÛÛ²Û\n     ßßÛÛÜÜ ÜÜ                                            ÜÜÛÛ²ÜÜÜ²ÛÛßßßß  °\n       Û     ßßÛÛ                                     ÜÜÛßßß²ÛÛßßÛÜÜ     ° °\n       ²  Rls   Û                                   Þ²ß Ü   ÞÛ      ß² ° ° ²\n       ²  Info  ²                                  Þ²Ý ß²ß  ß²        ²² ² Û\n   °   ° ÜÜ  ÜÜÜ²                                  ÞÝßÜ   Ü  °        Þ² Û Û\n   ° °   ÞÛ²ßßß                                     ßÜ                 ² Û Û\n   ² ° ÛÛß                                             ß               Û Û Û\n   Û ² Û                                                               Û Û Û\n   Û Û Û  %RELEASENOTES%                                               Û Û Û\n   Û Û Û                                                           Ü   Û Û Û\n   Û°Û Û                                                             ßÜÛ Û°Û\n   Û²Û Û                                                     °  ß   ßÜÞÛ Û²Û\n   ßßÛ°ÛÜ                                                    ²Ü  Ü²Ü Þ²Û°Ûßß\n     Û²ÛÝ                                                    ÛÝ   ß Ü²ÜÛ²Û\n     ßßÛÛÜÜ ÜÜ                                            ÜÜÛÛÛÜÜÜÛÛÛ²²ÛÛß\n       Û     ßßÛÛ                                     ÜÜÛ²ßß ²   ÞÝÞÛÛß\n       ² Group  Û                                ß ÜÛßÛ²²    ÛÜ ß ßÜßÝ\n       ²   Info ²                               Ü²ÜÞÝÞ²²Ý  ßÜÛÝÜ²Ü ÞÛ²Ü\n   °   ° ÜÜ  ÜÜÜ²                                ÛÜ²ÛÜß²²Ü  ÞÛ²ÜÛ ÜÛÛ²Ûß\n   ° °   ÞÛ²ßßß                             Ü ÜÜÛ²²²ßßÛÛÜÜßßßÛ²²²ÛÛÛÜÛÝ\n   ² ° ÛÛß                                                       ßßß²ÜÛÜ\n   Û ² Û                                                              ß²²\n   Û Û Û  We are currently looking for:                                Þ²²\n   Û Û Û                                                               ²ßÜ\n   Û Û Û      . 100mbit affil sites                                   ÞÝ ÞÝ\n   Û Û Û      . Promo/Vinyl/CD suppliers                               ßÜß\n   Û Û Û                                                                Þ² °\n   Û Û Û  IF you really want to help us you will find us!               ßÛ ²\n   Û°Û Û                                                              Ü  Û Û\n   Û²Û Û                                                              ÞÝÞÛ Û\n   ßßÛ°Û                                                           ÜÜÛßÜÛÛ Û\n     Û²ÛÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛÛÛÛÛÜÛÛßß ÜÛ\n     ßßß Ü                           Ü                            Ü ÜÜÜÜÜ²ß²\n        ß²ß ascii by cpN of cRo 2oo5 Ûß                                    ß\n       ß ß²ÜÜÜÜ Ü                ÜÜÜÛß",
+        "NFOSettings": {
+          "WordWrapWidth": "58",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "7",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "International Music Club",
+        "IncludeCatalogNo": "True",
+        "Abbreviation": "iMC",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Trance / Tech Trance",
+            "Hard Dance / Hard Trance"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "ÜÜÜ²²²²Û²²Û²²²²ÜÜÜ\n                          ÜÜ±²²ÛÛÛÛÛÛ²²²±±²²²ÛÛÛÛ²²±ÜÜ\n                       Ü±²Û²²Û²²²ßßßß      ßßßß²²²Û²²Û²±Ü\n                     Ü²²Û²²ßßß ÜÜÜ²ßßßßßßßßßß²ÜÜÜ ßßß²²Û²²Ü\n                   Ü²Û²²ßÜÜ²ßßßß     °  °       ßßßß²ÜÜß²²Û²Ü\n                  ±²²²²±ßß  °cpN!cRo °° ±° ° °        ßß±²²²²±    °\n             °   ±²²±ß  °   ±°  °  ² °±²²±²± ± °  °±   °  ß±²²±\n                Þ²±ß   °±° Ü²±° ²  ß ßßßßßßß ß ² °±²Ü °±°   ß±²Ý  °\n             °  ²±   °±²²²ßßß ÜÜÜÜ²²²ÛÛÛ²±²ÛÛ²ÜÜÜÜ ßßß²²²±°   ±²  °\n             ° Þ±  °±²ßß ÜÜ²ßß²Þ²²Üß²Üßßßßß²²ßßÜ  ßß²ÜÜ ßß²±°  ²Ý °\n            °± ²Ý ±²ß Üßß²Ü ßßÜ ß  ß   °°°   ß    Ü²²ßß²²Ü ß²± Þ² ±°\n          ° ±ÝÞ± ±ß Ü² ÛÛÜÜ ßÜ     °°°°°° Üß   ° ²²ÛÝ ÞÛÛ²²Ü ß± ±ÝÞ± °\n          °±² ²Ý ß ²² ßß ÛÝ ß   ÜÜ  °°±°°  ß  ²Ü  ²ÛßÜÛÛÛÛÛ²² ß Þ² ²±°\n        °±²ß ÜÛ²  ²²ÛÛ²²ÛÛÛÜ   ÜÜÛß  °°±°°°   Üßß ÜÜÛÛÛÛ²ÛÛÛÛ²  ÛÛÜ ß²±°\n         ß °±²ÛÛ°²²Û²ÛÛÛÛÛÛÛÛÛÛÛÛ²ß  °°±±°°°   Þ²²ÛÛÛÛÛÛÝ ßßÛÛ²°±Û²±° ß\n       Ü²ÝÞ±²ÛÛ²²²Û²ÛÛÛÛÛÛÛÛÛÛÛ²ß   °°°±±°  ÜÜÜ²ßß²Ü ßÛß²Ü ÜÛÛ²²²ÛÛ²±ÝÞ²Ü\n      Þ²± ±²ÛÛÛÛ²²²²²ÛÛÛÛÛÛÛÛÛ²Ý   °°°±²±°  Þ²ÛÝ þ ßÜþ Ü²ÛÛÛÛÛÛ²ÛÛÛÛ²± ±²Ý\n      Û±° ±²ÛÛÛÛ²±°ßß²ÛÛÛÛÛÛÛ²²   °°°±²±°°°  ßßß ÜÜ  ß  ÞÛÛÛÛÛ±²ÛÛÛÛ²± °±Û\n    ÞÞ²±ÝÞ²ÛÛÛÛ²²  ° Þ²ÛÛÛßßß²Ý  °°°±²²±°°   Ü²ÛÛÛÛÛÛÛÜÜ²ßß²ÛÛ ²²ÛÛÛÛ²ÝÞ±²ÝÝ\n    ²Þ²²ÝÞ²ÛÛÛÛ²Ý °±  ²²Ý     ß  °°±±²±°°   Þ²ÛÛÛÛÛÛÛÛÛÛÛ²Ü ß² Þ²ÛÛÛÛ²ÝÞ²²Ý²\n    ²Þ²²ÝÞ²ÛÛÛÛ²Ý °±°  ßßÜ ß ß²Ü  °°°±²±°   Þ²²ÛÛÛÛÛÛÛÛÛÛÛ²²   Þ²ÛÛÛÛ²ÝÞ²²Ý²\n    ÞÞ²±ÝÞ²ÛÛÛÛ²² °±²°   Þ²²²ÜÜ     °°°±°°   ß²²ÛÛÛÛÛÛÛÛÛÛ² °° ²²ÛÛÛÛ²ÝÞ±²ÝÝ\n      Û±° ±²ÛÛÛÛ²  °²²°  ²²ÛÛÛÛÛ²ÜÜ   °°±°°°     ßß²ÛÛÛÛÛ²   ° ²ÛÛÛÛ²± °±Û\n      Þ²± ±²ÛÛÛÛÛÝ °°±²   ß²²ÛÛÛÛÛÛ²   °°±²°°°     ÞÛÛÛÛÛ² ÞÝ ÞÛÛÛÛÛ²± ±²Ý\n       ß²ÝÞ±²ÛÛ²²Û  °°   Ü  ß²ÛÛÛÛÛ²        ß°°°   ²ÛÛÛÛÛÝ ÛÝ Û²ÛÛÛ²±ÝÞ²ß\n         Ü °±²²± ß   ÜÜÛÛÝ    ßßßßß  Þ²²²²Ý         ßÛÛÛÛÝ ß Ûß°±²²±° Ü\n         ±   ßß   ÜÛßß  ÞÛ   ²Û²²²   ²Û²²²   ²²²²±   ÞÛÛ²   Û Ü ßßß   ²\n         ° °     ²²Ý     ÛÝ Þ²ÛÛ²Ý  Þ²ÛÛ²Ý  Þ²ÛÛ²Ý   Ûßß  Üß  ²±°°±°  °\n         ° °°   Ü ßß    ßß  ²ÛÛÛ²   ß°ßÛ²   ²ÛÛß²    ÜÜÜÜ   ° °°  °   °\n         ±°² Ü²²ÛÝÞ²Û²²Ý   Þ²ÛÛ²Ý  Þ²ÜÛ²Ý  Þ²ÛÛ°Ý   ²²ÛÛÛÛ² ±°°   °        °\n        °±²ÝÞ²ÛÛÛ ²ÛÛß²  Ü  ßÛÛ²ÝÞÝ²ÛÛÛ² ÞÝ²ÛÛÛ²Ý  ²²ßÛÛß  Ü²±°   ²        °\n    ° °±±²²ß ßÛÛÝÞ²ÛÛ°Ý ²ÝÞÜÛÛÛ²ÝÞÞ²ßÛÛ² ²Þ²ÛÜÛ²Ý²Þ²Û°ÛÝ °²²²ß Ü  ²±°     °±°\n    ß ß²ß ÜÜ²²ÛÛ ²ÛÛÛ± Þ² ²ÛÛÛÛÛ² ²Û°²Û²Ý ²ÛÛÛß°ß ²ÛÛ²Û Ü ß ÜÜÝÞÛÜÜ ß    °±²±\n  Ü²ÛÛÜ Ü²ÛÛÛÛÛ ²²ÛÛÛ² ß ²²ÛÛß°ßÛÛÛ²²ÛÛÛ²²ÛÛÛÛÛÜÛÛ²²ÛÛÛÝß²ÜÛÛ²ÝÞÛÛÛ²² ÛÛÜÜ ßß\n ²²²ÛÛÛ²²ÛÛÛÛÛÜ²²²²Û²²²Ü²²²²Ûß ²ÛÛÛÛ²ÛßÛÛÛÛÛÛÛÛßÛÛÛÛÛÛÛÛÜÜ ß ÜÜÛÛÛ²²ß ÛÛÛ²²Ü²ÛÜ\n  ß²²²±±²²ÛÛÛÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜß  ßßßß ²ÜÜßßßßß ÜÜÜÜßßßßßÛßßßßßßßß ÜÜÜÛÛÛ²²²ßßß\n     Ü  ß²²²ÛÛÛÛÛ²ß ßß²ÛÛßßß ÜÜ²ßßßß²Ü ßß²²ÛÛÛÛÛÛßßßß  ß²ß Ü²Ü  ßßß²²Û²²ßß\n Ü²ÛÜ ÜÜÜ ßß²²²ßß Ü²ß                                       ß  ßß²ÜÜÜ  ÜÜÜ ÜÛ²Ü\n  ßß ²²ÛÛÛ ÜÜ               iNTERNATiONAL MUSiC CLUB               ß² ÛÛÛ²² ßß\n   ÜÜÜÛßß Ü²                       presents                          Ü ßßÛÜÜÜ\n  ²²ÛÛÛÛ ²ß                                                          ß² ÛÛÛÛ²²\n  ß²²²Ûß                                                                ßÛÛ²²ß\n    ²²     %ARTIST_C%                                                     ²²\n    Û²     %TITLE_C%                                                      ²Û\n    Û²                                                                    ²Û\n    Û²     Release Date .: %RELDATE%        Encoder .: %ENCODER%          ²Û\n    Û²     Release Type .: %TYPE%           Quality .: %QUALITY%          ²Û\n    Û²     Catalogue ....: %CATALOG%        Source ..: %SRC%              ²Û\n    Û²     Label ........: %LABEL%          Time ....: %TOTALTIME%        ²Û\n    Û²     Genre ........: %MAINGENRE%      Size ....: %SIZE%             ²Û\n    Û²     Year .........: %YEAR%           URL .....: %LABELURL%         ²Û\n    Û²                                                                    ²Û\n    Û²                                  Ü²Ü ÜÜß ß Ü                ÜÜ Ü²Ü ²Û\n    Û²       ÜÜÜÜ  ÜÜÜ  ÜÜ  ÜÜÜÜ  ÜÜÜ    ß ßß Ü²²Ü ²Ü          Ü²²Ü ßß ß Ü²Û\n    Û² Ü²²Ü ²Ûß²Û ²Ûß²Ûß²Ûß²Û ²Û ²ÛÜÜÜ  ÜÛÛÛÛÜÛÛÛßÜÜÜ        Ü ßÛÛÛÜÛÛÛÛÜ ²Û\n   ÛÛ²²²²ÛÛ²²Û ²Û°²ÛÜ²Û ²Û ²ÛÜÜÜÜÜÜÜ²ÛÜ²²ÛÛß°ßÛÛß²ÛÛ²²    Ü²Ü Ü²Ü Ûß°ßÛÛ²²²ÛÛ\n    Û²  ßß                              ß²ÛÛÜß    ßßß      ß Ü ß Ü ßÜÛÛ²ß ²Û\n    Û²                                                          ßßÛÜÜ   ÜÛ²Û\n    Û²                                                                    ²Û\n    Û²  %RELEASENOTES%                                                    ²Û\n    Û²                                                                    ²Û\n    Û² Ü²Ü ÜÜ                            Ü ß ßÜÜ Ü²Ü                      ²Û\n    Û²Ü ß ßß Ü²²Ü                      Ü² Ü²²Ü ßß ß  ÜÜ ÜÜ  ÜÜÜ  ÜÜ       ²Û\n    Û² ÜÛÛÛÛÜÛÛÛß Ü                    ÜÜÜßÛÛÛÜÛÛÛÛÜ Û² ÜÜ ²ÛÜÜÜßÛ²ß Ü²²Ü ²Û\n   ÛÛ²²²ÛÛß°ßÛ Ü²Ü Ü²Ü                ²²ÛÛ²ßÛÛß°ßÛÛ²²Û² Û²ÜÜÜÜÛ² Û² ²ÛÛ²²²²ÛÛ\n    Û² ß²ÛÛÜß Ü ß Ü ß                  ßßß    ßÜÛÛ²ß                 ßßßß ²Û\n    Û²ÛÜ   ÜÜÛßß                                                          ²Û\n    Û²                                                                    ²Û\n    Û²  %TRACKLIST%                                                       ²Û\n    Û²                                                                    ²Û\n    Û²                                Ü²Ü ÜÜß ß Ü                  ÜÜ Ü²Ü ²Û\n    Û²       ÜÜÜÜ  ÜÜÜÜ  Ü   Ü   ÜÜÜ   ß ßß Ü²²Ü ²Ü            Ü²²Ü ßß ß Ü²Û\n    Û² Ü²²Ü ²Ûß²Û ²Û ²Û ²Û   ²Û ²ÛÜÜÜ ÜÛÛÛÛÜÛÛÛßÜÜÜ          Ü ßÛÛÛÜÛÛÛÛÜ ²Û\n   ÛÛ²²²²ÛÛ²²Û ²Û ²ÛÜÜÜÜ²ÛÜÛÜ²ÛÜÜÜÜ²Û²²ÛÛß°ßÛÛß²ÛÛ²² Ü    Ü²Ü Ü²Ü Ûß°ßÛÛ²²²ÛÛ\n    Û² ßßßß                           ß²ÛÛÜß    ßßß        ß Ü ß Ü ßÜÛÛ²ß ²Û\n    Û²                                                          ßßÛÜÜ   ÜÛ²Û\n    Û²                                                                    ²Û\n    Û²  iMC was founded on 4th january 2004  to  release  quality  fresh  ²Û\n    Û²  music of almost all kind of modern music, especially  electronic  ²Û\n    Û²  genres like Dance, House, Trance and Techno. From now on we only  ²Û\n    Û²  release music of the current year  under the  -iMC tag,  classic  ²Û\n    Û²  rips own our new subgroup : iMC_CLASSiX.                          ²Û\n    Û²                                                                    ²Û\n    Û²  We're currently looking for                                       ²Û\n    Û²                                                                    ²Û\n    Û²     - 100+ Mbit/s sites to affil on (no rented crap!)              ²Û\n    Û²                                                                    ²Û\n    Û²  Note: iMC is a closed group! We don't need any new members, so    ²Û\n    Û²        don't ask for any job!                                      ²Û\n    Û²                                                                    ²Û\n    Û²  See below for contact information.                                ²Û\n    Û²                                                                    ²Û\n    Û² Ü²Ü ÜÜ                                                             ²Û\n    Û²Ü ß ßß Ü²²Ü                ÜÜÜÜ  ÜÜÜ   ÜÜÜÜ ÜÜ  ÜÜÜ   ÜÜÜÜ ÜÜ       ²Û\n    Û² ÜÛÛÛÛÜÛÛÛß Ü         ÜÜÜ ²Û ßß ²Ûß²Û ²Ûß²Û ²ÛßÜÜÜ²Û ²Û ßßß²Ûß Ü²²Ü ²Û\n   ÛÛ²²²ÛÛß°ßÛ Ü²Ü Ü²Ü   Ü ²²ÛÛ²²ÛÜ²Û ²ÛÜ²Û ²Û ²Û ²Û ²Û ²Û ²ÛÜ²Û ²ÛÜ²ÛÛ²²²²ÛÛ\n    Û² ß²ÛÛÜß Ü ß Ü ß       ßßß                                      ßßßß ²Û\n    Û²ÛÜ   ÜÜÛßß                                                          ²Û\n    Û²                       IRC ...: N/A                                 ²Û\n    Û²                       WWW ...: N/A                                 ²Û\n    Û²                       EMAIL .: N/A                                 ²Û\n    Û²                                                                    ²Û\n    Û²                                    Ü²Ü ÜÜß ß Ü              ÜÜ Ü²Ü ²Û\n    Û²       ÜÜÜÜ ÜÜ  ÜÜÜÜ  ÜÜÜÜ ÜÜ  ÜÜÜ   ß ßß Ü²²Ü ²Ü        Ü²²Ü ßß ß Ü²Û\n    Û² Ü²²Ü ²Ûß²Û ²ÛÛ²Û ²Û ²Û ²Û ²Ûß²ÛÜÜÜ ÜÛÛÛÛÜÛÛÛßÜÜÜ      Ü ßÛÛÛÜÛÛÛÛÜ ²Û\n   ÛÛ²²²²ÛÛ²ßß ²Û ²Û ²ÛÜÜÜÜ²ÛÜÜÜÜ²ÛÜÜÜÜ²Û²²ÛÛß°ßÛÛß²ÛÛ²² ÜÜ²Ü Ü²Ü Ûß°ßÛÛ²²²ÛÛ\n    Û² ßßßß ßßßßß                         ß²ÛÛÜß    ßßß    ß Ü ß Ü ßÜÛÛ²ß ²Û\n    Û²                                                          ßßÛÜÜ   ÜÛ²Û\n    Û²                                                                    ²Û\n    Û²   Greetings fly out to all the guys who helped us in the past and  ²Û\n    Û²  to all the hard-working and respected groups who release quality! ²Û\n    Û²                                                                    ²Û\n    Û² ²Ü               IMT . NRG . MTC . USF . HB . QMI               Ü² ²Û\n  Ü²ÛÜ ÜÜÜ                                                            ÜÜÜ ÜÛ²Ü\n Ü ßß ²²ÛÛÛ ÛÜÜÜÜ               FMC . TSP . ZzZz               ÜÜÜÜÛ ÛÛÛ²² ßß Ü\n Ûß ÜÜÜÛßß ÜÜ ß ÜÜ²²²ÜÜ                                  ÜÜ²²²ÜÜ ß ÜÜ ßßÛÜÜÜ ßÛ\n   ²²ÛÛÛÛ ²²ÛÛÜ²ÛÛÛÛÛ²²²Ü      Ü²Ü 20.01.2006 Ü²Ü      Ü²²²ÛÛÛÛÛ²ÜÛÛ²² ÛÛÛÛ²²\n   ß²²ÛÛß  ßß°ÛÛÛÛÛÛÛÛÛ²²ÜÛÛ²²Ü ß              ß Ü²²ÛÛÜ²²ÛÛÛÛÛÛÛÛÛ ßß  ßÛÛ²²ß\n      ÜÜÜ 2 o ß²ÛÛÛÛÛ²²²ß²ÛÛÛÛ²²  ascii by    ß ²²ÛÛÛÛ²ß²²²ÛÛÛÛÛ²ß o 6 ÜÜÜ\n       ß²ß      ßß²²²ßß Ü ßÛÛÛß  cpN of cRo Ü²Ü  ßÛÛÛß Ü ßß²²²ßß      ß²ß\n        °             ß²²ß                   ß        ß²²ß             °\n                        ±                              ±",
+        "NFOSettings": {
+          "WordWrapWidth": "64",
+          "MaxTitleLength": "90",
+          "CenteringLength": "58"
+        },
+        "GroupSkill": "6",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "UNiT",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "UNiT",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance",
+            "Trance / Tech Trance",
+            "Drum'n'Bass / Techstep",
+            "Drum'n'Bass / Hardstep",
+            "Hard Dance / Hard House",
+            "Acid / Acid House",
+            "Acid / Acid Trance",
+            "Hard Dance / Hard Trance",
+            "Hard Dance / Hardstyle",
+            "Breakbeat / Big Beat",
+            "Breakbeat / Nu skool breaks",
+            "Breakbeat / Chemical breaks",
+            "Breakbeat / Progressive breaks"
+          ]
+        },
+        "GroupComment": "TeAM UNiT",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "ß\n    ß               °                       Û\n     ÛÜ           °           °             Ü\n     ßÛÛÛÜÜÜÜÜ   ° °°  °   ° °°°° °  AyL.  ÜÛ                        ÜÜÜÜÜÛÛÛß\n    ° Û²²±°±²ÛÛß °°° ÜÜÜÜÜ     ß±± °.cRoÜÜÛÛÛß  ÜÜÜÜÜ ßÛÜÜÜÜÛÛÛÛÛÛÛÛÛÛ²±°²²²Û\n    ± ßÛ±°°°±ÛÛ °°°°  Û²±ÛÛÛÛÛß ß²²± ÛÛÛÛ²±±Û ÜÛÛ±°²ÛÛÜ Û²²±±°°°°°°°°°°°°±²ÛÛ\n    °ß Û°°°°°Û  ±°°±° Û°°°±²ÛÛ ÛÜ Û±Ü Û°°°°±Û ²²±°°±²²ÛÜ °°°°°°°±°°°°°°°±±²Û\n    ° ÛÛ°±°°°Û ±±°±±  Û°°°°±Û Ü°Û ßÛ² Û±°±°°Û ß²°°°±±±²Û °°°±°°°°°°°°°±°±²²Û\n  ° ± Û²°°°°°Û ²±°°± ÛÛ°°°°°Û °°ÛÛ ßÛ Û²°°°±ÛÛ ²²°±°±²²Û °±°°±²²°°±°°ÛÛÛÛÛ²Û\n   °² Û±°±°°±Û ²²±°± Û²°°°°±Û °°°ÛÛ ß ßÛ°±±°°Û Û²²²²²²Ûß ÛÛÛÛßßÛ±°°°±Û Ü ßÛß\n  °°² Û°±°°±²Û Û²±±² Û±°°°±²Û °°°°ÛÛ ß Û±±°±±Û ÛÛÛ²ÛÛÛß ß ÜÜÜÜ Û±°±°±Û Û² ²\n   °² Û²±°°°Ûß Û²²²Û Û°°±°°ÛÛ °±±°°ÛÛ  Û²±±±²Û Ü ßßß ÜÜ °²°±²Û Û²°°±°Û Û² ±\n  °±ß Û°°±°±Û ÛÛ²²Ûß Û°±±°°Û Ü±°°°°±ÛÛ Û±±²±±Û  ÜÜÛÛÛÛ Ü±±²²°Û ÛÛ±±°±Û ßÛ °\n   ± ÛÛ±°°±±Û Û²Û²Û ÛÛ±°°±±Û ±°°±°°±²ÛÛÛ²±±²²Û  Û²°°°Û ß²²²±²²Ü Û°°±±ÛÛ Û\n° °± Û²°±±±²Û ÛÛÛÛÛ Û²±±°±²Û °°°²°°°±±²Û²²²±²Û  Û±°°±ÛÛ Û²±²±²² Û²±±²±Û Û±\n  °² Û²±±°±²ÛÜ ÛÛÛ ÜÛ±²±±±²Û °±±Û²±°°±±²±²²²²Û ßÛ±°±°±Û ²²²±±°± Û²°±±²Û Û±°\n °±² Û²²±²±²±ÛÜÜ  ÜÛÛ²±°±²ÛÛ ±±²ÛÛÛ²²±²±²²±±²ÛÛ ±°°°±²Û Û±±°±±° Û°°²±²Û ßÛ°\n  ²² ÛÛ²²±²²²²²ÛÛÛÛ²±²±±±²Û Ü²±±Û ßÛÛ²²±±²²²²²Û ²°±±°²Û ß²±±°°  Û±²±²²ÛÛ Û\n °²Û Û²²±²±±²±²²±²²²²±±±²ÛÛ ²±±²ÛÛ  ÛÛ²²²±±²²²Û ß²±²±²ÛÛ °°±°±  Û²±²²²²Û Ü\n  Ûß Û²²²²²±±²±²²²²±²²±²²Û Ü²²²²²Û Ü ÛÛ²²²²²²²ÛÛ ß²±²±²Û  °°°  ÜÛ²²²±²²Û\n  Ü ÛÛ²Û²²²²²²²²±²²²²²²ÛÛß Û²±²±²Û ßÜ ÛÛ²²ÛÛÛÛÛßß ²²²²²Û  ° °° Û²²²²²²²ÛÛ °\n   ÜÛÛÛÛÛÛÛ²²±²²²²²²ÛÛÛÛß ßÛ²²²²²ÛÛ ÛÜ Ûßßß ÜÜÜ ßßßÛÛÛ²ÛÜ  °° ÜÛÛßßÛÛÛÛ²ÛÜ\n   ß ÜÜÜÜ ßßÛÛÛÛÛÛÛÛßßß ÜÛ Û²±²ÛÛÛÛ Û²ÜÜÜÛÛÛ²²²ÛÛÛÜÜ ßßÛÛ   °  ÜÜÜÜÜÜ ßßßÛ\n    ßÛß°ÛßÛÜÜ ßß ÜÜÜÜ²ÛÛ²Û ÛÛÛßßß ÜÜ²²²²²²Û²²²±²²²Û²ÛÛÜ ßß  ° °±²²²²ÛÛÛÛÜ ß\n     ²  ²  °²²²ßÛßßßß²²²²² Ûß ÜÛ²±°°°°²°°°²°°ß²ß°°²°°±ÛÛßßß   °±²±²°²°±²²²  ß\n     ±  °   °±  Ü±±° °°±²² ß ²²±°°    ° ° ±   °   ±°  °° °±±Ü  ±°° °± °± °±\n     °      Ü ÜÛÛ²²ÛÜÜÜ °²²±²±°       °   °       °   ÜÜÜÛ²²ÛÛÜ Ü   °  °  °\n        °  ÜÛÛÛ²ÛÛßßÛ    ±                °             ÛßßÛÛ²ÛÛÛÜ  °\n   ßÜÜ ÜÜÜÛÛ²±ÛÛß    ß   °                             ß    ßÛÛ±²ÛÛÜÜÜ ÜÜß\n     ßÛÛ²°°°±ÛÛßß                                           ßßÛÛ±°°°²ÛÛß\n       ßÛ±°±ÛÛ    ARTiST..[ %ARTIST%                           ÛÛ±°±Ûß\n         Û±°Û     TiTLE...[ %TITLE%                             Û°±Û\n          Û°Û ÜÜß GENRE...[ %MAINGENRE%                      ßÜÜ Û°Û\n          Û±ÛÛÛ   LABEL...[ %LABEL%                            ÛÛÛ±Û\n          Û²²Û                                                 Û²²Û\n           Û±Û                                                 Û±Û\n          Û²°ÛÛ   CATNO...[ %CATALOG%                         ÛÛ°²Û\n         Û²±±²Û   MODE....[ %QUALITY%                        Û²±±²Û\n        ÛÛßÛ²±Û Ü ENCODER.[ %ENCODER%                       Ü Û±²ÛßÛÛ\n       ß    Û°ÛÛ                                             ÛÛ°Û    ß\n         Ü² Û±²Û  REL.DATE[ %RELDATE%                        Û²±Û ²Ü\n       ÜßßÛ Û²±ÛÛ                                           ÛÛ±²Û ÛßßÜ\n          Û Û²°°ÛÜ ÜÜ                                   ÜÜ ÜÛ°°²Û Û\n         ²ß Û±±±°ÛÛß                                     ßÛÛ°±±±Û ß²\n        ÜÛ Û²²±Û²²ß                                       ß²²Û±²²Û ÛÜ\n      Üßßß Û²ÛÛßÛ²Û                                       Û²ÛßÛÛ²Û ßßßÜ\n    Ü    Ü²ÛÛß   ßßÛ             [TRACKLiST]             Ûßß   ßÛÛ²Ü    Ü\n  °Ü ÛÜÜÛÛÛß        ß            úúúúúúúúúúú            ß        ßÛÛÛÜÜÛ Ü°\n   ±Ü ÛÛ²Û°                                                       °Û²ÛÛ Ü±\n    ²Ü Û±Û° ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ °Û±Û Ü²\n       Û°Û° %TRACKLIST%                                           °Û°Û\n       Û°Û°                                                       °Û°Û\n       Û°Û°                                                       °Û°Û\n       Û°Û°                                                       °Û°Û\n       Û°Û°                                                       °Û°Û\n       Û°ÛÜ                                                       ÜÛ°Û\n       Û±ÛÛÜ                                                     ÜÛÛ±Û\n      ÛÛ²Û ßÜ                                                   Üß Û²ÛÛ\n     ÛßßÛÛÛ          Ü                                 Ü          ÛÛÛßßÛ\n    ß    ßÛÛÜ   ÜÜÜÛß                                   ßÛÜÜÜ   ÜÛÛß    ß\n         Ü ÛÛÛÛÛÛÛß            [RELEASENOTES]             ßÛÛÛÛÛÛÛ Ü\n          ÛÛÛ²²Ûß              úúúúúúúúúúúúúú               ßÛ²²ÛÛÛ\n           ÛÛÛ²±                                             ±²ÛÛÛ\n            Û²ÛÛ                                             ÛÛ²Û\n            Û°Û  %RELEASENOTES%                               Û°Û       \n        ±   Û°Û                                               Û°Û   ±\n       Ü²  ÛÛ±Û                                               Û±ÛÛ  ²Ü\n      Ü°  ÛÛ²±Û                                               Û±²ÛÛ  °Ü\n  Ü  Ü±  ÛÛ²²Ûß                                               ßÛ²²ÛÛ  ±Ü  Ü\n   ÛÜ²  ÛßßÛÛÛ                                                 ÛÛÛßßÛ  ²ÜÛ\n    ÛÛ ß    ßÛÛÜ ÜÜß                                     ßÜÜ ÜÛÛß    ß ÛÛ\n     ²ÛÛ Ûß   Û²ÛÛ             [GROUP  NOTES]              ÛÛ²Û   ßÛ ÛÛ²\n      ²Û ÛÜ ÜÛ²Ûß              úúúúúúúúúúúúúú               ßÛ²ÛÜ ÜÛ Û²\n  ß    Û ßÛÛ²²Ûß  We are currently looking for:  MP3         ßÛ²²ÛÛß Û    ß\n   Û  Ü ß Û²ÛÛ  Rippers, Crakers, HW  or SW suppliers & sites  ÛÛ²Û ß Ü  Û\n   ßÛ  ÛÜ Û°Û   to affil. If u think that u could contribute    Û°Û ÜÛ  Ûß\n    ²Û  ÛÛÛ°Û ±    with something about, contact us asap.     ± Û°ÛÛÛ  Û²\n     ²Û  ÛÛ°Û ²ÜÜ                                           ÜÜ² Û°ÛÛ  Û²\n     ß²ÛÜ Û°Û Ü Û               GREETiNGS TO                Û Ü Û°Û ÜÛ²ß\n Ü    ²ÛÛ Û°ÛÛ ÜÛ                                           ÛÜ ÛÛ°Û ÛÛ²    Ü\n  ²Ü   ²ß Û±Û ÜÛ   %GREETS%                                  ÛÜ Û±Û ß²   Ü²\n   ²ÛÜÜ  ÛÛ²Û ßÛ  ÜÜÜÜÜ                               ÜÜÜÜÜ  Ûß Û²ÛÛ  ÜÜÛ²\n    ²Ûß ÛßßÛÛÛ ßÛßß Ü Û  E-MAiL.:  unit@blazemail.com Û Ü ßßÛß ÛÛÛßßÛ ßÛ²\n     ² ß    ßÛÛÜ ÜÜÛ ÜÛÜÜ                           ÜÜÛÜ ÛÜÜ ÜÛÛß    ß ²\n     ßßÛ Ûß   ²ÛÛ²ß   Ü Û                           Û Ü   ß²ÛÛ²   ßÛ Ûßß\n       Ü ÛÜ ÜÛÛÛß   Ü² ÜßßßÛ ÜÜÜÜÜ         ÜÜÜÜÛßÛßßßÜ ²Ü   ßÛÛÛÜ ÜÛ Ü\n          ²ÛÛÛ²ÛÛ²ÜÛÛ  ß Û ßß  Ü ßÛßßßßßßßßß Ü ß ß Û ß  ÛÛÜ²ÛÛ²ÛÛÛ²\n         ÛÛß  Ûß  ßßßÛÜÜÛßÛÜÛÜÛßÛÜÜÜ[2oo5]ÜÜÛßÛÜÛÜÛßÛÜÜÛßßß  ßÛ  ßÛÛ\n        ß     ßÛÛßßÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛßßÛÛß     ß\n              ²Ûßß[ASCii BY  AyLiEN  of CHEMiCAL  REACTION]ßßÛ²\n              Û     Ü                                   Ü     Û\n             Û                                                 Û\n            Ü                                                   Ü",
+        "NFOSettings": {
+          "WordWrapWidth": "41",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "7",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "XTreme Track Collectorz",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "XTC",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Hardcore / Gabber",
+            "Hardcore / Speedcore",
+            "Hardcore / Metalcore",
+            "Hardcore / Nustyle Hardcore",
+            "Trance / Tech Trance",
+            "Hard Dance / Hard House"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "$$FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF?$.\n  $h\"'            ,-\"'`:::\"' \":::':::::::::::'::::::::\"'                 `\"]$[\n  $h            ,'     :+:.  ,:+:   `\":+:\"' \":+:\"' \":+:         |     ,/   ]$[\n  $h         ,-'       `+:+.,+:+'     +:+    +:+              |.|    ,/'   ]$[\n  $h       ,;.          `+#++:+'      +#+    +#+         -.  ,++;. ,/\\'    ]$[\n  $h      ,-+-+++.     ,+#+\"`+#+.     +#+    +#+           `--++'+++\"`:    ]$[\n  $h     /  `\"+++-     #+#'  `#+#     #+#    #+#.  ,#+#      \"++++++.,;    ]$[\n  $h          :\"'      ###    ###     ###    `########'      ,++++++-+'    ]$[\n  $h           `-.                                          ,/\"'   `\":.    ]$[\n  $h              `---      xtreme trax collectorz          /'       `\\    ]$[\n  $h         ___  _____ _____ _____   __ _____ __  __ _____   __          ,]$[\n  $_,ccccc$__,c.  ||_// ||_// ||==  ,((. ||==  ||\\\\||  ||   ,((.   ccc.___cc.'\n  d\"c_____,ccccc  ||    || \\\\ ||___ \\_)) ||___ ||'\\||  ||   \\_))    '_,cc,.F'\n  d$'\"\"\"\"\"\"'''''                                                    _cd_oO'd$\n  d$                                                                       d$\n  d$    %RELNAME%                                         ___              d$\n  d$                                                     ___bb____ _____   d$\n  d$                                                    d88bbPbbbbb_dd88b  d$\n  d$    ARTiST.....: %ARTIST%                           Y88PPPPPPPPbYY88P  d$\n  d$    TiTLE......: %TITLE%                                ___Y88PPb88PP  d$\n  d$    LABEL......: %LABEL%                              ___8bbPY88PY88P  d$\n  d$    CAT.NO.....: %CATALOG%                          ___8bbPP__YYYY88P  d$\n  d$    RLS.DATE...: %RELDATE%                         ___bbPPdd8____P     d$\n  d$    RIP.DATE...: %RIPDATE%                        ___bbPYYYYddd___     d$\n  d$    ENCODER....: %ENCODER%                       d__bbPP___YYYdd___  . d$\n  d$    SOURCE.....: %SRC%                           d______d88bY8Ydd__b O.d$\n  d$    QUALITY....: %QUALITY%                       dddd_ddY88P88PYd___`'YO$\n  d$    SiZE.......: %SIZE%                          Y__ddYY88PY88P8___8b`PYO\n  d$    TOTAL TIME.: %TOTALTIME%                     dddYY88P________8bbP `d'\n  d$                                                 YYY88Pbbbbbbb8bbbPP   d$\n  d$                                                 Y88PPPPPPPPPPbPPPP    d$\n  d$                                                           Y88P        d$\n  d$.                                                                     ,d$\n  ccccc[ rELEASE nOTES: ]ccccccccccccccccccccccccccccccccccccccccccccccccccc.\n  $h[                                                                     ]$[\n  $h[  %RELEASENOTES%                                                     ]$[\n  $h[                                                                     ]$[\n  `FFFF[ tRACKLiST ]FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[\n  $h[                                                                     ]$[\n  $h[  %TRACKLIST%                                                        ]$[\n  $h[                                                                     ]$[\n  $cccc[ GREETS ]ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc[\n  ]$['''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''',cp7$[\n  ]$[                                                               ,c$F' ]$[\n  ]$[   bIG sHOUT oUT tO aLL y'ALL rAVERS iN dA sCENE            _c$F' d$$c$[\n  ]$[                                                          ,dF_c$$dF,c$h[\n  ]$[     KEEP IT HARDCORE!                                  ,$F,d$$$$$$$'?$.\n  ]$[                                                     cc$F',$$$$$$$dFFd$[\n  ]$[   Yo WhAt Up to %GREETS%                          ,$F' ,dF''d$$F,$[ $$[\n  ]$[                                                _c$F' ,dF'_,c$$F,$F `$$'\n  ]$[                               _cccccccccc.__,c$F' ,cc?F$$$$$$$hd$)  `$[\n  ]$[                           _cc$___      '`\"\"\"\"'_,c$F'_c$$$$$$F$$$$[  ]$[\n  ]$[                       ,_,cccdFF\"?$ccccccc  _cdF\"' ,c$$$F$$$$$FFF$$h ]$[\n  ]$[     __________,cdFFFFFFF\"'''\"\"\"?_[[''cccc,cccccc.d$$$hdF$F?[c._c$$$[]$[\n  ]$[ ,c$FF\"\"\"\"_cc$$$$ccccccc$FFFFFFFFF$$$ccc$$$$$F\"\"\"F$$$$hccc$FFF$$$$?F ]$[\n  ]$,c$'     c$$F?$$$$$$$$c$$cccccc$$$$$$$$$[''     _,ccc$$$$FFFFFFF\"'    ]$[\n  `$`'ccccccc'ccc?FFFFFFFFFFFFF\"''cccc''''`\"?FFFFFFFF\"'''''cccccccccccccccd$'",
+        "NFOSettings": {
+          "WordWrapWidth": "66",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "8",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "Bros Before Hoes",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "BBH",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Trance / Progressive Trance",
+            "Trance / Tech Trance",
+            "Hard Dance / Hard House",
+            "Hard Dance / Hardstyle",
+            "Psychedelic / Dark psy",
+            "Psychedelic / Full On",
+            "Psychedelic / Goa Trance"
+          ]
+        },
+        "GroupComment": "BBH %YEAR%",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "ÜÜß                  ÜÜß                  ÜÜß\n        ÜÜÛÛÛ²               ÜÜÛÛÛ²               ÜÜÛÛÛ²\n         ÛÛÛÛ²                ÛÛÛÛ²                ÛÛÛÛ²\n         ÛÛÛÛ²           Ü    ÛÛÛÛ²           Ü    ÛÛÛÛ²           Ü\n         ÛÛÛÛ²           Þ²Ü  ÛÛÛÛ²           Þ²Ü  ÛÛÛÛ²           Þ²Ü\n         ÛÛÛÛ²          ÜÛÛ²ß ÛÛÛÛ²          ÜÛÛ²ß ÛÛÛÛ²          ÜÛÛ²ß\n         ÛÛÛÛ²      ÜÜÛÛÛÛÛ²  ÛÛÛÛ²      ÜÜÛÛÛÛÛ²  ÛÛÛÛ²      ÜÜÛÛÛÛÛ²\n         ÛÛÛÛ²  ÜÜÛÛ²²ßÛÛÛÛ²  ÛÛÛÛ²  ÜÜÛÛ²²ßÛÛÛÛ²  ÛÛÛÛ²  ÜÜÛÛ²²ßÛÛÛÛ²\n         ÛÛÛÛÜÛÛ²²ßß   ÛÛÛÛ²  ÛÛÛÛÜÛÛ²²ßß   ÛÛÛÛ²  ÛÛÛÛÜÛÛ²²ßß   ÛÛÛÛ²\n         ÛÛÛÛ²²ß       ÛÛÛÛ²  ÛÛÛÛ²²ß       ÛÛÛÛ²  ÛÛÛÛ²²ß       ÛÛÛÛ²\n         ÛÛÛ²²Ý        ÛÛÛÛ²  ÛÛÛ²²Ý        ÛÛÛÛ²  ÛÛÛ²²Ý        ÛÛÛÛ²\n         ÛÛÛÛ²ß        ÛÛÛÛ²  ÛÛÛÛ²ß        ÛÛÛÛ²  ÛÛÛÛ²ß        ÛÛÛÛ²\n         ÛÛÛÛ²         ÛÛÛÛ²  ÛÛÛÛ²         ÛÛÛÛ²  ÛÛÛÛ²         ÛÛÛÛ²\n         ÛÛÛÛ²         ÛÛÛÛ²  ÛÛÛÛ²         ÛÛÛÛ²  ÛÛÛÛ²         ÛÛÛÛ²\n         ÛÛÛÛ²         ßÛÛ²²  ÛÛÛÛ²         ßÛÛ²²  ÛÛÛÛ²         ÛÛÛÛ²\n   ÜÛ²²Ü ÛÛÛÛ²      ÜÜÛÛ²²ßß  ÛÛÛÛ²      ÜÜÛÛ²²ßß  ÛÛÛÛ²         ÛÛÛÛ² ÜÛ²²Ü\n Ü²ÜÛßß  ÛÛÛÛ²  ÜÜÛÛ²²ßß  ÜÜ  ÛÛÛÛ²  ÜÜÛÛ²²ßß  Ü²Ü ÛÛÛÛ²         ÛÛÛÛ²  ßßÛÜ²Ü\n  ßÜ²ß   ÛÛÛ²ÜÛÛ²²ßß     ßÛ²ß ÛÛÛ²ÜÛÛ²²ÛÛÛ²²²ÜÜ ß  ÛÛÛÛ²Ü   Ü²Ü  ÛÛÛÛ²   ß²Üß\n    ßÜßÜßÛÛÛÛÛ²ß     ÜÜÜÜÜÜ   ÛÛÛÛÛ²ß     ßÛÛ²²²²ß ßÛ²²ÜÜÜ   ß  ÜÛÛÛ²²ßÜßÜß\n    ßÜ²Ý   ßß²Ý   Ü²ß      ß²Ü  ßß²Ý ÜÛ²²Ü Þ²ßß  Ü²ß      ß²Ü   Þ²ßß   Þ²Üß\n   ÜÛÛÛ²Ü     ß  Þ²Ý asc/X! Þ²Ý    ß  ßßß  ß    Þ²Ý  BbH!  Þ²Ý  ß     ÜÛÛ²²Ü\n  ÜÞÛÛÛÛÛ²²ÜÜ     ß²Ü      Ü²ßÜÜÜÜÛÛÛÛ²²²²²²²ÜÜÜÜß²Ü      Ü²ß     ÜÜÛÛÛÛ²²²ÝÜ\n ÜÞ²²ßÛÛÛßßÛÛ²²ÜÜ     ÜÜÜÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ²²²²ÜÜÜ     ÜÜÛÛ²²ßßÛÛÛß²²ÝÜ\n Þ²ßÜÛÛÛÛ²Ü  ßÛÛÛ²²ÜÛÛÛÛÛÛÛ²²²²²²ßßßßßßßßßßßßßÛÛÛÛÛÛÛÛÛÛÛ²²ÜÛÛÛ²²ß  ÜÛÛÛÛ²Üß²Ý\n ß ÜÞÛÛÛÛ²    ÞÛÛÛ²²²²ßßßßß                         ßßßßßÛÛÛÛÛ²²Ý    ÛÛÛÛ²ÝÜ ß\n   Þ²ßÛÛÛ²   Ü²ßßß ...:BROS.BEFORE.HOES.PROUDLY.PRESENTS:..  ßßß²Ü   ÛÛÛÛß²Ý\n   ß ÛÛÛÛ²  ß                                                     ß  ÛÛÛÛ² ß\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²   Artist       : %ARTIST%                                 ÛÛÛÛ²\n     ÛÛÛÛ²   Album        : %TITLE%                                  ÛÛÛÛ²\n     ÛÛÛÛ²   Genre        : %GENRE%                                  ÛÛÛÛ²\n     ÛÛÛÛ²   Label        : %LABEL%                                  ÛÛÛÛ²\n     ÛÛÛÛ²   Catalog      : %CATALOG%                                ÛÛÛÛ²\n     ÛÛÛÛ²   Rip Date     : %RIPDATE%                                ÛÛÛÛ²\n     ÛÛÛÛ²   Street Rls   : %RELDATE%                                ÛÛÛÛ²\n     ÛÛÛÛ²   Size         : %SIZE%                                   ÛÛÛÛ²\n     ÛÛÛÛ²   Encoder      : %ENCODER%                                ÛÛÛÛ²\n     ÛÛÛÛ²   Grabber      : N/A                                      ÛÛÛÛ²\n     ÛÛÛÛ²   Source       : %SRC%                                    ÛÛÛÛ²\n     ÛÛÛÛ²   Bitrate      : %QUALITY%                                ÛÛÛÛ²\n     ÛÛÛÛ²   Playing Time : %TOTALTIME%                              ÛÛÛÛ²\n     ÛÛÛÛ²   Website      : %LABELURL%                               ÛÛÛÛ²\n     ÛÛÛÛ²   Tracks Total : %TRACKS%                                 ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛ²ßÜ                                                          ÛÛÛÛ²\n    ÜßÛ²²²Ý                                                          ÛÛÛÛ²\n   ÜÞÛÛÛ²²²Ü                                                         ÛÛÛÛ²\n   Þ²²ßßß                                                            ÛÛÛÛ²\n   ßÜÜÜßßßßßßßÜÜÜ                                                    ÛÛÛÛ²\n Ü²²ß  Ü²²ß     ß²²Ü                                                 ÛÛÛÛ²\nÞ²²Ý  Þ²²Ý ÜÛ²²Ü Þ²²Ý                                                ÛÛÛÛ²\n ß²²Ü  ß²²Ü ßßß Ü²²ß                                                 ÛÛÛÛ²\n  ÜÜ Ü²Ü  ßßßßßÛÛÜÜÜÜÜÜÜÜÜÜÜÜÜ                                       ÛÛÛÛ²\n ßÛ²ß ßÜÜÜÛ²²²²ßßß         ßßßÛ²²²²ÜÜÜ                               ÛÛÛÛ² Ü²Ü\n    ÜÛÛÛ²²²²ß                   ßÛÛ²²²²²Ü Ü Ü²ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜßÛÛÛ²Ü ß\n   ÞÛÛÛ²²²²Ý  T.R.A.C.K.L.i.S.T  ÞÛÛ²²²²²ÝÞÝ ß                       ßßßßß\n    ßÛÛÛ²²²²Ü                   ÜÛÛ²²²²²ß ß                         ÜÛÛÛÛ²Ü\n     ÜÜÜÜÜ                                                           ÛÛÛÛ²\n    ßÛÛÛÛ²ß                                                          ÛÛÛÛ²\n     ÛÛÛÛ²   %TRACKLIST%                                             ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²                                                          ÜßÛÛÛ²\n     ÛÛÛÛ²                                                          ÞÛÛ²²ßÜ\n     ÛÛÛÛ²                                                         ÜÛÛÛÛ²²ÝÜ\n     ÛÛÛÛ²                                                            ßßß²²Ý\n     ÛÛÛÛ²                                                    ÜÜÜßßßßßßßÜÜÜß\n     ÛÛÛÛ²                                                 Ü²²ß     ß²²Ü  ß²²Ü\n     ÛÛÛÛ²                                                Þ²²Ý ÜÛ²²Ü Þ²²Ý  Þ²²Ý\n     ÛÛÛÛ²                                                 ß²²Ü ßßß Ü²²ß  Ü²²ß\n     ÛÛÛÛ²                                       ÜÜÜÜÜÜÜÜÜÜÜÜÜÛÛßßßßß  Ü²Ü ÜÜ\n Ü²Ü ÛÛÛÛ²                               ÜÜÜÛ²²²²ßßß         ßßßÛ²²²²ÜÜÜß ßÛ²ß\n  ß ÜÛÛÛÛßÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ²Ü Ü ÜÛÛÛ²²²²ß                   ßÛÛ²²²²²Ü\n     ßßßßß                       ß ÞÝÞÛÛÛ²²²²Ý   R.L.S.N.O.T.E.S   ÞÛÛ²²²²²Ý\n    ÜÛÛÛÛ²Ü                         ß ßÛÛÛ²²²²Ü                   ÜÛÛ²²²²²ß\n     ÛÛÛÛ²                                                           ÜÜÜÜÜ\n     ÛÛÛÛ²                                                          ßÛÛÛÛ²ß\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²  %RELEASENOTES%                                           ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛ²ßÜ                                                          ÛÛÛÛ²\n    ÜßÛ²²²Ý                                                          ÛÛÛÛ²\n   ÜÞÛÛÛ²²²Ü                                                         ÛÛÛÛ²\n   Þ²²ßßß                                                            ÛÛÛÛ²\n   ßÜÜÜßßßßßßßÜÜÜ                                                    ÛÛÛÛ²\n Ü²²ß  Ü²²ß     ß²²Ü                                                 ÛÛÛÛ²\nÞ²²Ý  Þ²²Ý ÜÛ²²Ü Þ²²Ý                                                ÛÛÛÛ²\n ß²²Ü  ß²²Ü ßßß Ü²²ß                                                 ÛÛÛÛ²\n  ÜÜ Ü²Ü  ßßßßßÛÛÜÜÜÜÜÜÜÜÜÜÜÜÜ                                       ÛÛÛÛ²\n ßÛ²ß ßÜÜÜÛ²²²²ßßß         ßßßÛ²²²²ÜÜÜ                               ÛÛÛÛ² Ü²Ü\n    ÜÛÛÛ²²²²ß                   ßÛÛ²²²²²Ü Ü Ü²ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜßÛÛÛ²Ü ß\n   ÞÛÛÛ²²²²Ý G.R.O.U.P.N.O.T.E.S ÞÛÛ²²²²²ÝÞÝ ß                       ßßßßß\n    ßÛÛÛ²²²²Ü                   ÜÛÛ²²²²²ß ß                         ÜÛÛÛÛ²Ü\n     ÜÜÜÜÜ                                                           ÛÛÛÛ²\n    ßÛÛÛÛ²ß                                                          ÛÛÛÛ²\n     ÛÛÛÛ²  Were Looking for people who are:                         ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²  affil sites 100mbit+ .eu .us .nl .kr .jp etc             ÛÛÛÛ²\n     ÛÛÛÛ²  10mbit+ .us or other sites for INT dump grp usage only   ÛÛÛÛ²\n     ÛÛÛÛ²  Exp. MP3 rippers (LIVE/FM/WEB/SAT/DAB/CABLE/CD/VINYL)    ÛÛÛÛ²\n     ÛÛÛÛ²  skilled coders,hackers,crackers,scripters,couriers       ÛÛÛÛ²\n     ÛÛÛÛ²  and anyone that can supply XXX of any kind! If you       ÛÛÛÛ²\n     ÛÛÛÛ²  can do anything mentioned above,dont hesitate to email   ÛÛÛÛ²\n     ÛÛÛÛ²  us! We do this to compete but not to destroy other grps  ÛÛÛÛ²\n     ÛÛÛÛ²  or exploit sites. And remember the cardinal rule of any  ÛÛÛÛ²\n     ÛÛÛÛ²  good man... bros before hoes! Always :)                  ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²       Contact:wannajointhenemailus@Safe-mail.net          ÛÛÛÛ²\n     ÛÛÛÛ²                                                           ÛÛÛÛ²\n     ÛÛÛÛ²                                                          ÜßÛÛÛ²\n     ÛÛÛÛ²                                                          ÞÛÛ²²ßÜ\n     ÛÛÛÛ²                                                         ÜÛÛÛÛ²²ÝÜ\n     ÛÛÛÛ²                                                            ßßß²²Ý\n     ÛÛÛÛ²                                                    ÜÜÜßßßßßßßÜÜÜß\n     ÛÛÛÛ²                                                 Ü²²ß     ß²²Ü  ß²²Ü\n     ÛÛÛÛ²                                                Þ²²Ý ÜÛ²²Ü Þ²²Ý  Þ²²Ý\n     ÛÛÛÛ²                                                 ß²²Ü ßßß Ü²²ß  Ü²²ß\n     ÛÛÛÛ²                                       ÜÜÜÜÜÜÜÜÜÜÜÜÜÛÛßßßßß  Ü²Ü ÜÜ\n Ü²Ü ÛÛÛÛ²                               ÜÜÜÛ²²²²ßßß         ßßßÛ²²²²ÜÜÜß ßÛ²ß\n  ß ÜÛÛÛÛßÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ²Ü Ü ÜÛÛÛ²²²²ß                   ßÛÛ²²²²²Ü\n     ßßßßß .:.::ASCII:XERO::.:.  ß ÞÝÞÛÛÛ²²²²Ý .:.::BbH..2007::.:. ÞÛÛ²²²²²Ý\n                                    ß ßÛÛÛ²²²²Ü                   ÜÛÛ²²²²²ß",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "8",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "International Club Addicts",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "iCA",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Melodic Trance",
+            "Hard Dance / Hard House",
+            "Dance / Hands Up",
+            "Dance / Club Trance",
+            "Trance / Tech Trance",
+            "Trance / Uplifting Trance"
+          ]
+        },
+        "GroupComment": "iCA iN dA hOUSE!",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl",
+            "Digital"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": [
+            "MP3 VBR",
+            "MP3 320"
+          ]
+        },
+        "NFOTemplate": "iNTERNATiONAL\n             888          888\n      e88~~\\ 888 888  888 888-~88e\n     d888    888 888  888 888  888b\n     8888    888 888  888 888  8888\n     Y888    888 888  888 888  888P .___  .___.__        __\n      \"88__/ 888 \"88_-88_____-_88\"__| _/__| _/|__| _____/  |_  ______\n                        \\__  \\   / __ |/ __ | |  |/ ___\\   __\\/  ___/\n                         / __ \\_/ /_/ / /_/ | |  \\  \\___|  |  \\___ \\\n                        (____  /\\____ \\____ | |__|\\___  >__| /____  >\n                             \\/      \\/    \\/         \\/          \\/\n                                                            .JQ0MMJ\n                                    p r e s e n t s       .d099@MNMMr\n   $'                                                     dP    ,3N0Mk    'd$\n   $                                                     JN>;:  JnQ00Mb    d$\n   $    %RELNAME%                                       JWML\"~  . ,M@MNL   d$\n  d$                                                   ,NM@b   ,,  JW@ML   d$\n  d$                                                   JMMMM, ^~^: JM@MP:  d$\n  d$    ARTiST.....: %ARTIST%                           JMM@Mt,  .jW@@MKj, d$\n  d$    TiTLE......: %TITLE%                       ,dMdQ@MM@@MI  JN@MMMMME d$\n  d$    LABEL......: %LABEL%                     ,d@@@M@MMMM@@M, JMM@M@MMs d$\n  d$    CAT.NO.....: %CATALOG%                  .QN@@@MM@M@MMt?+ JMWM@@MM@bd$\n  d$    RLS.DATE...: %RELDATE%                  dN@@@@@@M@M@MMc   J@@MM@@@@d$\n  d$    RIP.DATE...: %RIPDATE%                 J@N@MM@@@M@M@@ML  ,MMMM@@@@@d$\n  d$    ENCODER....: %ENCODER%                 d@@@MM@@@MM@M@M6z,dMMM@@M@MMd$\n  d$    SOURCE.....: %SRC%                    JN@@MM@N@@@M@@@@WYMM@M@M@@M@.d$\n  d$    QUALITY....: %QUALITY%               .W@@@MB@@@@M@MMM@MM@@M@M@M@MM@O$\n  d$    SiZE.......: %SIZE%                  J@@@M$JM@@M@@M@@MMMMMM@MMAXMMMY\n  d$    TOTAL TIME.: %TOTALTIME%            JNN@MM J@@MM@MM@@@M@MM@@M5ll3M`d\n  d$    GENRE:.....: %SUBGENRE%             JN@@MF d@@@@@@@@MCN@M@MMMzlltMMd\n  d$                                        JNNNNMkJMMM@MM@MC JMM@MMMMY1lW@d$\n  d$                                        JNNNN@MMMM@M@@M+   NMM@@@MMdM@@d$\n  d$.                                       JMM@@0@MM@@@@M> .  JM@MMMMM@@@,d\n  ccccc[ rELEASE nOTES: ]ccccccccccccccccccccccccccccccccccccccccccccccccccc.\n  $h[                                                                     ]$[\n  $h[  %RELEASENOTES%                                                     ]$[\n  $h[                                                                     ]$[\n  `FFFF[ tRACKLiST ]FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF[\n  $h[                                                                     ]$[\n  $h[  %TRACKLIST%                                                        ]$[\n  $h[                                                                     ]$[\n  $cccc[ GREETS ]ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc[\n  ]$[''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''    p7$[\n  ]$[                                                                     ]$[\n  ]$[   Front To The Back Clubbers Causing A Heart Attack Yo!            $c$[\n  ]$[                                                                    c$h[\n  ]$[   Pump Up The Bass My Niggas!                                      '?$.\n  ]$[                                                                    Fd$[\n  ]$[    %GREETS%                                                         $$[\n  ]$,c                                                                    ]$[\n  `$`'ccccccc'ccc?FFFFFFFFFFF        c''''`\"?FFFFFFFF\"'''''cccccccccccccccd$'",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "MaxTitleLength": "90",
+          "CenteringLength": "50"
+        },
+        "GroupSkill": "3",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      },
+      {
+        "Name": "Audio Gangsters",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "aG",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Hard Dance / Hard House",
+            "Hardcore / Gabber",
+            "Hardcore / Nustyle Hardcore",
+            "Hardcore / Speedcore",
+            "Hardcore / Metalcore",
+            "Hardcore / Terrorcore",
+            "Hardcore / Noisecore",
+            "Acid / Acid House",
+            "Hardcore / Industrial",
+            "Hardcore / Frenchcore"
+          ]
+        },
+        "GroupComment": "",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": ".~~'.                        >6DNS~ .KWNHKWWNWNNK\n           .       XWJiijci=+>!!;;:::~''.     .   >QWMW5tDDNMWNNNNWWNNHH\n         .     >KMMXc=iYNWHKS5tc=++>>!!!;;::~~''..;iDD6XNMMMWWNHHWWNNNNH\n            'SMMWY>>>>++=ij6WMMD555Jjci=+>!;::~....';KKWMMMWWNNNWWNNNNNH\n       !! :HMQ5+>>>>>>>+++++=MMMMMHK6JS65Yti=+;'...':DMMMWMMWNNWNNNNNNNH\n     =i+JMMM5SXY>!!>>+==ic6MMMMMMMMMMM+;cYDSSY=~....~jMWNWWWWWNWNNNNNNNH\n  !+jDMMMMMMjXXt>!!>+ijXMMMMMMMMMMMMMMMS;XDMQXc:....~>MNNNNNWNNNNNNNNNNH\nii5MMMMMMMMM=XSj>!!>cMMMMMMMMMMMMMMWWWMMMMM6XXc;'...~:WWWNNWNNNNNHNNNHHH\nNMMMMMMMMMMMiS6j>!!>tMMMMMMMMMMMMMWMMMMMMMMMMJj!'...~~WWWWWNNNNNNNNHHHKH\nMMMMMMMMMMMNtS5j>!!>6MMMMMMMMMMMMMMMMMMMMMMMMtc>~...~~WMWMWNWNNHNHHHKKK5\nMMMMMMMMMMMSJ5Yc>!!>5MMMMMMMMMMMMMMMMMMMMMMMMji>~..'::WMMMWWNNNNNHHHHKj\nMMMMMMMMMMMYtJj=!!!>YMMMMMMMMMMMMMMMMMMMMMMMMYi>~..~;;MMMMWWNNNNNHHHQ~\nMMMMMMMMMMMJcci+!!;>JMMMMMMMMMMNJMMMMMMMMMMMMWj>~.';!>WMMWWWNNNNHHHH!\nMMMMMMMMMMMj===>!;;>tMMMNMMMMMXD'jKNMMWMMMMMMMYc~':>>cWMWWWNNWNNHNHi\nMMMMMMMMMMMY++>>!;;!cMMMM>!+=j5J   .':>HMMMMMMJ>~~!+>SNWNNNNNNNNNH5    +\nMMMMMMMMMMM6>>>!!;;!cMMMMW=+=ctc::  .';MMMMMMMc:~:>+>NNWNNNWNNNNHS    >Q\nMMMMMMMMMMMD!>>!;;;>cMMMMMMjicYDJ+>:':6MMMMMMMX:~;+>jNNNWNNNNNNND    jKK\nMMMMMMMMMMMK;>!;;;!+jQMMMMMMJ5HMM6>::6MMMMMMMK;>~!>>SNNWNWNNNNNQ~   +KKK\nMMMMMMMMMMMM!>!;;!>=jSMMMMMMMJjc+;;=WMMMMMMMMM!.:!>+NNNNNWNNNNNi   cKKQQ\nMMMMMMMMMMMM!+!;;;!+jSNWMMMMMMWHKWH>MMMMMMMMN!i'~;!SNNNNNNNNNNQ  'XKKKKQ\nMMMMMMMMMMMM!+!:::;>i6QSYMMMMMMMH'  MMHjQYMY='. ':>NNNNNHHHNNK  ;QKKKKQK\nMMMMMMMMMMMMc+!:~~;>+J6Y=+tYKWQc    iDt!=;>j~   .:XNWWNNNHNNK  +HHKKKQQQ\nMMMMMMMMMMMMY=>:~~:!+tYJi!;!c=>:'     ~;::~~'   .tNNWNNHHNHQ :SHHKKKKQQQ\nMMMMMMMMMMMSci>:~'~;>iJJc+;~:>~'.      .'~~~~.   5HNWNNHHNS'5HHHHKKKKQQQ\nMMMMMMMMMMM  t+:'..~:>tjc+;~'''.       .'~~~~~'  JHWWNNNN6=KHHHHKKKKKKKK\nNN=WMMMSMHt  >i;'..'~~iji+!~'''.       .'~~~~~:: 5NWWWNNN6NHNNHHKKKKKKQD\ncX!XWS c!'    6+~..~~.:ci+!:'.....     '~~~'''~~;6WWWWWWWWNNNHHKHHHKKKDY\nJ~ SS        YXS>;;!:~>c=+!:'.  .'''. .;;:~'....~:=KMWWWWNNNNNHHHHKKDi\n        .. =5DNM6==+>>cci+>;~.    ':;'.++!:'    ';=jSNNNNNNNNNHHHHX:\n       . .c5KWMMMJjicJJjcitJc~    '!=+ !i=!~     :tHMDNNHHNNHHHHHQ\n         !6NMMMMDXJt6X5JtYNMS+    ~+tt. itc>~.  .:>YQYHNHHNHHKQK6\n        :YSMYNMQMH55QKX66SMM6=~'':=JXS' +DS5t=>!!+==cjHNNHNHHKQ=\n       ++6i:DXYXj;D6DWHDXXXSYjcicJSQNX.  5HKDXS55YYY6XWNNNHHHK>\n      >   >J!tj!tN5XDWMWHKKQDXDQHNWMH+.  :JNMWNHKHHWMWHHHNHHQ~\n    .!   ~'!!.'KS  jQKMMMMMMMMMMMMMQi:''..;tQMMMMMMMHKKHHHHD\n          i. >SJ!   SQKWMMMMMMMMMMS=:~~~'.'>cYXQHMHWHHKHKH5\n         .  c6+      DQKNWWMMWHKDYi!:~~:~':!+cJ5XKjHHKKKKc\n            j'       .HDNHHKQXS5Jc+!:::;~~;>=ijY65>HHKKQ!\n          ''          !HHKXS65Ytc=>!;!!!::!+=cjY5ciHHHQ.\n                       Y6DXS5Ytji+>>>>>!;!+=ijtt+~5HHX\n                       :.JS5YJtc=++>>>>>>+icjtc>'.5tS~\n                         ~jtttjc==++++>>+=iii+!'  '>\n                         '+=icci==++>>!!>+++>!:\n  _..- _,...'''''---. `'`.;>+====.>!!'''|'!--'')Y.'.',',Y_.<-----''''\n ',,-''..._...`'`.``___________________!!___________ ,' '_''..---'\n   _,--____....`   '7  _'.77':7::77;!!!\\!7;;77     7  .._..--------\n ,'_,,.--..`..  ,   |  _  ||  |  ||  7  ||  ||  7  |  ._ `-''''._'''''`-\n '',,.-,.-'_, ,.-/  |  7  ||  |  ||  |  ||  ||  |  |  . `..   `-.`----..\n '__ ' .,-',-'  `   |  |  ||  !  ||  !  ||  ||  !  |  .'   `'-...___\n .-------'''',-'-'  !__!__!!_____!!_____!!__!!_____!   ,- _______.....--\n          -'                                            '        `''\n     dP\"\"b8    db    88b 88  dP\"\"b8 .dP\"Y8 888888 888888 88\"\"Yb .dP\"Y8\n    dP   `\"   dPYb   88Yb88 dP   `\" `Ybo.\"   88   88__   88__dP `Ybo.\"\n    Yb  \"88  dP__Yb  88 Y88 Yb  \"88 o.`Y8b   88   88\"\"   88\"Yb  o.`Y8b\n     YboodP dP\"\"\"\"Yb 88  Y8  YboodP 8bodP'   88   888888 88  Yb 8bodP'\n\n                      presents another fine release\n\n  %RELNAME_CENTERED%                                                    \n\n    |----------------------------------------------------------------.\n    |  ARTiST.....: %ARTIST%                                         |\n    |  TiTLE......: %TITLE%                                          |\n    |  LABEL......: %LABEL%                                          |\n    |  CAT.NO.....: %CATALOG%                                        |\n    |  GENRE......: %GENRE%                                          |\n    |  RLS.DATE...: %RELDATE%                                        |\n    |  RIP.DATE...: %RIPDATE%                                        |\n    |  ENCODER....: %ENCODER%                                        |\n    |  SOURCE.....: %SRC%                                            |\n    |  QUALITY....: %QUALITY%                                        |\n    |  SiZE.......: %SIZE%                                           |\n    |  TOTAL TIME.: %TOTALTIME%                                      |\n    '_______________________________,ooooooooooooooooooooo.__________'\n    |                               8      tracklist      8          |\n    |                               `\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"'          |\n    |  %TRACKLIST%                                                   |\n    ,______________________________,oooooooooooooooooooooo.__________|\n    |                              8    release notes     8          |\n    |                              `'''''''''''''''''''''''          |\n    |  %RELEASENOTES%                                                |\n    |                                                                |\n    `----------------------------------------------------------------'",
+        "NFOSettings": {
+          "WordWrapWidth": "58",
+          "MaxTitleLength": "90",
+          "CenteringLength": "70"
+        },
+        "GroupSkill": "9",
+        "ReleaseNoteMessages": "",
+        "ReleaseCommentMessages": ""
+      },
+      {
+        "Name": "Trance Galaxy",
+        "NFOSettings": {
+          "WordWrapWidth": "50",
+          "CenteringLength": "50",
+          "MaxTitleLength": "90"
+        },
+        "GroupSkill": "7",
+        "IncludeCatalogNo": "False",
+        "Abbreviation": "TGX",
+        "ReleaseGenres": {
+          "RelGenreData": [
+            "Trance / Progressive Trance",
+            "Trance / Melodic Trance"
+          ]
+        },
+        "GroupComment": ">> TGX <<",
+        "ReleaseFormats": {
+          "RelFMT": [
+            "CD",
+            "Vinyl"
+          ]
+        },
+        "OutputFormats": {
+          "OutFMT": "MP3 VBR"
+        },
+        "NFOTemplate": "°                                           °°°±°°±±±±°°±±°° °± °\n            °                                     °°°°±±±±±°°°°\n         Ü                                 °°°°°°±°±±±±°\n          ßÛÛÛÛÛÜÜÜÜÜÜÜ            °°°°°°°±±±±±±±°         ÜÜÛÜÜ   creepah\n        °°  ßÛÛÛÛÛÛÛÛÛÛÛÛÛßß  °°°°°°°±±±±°°°°°°°±±°°    ÜÛÛÛÛÛÛßÛÜÜ  [BAFH]\n       °°°°  ÞÛÜÛÛÛÛ²ÛÛÛß  °°°°±±±±±±°°°°°   Ü   °±±°°°  ßÛÛÛÛÛÛÛÜßÛ\n      °°±°°   ÛßÛ²Û²²²ÛÝ °°°±±±°°°°°°    ÜÜÛÛÛÛÛÜ  °±°°±°  ßÛÛÛÛÛÛÝÞÝ\n     °°±±°    Û ÛÛÛÛ²ÛÛ °°±±°°°    ÜÜÜÛÜÜÜ ßßßÛÛÛ²Ü  °°°±±°  ÛÛÛÛÛÛ Û\n    °°±±°     Û ÛÛÛÛÛÛÝ °°°   ÜÜÛÛÛ²²²Û²ÛÛÛßÛÜÜ ßÛÛÛÜ  °°±°° ÞÛÛ²ÛÛ Û\n    °°±°     ÞÛ ÛÛÛÛÛÛ °±° ÜÛÛ²²²²²²ÛÛÛßÛÛÛÛÛÜßÛ ßÛ²ÛÛÜ  °  ÜÛÛÛÛÛÝÞÝ\n   °°°°      ÞÝÞÛÛ²ÛÛÝ °° ÞÛÛÛÛÛ²²Ûßß  ° ßÛÛÛÛÛ Û ÛÛ²²ÛÛÜ ÜÛÛÛ²²ÛßÜß\n   ° Ü ÜÜÜÜÜÜÛÝÞÛÛ²²ÛÛÜÜÜÜÜÜÜÜ Û²Û °°±±°° ÞÛÛÛÛÝÞÝ ßÛ²²ÛÛÛÛ²²²ÛÛÜß  °°\n   °°    ßÛÛÛÛ ÛÛ²²²²ÛÛÛÛÛÛÛß ÜÛÛÛÝ °±°°  ÛÛÛÛÛÛ Û ° Û²²²²²²²ÛÛß  °°±±±±°\n   °°°°°°    Û Û²²²²ÛÝ °° ÜÜÜÛÛ²²²ÛÜÜ  ÜÜÛÛÛÛÛÛÛ Û ÜÛÛ²²ÛÛ²²²ÛÛßÜ   °±±±±°°\n    °°±±°°   Û ÛÛ²²ÛÛ °°   ßÛÛÛÛ²²²²ÛÛÛÛÛÛÛÛÛÛÛÛÝÞÛÛ²²Ûß ßÛÛ²²ÛÛÜßÜ   °°°±±°°\n    °°±±±°   ÛÝÞÛ²²²ÛÝ ßÛÛÛÜÜÜ ßßßßÛ²²²ÛÛ²ÛÛÛÛÛÛÝÞÛÛÛß  °  ßÛÛ²²ÛÛÜßÜ    °±±±°\n     °°±±±°  ÞÝÞÛ²²²ÛÛ   ÛÛ²²ÛÛÛÛÛÜÜ ßßßßßÛÛÛÛ²ÛÝÞÛß  °°±°°  ßÛÛ²ÛÛÛÜßÜ   °±±±°\n     °°°±±°  ÞÛ Û²²²ÛÛÝ°°ÞÛ²²²²²²ÛÛßß ÜÛÛÜÞÛÛÛÛÛ ÛÝ °°°±±±°°°  ÛÛÛÛÛÛÝÞÛ   °±±°\n      °°±±°° ÞÛÜßÛ²²²ÛÛ ÜÛ²²²²²²Ûß ÜÛÛ²ÛÛß ÛÛÛÛÛ Û °°±±±±±±±°° ÞÛ²ÛÛÛÛ ÛÝ  °±°\n       °°±±°  ÛÛÛßÛ²²²ÛÛÛ²²²²²ÛÛß ÛÛ²²Ûß ° ÛÛÛÛÝÞÛ °°±±±±±°°°  ÛÛÛÛÛÛÝÞÛ  °°±\n        °°±°° ÞÛÛÛÛÛ²²²²²²²²ÛÛß ÜÛ²²Ûß  °°ÞÛÛÛÛ ÛÝ °°±±±°°°  ÜÛÛÛÛÛÛÛ ÛÝ °°±°\n         °°°°  ßÛÛÛÛÛ²²²²²ÛÛÛ ÜÛÛ²²ÛÝ °°° ÛÛÛÛßÛÛ °°±±±°°  ÜÛÛÛ²ÛÛÛßÜÛß °°±°\n          °°±°°  ßßÛÛÛÛÛÛÛßß ÞÛ²²²²ÛÛÜ  ÜÛÛÛÛÛÛÛÝ °±±±°  ÜÛÛÛÛÛÛÛÛÜÛß   °±°\n           °°°±°°    ßßß  °±° ßÛ²²²²²ÛÛÛÛÛÛÛßÛÛß °°±±°° ÛÛÛÛÛÛÛÛÛÜß    °±°\n             °°°°°°°±°°°°°±±°°  ßÛÛÛ²²²Û²ÛÛÛÛß  °°±±°°°  ßßÛÛßßß      °±°\n                 °°°°°°±±±°°°°°°   ßßßÛÛßßß   °°°°°°                 °±°\n                      °°°°°    °°°°°°    °°±±°°±°°                  °±°\n                                 °°±±°°°°°°°°°°                    °°\n  ° °°±°°°±±±°°°           °°°±±±°±±°°°±°°°                       °\n          °°±±±±±±°°°   °°±±±°°°°°°°\n                 °±±±±°±±±°°                                    °\n                      ±°\n\n           ÜÜÛÜÜ   ÜÜÛÜÜ    ÜÛÜÜ   ÜÜÛÜÜ   ÜÛÜÜ    ÜÜÛÜ   Ü       ÜÜÛÜÜ\n         ÞÛ²ßßÞÛÛÞÛ²ßßÞÛÛ ÞÛ²ßßÛÛÞÛ²ß ßßßÞÛ²ßßÛÛ ÞÛ²ÛßÛÛÝÞÛ²    ÞÛ²ß ßßß\n       Þ Û²ÛÜÜÛÛÝÛ²Ý ßÛÜ  Û²Ý ßß  ßß²²ÛÜ Û²Ý ßß  Û²Û ÞÛ² Û²Ý     ßß²²ÛÜ\n      ÞÝÞ²Ûßßßß Þ²Û  ÞÛ²ÝÞ²Ûßß   Ü  Þ²²ÝÞ²Ûßß   Þ²ÛÝ Û²ÝÞ²Ûßß ß Ü  Þ²²ÝÞÝ\n     ÜÛ ²ÛÝÞÛÛÛ ²ÛÝ  Û²Û ²ÛÜÜÜÛÛÞÛÛÜ²ÛÛ ²ÛÜÜÜÛÛ ²ÛÛ Þ²Û ²ÛÜÜÜÛÛÞÛÛÜ²ÛÛ ÛÛÜ\n  ÜÛÛ²ÛÜ ß ÛÛÛÝ  ß    ß   ßßßß    ßßß    ßßßß    ß   ß   ßßßßß   ßßß ÜÜÛÛ²ÛÛÜ\n ÞÛ²Ûßß ßßßßßßß ß .  .. TRANCE GALAXY - PROUDLY PRESENTS .. . ß ßßßßßß  ßßÛ²ÛÝ\n Û²Û                                                                       Û²Û\nÞ²²Ý                                                                       Þ²²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û        Artist ............ : %ARTIST%                                   Û²Ý\nÞ²Û        Title ............. : %TITLE%                                    Û²Ý\nÞ²Û        Record label ...... : %LABEL%                                    Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û        Release date ...... : %RELDATE%                                  Û²Ý\nÞ²Û        Release type ...... : %RELTYPE%                                  Û²Ý\nÞ²Û        Catalognumber ..... : %CATALOG%                                  Û²Ý\nÞ²Û        Genre ............. : %GENRE%                                    Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û        Year .............. : %YEAR%                                     Û²Ý\nÞ²²Ý       Source ............ : %SRC%                                     Þ²²Ý\n Û²Û       Encoder ........... : %ENCODER%                                 Û²Û\n ÞÛ²ÛÜÜ    Quality ........... : %QUALITY%                              ÜÜÛ²ÛÝ\n° ßÛÛ²ÛÛÛÛÜÜ                                                       ÜÜÛÛÛÛ²ÛÛß °\n°±   ßßßÛÛÛÛÛÛ²²ÛÛÜÜÜÜÜÜ                              ÜÜÜÜÜÜÜÛ²²²ÛÛÛÛ²Ûßßß   ±°\n °°±°°°     ßßßßÛÛÛÛ²²ÛÛÛÛÛÛÛÜÜÜÜÜÜ         ÜÜÜÜÜÛÛÛÛ²²ÛÛ²ÛÛÛÛÛßßßß      °°±°°\n  °°±±°°°°±°°°°      ßßßßßßß²²ÛÛ²ÛÛÛÛÛÛÜÛÛÛÛÛ²²ÛÛÛÛÛßßßßßß      °°°°°±°°°±±°°\n    °°±±±±±±°°°°°°°°°°°°±°°        ßßßß²ßßßß         °±°°   °°°°°°°±±±±±±°°\n   °°±±°°±±±±±°±°°   Ü  °±±°  ÜÜÛÜÜ    ÜÜÛÜ    ÜÛÜÜ   ÜÜ  ÛÜ   °±°±±±±±±±±°°\n  °°±±°°°°°±°°°°  ÜÝÞÛ² °°± ÞÛ²ßßÞÛÛ ÞÛÛß²ÛÛÝÞÛ²ßßÛÛ ÞÛÛÝÞÛ²ÝÜ  °°°°°±°°°±±°°\n °°±°        ÜÜÜÜÛÛ Û²Ý     Û²Ý ßÛÜ  ÛÛ²ÜÜÛ² Û²Ý ßß  ÛÛ²ÜÛßß ÞÛÜÜÜ       °°°°°\n°°±  ÜÜÛ²ÛÛÛÛ²Û²²²ÝÞ²Ûßß ß Þ²Û  ÞÛ²ÝÞÛ²  Û²ÝÞ²Û °   ÞÛ²  Û²ÝÞÛ²²²ÛÛÛÛÛ²ÛÜÜ   °°\n° ÜÛÛ²ÛÛÛßßßßßßÛ²Û ²ÛÜÜÜÛÛ ²ÛÝ  Û²Û Û²Ý Þ²Û ²ÛÜÜÜÛÛ Û²Ý Þ²Û Û²²ÛßßßßßßÛÛÛ²ÛÛÜ °\n ÞÛ²Ûßß         ßßÜ ßßßßß   ß    ß   ß   ß   ßßßß    ß   ß Ü²ß          ßßÛ²ÛÝ\n Û²Û               ßß ßß ß                           ß ßß ßß               Û²Û\nÞ²²Ý                                                                       Þ²²Ý\nÞ²Û     %TRACKLIST%                                                         Û²Ý\nÞ²²Ý                                                                       Þ²²Ý\n Û²Û                                                                       Û²Û\n ÞÛ²ÛÜÜ                   Ü Ü       Ü   ÜÜÛÜÜ  Ü      Þ                 ÜÜÛ²ÛÝ\n° ßÛÛ²ÛÛÛÛÜÜÜÜÜÜ       ÜÜÛÝÞÛ²     ÞÛ²ÞÛ²ß ßßßÞÛ²     ÞÛÜÜ      ÜÜÜÜÜÛÛÛÛ²ÛÛß °\n°±°  ßßßÛÛÛÛ²²ÛÛÛÛÛÛ²²²²²Û Û²Ý     Üß  ßß²²ÛÜ Û²Ý     Û²²ÛÛ²ÛÛÛÛÛ²²Û²ÛÛßßß   ±°\n °±±°°°         ßßßßßßÛ²ÛÝÞ²Û     Þ²Û Ü  Þ²²ÝÞ²Ûßß ß ÞÛÛßßßßßßß           °°±°\n  °±±±°°°°°°°°°°°°°°   ßÛ ²ÛÜÜÜ²Û ²ÛÝÞÛÛÜ²ÛÛ ²ÛÜÜÜÛÛ Ûß  °°°°±°°°°°°°°°°°°±±°\n   °°±±±±±±±±°±°°°°°±°°    ßßßßß   ß   ßßß    ßßßßß    °±±°°±±±°°°°±°±±±±±±°°\n    °°±±±°°°°°°   °±±±°  °±±° ° °°±°°°°   °° °°°   °±±°°   °°±°   °°°°°±±°°°\n   °°±±°°°    ÜÜÛÜÜ ±  ÜÛÜÜ   Ü  ±±±°  ÜÛÜÜ    ÜÜÛÜ    ÜÜÛÜÜ   ÜÛÜÜ   °±±±°°\n  °°±±°°° ÜÝÞÛ²ßßÞÛÛ ÞÛ²ßßÛÛ ÞÛ² °±°°ÞÛ²ßß²ÛÝÞÛÛß²ÛÛÝÞÛ²ß ßßßÞÛ²ßßÛÛ Ý°°±±±°°\n °°±±°°° ÞÛ Û²Ý ßÛÜ  Û²Ý ßß  Û²Ý ±°° Û²Û ßß  ÛÛ²ÜÜÛ²  ßß²²ÛÜ Û²Û ßß ÜÝ °°°±±°\n°±±°°°  Þ²ÝÞ²Û  ÞÛ²ÝÞ²Ûßß   Þ²Û °   Þ²Ûßß   ÞÛ²  Û²Ý Ü  Þ²²ÝÞ²Ûßß ßßÛÜ   °°°±°\n±°   ÜÜÛ²Û ²ÛÝ  Û²Û ²ÛÜÜÜÛÛ ²ÛÜÜÜ²Û ²²ÜÜÜÛÛ Û²Ý Þ²Û ÞÛÛÜ²ÛÛ ²ÛÜÜÜÛÛ ÛÛÛ²ÜÜ  °±°\n° ÜÛÛ²ÛÛÛÛÜ ß    ß   ßßßß    ßßßßß   ßßßßß   ß   ß    ßßß    ßßßß ÜÜÛßßÛÛ²ÛÛÜ °\n ÞÛ²Ûßß   ßßßßß ß .  .. TRANCE GALAXY - PROUDLY PRESENTS .. . ß ßßß     ßßÛ²ÛÝ\n Û²Û                                                                       Û²Û\nÞ²²Ý                                                                       Þ²²Ý\nÞ²Û     %RELEASENOTES%                                                      Û²Ý\nÞ²²Ý                                                                       Þ²²Ý\n Û²Û                                                                       Û²Û\n ÞÛ²ÛÜÜ             Ü  ÜÜÛÜ    ÜÜÛÜ   Ü        ÜÛÜÜ    ÜÜÛÜÜ Þ          ÜÜÛ²ÛÝ\n° ßÛÛ²ÛÛÛÛÜÜ     ÜÜÛÝÞÛ²ÛßÛÛÝÞÛ²ßÛÛÛÝÞÛ²     ÞÛ²ßßÛÛÝÞÛ²ß ßßßÞÛÜÜ  ÜÜÛÛÛÛ²ÛÛß °\n°°   ßßßÛÛÛÛÛÛ²Û²²²Û Û²Û ÞÛ² Û²Ý  Û² Û²Ý     Û²Ý ßß   ßßÛ²²Ü Û²²Û²ÛÛÛÛÛßßß   ±°\n °°±°°°     ßßßßÛ²ÛÝÞ²ÛÝ Û²ÝÞ²Û  Þ²ÝÞ²Ûßß ß Þ²Ûßß    Ü  Þ²ÛÝÞ²²ßßßß     °°°°±°\n  °°±±°°°°°°°°°  ßÛ ²ÛÛ Þ²Û ²ÛÛÛÜ²Û ²ÛÜÜÜÛÛ ²ÛÜÜÜÛÛ Þ²ÛÜ²ÛÛ Ûß  °°°°°°°°°°±±°\n   °°±±±±±±±°±°°°    ß   ß   ßßßß    ßßßßß   ßßßßß    ßßß     °°°°±°±±°°±±±°\n   °°±±±±±±±±±°±±°±°    ÜÜÛÜ   ÛÜ °±±°  ÜÜÛÜ    Ü   Ü  Ü  ±°  °°°±°±±±±±±±±°\n  °°±±°°°°°°°°°°°°  ÜÝÞÛÛß²ÛÛÝÞÛ² °±° ÞÛ²ßÛÛÛÝ Û²Ý Þ²ÛÞÛ² ° ÞÜ  °°°°°°°°°°±±°\n °°±°°       ÜÜÜÜÜÜÛÛ ÛÛ²ÜÜÛ² Û²Ý   ° Û²Ý  Û² Þ²Û  ²ÛÝÛ²Ý    ÛÛÜÜÜ        °°±°\n°°°  ÜÜÛ²ÛÛÛÛ²ÛÛÛ²²²ÝÞÛ²  Û²ÝÞ²ÛßÛÛÜ Þ²Û  Þ²ÝÞ²ÛÝ ²ÛÛÞ²Ûßß ß Þ²²²ÛÛÛÛÛ²ÛÛÜ   ±°\n° ÜÛÛ²ÛÛÛßßßß   ßÛ²Û Û²Ý Þ²Û ²ÛÜ Ü²ÛÝ²ÛÛÛÜ²Û ²ÛÛ²ÜÛÛÝ²ÛÜÜÜÛÛ ²²ÛßßßßßßÛÛÛ²ÛÛÜ °\n ÞÛ²Ûßß           ßßÜ ß   ß   ßßßßß   ßßßß    ßßßßß   ßßßßß Üß          ßßÛ²ÛÝ\n Û²Û                 ß ßß ß            TGX           ß ßß ßß               Û²Û\nÞ²²Ý                                                                       Þ²²Ý\nÞ²Û     On May the 9th, 2001, p00t (formerly known as ex-p00t) decided      Û²Ý\nÞ²Û     to start a new group with the idea to create a better group.        Û²Ý\nÞ²Û     Since all the groups in the scene want to create the best group     Û²Ý\nÞ²Û     we can conclude it's hard to get a good crew.                       Û²Ý\nÞ²Û     Although all beginning is hard we stood up and showed not every     Û²Ý\nÞ²Û     big release has found his way through a big group.                  Û²Ý\nÞ²Û     We are the living proof of being able to do great releases with a   Û²Ý\nÞ²Û     small team of hard working members who give all to make Trance      Û²Ý\nÞ²Û     GalaXy what it is now.                                              Û²Ý\nÞ²Û     We also know to make a difference in the scene you have to grow     Û²Ý\nÞ²Û     and we give beginning rippers a good chance to get known with       Û²Ý\nÞ²Û     the scene and for the quality rippers we supply them with good      Û²Ý\nÞ²Û     sites with an appropriate amount of leeches.                        Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û     Do you wanna have a laugh, wanna know what a real team spirit       Û²Ý\nÞ²Û     is and you're able to supply the newest trance tracks?              Û²Ý\nÞ²Û     We're always looking for quality vinyl or cd rippers !              Û²Ý\nÞ²Û     It'll be hard to contact us because we remain underground but the   Û²Ý\nÞ²Û     few that are smart enough to rip are also smart enough to find us   Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û     Signed:                                                             Û²Ý\nÞ²²Ý    ex-p00ts                                                           Þ²²Ý\n Û²Û    Trance GalaXy 2001                                                 Û²Û\n ÞÛ²ÛÜÜ                                                                 ÜÜÛ²ÛÝ\n° ßÛÛ²ÛÛÛÛÜÜ                                                       ÜÜÛÛÛÛ²ÛÛß °\n°°   ßßßÛÛÛÛÛÛ²²ÛÛÜÜÜÜÜÜ                              ÜÜÜÜÜÜÜÛ²²²ÛÛÛÛ²Ûßßß  ±°\n °°±°°°     ßßßßÛÛÛÛ²²ÛÛÛÛÛÛÛÜÜÜÜÜÜ         ÜÜÜÜÜÛÛÛÛ²²ÛÛ²ÛÛÛÛÛßßßß     °°°±°\n  °°±±°°°°°°°±°      ßßßßßßß²²ÛÛ²ÛÛÛÛÛÛÜÛÛÛÛÛ²²ÛÛÛÛÛßßßßßß      °°°°°°°°°±±°\n   °°±±±°°°±±°°°°°°°               ßßßß²ßßßß            °°°°°°°°°°°°°±±±±±°\n    °°±±±±±±±±°±±°±°°°   °°° °    °°±°      °°°±°°±±°±°°   °°°°±°±±±±±±±±°\n   °°±±±±°°±±°°°°°    ÜÛÜÜ    ÜÜÛÜÜ    ÜÜÛÜ    Ü   Ü   ÜÜÛÜÜ   °°°°°°±±±±±°\n  °°±±°°°°°°°±°°  ÜÝÞÛ²ßß²Û ÞÛ²ßßÞÛÛ ÞÛ²ßÛÛÛÝ Û²Ý Þ²ÛÞÛ²ßßÞÛÛÞ  °°°°°°°°°±±°\n °°±°°       ÜÜÜÜÛÛ Û²Ý     Û²Ý ßÛÜ  Û²Ý  Û² Þ²Û  ²ÛÝÛ²ÛÜÜÛÛÝÞÛÜÜÜ       °°±°\n°°   ÜÜÛ²ÛÛÛÛ²Û²²²ÝÞ²Û ßÛÜ Þ²Û  ÞÛ²ÝÞ²Û  Þ²ÝÞ²ÛÝ ²ÛÛÞ²Ûßßßß ÜÛ²²²ÛÛÛÛÛ²ÛÜÜ  ±°\n° ÜÛÛ²ÛÛÛßßßßßßÛ²Û ²ÛÜÜ²²ÛÝ²ÛÝ  Û²Û ²ÛÛÛÜ²Û ²ÛÛ²ÜÛÛÝ²ÛÝ ÛÛÛÛÛ²²ÛßßßßßßÛÛÛ²ÛÛÜ\n ÞÛ²Ûßß         ßßÜ ßßßßß   ß    ß   ßßßß    ßßßßß   ß Ûßßßßßß          ßßÛ²ÛÝ\n Û²Û               ßß ßß  ß                     ß ßß ßß                    Û²Û\nÞ²²Ý      As this release will pass through the scene we take              Þ²²Ý\nÞ²Û       the opportunity to pass out a few greets to the groups            Û²Ý\nÞ²Û       who make this scene so good and long lasting.                     Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û       Since the scene started with groups like RNS and BeatForge        Û²Ý\nÞ²Û       we would like thank them for starting the scene.                  Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²Û       Nowadays the scene is ruled by quite few more groups...           Û²Ý\nÞ²Û       because they give the scene her face we would like to thank       Û²Ý\nÞ²Û       RNS, ESC, FNT and CMS for the Pop/R&B/Rap/Rock side of the scene  Û²Ý\nÞ²Û       and POW, SND, UTE, MiM, MTC, NBD and MNS for the Dance side.      Û²Ý\nÞ²Û       Ofcourse we omitted some groups nevertheless we like to thank     Û²Ý\nÞ²Û       them too.                                                         Û²Ý\nÞ²Û                                                                         Û²Ý\nÞ²²Ý      The Full Trance GalaXy Crew                                      Þ²²Ý\n Û²Û                                                                       Û²Û\n ÞÛ²ÛÜÜ         Ü  ÜÛÜÜ    ÜÜÛÜÜ    ÜÛÜÜ    ÜÛÜÜ   Ü       ÜÜÛÜÜ Þ       ÜÛ²ÛÝ\n  ßÛÛ²ÛÛÜÜÜ  ÜÜÛÝÞÛ²ßß²Û ÞÛ²ßßÞÛÛ ÞÛ²ßßÛÛ ÞÛ²ßßÛÛÝÞÛ²    ÞÛ²ß ßßßÞÛÜÜÜÜÛÛ²ÛÛß\n     ßßßÛÛÛÛ²²²Û Û²Ý     Û²Ý ßÛÜ  Û²Ý ßß  Û²Ý ßß  Û²Ý     ßß²²ÛÜ Û²²ÛÛÛßßß\nlayout&   ßßÛ²ÛÝÞ²Û ßÛÜ Þ²Û  ÞÛ²ÝÞ²Ûßß   Þ²Ûßß   Þ²Ûßß ß Ü  Þ²²ÝÞ²²ßß\nheader by    ßÛ ²ÛÜÜ²²ÛÝ²ÛÝ  Û²Û ²ÛÜÜÜÛÛ ²ÛÜÜÜÛÛÞ²ÛÜÜÜÛÛÞÛÛÜ²ÛÛ Ûß\ncreepah[BAFH]    ßßßßß   ß    ß   ßßßß    ßßßß    ßßßßß   ßßß\n\n                       . .. ECSTACY IS THE ONLY DRUG .. .",
+        "ReleaseCommentMessages": "",
+        "ReleaseNoteMessages": ""
+      }
+    ]
+  }
+}
