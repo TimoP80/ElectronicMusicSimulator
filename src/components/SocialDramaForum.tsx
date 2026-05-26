@@ -6,6 +6,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MessageSquare, RefreshCw, Send, Radio, UserCheck, Flame, Users, Sparkles, MessageCircleCode } from "lucide-react";
 import { GameState, VirtualArtist } from "../types";
+import { getAllPredefinedArtists, getTopPredefinedArtists } from "../data/artists";
 
 interface SocialDramaProps {
   gameState: GameState;
@@ -14,7 +15,19 @@ interface SocialDramaProps {
   onCollaborate: (artistName: string, fee: number) => void;
 }
 
-export const VIRTUAL_ARTISTS_DB: VirtualArtist[] = [
+// Use predefined artists from JSON database
+const getVirtualArtistsDB = (): VirtualArtist[] => {
+  const predefined = getAllPredefinedArtists();
+  // Take top 20 artists from JSON
+  if (predefined.length > 0) {
+    return getTopPredefinedArtists(20);
+  }
+  // Fallback to static artists if JSON doesn't load
+  return VIRTUAL_ARTISTS_DB_FALLBACK;
+};
+
+// Static fallback artists (only used if JSON doesn't load)
+const VIRTUAL_ARTISTS_DB_FALLBACK: VirtualArtist[] = [
   {
     id: "acid_core",
     name: "DJ Acid_Core",
@@ -402,7 +415,8 @@ const getProceduralReply = (artistId: string, category: string, relationship: nu
 
 export default function SocialDramaForum({ gameState, onModifyRelationship, onTriggerDrama, onCollaborate }: SocialDramaProps) {
   const [activeTab, setActiveTab] = useState<"dms" | "ravemind">("dms");
-  const [selectedArtist, setSelectedArtist] = useState<VirtualArtist>(VIRTUAL_ARTISTS_DB[1]);
+  const allArtists = getVirtualArtistsDB();
+  const [selectedArtist, setSelectedArtist] = useState<VirtualArtist>(allArtists[1] || allArtists[0]);
   const [forumThreads, setForumThreads] = useState<any[]>([]);
   const [forumFilter, setForumFilter] = useState<ForumCategory | "all">("all");
   const [selectedThread, setSelectedThread] = useState<any>(null);
@@ -431,7 +445,7 @@ export default function SocialDramaForum({ gameState, onModifyRelationship, onTr
       const saved = localStorage.getItem("schub_producer_relations");
       if (saved) return JSON.parse(saved);
     } catch (e) {}
-    return VIRTUAL_ARTISTS_DB.reduce((acc, a) => ({ ...acc, [a.id]: a.relationship }), {});
+    return allArtists.reduce((acc, a) => ({ ...acc, [a.id]: a.relationship }), {});
   });
 
   // Persistent DM threads mapped by artist ID
@@ -891,7 +905,7 @@ interface ForumThread {
           {/* Artists selection column */}
           <div className="md:col-span-5 space-y-2 max-h-[580px] overflow-y-auto pr-1.5 scrollbar-thin scrollbar-thumb-slate-800">
             <h3 className="text-[11px] font-mono uppercase text-slate-400 tracking-wider mb-2">Scene Residents DMs</h3>
-            {VIRTUAL_ARTISTS_DB.map((artist) => {
+            {allArtists.map((artist) => {
               const currentFriendship = relations[artist.id] !== undefined ? relations[artist.id] : artist.relationship;
               
               return (
