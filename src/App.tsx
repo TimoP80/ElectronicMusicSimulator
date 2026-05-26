@@ -25,6 +25,7 @@ import UpgradableGearShop from "./components/UpgradableGearShop";
 import DataModEditor from "./components/DataModEditor";
 import AIDashboard from "./components/AIDashboard";
 import ReleaseManagement from "./components/ReleaseManagement";
+import ReleaseSection from "./components/ReleaseSection";
 import VirtualBrowser from "./components/VirtualBrowser";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
@@ -1322,95 +1323,21 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
 
               {activeTab === "releases" && (
                 gameState.playerLabelId ? (
-                  <ReleaseManagement 
-                    gameState={gameState} 
+                  <ReleaseManagement
+                    gameState={gameState}
                     playerLabelId={gameState.playerLabelId}
                     playerLabelName={gameState.playerLabelName || "My Record Label"}
                   />
                 ) : (
-                <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-5 rounded-xl space-y-4 shadow-lg">
-                  <div>
-                    <h2 className="text-base font-display font-bold text-white tracking-tight">Rave Streaming Portal (Soundclash Analytics)</h2>
-                    <p className="text-xs text-slate-400 mt-0.5">Manage released catalogs, listen to critics reviews and digital streams feedback reels.</p>
-                  </div>
-
-                  {gameState.releases.length > 0 ? (
-                    <div className="space-y-4 mt-2">
-                      {gameState.releases.map((rel) => {
-                        const totalScore = Math.round((rel.stats.mixingQuality + rel.stats.soundDesign + rel.stats.catchiness + rel.stats.groove) / 4);
-                        
-                        return (
-                          <div key={rel.releaseId} className="bg-[#050507] p-4 rounded-xl border border-[#1A1A1E] space-y-3 shadow-md select-text relative overflow-hidden">
-                            
-                            {/* Track row detail */}
-                            <div className="flex flex-col sm:flex-row justify-between items-start gap-3 border-b border-[#1A1A1E] pb-3">
-                              <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                                {/* LP Cover artwork */}
-                                <div className="h-11 w-11 rounded-lg overflow-hidden border border-[#1A1A1E] bg-black flex-shrink-0 shadow-lg relative">
-                                  <img
-                                    src={rel.artworkUrl || `https://picsum.photos/seed/${encodeURIComponent(rel.title)}/100/100`}
-                                    alt={rel.title}
-                                    className="w-full h-full object-cover"
-                                    referrerPolicy="no-referrer"
-                                  />
-                                </div>
-                                <div className="space-y-0.5 min-w-0 flex-1">
-                                  <div className="flex items-center space-x-2 flex-wrap gap-y-1 leading-none">
-                                    <span className="font-extrabold text-xs text-white uppercase tracking-tight truncate">{rel.title}</span>
-                                    <span className="text-[8px] font-mono tracking-wider bg-[#FF00FF]/15 border border-[#FF00FF]/30 px-2 py-0.5 rounded text-[#FF00FF] font-black uppercase">
-                                      SCORE: {totalScore}/100
-                                    </span>
-                                  </div>
-                                  <div className="text-[10px] font-mono text-slate-400 flex gap-1.5 flex-wrap">
-                                    <span>Released: {rel.releaseDate}</span>
-                                    <span>| Genre: <strong className="text-[#00FF95]/90 font-bold">{rel.primaryGenre}</strong></span>
-                                    <span>| {rel.stats.bpm} bpm</span>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="text-right font-mono text-[11px] sm:text-right text-left flex-shrink-0">
-                                <span className="text-slate-500 block text-[9px] tracking-wide uppercase">TOTAL PLAYS</span>
-                                <strong className="text-[#00FF95] font-extrabold">{rel.playCount.toLocaleString()} plays</strong>
-                                <span className="block text-[8px] text-slate-400">Royalties: ${Math.round(rel.totalRoyaltiesEarned)}</span>
-                              </div>
-                            </div>
-
-                            {/* Critics feedback block */}
-                            {rel.reviews && rel.reviews.length > 0 && (
-                              <div className="p-3 bg-[#0A0A0C] border border-[#1A1A1E] rounded-lg text-xs font-mono text-slate-300 leading-normal relative">
-                                <div className="absolute top-2.5 right-3 text-[8px] uppercase font-bold tracking-wider text-[#FF00FF] flex items-center gap-1 animate-pulse">
-                                  <Award className="h-3 w-3 text-[#FF00FF]" /> Live Critique
-                                </div>
-                                {rel.reviews[0]}
-                              </div>
-                            )}
-
-                            {/* Fan tweets ticker block */}
-                            {rel.socialBuzz && rel.socialBuzz.length > 0 && (
-                              <div className="space-y-1 mt-2 font-mono text-[10px]">
-                                <span className="block text-[#00FF95] uppercase pb-1 text-[8px] tracking-widest font-bold">Twitter Fan Reaction Ticker</span>
-                                <div className="bg-[#0A0A0C]/40 border border-[#1A1A1E] rounded p-2 text-slate-400 grid grid-cols-1 sm:grid-cols-2 gap-1.5 leading-tight">
-                                  {rel.socialBuzz.map((tweet, tid) => (
-                                    <div key={tid} className="border-b border-[#050507] pb-1 last:border-0 text-[10px]">{tweet}</div>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ) : (
-                    <p className="text-xs text-slate-500 font-mono italic text-center py-8 bg-[#050507] rounded-lg border border-dashed border-[#1A1A1E]">
-                      No released tracks in catalog. Submit a finished bedroom demo to music labels or self-release independently inside the DAW Studio drawers.
-                    </p>
-                  )}
-                </div>
+                  <ReleaseSection
+                    gameState={gameState}
+                    onUpdateState={(state) => {
+                      setGameState(state);
+                      saveState(state);
+                    }}
+                  />
                 )
               )}
-
               {activeTab === "live" && gameState && (() => {
                 const diff = getDifficultyConfig(gameState.difficulty);
                 return (
