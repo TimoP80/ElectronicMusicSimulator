@@ -308,24 +308,29 @@ export default function VirtualBrowser({ gameState, onClose }: VirtualBrowserPro
                   Latest Releases
                 </h2>
                 <div className="grid grid-cols-3 gap-4">
-                  {gameState?.aiReleases?.slice(0, 6).map((release: AIRelease, idx: number) => {
-                    const artist = gameState?.virtualArtists?.[idx % (gameState?.virtualArtists?.length || 1)];
+                  {gameState?.aiReleases?.filter((r: AIRelease) => 
+                    viewingLabel?.name && (r.labelName === viewingLabel.name || !r.labelName)
+                  ).slice(0, 6).map((release: AIRelease, idx: number) => {
+                    const artist = gameState?.virtualArtists?.find((a: VirtualArtistType) => 
+                      a.name === release.artistName
+                    ) || gameState?.virtualArtists?.[idx % (gameState?.virtualArtists?.length || 1)];
+                    const artistName = release.artistName || artist?.name || 'Unknown Artist';
                     return (
                       <div
-                        key={idx}
-                        onClick={() => openNewTab(release.title, getReleaseUrl(release, artist?.name || 'Unknown'), 'release', { release, artist: artist?.name })}
+                        key={release.id || idx}
+                        onClick={() => openNewTab(release.title, getReleaseUrl(release, artistName), 'release', { release, artist: artistName })}
                         className="bg-[#111114] rounded-lg border border-[#1A1A1E] hover:border-[#00FF95]/50 cursor-pointer transition-all group"
                       >
                         <div className="aspect-square bg-black">
                           <img
-                            src={`https://picsum.photos/seed/${release.title}/200/200`}
+                            src={release.coverUrl || `https://picsum.photos/seed/${release.title}/200/200`}
                             alt={release.title}
                             className="w-full h-full object-cover"
                           />
                         </div>
                         <div className="p-2">
                           <h3 className="text-white text-xs font-bold truncate">{release.title}</h3>
-                          <p className="text-slate-500 text-[10px]">{artist?.name || 'Unknown Artist'}</p>
+                          <p className="text-slate-500 text-[10px]">{artistName}</p>
                         </div>
                       </div>
                     );
@@ -367,7 +372,18 @@ export default function VirtualBrowser({ gameState, onClose }: VirtualBrowserPro
               
               {/* Content */}
               <div className="p-8">
+                {/* Biography */}
+                <div className="mb-8">
+                  <h2 className="text-lg font-display font-bold text-white mb-3">Biography</h2>
+                  <div className="bg-[#111114] rounded-lg p-4 border border-[#1A1A1E]">
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {viewingArtist.bio || `${viewingArtist.name} is an electronic music producer specializing in ${viewingArtist.primaryGenre}. With a Fame rating of ${viewingArtist.fame} and a distinctive artistic vision, ${viewingArtist.name} has been making waves in the underground scene. Known for ${viewingArtist.ego > 50 ? 'an ambitious approach to production' : 'a refined and thoughtful production style'}, ${viewingArtist.name} continues to push the boundaries of electronic music.`}
+                    </p>
+                  </div>
+                </div>
+
                 {/* Stats */}
+                
                 <div className="grid grid-cols-4 gap-4 mb-8">
                   <div className="bg-[#111114] rounded-lg p-4 text-center">
                     <div className="text-2xl font-bold text-[#00FF95]">{viewingArtist.fame}</div>
@@ -378,11 +394,11 @@ export default function VirtualBrowser({ gameState, onClose }: VirtualBrowserPro
                     <div className="text-xs text-slate-500 font-mono">Ego</div>
                   </div>
                   <div className="bg-[#111114] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-amber-400">{viewingArtist.fame > 70 ? 'Rival' : 'Neutral'}</div>
+                    <div className="text-2xl font-bold text-amber-400">{viewingArtist.status || (viewingArtist.fame > 70 ? 'Rival' : 'Neutral')}</div>
                     <div className="text-xs text-slate-500 font-mono">Status</div>
                   </div>
                   <div className="bg-[#111114] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-cyan-400">{viewingArtist.genre}</div>
+                    <div className="text-2xl font-bold text-cyan-400">{viewingArtist.primaryGenre}</div>
                     <div className="text-xs text-slate-500 font-mono">Primary</div>
                   </div>
                 </div>
@@ -391,9 +407,13 @@ export default function VirtualBrowser({ gameState, onClose }: VirtualBrowserPro
                 <h2 className="text-lg font-display font-bold text-white mb-4">Recent Discography</h2>
                 <div className="space-y-2">
                   {gameState?.aiReleases?.filter((r: AIRelease) => r.artistName === viewingArtist.name).slice(0, 5).map((release: AIRelease, idx: number) => (
-                    <div key={idx} className="flex items-center gap-4 bg-[#111114] rounded-lg p-3 border border-[#1A1A1E] hover:border-[#00FF95]/30 cursor-pointer transition-all">
+                    <div 
+                      key={release.id || idx} 
+                      onClick={() => openNewTab(release.title, getReleaseUrl(release, viewingArtist.name), 'release', { release, artist: viewingArtist.name })}
+                      className="flex items-center gap-4 bg-[#111114] rounded-lg p-3 border border-[#1A1A1E] hover:border-[#00FF95]/30 cursor-pointer transition-all"
+                    >
                       <img
-                        src={`https://picsum.photos/seed/${release.title}/60/60`}
+                        src={release.coverUrl || `https://picsum.photos/seed/${release.title}/60/60`}
                         alt={release.title}
                         className="w-12 h-12 rounded"
                       />
