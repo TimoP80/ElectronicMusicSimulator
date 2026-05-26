@@ -404,6 +404,26 @@ export default function SocialDramaForum({ gameState, onModifyRelationship, onTr
   const [activeTab, setActiveTab] = useState<"dms" | "ravemind">("dms");
   const [selectedArtist, setSelectedArtist] = useState<VirtualArtist>(VIRTUAL_ARTISTS_DB[1]);
   const [forumThreads, setForumThreads] = useState<any[]>([]);
+  const [forumFilter, setForumFilter] = useState<ForumCategory | "all">("all");
+  const [selectedThread, setSelectedThread] = useState<any>(null);
+
+  // Filtered threads based on active category
+  const filteredThreads = forumFilter === "all" 
+    ? forumThreads 
+    : forumThreads.filter(t => t.category === forumFilter);
+
+  // Handle thread click to view details
+  const handleThreadClick = (thread: any) => {
+    setSelectedThread(thread);
+  };
+
+  // Create new thread handler
+  const handleCreateNewThread = () => {
+    const categories: ForumCategory[] = ["general", "tech", "scene", "gossip", "drama", "tips"];
+    const newThread = generateDynamicThread(categories[Math.floor(Math.random() * categories.length)], gameState);
+    newThread.author = "@" + gameState.pseudonym.replace(/\s+/g, "_");
+    setForumThreads(prev => addForumThread(prev, newThread));
+  };
 
   // Persistent relationship state
   const [relations, setRelations] = useState<{ [key: string]: number }>(() => {
@@ -478,42 +498,180 @@ export default function SocialDramaForum({ gameState, onModifyRelationship, onTr
     }
   }, [dmThreads, selectedArtist, isTyping]);
 
-  // Pre-bake interesting forum threads
+  // Forum thread categories
+type ForumCategory = "general" | "tech" | "scene" | "gossip" | "genre" | "drama" | "tips";
+
+// Dynamic forum thread templates
+const FORUM_THREAD_TEMPLATES = {
+  tech: [
+    { titleTemplate: "New {gear} just dropped - thoughts?", replies: 15, previewTemplate: "Just saw the spec sheet on the new {gear}. Is it worth upgrading from my current setup?" },
+    { titleTemplate: "Best plugin for {sound} synthesis in 2024?", replies: 28, previewTemplate: "Been experimenting with {sound} textures. Which VSTs do you recommend for that authentic feel?" },
+    { titleTemplate: "Hardware vs Software: {question}", replies: 45, previewTemplate: "I've been going back and forth. What are your experiences with pure {type} setups?" },
+  ],
+  scene: [
+    { titleTemplate: "Is the {city} underground scene dying?", replies: 67, previewTemplate: "Just got back from {city} and the crowds felt different. Less energy, more phone-scrolling." },
+    { titleTemplate: "{genre} artists to watch this year", replies: 34, previewTemplate: "Compile your top picks for {genre} rising talents. Let's support the underground!" },
+    { titleTemplate: "Festival lineup predictions for {event}", replies: 89, previewTemplate: "Who's getting main stage this year? My bets are on {artist} but..." },
+  ],
+  gossip: [
+    { titleTemplate: "Breaking: {artist} accused of ghost production", replies: 156, previewTemplate: "Just saw some deleted tweets. Allegations are flying on the {platform} boards. Thoughts?" },
+    { titleTemplate: "Label drama: {label} cutting royalties", replies: 98, previewTemplate: "Internal documents leaked showing major royalty cuts. How do we fight this?" },
+    { titleTemplate: "Underground beef: {artist1} vs {artist2}", replies: 73, previewTemplate: "Saw them go at it on Instagram stories. This beef is getting real." },
+  ],
+  genre: [
+    { titleTemplate: "{genre} production tips for beginners", replies: 42, previewTemplate: "Starting my journey into {genre}. What's the most important element to focus on?" },
+    { titleTemplate: "{genre} revival in {city}?", replies: 31, previewTemplate: "Noticed a surge of {genre} parties lately. Is the scene making a comeback?" },
+  ],
+  drama: [
+    { titleTemplate: "Calling out: {artist} for {reason}", replies: 203, previewTemplate: "This needs to be said. {artist} has been acting {behavior} and we shouldn't stay silent." },
+    { titleTemplate: "Hot take: {genre} was better in {year}s", replies: 156, previewTemplate: "Controversial opinion but the {genre} from {year} had something special that we lost." },
+  ],
+  tips: [
+    { titleTemplate: "How to get booked at {venue}?", replies: 67, previewTemplate: "Sent demos to {venue} 10 times already. What am I missing? Tips appreciated!" },
+    { titleTemplate: "Studio setup tour: show us your gear", replies: 89, previewTemplate: "Let's see everyone's workspace! I'll start: I run a modular setup with {gear}." },
+  ],
+  general: [
+    { titleTemplate: "Managing burnout while producing", replies: 45, previewTemplate: "Feeling exhausted from the grind. How do you balance creativity with mental health?" },
+    { titleTemplate: "Best cities for bedroom producers?", replies: 78, previewTemplate: "Thinking about relocating for better scene access. Which cities have the best communities?" },
+    { titleTemplate: "Day job vs music career", replies: 124, previewTemplate: "Working 9-5 and trying to produce at night. How do full-time producers survive financially?" },
+  ]
+};
+
+// Artists for thread mentions
+const FORUM_ARTISTS = ["Acid_Core", "Liquid Viper", "Neon Rider", "Glitch Lord", "SubSec_Zero", "Moko Bass", "Hardcore Hype", "Cosmic Gazer"];
+const FORUM_LABELS = ["Subterranean Clicks", "NeOnlyt Outrun", "Breakbeat Syndicate", "Aurora Heavenly", "Vortex Mainstage"];
+const CITIES = ["Berlin", "London", "Detroit", "Amsterdam", "Ibiza", "Tokyo", "Los Angeles", "Chicago"];
+const GEAR_ITEMS = ["Eurorack modular", "Moog Subsequent 37", "TR-808", "Elektron Digitakt", "Ableton Push", "Roland Juno-106", "Korg MS-20", "Teenage Engineering OP-1"];
+
+// Generate a dynamic thread from template
+const generateDynamicThread = (category: ForumCategory, gameState: GameState): any => {
+  const templates = FORUM_THREAD_TEMPLATES[category];
+  const template = templates[Math.floor(Math.random() * templates.length)];
+  
+  // Fill template variables
+  let title = template.titleTemplate
+    .replace("{artist}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
+    .replace("{artist1}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
+    .replace("{artist2}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
+    .replace("{label}", FORUM_LABELS[Math.floor(Math.random() * FORUM_LABELS.length)])
+    .replace("{city}", CITIES[Math.floor(Math.random() * CITIES.length)])
+    .replace("{gear}", GEAR_ITEMS[Math.floor(Math.random() * GEAR_ITEMS.length)])
+    .replace("{genre}", "Techno")
+    .replace("{event}", "Summer Festival 2024")
+    .replace("{year}", "90")
+    .replace("{sound}", "sub-bass")
+    .replace("{type}", "analog")
+    .replace("{venue}", "Tresor Club")
+    .replace("{platform}", "RaveMind");
+  
+  // Handle question placeholders
+  if (title.includes("{question}")) {
+    const questions = ["the cost isn't justified", "soft synths won this war", "it's all about workflow"];
+    title = title.replace("{question}", questions[Math.floor(Math.random() * questions.length)]);
+  }
+  
+  // Handle reason/behavior placeholders
+  if (title.includes("{reason}")) {
+    const reasons = ["blocking smaller artists", "stealing sets", "unprofessional conduct"];
+    title = title.replace("{reason}", reasons[Math.floor(Math.random() * reasons.length)]);
+  }
+  if (title.includes("{behavior}")) {
+    const behaviors = ["unprofessional", "toxic to newcomers", "extremely gatekeepy"];
+    title = title.replace("{behavior}", behaviors[Math.floor(Math.random() * behaviors.length)]);
+  }
+  
+  // Generate preview with game context
+  const previewAuthors = ["@BedroomProducer", "@RaveRegular", "@VinylOnly_DJ", "@SynthSnob", "@UndergroundPunk", "@ModularAddict", "@SceneVeteran", "@DAWDrifter"];
+  const author = previewAuthors[Math.floor(Math.random() * previewAuthors.length)];
+  
+  // Hot rating influenced by player's fame
+  const baseHotRating = 30 + Math.floor(Math.random() * 50);
+  const fameBonus = gameState.stats.prestige > 50 ? 15 : 0;
+  const hotRating = Math.min(99, baseHotRating + fameBonus);
+  
+  return {
+    id: `thread_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+    title,
+    author,
+    replies: template.replies + Math.floor(Math.random() * 20),
+    hotRating,
+    preview: template.previewTemplate
+      .replace("{artist}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
+      .replace("{city}", CITIES[Math.floor(Math.random() * CITIES.length)])
+      .replace("{gear}", GEAR_ITEMS[Math.floor(Math.random() * GEAR_ITEMS.length)])
+      .replace("{genre}", "Techno")
+      .replace("{year}", "90")
+      .replace("{platform}", "RaveMind"),
+    category,
+    likes: Math.floor(Math.random() * 50) + 10,
+    createdAt: Date.now() - Math.floor(Math.random() * 86400000 * 3) // Random time in last 3 days
+  };
+};
+
+// Generate initial dynamic threads
+const generateInitialThreads = (gameState: GameState) => {
+  const categories: ForumCategory[] = ["general", "tech", "scene", "gossip", "genre", "drama", "tips"];
+  const threads: any[] = [];
+  
+  // Start with some static interesting threads
+  threads.push({
+    id: "t1",
+    title: "Is hardware synthesis overrated? Soft-synths sound exactly the same now",
+    author: "@AnalogBoy_12",
+    replies: 42,
+    hotRating: 88,
+    preview: "Every time some DJ says modular filters are warmer I just laugh. My pirated DAW plugins can emulate a Moog perfectly. Discuss.",
+    category: "tech",
+    likes: 67,
+    createdAt: Date.now() - 86400000
+  });
+  
+  threads.push({
+    id: "t2",
+    title: "Ghost producing scandal on Vortex records? Rumors about EDM pop superstars",
+    author: "@SceneSnitch",
+    replies: 112,
+    hotRating: 95,
+    preview: "Heard some reliable news that a major festival artist didn't even compile their new EP stems. It was written by an anonymous bedroom producer in Detroit.",
+    category: "gossip",
+    likes: 134,
+    createdAt: Date.now() - 172800000
+  });
+  
+  // Add 3-4 dynamically generated threads
+  const numDynamic = 3 + Math.floor(Math.random() * 2);
+  for (let i = 0; i < numDynamic; i++) {
+    const cat = categories[Math.floor(Math.random() * categories.length)];
+    threads.push(generateDynamicThread(cat, gameState));
+  }
+  
+  // Add a thread mentioning player's genre
+  threads.push(generateDynamicThread("genre", gameState));
+  
+  return threads.sort((a, b) => b.hotRating - a.hotRating);
+};
+
+// Add new thread to forum (called when player does certain actions)
+const addForumThread = (threads: any[], newThread: any): any[] => {
+  return [newThread, ...threads].slice(0, 15); // Keep max 15 threads
+};
+
+// Thread interaction handler
+interface ForumThread {
+  id: string;
+  title: string;
+  author: string;
+  replies: number;
+  hotRating: number;
+  preview: string;
+  category: ForumCategory;
+  likes: number;
+  createdAt: number;
+}
+
+  // Initialize dynamic forum threads
   useEffect(() => {
-    setForumThreads([
-      {
-        id: "t1",
-        title: "Is hardware synthesis overrated? Soft-synths sound exactly the same now",
-        author: "@AnalogBoy_12",
-        replies: 42,
-        hotRating: 88,
-        preview: "Every time some DJ says modular filters are warmer I just laugh. My pirated DAW plugins can emulate a Moog perfectly. Discuss."
-      },
-      {
-        id: "t2",
-        title: "Ghost producing scandal on Vortex records? Rumors about EDM pop superstars",
-        author: "@SceneSnitch",
-        replies: 112,
-        hotRating: 95,
-        preview: "Heard some reliable news that a major festival artist didn't even compile their new EP stems. It was written by an anonymous bedroom producer in Detroit."
-      },
-      {
-        id: "t3",
-        title: "I can't get past Berlin Tresor-club bouncer help please?",
-        author: "@FreshRaver_x",
-        replies: 15,
-        hotRating: 32,
-        preview: "I wore black clothes and looked moody but they still turned me down. What is the trick? Do I need to recite the history of FM oscillators?"
-      },
-      {
-        id: "t4",
-        title: "AI-generated hardstyle taking over streaming channels. Is art dead?",
-        author: "@Human_Composer",
-        replies: 86,
-        hotRating: 90,
-        preview: "There's an algorithmic feed outputting 50 tracks a day on Spotify, stealing all playlist spots. We need to go back to 100% vinyl-cutting."
-      }
-    ]);
+    setForumThreads(generateInitialThreads(gameState));
   }, []);
 
   const handleSendPromptText = async (text: string, relBonus: number, categoryId: string) => {
@@ -953,29 +1111,207 @@ export default function SocialDramaForum({ gameState, onModifyRelationship, onTr
       {/* RaveMind Alternative Forum view */}
       {activeTab === "ravemind" && (
         <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-4.5 rounded-xl shadow-lg">
-          <div>
-            <h2 className="text-sm font-display font-bold text-white tracking-tight flex items-center gap-2">
-              <Users className="h-4.5 w-4.5 text-purple-400 animate-pulse" />
-              RaveMind Forums &bull; Scene Feed
-            </h2>
-            <p className="text-xs text-slate-450 mt-0.5">Anonymous board monitoring bedroom studio gossips, ghost producer scandals, and DIY hardware builds.</p>
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <h2 className="text-sm font-display font-bold text-white tracking-tight flex items-center gap-2">
+                <Users className="h-4 w-4 text-purple-400 animate-pulse" />
+                RaveMind Forums &bull; Scene Feed
+              </h2>
+              <p className="text-[10px] text-slate-500 mt-0.5">Anonymous board monitoring bedroom studio gossips, ghost producer scandals, and DIY hardware builds.</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setForumThreads(generateInitialThreads(gameState))}
+              className="text-[9px] font-mono px-2 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded text-slate-400 hover:text-white transition-colors"
+            >
+              <RefreshCw className="h-3 w-3 inline mr-1" />
+              Refresh
+            </button>
           </div>
 
-          <div className="space-y-3.5 mt-4">
-            {forumThreads.map((thread) => (
-              <div key={thread.id} className="bg-slate-950/60 p-4 rounded-xl border border-slate-850 space-y-2 hover:border-slate-750 transition-colors">
-                <div className="flex justify-between items-center text-[10px] font-mono">
-                  <span className="text-purple-400 font-bold">{thread.author}</span>
-                  <div className="flex gap-2">
-                    <span className="text-slate-500">{thread.replies} comment logs</span>
-                    <span className="text-amber-450 font-bold">Trend Level: {thread.hotRating}%</span>
-                  </div>
-                </div>
-                <h4 className="font-sans font-bold text-xs text-white leading-snug">{thread.title}</h4>
-                <p className="text-[11px] font-mono text-slate-450 leading-normal">{thread.preview}</p>
-              </div>
-            ))}
+          {/* Category filters */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            <button
+              type="button"
+              onClick={() => setForumFilter("all")}
+              className={`text-[9px] font-mono px-2 py-1 rounded border font-bold transition-all cursor-pointer ${
+                forumFilter === "all" 
+                  ? "bg-purple-600/30 border-purple-500 text-purple-300" 
+                  : "bg-slate-900/50 border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              All
+            </button>
+            <button
+              type="button"
+              onClick={() => setForumFilter("tech")}
+              className={`text-[9px] font-mono px-2 py-1 rounded border font-bold transition-all cursor-pointer ${
+                forumFilter === "tech" 
+                  ? "bg-cyan-600/30 border-cyan-500 text-cyan-300" 
+                  : "bg-slate-900/50 border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              🔌 Tech
+            </button>
+            <button
+              type="button"
+              onClick={() => setForumFilter("scene")}
+              className={`text-[9px] font-mono px-2 py-1 rounded border font-bold transition-all cursor-pointer ${
+                forumFilter === "scene" 
+                  ? "bg-emerald-600/30 border-emerald-500 text-emerald-300" 
+                  : "bg-slate-900/50 border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              🏙️ Scene
+            </button>
+            <button
+              type="button"
+              onClick={() => setForumFilter("gossip")}
+              className={`text-[9px] font-mono px-2 py-1 rounded border font-bold transition-all cursor-pointer ${
+                forumFilter === "gossip" 
+                  ? "bg-amber-600/30 border-amber-500 text-amber-300" 
+                  : "bg-slate-900/50 border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              🍿 Gossip
+            </button>
+            <button
+              type="button"
+              onClick={() => setForumFilter("drama")}
+              className={`text-[9px] font-mono px-2 py-1 rounded border font-bold transition-all cursor-pointer ${
+                forumFilter === "drama" 
+                  ? "bg-rose-600/30 border-rose-500 text-rose-300" 
+                  : "bg-slate-900/50 border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              🌶️ Drama
+            </button>
+            <button
+              type="button"
+              onClick={() => setForumFilter("tips")}
+              className={`text-[9px] font-mono px-2 py-1 rounded border font-bold transition-all cursor-pointer ${
+                forumFilter === "tips" 
+                  ? "bg-blue-600/30 border-blue-500 text-blue-300" 
+                  : "bg-slate-900/50 border-slate-800 text-slate-500 hover:text-slate-300"
+              }`}
+            >
+              💡 Tips
+            </button>
           </div>
+
+          {/* Forum threads list */}
+          <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1 custom-scrollbar">
+            {filteredThreads.length === 0 ? (
+              <div className="text-center py-8 text-slate-500 text-xs font-mono">
+                No threads in this category yet. Check back later!
+              </div>
+            ) : (
+              filteredThreads.map((thread) => (
+                <div 
+                  key={thread.id} 
+                  className="bg-slate-950/60 p-3.5 rounded-xl border border-slate-850 space-y-2 hover:border-purple-500/30 transition-all cursor-pointer group"
+                  onClick={() => handleThreadClick(thread)}
+                >
+                  <div className="flex justify-between items-center text-[9px] font-mono">
+                    <div className="flex items-center gap-2">
+                      <span className="text-purple-400 font-bold">{thread.author}</span>
+                      <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold ${
+                        thread.category === "tech" ? "bg-cyan-900/40 text-cyan-400" :
+                        thread.category === "scene" ? "bg-emerald-900/40 text-emerald-400" :
+                        thread.category === "gossip" ? "bg-amber-900/40 text-amber-400" :
+                        thread.category === "drama" ? "bg-rose-900/40 text-rose-400" :
+                        thread.category === "tips" ? "bg-blue-900/40 text-blue-400" :
+                        "bg-slate-800 text-slate-400"
+                      }`}>
+                        {thread.category}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-500">
+                      <span>{thread.likes} 🔥</span>
+                      <span className="text-slate-600">•</span>
+                      <span>{thread.replies} 💬</span>
+                      <span className="text-slate-600">•</span>
+                      <span className={thread.hotRating > 80 ? "text-orange-400 font-bold" : "text-slate-500"}>
+                        📈 {thread.hotRating}%
+                      </span>
+                    </div>
+                  </div>
+                  <h4 className="font-sans font-bold text-[11px] text-white leading-snug group-hover:text-purple-300 transition-colors">
+                    {thread.title}
+                  </h4>
+                  <p className="text-[10px] font-mono text-slate-500 leading-normal line-clamp-2">
+                    {thread.preview}
+                  </p>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* New thread button */}
+          <div className="mt-4 pt-3 border-t border-slate-850">
+            <button
+              type="button"
+              onClick={handleCreateNewThread}
+              className="w-full text-[10px] font-mono py-2 bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-purple-500/50 rounded-lg text-slate-400 hover:text-white transition-all flex items-center justify-center gap-2"
+            >
+              <Sparkles className="h-3 w-3" />
+              Start New Discussion Thread
+            </button>
+          </div>
+
+          {/* Selected thread detail modal */}
+          {selectedThread && (
+            <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+              <div className="bg-[#0c0d12] border border-slate-800 rounded-xl p-4 max-w-lg w-full max-h-[80vh] overflow-hidden flex flex-col">
+                <div className="flex justify-between items-start mb-3">
+                  <div>
+                    <span className="text-purple-400 font-mono text-[10px]">{selectedThread.author}</span>
+                    <span className={`ml-2 px-1.5 py-0.5 rounded text-[8px] font-bold ${
+                      selectedThread.category === "tech" ? "bg-cyan-900/40 text-cyan-400" :
+                      selectedThread.category === "scene" ? "bg-emerald-900/40 text-emerald-400" :
+                      selectedThread.category === "gossip" ? "bg-amber-900/40 text-amber-400" :
+                      "bg-slate-800 text-slate-400"
+                    }`}>
+                      {selectedThread.category}
+                    </span>
+                  </div>
+                  <button 
+                    type="button"
+                    onClick={() => setSelectedThread(null)}
+                    className="text-slate-500 hover:text-white text-lg"
+                  >
+                    ×
+                  </button>
+                </div>
+                <h3 className="font-bold text-white text-sm mb-2">{selectedThread.title}</h3>
+                <p className="text-slate-400 text-xs font-mono mb-3">{selectedThread.preview}</p>
+                
+                <div className="flex-1 overflow-y-auto space-y-2 mb-3">
+                  {/* Simulated comments */}
+                  {["@SceneRegular: This is so accurate!", "@BedroomProducer: Disagree but respect the take", "@VinylCollector: Someone needs to say it"].map((comment, i) => (
+                    <div key={i} className="bg-slate-900/50 p-2 rounded text-[10px] text-slate-400 font-mono">
+                      {comment}
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    placeholder="Add to discussion..."
+                    className="flex-1 bg-slate-900 border border-slate-800 rounded px-3 py-2 text-xs text-white font-mono focus:outline-none focus:border-purple-500"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setSelectedThread(null)}
+                    className="px-3 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded transition-colors"
+                  >
+                    Post
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
