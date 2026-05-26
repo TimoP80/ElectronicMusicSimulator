@@ -18,6 +18,9 @@ interface GigBookingProps {
   onCompleteGig: (earnings: number, fansGained: number, prestigeGained: number, burnoutAdded: number, gigCount: number) => void;
   onTravelToCity: (cityId: string, cost: number) => void;
   onSaveState?: (updated: GameState) => void;
+  difficultyMultiplier?: number; // For adjusting earnings based on difficulty
+  difficultyFanMultiplier?: number; // For adjusting fan gains
+  difficultyBurnoutMultiplier?: number; // For adjusting burnout rate
 }
 
 // DJ Equipment & upgrades available for the DJ Booth Setup
@@ -139,7 +142,7 @@ const INITIAL_LIBRARY: DjTrack[] = [
   { id: "init_4", title: "Cyberia Breakbeat", artist: "Strobe Vanguard", genre: "UK Garage", bpm: 132, key: "7A", energy: 4, mood: "Euphoric", popularity: 75, credBonus: 12, isVinyl: false, price: 0, overplayScore: 0, releaseYear: 2026 }
 ];
 
-export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, onSaveState }: GigBookingProps) {
+export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, onSaveState, difficultyMultiplier = 1, difficultyFanMultiplier = 1, difficultyBurnoutMultiplier = 1 }: GigBookingProps) {
   // Main screen routing tab state
   const [activeTab, setActiveTab] = useState<"gigs" | "stores" | "library" | "booth" | "feed">("gigs");
   
@@ -603,10 +606,10 @@ export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, o
     const bonusLights = (gameState.skills["audiovisual_integration"] || 1);
 
     const excitementMultiplier = crowdExcitement / 50; 
-    const finalEarnings = Math.round(activeVenueToPlay.payout * excitementMultiplier * (1 + (bonusSkills - 1) * 0.1));
-    const finalFans = Math.round((activeVenueToPlay.capacity * 0.12) * excitementMultiplier * (1 + gameState.stats.hype / 150));
+    const finalEarnings = Math.round(activeVenueToPlay.payout * excitementMultiplier * (1 + (bonusSkills - 1) * 0.1) * difficultyMultiplier);
+    const finalFans = Math.round((activeVenueToPlay.capacity * 0.12) * excitementMultiplier * (1 + gameState.stats.hype / 150) * difficultyFanMultiplier);
     const finalPrestige = Math.round(activeVenueToPlay.relevance * 0.35 * (1 + (bonusLights - 1) * 0.15));
-    const burnoutAdded = Math.max(8, Math.round(18 - bonusSkills));
+    const burnoutAdded = Math.max(8, Math.round((18 - bonusSkills) * difficultyBurnoutMultiplier));
 
     // Compile report card
     const styleString = signatureScore > 400 ? "Underground Vinyl Selector" 

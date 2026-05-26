@@ -91,9 +91,112 @@ const PORTRAITS_DB: { [key: string]: string } = {
   ambient_dubber: "https://picsum.photos/seed/ambient/150/150"
 };
 
+// Difficulty levels configuration
+export type DifficultyLevel = 'easy' | 'normal' | 'hard' | 'nightmare';
+
+interface DifficultyConfig {
+  id: DifficultyLevel;
+  name: string;
+  description: string;
+  startingMoney: number;
+  startingFans: number;
+  startingHype: number;
+  gigEarningsMultiplier: number;
+  royaltyMultiplier: number;
+  labelRequirementsMultiplier: number;
+  burnoutRateMultiplier: number;
+  fanGainMultiplier: number;
+  inspirationMultiplier: number;
+  labelPrestigeBonus: number;
+  gearPricesMultiplier: number;
+  startingPrestige: number;
+  color: string;
+  icon: string;
+}
+
+export const DIFFICULTY_DB: DifficultyConfig[] = [
+  {
+    id: 'easy',
+    name: 'Easy',
+    description: 'Start with more money, earn more from gigs, easier label signing. Perfect for learning the ropes.',
+    startingMoney: 2000,
+    startingFans: 200,
+    startingHype: 40,
+    gigEarningsMultiplier: 1.5,
+    royaltyMultiplier: 1.2,
+    labelRequirementsMultiplier: 0.5,
+    burnoutRateMultiplier: 0.5,
+    fanGainMultiplier: 1.3,
+    inspirationMultiplier: 0.8,
+    labelPrestigeBonus: 20,
+    gearPricesMultiplier: 0.8,
+    startingPrestige: 3,
+    color: 'text-emerald-400',
+    icon: '🌱',
+  },
+  {
+    id: 'normal',
+    name: 'Normal',
+    description: 'Balanced challenge. The original experience with moderate difficulty.',
+    startingMoney: 550,
+    startingFans: 150,
+    startingHype: 25,
+    gigEarningsMultiplier: 1.0,
+    royaltyMultiplier: 1.0,
+    labelRequirementsMultiplier: 1.0,
+    burnoutRateMultiplier: 1.0,
+    fanGainMultiplier: 1.0,
+    inspirationMultiplier: 1.0,
+    labelPrestigeBonus: 0,
+    gearPricesMultiplier: 1.0,
+    startingPrestige: 1,
+    color: 'text-blue-400',
+    icon: '⚡',
+  },
+  {
+    id: 'hard',
+    name: 'Hard',
+    description: 'Less starting money, harder gigs, stricter label requirements. Veterans only.',
+    startingMoney: 300,
+    startingFans: 100,
+    startingHype: 15,
+    gigEarningsMultiplier: 0.8,
+    royaltyMultiplier: 0.9,
+    labelRequirementsMultiplier: 1.5,
+    burnoutRateMultiplier: 1.5,
+    fanGainMultiplier: 0.8,
+    inspirationMultiplier: 1.3,
+    labelPrestigeBonus: -15,
+    gearPricesMultiplier: 1.2,
+    startingPrestige: 0,
+    color: 'text-amber-400',
+    icon: '🔥',
+  },
+  {
+    id: 'nightmare',
+    name: 'Nightmare',
+    description: 'Scarce funds, brutal label standards, maximum burnout speed. Only for the truly devoted.',
+    startingMoney: 150,
+    startingFans: 50,
+    startingHype: 10,
+    gigEarningsMultiplier: 0.5,
+    royaltyMultiplier: 0.75,
+    labelRequirementsMultiplier: 2.0,
+    burnoutRateMultiplier: 2.0,
+    fanGainMultiplier: 0.6,
+    inspirationMultiplier: 1.5,
+    labelPrestigeBonus: -30,
+    gearPricesMultiplier: 1.5,
+    startingPrestige: 0,
+    color: 'text-rose-400',
+    icon: '💀',
+  },
+];
+
 export default function App() {
   const [gameState, setGameState] = useState<GameState | null>(null);
   const [selectedEthos, setSelectedEthos] = useState<EthosArchetype>(ETHOS_DB[0]);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyConfig>(DIFFICULTY_DB[1]); // Default to Normal
   const [onboardingName, setOnboardingName] = useState("");
   const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "editor">("workspace");
   const [preSelectedTrackId, setPreSelectedTrackId] = useState<string>("");
@@ -224,12 +327,13 @@ export default function App() {
       artistName: name,
       pseudonym: name,
       avatarSeed: selectedEthos.id,
+      difficulty: selectedDifficulty.id,
       gameDate: { year: 1, month: 1, week: 1 },
       stats: {
-        fans: 150,
-        hype: 25,
-        prestige: 1,
-        money: 550,
+        fans: selectedDifficulty.startingFans,
+        hype: selectedDifficulty.startingHype,
+        prestige: selectedDifficulty.startingPrestige,
+        money: selectedDifficulty.startingMoney,
         inspiration: 100, // 0-100
         burnout: 0,       // 0-100
         skillPoints: 2,
@@ -253,7 +357,7 @@ export default function App() {
           id: "log_init",
           date: "Y1, M1, W1",
           title: "Bedroom Studio Booted",
-          description: `Spawned as a clean ${selectedEthos.name} in a cramped suburban apartment. Plugged in your dusty MIDI keyboard.`,
+          description: `Spawned as a clean ${selectedEthos.name} in a cramped suburban apartment. Plugged in your dusty MIDI keyboard. ${selectedDifficulty.icon} Difficulty: ${selectedDifficulty.name}`,
           type: "system",
         }
       ],
@@ -277,7 +381,12 @@ export default function App() {
     }
   };
 
-  // Helper: Log new Event
+  // Helper: Get difficulty config from difficulty id
+const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined => {
+  return DIFFICULTY_DB.find(d => d.id === difficultyId);
+};
+
+// Helper: Log new Event
   const appendLog = (state: GameState, title: string, desc: string, type: any): GameState => {
     const newlog = {
       id: "log_" + Date.now(),
@@ -1280,14 +1389,20 @@ export default function App() {
                 )
               )}
 
-              {activeTab === "live" && (
-                <GigBooking
-                  gameState={gameState}
-                  onCompleteGig={handleCompleteGig}
-                  onTravelToCity={handleTravelToCity}
-                  onSaveState={saveState}
-                />
-              )}
+              {activeTab === "live" && gameState && (() => {
+                const diff = getDifficultyConfig(gameState.difficulty);
+                return (
+                  <GigBooking
+                    gameState={gameState}
+                    onCompleteGig={handleCompleteGig}
+                    onTravelToCity={handleTravelToCity}
+                    onSaveState={saveState}
+                    difficultyMultiplier={diff?.gigEarningsMultiplier || 1}
+                    difficultyFanMultiplier={diff?.fanGainMultiplier || 1}
+                    difficultyBurnoutMultiplier={diff?.burnoutRateMultiplier || 1}
+                  />
+                );
+              })()}
 
               {activeTab === "labels" && (
                 <RecordLabelsCatalog
@@ -1477,6 +1592,46 @@ export default function App() {
                     <span className="text-[8.5px] font-mono text-[#FF00FF] uppercase tracking-widest font-black block leading-none mb-1">Class Portrait Loaded</span>
                     <span className="text-xs font-bold text-white block leading-tight">{selectedEthos.name}</span>
                     <span className="text-[9px] text-slate-350 leading-none block mt-0.5">Focus Genre: {selectedEthos.genreBonus}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Difficulty Level selector */}
+              <div>
+                <label className="block text-[10px] font-mono text-[#FF00FF] uppercase tracking-widest mb-1.5 font-bold">CAREER DIFFICULTY</label>
+                <div className="grid grid-cols-4 gap-2 text-xs">
+                  {DIFFICULTY_DB.map((diff) => (
+                    <div
+                      key={diff.id}
+                      onClick={() => setSelectedDifficulty(diff)}
+                      className={`p-2 rounded-lg border cursor-pointer transition-all text-center ${
+                        selectedDifficulty.id === diff.id
+                          ? "bg-[#111114] border-[#FF00FF] text-white"
+                          : "bg-[#050507] border-[#1A1A1E] hover:border-[#FF00FF]/30 text-slate-450"
+                      }`}
+                    >
+                      <div className={`text-xl mb-0.5 ${diff.color}`}>{diff.icon}</div>
+                      <span className={`font-bold text-[9px] block ${diff.color}`}>{diff.name}</span>
+                      <span className="text-[7px] text-slate-500 block mt-0.5">
+                        ${diff.startingMoney}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                {/* Selected difficulty details */}
+                <div className="mt-2 p-2 bg-[#050507] border border-[#1A1A1E] rounded-lg">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className={`text-lg ${selectedDifficulty.color}`}>{selectedDifficulty.icon}</span>
+                    <span className={`font-bold text-xs ${selectedDifficulty.color}`}>{selectedDifficulty.name} Mode</span>
+                  </div>
+                  <p className="text-[9px] text-slate-400 leading-relaxed">{selectedDifficulty.description}</p>
+                  <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-[8px] font-mono text-slate-500">
+                    <span>💰 Starting: <span className={selectedDifficulty.color}>${selectedDifficulty.startingMoney}</span></span>
+                    <span>👥 Fans: <span className={selectedDifficulty.color}>{selectedDifficulty.startingFans}</span></span>
+                    <span>🎸 Gig Pay: <span className={selectedDifficulty.color}>×{selectedDifficulty.gigEarningsMultiplier}</span></span>
+                    <span>📈 Royalties: <span className={selectedDifficulty.color}>×{selectedDifficulty.royaltyMultiplier}</span></span>
+                    <span>🔥 Burnout: <span className={selectedDifficulty.color}>×{selectedDifficulty.burnoutRateMultiplier}</span></span>
+                    <span>🏷️ Label Gate: <span className={selectedDifficulty.color}>×{selectedDifficulty.labelRequirementsMultiplier}</span></span>
                   </div>
                 </div>
               </div>

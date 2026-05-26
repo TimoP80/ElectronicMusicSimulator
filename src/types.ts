@@ -281,6 +281,7 @@ export interface GameState {
   artistName: string;
   pseudonym: string;
   avatarSeed: string;
+  difficulty: 'easy' | 'normal' | 'hard' | 'nightmare'; // Difficulty level setting
   gameDate: {
     year: number;
     month: number;
