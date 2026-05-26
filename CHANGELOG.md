@@ -7,6 +7,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- **Dynamic AI Text Generation** — AI-powered content across the game engine:
+  - `/api/generate-ai-scene-news` - Dynamic scene news headlines
+  - `/api/generate-ai-forum-post` - Forum discussion generation
+  - `/api/generate-ai-social-feed` - Social media posts
+  - `/api/generate-ai-artist-bio` - Artist biography generation
+  - Smart procedural fallbacks when AI unavailable
+  - 5-minute content caching to reduce API calls
+  - Quality-aware content based on player stats
+
+- **Expanded World News Browser** — Full-featured news reader component:
+  - Three tabs: News Feed, Scene Releases, Label Activity
+  - Search and filter by category (release, gossip, trend, festival, scandal, collab)
+  - Sort by newest, oldest, highest/lowest hype
+  - Bookmark articles for later reading
+  - Article detail modal with full content
+  - Visual statistics dashboard with category counts
+  - Connected to sidebar for easy access
+
+- **Enhanced Release System**:
+  - Automatic catalog number generation (e.g., `DIY-EP-001`, `SUB-SGL-002`)
+  - Release type badges (SINGLE, EP, ALBUM) on cover art
+  - Catalog number and label display on release cards
+  - Self-release indicator with 🏠 emoji
+
+- **40+ Record Labels** — Expanded from 5 to 40+ labels covering all genres:
+  - Techno: Subterranean Clicks, Detroit Machine Soul, Minimal Wave Collective
+  - House: NeOnlyt Outrun, Deep Groove Foundations, Progressive Sound Labs
+  - Drum & Bass: Breakbeat Syndicate, Neurofunk Engineering, Liquid Soundscape
+  - Trance/Psytrance: Aurora Heavenly, Uplifting Horizon, Dark Psy Forest
+  - Hardstyle/Hardcore: Hardstyle Mainstage, Gabber Rotterdam Ultra
+  - Genre filtering and prestige tier system (Underground/Mid-Tier/Prestigious)
+
+### Added
 - **Difficulty Level System** — Scalable challenge with 4 difficulty modes:
   - 🌱 **Easy**: $2,000 starting money, 1.5x gig earnings, 0.5x burnout rate
   - ⚡ **Normal**: $550 starting money, balanced gameplay (default)
