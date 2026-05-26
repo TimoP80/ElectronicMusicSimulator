@@ -31,6 +31,74 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
   const [composingProgress, setComposingProgress] = useState(-1);
   const [bpmInput, setBpmInput] = useState(135);
   const [artworkStyle, setArtworkStyle] = useState<"neon" | "mono" | "retro" | "liquid">("neon");
+  
+  // Custom cover image state
+  const [customCoverUrl, setCustomCoverUrl] = useState<string | null>(null);
+  const [showCoverUpload, setShowCoverUpload] = useState(false);
+  const [libraryCovers, setLibraryCovers] = useState<string[]>([]);
+  const [showLibraryCovers, setShowLibraryCovers] = useState(false);
+  
+  // Load covers from public/covers folder
+  useEffect(() => {
+    const loadLibraryCovers = async () => {
+      try {
+        const response = await fetch('/covers/');
+        if (response.ok) {
+          const text = await response.text();
+          // Parse HTML to find image links
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, 'text/html');
+          const links = Array.from(doc.querySelectorAll('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".webp"]'));
+          const covers = links.map(link => `/covers/${link.getAttribute('href')?.split('/').pop() || ''}`).filter(Boolean);
+          setLibraryCovers(covers);
+        }
+      } catch (error) {
+        console.log('No covers in library folder');
+      }
+    };
+    loadLibraryCovers();
+  }, []);
+  
+  // Handle custom cover image upload
+  const handleCoverUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file (PNG, JPG, WEBP, etc.)');
+      return;
+    }
+    
+    // Check file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image too large! Please select an image under 5MB.');
+      return;
+    }
+    
+    // Read the file and create a data URL for preview
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target?.result) {
+        setCustomCoverUrl(event.target.result as string);
+        setShowCoverUpload(false);
+        setShowLibraryCovers(false);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  
+  // Select cover from library
+  const selectLibraryCover = (coverPath: string) => {
+    setCustomCoverUrl(coverPath);
+    setShowCoverUpload(false);
+    setShowLibraryCovers(false);
+  };
+  
+  // Clear custom cover
+  const clearCustomCover = () => {
+    setCustomCoverUrl(null);
+  };
 
   // Track length settings
   const [lengthCategory, setLengthCategory] = useState<'radio_edit' | 'club_edit' | 'extended' | 'long_play' | 'megamix'>('club_edit');
@@ -178,7 +246,8 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
 
             // Inject global customized parameters
             track.stats.bpm = bpmInput;
-            track.artworkUrl = `https://picsum.photos/seed/${encodeURIComponent(track.title)}_${artworkStyle}/300/300`;
+            // Use custom cover if uploaded, otherwise generate based on artwork style
+            track.artworkUrl = customCoverUrl || `https://picsum.photos/seed/${encodeURIComponent(track.title)}_${artworkStyle}/300/300`;
             
             // Add length category and duration
             track.lengthCategory = lengthCategory;
@@ -197,6 +266,7 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
             onComposeTrack(track);
             setComposingProgress(-1);
             setTrackName(""); // Reset
+            setCustomCoverUrl(null); // Reset custom cover
           }, 300);
           return 100;
         }
@@ -523,19 +593,29 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
             
             {/* Realistic Square Sleeve Preview */}
             <div className={`relative aspect-square w-full rounded-xl overflow-hidden shadow-2xl border-2 transition-all duration-300 bg-black flex flex-col justify-between p-3.5 select-none ${
+              customCoverUrl ? "border-[#00FF95]/50 shadow-[#00FF95]/15" :
               artworkStyle === "neon" ? "border-[#FF00FF]/50 shadow-[#FF00FF]/15" :
               artworkStyle === "mono" ? "border-slate-700/50 shadow-slate-700/10" :
               artworkStyle === "retro" ? "border-amber-500/50 shadow-amber-500/10" :
               "border-cyan-400/50 shadow-cyan-400/10"
             }`}>
-              {/* Blur-loaded abstract backing artwork */}
+              {/* Blur-loaded abstract backing artwork - show custom or generated */}
               <div className="absolute inset-0 pointer-events-none opacity-55 saturate-120 hover:scale-105 transition-transform duration-500">
-                <img
-                  src={`https://picsum.photos/seed/${encodeURIComponent(trackName || "CoverArtSeed")}_${artworkStyle}/300/300`}
-                  alt="Track Artwork Cover Preview"
-                  className="w-full h-full object-cover rounded-lg"
-                  referrerPolicy="no-referrer"
-                />
+                {customCoverUrl ? (
+                  <img
+                    src={customCoverUrl}
+                    alt="Custom Cover Preview"
+                    className="w-full h-full object-cover rounded-lg"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <img
+                    src={`https://picsum.photos/seed/${encodeURIComponent(trackName || "CoverArtSeed")}_${artworkStyle}/300/300`}
+                    alt="Track Artwork Cover Preview"
+                    className="w-full h-full object-cover rounded-lg"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
               </div>
 
               {/* Sleeve headers */}
@@ -567,28 +647,121 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
 
             {/* Sleeve Vibe select buttons */}
             <div className="space-y-1.5 pt-1">
-              <span className="block text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">Aesthetic Concept</span>
-              <div className="grid grid-cols-2 gap-1.5 text-[9px] font-mono">
-                {[
-                  { id: "neon", label: "PINK NEON", color: "border-[#FF00FF] text-[#FF00FF]" },
-                  { id: "mono", label: "RAW MINIMAL", color: "border-slate-500 text-slate-300" },
-                  { id: "retro", label: "VAPOR GRID", color: "border-amber-400 text-amber-500" },
-                  { id: "liquid", label: "CYAN LIQUID", color: "border-cyan-400 text-cyan-400" }
-                ].map(vibe => (
+              <div className="flex items-center justify-between">
+                <span className="block text-[10px] font-mono text-slate-400 uppercase tracking-widest font-bold">Aesthetic Concept</span>
+                {!customCoverUrl && (
                   <button
-                    key={vibe.id}
                     type="button"
-                    onClick={() => setArtworkStyle(vibe.id as any)}
-                    className={`py-1.5 px-2 rounded-lg border text-center transition-all uppercase text-[8px] font-black cursor-pointer ${
-                      artworkStyle === vibe.id
-                        ? `bg-slate-900 ${vibe.color}`
-                        : "bg-[#0A0A0C] border-[#1A1A1E] text-slate-500 hover:text-slate-350"
-                    }`}
+                    onClick={() => setShowCoverUpload(!showCoverUpload)}
+                    className="text-[9px] font-mono text-[#00FF95] hover:text-white bg-[#111114] border border-[#00FF95]/30 hover:border-[#00FF95] px-2 py-0.5 rounded transition-all flex items-center gap-1 cursor-pointer"
                   >
-                    {vibe.label}
+                    <span>📷</span>
+                    <span>Custom Cover</span>
                   </button>
-                ))}
+                )}
               </div>
+              
+              {showCoverUpload && !customCoverUrl && (
+                <div className="bg-[#111114] border border-[#1A1A1E] rounded-lg p-3 space-y-2">
+                  <div className="flex gap-2 mb-2">
+                    <label className="cursor-pointer flex-1 bg-[#050507] hover:bg-[#0A0A0C] border border-dashed border-[#FF00FF]/50 hover:border-[#FF00FF] rounded-lg p-3 transition-all w-full text-center">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleCoverUpload}
+                        className="hidden"
+                      />
+                      <div className="text-xl mb-1">📤</div>
+                      <div className="text-[9px] font-mono text-[#FF00FF] font-bold">Upload</div>
+                    </label>
+                    {libraryCovers.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setShowLibraryCovers(!showLibraryCovers)}
+                        className="flex-1 bg-[#050507] hover:bg-[#0A0A0C] border border-dashed border-[#00FF95]/50 hover:border-[#00FF95] rounded-lg p-3 transition-all text-center"
+                      >
+                        <div className="text-xl mb-1">📁</div>
+                        <div className="text-[9px] font-mono text-[#00FF95] font-bold">Library ({libraryCovers.length})</div>
+                      </button>
+                    )}
+                  </div>
+                  
+                  {showLibraryCovers && libraryCovers.length > 0 && (
+                    <div className="grid grid-cols-4 gap-2 p-2 bg-[#050507] rounded-lg border border-[#1A1A1E] max-h-40 overflow-y-auto">
+                      {libraryCovers.map((cover, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => selectLibraryCover(cover)}
+                          className="relative aspect-square rounded overflow-hidden border border-[#1A1A1E] hover:border-[#00FF95] transition-all"
+                        >
+                          <img
+                            src={cover}
+                            alt={`Cover ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              {customCoverUrl ? (
+                <div className="space-y-2">
+                  <div className="relative bg-[#111114] border border-[#00FF95]/30 rounded-lg p-2">
+                    <img
+                      src={customCoverUrl}
+                      alt="Custom Cover Preview"
+                      className="w-full aspect-square object-cover rounded-lg"
+                    />
+                    <div className="absolute top-1 right-1 flex gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setShowCoverUpload(true)}
+                        className="bg-black/80 hover:bg-black text-[#00FF95] text-[8px] px-1.5 py-0.5 rounded font-mono cursor-pointer"
+                        title="Change image"
+                      >
+                        ✏️
+                      </button>
+                      <button
+                        type="button"
+                        onClick={clearCustomCover}
+                        className="bg-black/80 hover:bg-black text-rose-400 text-[8px] px-1.5 py-0.5 rounded font-mono cursor-pointer"
+                        title="Remove custom cover"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[8px] font-mono text-[#00FF95] bg-[#050507] p-1.5 rounded border border-[#00FF95]/20">
+                    <span>✅</span>
+                    <span>Custom cover will be used for this track</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-1.5 text-[9px] font-mono">
+                  {[
+                    { id: "neon", label: "PINK NEON", color: "border-[#FF00FF] text-[#FF00FF]" },
+                    { id: "mono", label: "RAW MINIMAL", color: "border-slate-500 text-slate-300" },
+                    { id: "retro", label: "VAPOR GRID", color: "border-amber-400 text-amber-500" },
+                    { id: "liquid", label: "CYAN LIQUID", color: "border-cyan-400 text-cyan-400" }
+                  ].map(vibe => (
+                    <button
+                      key={vibe.id}
+                      type="button"
+                      onClick={() => setArtworkStyle(vibe.id as any)}
+                      className={`py-1.5 px-2 rounded-lg border text-center transition-all uppercase text-[8px] font-black cursor-pointer ${
+                        artworkStyle === vibe.id
+                          ? `bg-slate-900 ${vibe.color}`
+                          : "bg-[#0A0A0C] border-[#1A1A1E] text-slate-500 hover:text-slate-350"
+                      }`}
+                    >
+                      {vibe.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
