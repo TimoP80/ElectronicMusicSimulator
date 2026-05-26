@@ -521,33 +521,85 @@ const FORUM_THREAD_TEMPLATES = {
     { titleTemplate: "New {gear} just dropped - thoughts?", replies: 15, previewTemplate: "Just saw the spec sheet on the new {gear}. Is it worth upgrading from my current setup?" },
     { titleTemplate: "Best plugin for {sound} synthesis in 2024?", replies: 28, previewTemplate: "Been experimenting with {sound} textures. Which VSTs do you recommend for that authentic feel?" },
     { titleTemplate: "Hardware vs Software: {question}", replies: 45, previewTemplate: "I've been going back and forth. What are your experiences with pure {type} setups?" },
+    { titleTemplate: "LPB vs HPB filter讨论 - Which is better for {genre}?", replies: 33, previewTemplate: "The age-old debate continues. Low-pass or high-pass? Drop your opinions." },
+    { titleTemplate: "VST cracking in 2024 - Ethical dilemma?", replies: 89, previewTemplate: "Plugins cost hundreds. Students can't afford them. Is piracy justified for learning?" },
+    { titleTemplate: "The DAW wars: Which one truly is best?", replies: 156, previewTemplate: "Ableton vs FL vs Logic vs Bitwig vs Cubase. Fight me in the comments." },
+    { titleTemplate: "Modular synthesis beginner guide needed", replies: 42, previewTemplate: "Just bought my first case. Where do I even start? Oscillators? VCOs?" },
+    { titleTemplate: "Analog warmth - Real or myth?", replies: 78, previewTemplate: "Some say you can hear the difference. Others say it's placebo. Blind test results?" },
+    { titleTemplate: "MIDI controller recommendations for live performance?", replies: 34, previewTemplate: "Need something reliable for gigging. Currently using Akai but thinking of upgrading." },
+    { titleTemplate: "Cloud studios vs local setup - What's the future?", replies: 56, previewTemplate: "Splice and Soundtrap are getting popular. Will we need powerful local machines anymore?" },
   ],
   scene: [
     { titleTemplate: "Is the {city} underground scene dying?", replies: 67, previewTemplate: "Just got back from {city} and the crowds felt different. Less energy, more phone-scrolling." },
     { titleTemplate: "{genre} artists to watch this year", replies: 34, previewTemplate: "Compile your top picks for {genre} rising talents. Let's support the underground!" },
     { titleTemplate: "Festival lineup predictions for {event}", replies: 89, previewTemplate: "Who's getting main stage this year? My bets are on {artist} but..." },
+    { titleTemplate: "Best warehouse venues still keeping it real?", replies: 45, previewTemplate: "Looking for underground spots that don't sell out. North America preferred." },
+    { titleTemplate: "The decline of vinyl culture - Discuss", replies: 112, previewTemplate: "Everyone claims to DJ vinyl but plays from USB. The hypocrisy is real." },
+    { titleTemplate: "Illegal raves making a comeback post-pandemic?", replies: 67, previewTemplate: "Hearing about more and more unsanctioned events. Is this the future?" },
+    { titleTemplate: "Drug culture in clubs - Where do we draw the line?", replies: 234, previewTemplate: "The scene has a serious problem. Harm reduction vs enforcement?" },
+    { titleTemplate: "Gender diversity in {genre} - Still a boys club?", replies: 145, previewTemplate: "Book more women. Book more non-binary artists. The lineup diversity is embarrassing." },
+    { titleTemplate: "Sound system culture vs mainstage production", replies: 89, previewTemplate: "UK soundsystem culture needs more recognition. Bass weight > expensive visuals." },
+    { titleTemplate: "Is {city} still the techno capital of the world?", replies: 178, previewTemplate: "Amsterdam and Detroit are catching up. Berlin's dominance might be ending." },
   ],
   gossip: [
     { titleTemplate: "Breaking: {artist} accused of ghost production", replies: 156, previewTemplate: "Just saw some deleted tweets. Allegations are flying on the {platform} boards. Thoughts?" },
     { titleTemplate: "Label drama: {label} cutting royalties", replies: 98, previewTemplate: "Internal documents leaked showing major royalty cuts. How do we fight this?" },
     { titleTemplate: "Underground beef: {artist1} vs {artist2}", replies: 73, previewTemplate: "Saw them go at it on Instagram stories. This beef is getting real." },
+    { titleTemplate: "Exposing the pay-to-play festival circuit", replies: 201, previewTemplate: "Artists paying to get on festival lineups. This is corruption. Thread inside." },
+    { titleTemplate: "Manager scammed me out of royalties - Avoid {label}", replies: 134, previewTemplate: "Signed with this management company 2 years ago. Haven't seen a single cent." },
+    { titleTemplate: "Headliner no-show at underground event - Embarrassing", replies: 87, previewTemplate: "Drove 4 hours to see {artist}. They showed up 3 hours late, played 40 mins." },
+    { titleTemplate: "Streaming playlist corruption exposed", replies: 167, previewTemplate: "Major playlists are charging artists for placement. Against Spotify ToS." },
+    { titleTemplate: "Producer stole my unreleased track - DM me for proof", replies: 112, previewTemplate: "Found my stems in their new release. The cheeky bastards didn't even change the tempo." },
+    { titleTemplate: "Industry secrets: What really happens at A&R meetings", replies: 89, previewTemplate: "Former label employee here. Ask me anything about the inner workings." },
+    { titleTemplate: "Is {artist} actually playing live or just pressing play?", replies: 145, previewTemplate: "Saw their set last night. The same kick pattern for 45 minutes. Thoughts?" },
   ],
   genre: [
     { titleTemplate: "{genre} production tips for beginners", replies: 42, previewTemplate: "Starting my journey into {genre}. What's the most important element to focus on?" },
     { titleTemplate: "{genre} revival in {city}?", replies: 31, previewTemplate: "Noticed a surge of {genre} parties lately. Is the scene making a comeback?" },
+    { titleTemplate: "Why is {genre} so gatekept?", replies: 178, previewTemplate: "Every genre has purists but {genre} people are on another level. Discuss." },
+    { titleTemplate: "The perfect {genre} track structure breakdown", replies: 56, previewTemplate: "Been producing for 5 years. Finally cracked the formula. Thread with examples." },
+    { titleTemplate: "{genre} BPM debate - What's the sweet spot?", replies: 89, previewTemplate: "Is 140 the only acceptable BPM? Can we slow it down without being posers?" },
+    { titleTemplate: "Microgenres destroying {genre} culture?", replies: 134, previewTemplate: "We have 47 subgenres now. When did this get so complicated?" },
+    { titleTemplate: "{genre} production software - What DAW works best?", replies: 67, previewTemplate: "Ableton for techno, FL for EDM... What about pure {genre}?" },
+    { titleTemplate: "Classic {genre} albums everyone should know", replies: 112, previewTemplate: "Creating a definitive list. Drop your essential albums below." },
+    { titleTemplate: "Is AI going to replace {genre} producers?", replies: 145, previewTemplate: "Suno and Udio are getting scary good. The future is uncertain." },
+    { titleTemplate: "Regional {genre} scenes - Who's leading in 2024?", replies: 78, previewTemplate: "East Coast vs West Coast vs Europe vs Asia. Where's the innovation happening?" },
   ],
   drama: [
     { titleTemplate: "Calling out: {artist} for {reason}", replies: 203, previewTemplate: "This needs to be said. {artist} has been acting {behavior} and we shouldn't stay silent." },
     { titleTemplate: "Hot take: {genre} was better in {year}s", replies: 156, previewTemplate: "Controversial opinion but the {genre} from {year} had something special that we lost." },
+    { titleTemplate: "This community is toxic and I'm done", replies: 289, previewTemplate: "After 10 years in the scene, I'm hanging up my headphones. Here's why." },
+    { titleTemplate: "{artist} deserves to be blacklisted - Here's why", replies: 178, previewTemplate: "They've hurt too many people. The community needs to stand together." },
+    { titleTemplate: "Unpopular opinion about viral TikTok DJs", replies: 234, previewTemplate: "They're actually good for the scene. Hear me out before downvoting." },
+    { titleTemplate: "The real reason vinyl is dying (it's not what you think)", replies: 167, previewTemplate: "Stop blaming CDs and streaming. The real enemy is within the community." },
+    { titleTemplate: "I got doxxed for having an opinion - Be careful out there", replies: 145, previewTemplate: "Posted a mild critique of a popular artist. Now my address is public." },
+    { titleTemplate: "Scene elders need to step aside - Fresh blood only", replies: 112, previewTemplate: "Same names, same sound, same everything. New voices are being silenced." },
+    { titleTemplate: "The 'true' {genre} debate has gone too far", replies: 98, previewTemplate: "Death threats over BPM? We need to calm down as a community." },
+    { titleTemplate: "Streaming killed creativity and nobody wants to admit it", replies: 189, previewTemplate: "2-minute tracks, loudness wars, no dynamics. Thanks Spotify." },
   ],
   tips: [
     { titleTemplate: "How to get booked at {venue}?", replies: 67, previewTemplate: "Sent demos to {venue} 10 times already. What am I missing? Tips appreciated!" },
     { titleTemplate: "Studio setup tour: show us your gear", replies: 89, previewTemplate: "Let's see everyone's workspace! I'll start: I run a modular setup with {gear}." },
+    { titleTemplate: "Mastering chain for {genre} - What's your go-to?", replies: 45, previewTemplate: "I've tried everything. Need that punchy, clear loudness. Share your presets!" },
+    { titleTemplate: "How to approach labels without being annoying?", replies: 78, previewTemplate: "Got some tracks ready. How often should I follow up? Weekly? Monthly?" },
+    { titleTemplate: "Budget studio acoustic treatment guide", replies: 112, previewTemplate: "No money for professional treatment. DIY solutions that actually work?" },
+    { titleTemplate: "Building a loyal fanbase from zero", replies: 156, previewTemplate: "500 followers after 2 years. What am I doing wrong? Need actual advice." },
+    { titleTemplate: "Sample clearance - Do I really need to?", replies: 89, previewTemplate: "My track using that sample got 100k plays. No strikes. Is clearance worth it?" },
+    { titleTemplate: "Live performance setup on a budget", replies: 67, previewTemplate: "Want to start playing shows but my setup is bedroom only. What's essential?" },
+    { titleTemplate: "Collaboration etiquette - What's the norm?", replies: 98, previewTemplate: "First collab incoming. Split revenue 50/50? What about credit order?" },
+    { titleTemplate: "Music promotion that actually works in 2024", replies: 134, previewTemplate: "Tried everything. Algorithmic playlists are a scam. Where should I focus?" },
   ],
   general: [
     { titleTemplate: "Managing burnout while producing", replies: 45, previewTemplate: "Feeling exhausted from the grind. How do you balance creativity with mental health?" },
     { titleTemplate: "Best cities for bedroom producers?", replies: 78, previewTemplate: "Thinking about relocating for better scene access. Which cities have the best communities?" },
     { titleTemplate: "Day job vs music career", replies: 124, previewTemplate: "Working 9-5 and trying to produce at night. How do full-time producers survive financially?" },
+    { titleTemplate: "How did you fund your first release?", replies: 89, previewTemplate: "Saving up for vinyl pressing. Takes forever. Other producers' experiences?" },
+    { titleTemplate: "Producer imposter syndrome - Real talk", replies: 167, previewTemplate: "Been producing 5 years, released 20 tracks. Still feel like a fraud. Anyone else?" },
+    { titleTemplate: "Ageism in the electronic music scene", replies: 134, previewTemplate: "I'm 45 and still producing. Clubs only book young artists. Is this legal?" },
+    { titleTemplate: "Music production education - Worth it?", replies: 98, previewTemplate: "Considering going to audio school. Is the debt worth the connections and knowledge?" },
+    { titleTemplate: "How to deal with creative block for months?", replies: 145, previewTemplate: "Haven't finished a track in 6 months. Starting to doubt everything." },
+    { titleTemplate: "Health tips for producers who sit all day", replies: 78, previewTemplate: "Back problems, wrist issues, eye strain. How do you stay healthy?" },
+    { titleTemplate: "Balancing family life with a music career", replies: 112, previewTemplate: "Got kids, got gigs, got almost no sleep. Stories and advice welcome." },
   ]
 };
 
@@ -556,6 +608,143 @@ const FORUM_ARTISTS = ["Acid_Core", "Liquid Viper", "Neon Rider", "Glitch Lord",
 const FORUM_LABELS = ["Subterranean Clicks", "NeOnlyt Outrun", "Breakbeat Syndicate", "Aurora Heavenly", "Vortex Mainstage"];
 const CITIES = ["Berlin", "London", "Detroit", "Amsterdam", "Ibiza", "Tokyo", "Los Angeles", "Chicago"];
 const GEAR_ITEMS = ["Eurorack modular", "Moog Subsequent 37", "TR-808", "Elektron Digitakt", "Ableton Push", "Roland Juno-106", "Korg MS-20", "Teenage Engineering OP-1"];
+
+// Comment templates by category - 15+ unique comments per category
+const COMMENT_TEMPLATES: { [key: string]: { author: string; text: string }[] } = {
+  tech: [
+    { author: "@ModularHead", text: "This is exactly why I switched to hardware. The workflow is unmatched." },
+    { author: "@PluginPirate", text: "Nobody can tell the difference in a club. Save your money." },
+    { author: "@AnalogAdvocate", text: "You can hear the warmth in analog filters. It's science!" },
+    { author: "@BedroomProducer", text: "I use both. Best of both worlds honestly." },
+    { author: "@DAWStan", text: "The plugins are literally modeled after the hardware. Same algorithms." },
+    { author: "@SoundSnob", text: "Only real musicians can tell. Fake producers use presets." },
+    { author: "@VintageCollector", text: "My Juno-106 will outlive all of us. Built to last." },
+    { author: "@CloudProducer", text: "I make more money with my laptop than most hardware DJs." },
+    { author: "@FilterFanatic", text: "The ladder filters on the MS-20 are unmatched in software." },
+    { author: "@AbletonNative", text: "Max for Live changed everything. Custom devices everywhere." },
+    { author: "@SoftSynthDefender", text: " Serum has more modulation options than any hardware." },
+    { author: "@HybridSetup", text: "Combine digital and analog for the best of both worlds." },
+    { author: "@BitCrusher", text: "Sometimes digital artifacts are exactly what you need." },
+    { author: "@OscillatorLover", text: "Pure analog oscillators drift in tuning. That's the charm." },
+    { author: "@CPUHog", text: "My plugin chain uses 40% CPU. Worth it for the sound." },
+  ],
+  scene: [
+    { author: "@RaveVeteran", text: "The scene has changed so much since 2010. Miss the old days." },
+    { author: "@FestivalGoer", text: "Phones everywhere now. Half the crowd watching through screens." },
+    { author: "@UndergroundPunk", text: "That's why I only play at illegal warehouse events." },
+    { author: "@InstagramDJ", text: "You need to build your brand. Social media is everything." },
+    { author: "@OldSchoolRaver", text: "Back in my day we had to wait for vinyl pressings!" },
+    { author: "@TechHouseFan", text: "Berlin is still the mecca. Nothing compares to Berghain." },
+    { author: "@CocktailDJ", text: "Commercial festivals killed the underground. Sad but true." },
+    { author: "@BasementBouncer", text: "Our venue still has a no-photos policy. 100% pure." },
+    { author: "@LineupCritic", text: "Every festival sounds the same now. Cookie-cutter booking." },
+    { author: "@CampingCrew", text: "The vibes at camping festivals are unmatched though." },
+    { author: "@SoundSystemSnob", text: "Quality PA systems are rare. Most venues butcher the mix." },
+    { author: "@DayRaver", text: "Just came for the music. None of the pretentious stuff." },
+    { author: "@RavePhotog", text: "Capturing moments for the community. Art meets music." },
+    { author: "@VIPScammer", text: "VIP areas killed the PLUR culture. Everyone's equal on the floor." },
+    { author: "@RaveRecover", text: "The afterparty is where the real magic happens." },
+  ],
+  gossip: [
+    { author: "@SceneInsider", text: "I heard this months ago. Everyone knows but nobody speaks up." },
+    { author: "@LabelWatcher", text: "Labels always screw over the small artists. Standard practice." },
+    { author: "@GhostProducer", text: "That's my track! I never got credit or payment. This industry is broken." },
+    { author: "@IndustryVet", text: "This is why you always get contracts reviewed by a lawyer." },
+    { author: "@MusicBlogger", text: "We're preparing a full exposé. DM for tips and evidence." },
+    { author: "@AR_Watcher", text: "That label has a history of shady deals. Avoid at all costs." },
+    { author: "@Anonymous2024", text: "More artists need to speak out. Silence = complicity." },
+    { author: "@FanBoy98", text: "My favorite artist would never do this. You're lying." },
+    { author: "@ContractReader", text: "Never sign away your publishing rights. Read everything twice." },
+    { author: "@RumorMill", text: "This is just the tip of the iceberg. Wait till you hear the rest." },
+    { author: "@ExLabelEmployee", text: "I worked there. The internal emails are damning." },
+    { author: "@StreamRipper", text: "Piracy isn't stealing. It's exposure. Fight me." },
+    { author: "@BookingAgent", text: "The 50% deposit upfront rule exists because of artists like this." },
+    { author: "@SoundCloudRefugee", text: "Platforms pay pennies. Artists need other revenue streams." },
+    { author: "@PlagiarismHunter", text: "That drop is 90% identical to the original. C'mon." },
+  ],
+  drama: [
+    { author: "@DramaLover", text: "This is the most entertaining thread of the year. Keep it coming!" },
+    { author: "@PeaceKeeper", text: "Can we not? Music is about unity, not beef." },
+    { author: "@BattleGround", text: "They deserved to be called out. No accountability in this scene." },
+    { author: "@NeutralObserver", text: "Both sides have valid points. Nuanced discussion please." },
+    { author: "@OldBeef", text: "This pales in comparison to the 2019 drama. Search the archives." },
+    { author: "@SocialMediaManager", text: "This is going to blow up. Mark my words." },
+    { author: "@CancelCulture", text: "We need to protect the victims. Always believe the accusers." },
+    { author: "@FreeSpeech", text: "Everyone is entitled to their career choices. Let it go." },
+    { author: "@ApologyAcceptor", text: "People can change. Give them a chance to grow." },
+    { author: "@ReceiptCollector", text: "Screenshots don't lie. Evidence or it didn't happen." },
+    { author: "@DramaTourist", text: "I come here for the trainwrecks. Entertainment value 10/10." },
+    { author: "@BridgeBuilder", text: "Let's organize a collab instead. Unity over beef." },
+    { author: "@IndustryWatch", text: "This pattern keeps repeating. The system enables bad actors." },
+    { author: "@ThrowbackThread", text: "Same thing happened in 2015. History repeats itself." },
+    { author: "@NuanceNeeded", text: "Without full context, we can't judge. Wait for facts." },
+  ],
+  tips: [
+    { author: "@BookerTips", text: "Start with smaller venues. Build your reputation locally first." },
+    { author: "@GearReviewer", text: "That setup is solid! What's your room treatment like?" },
+    { author: "@StudioArchitect", text: "Acoustic treatment matters more than expensive gear." },
+    { author: "@ViralMarketer", text: "TikTok is where it's at. Post your production process." },
+    { author: "@GigVeteran", text: "Network at every event. It's not what you know but who you know." },
+    { author: "@SoundEngineer", text: "Reference tracks are your best friend. A/B constantly." },
+    { author: "@IndiePromoter", text: "Local radio playlists are underrated. Reach out to community stations." },
+    { author: "@ManagementCo", text: "Consider getting a manager after 50 gigs. Game changer." },
+    { author: "@MixMaster", text: "Low-end takes up headroom. Sidechain everything to the kick." },
+    { author: "@MasteringMaven", text: "Leave -6dB of headroom before mastering. Trust me." },
+    { author: "@CollaborationCoach", text: "Find producers in similar genres. Cross-pollinate audiences." },
+    { author: "@EmailTemplate", text: "My cold email template gets 30% response rate. DM for it." },
+    { author: "@BookingFee", text: "Never play for free. Even charity gigs set bad precedent." },
+    { author: "@SoundCloudTips", text: "Upload consistently. Algorithm favors active creators." },
+    { author: "@MusicLawyer", text: "Register your work with ASCAP immediately. Protect yourself." },
+  ],
+  genre: [
+    { author: "@GenrePurist", text: "True {genre} has soul. Most producers today don't understand the roots." },
+    { author: "@FusionFan", text: "Mixing {genre} with other styles is the future. Pure genres are dying." },
+    { author: "@BPMPolice", text: "Nobody does {genre} properly anymore. The golden age was 2005-2015." },
+    { author: "@NewWave", text: "The scene is evolving. Embrace change or become irrelevant." },
+    { author: "@UndergroundElite", text: "Commercial {genre} ruined the culture. Focus on the underground." },
+    { author: "@PopStar", text: "Accessible {genre} brings new fans to the scene. Inclusion matters." },
+    { author: "@ClassicDefender", text: "Every generation says this. The classics stand the test of time." },
+    { author: "@FutureSound", text: "AI is going to change everything. Adapt or die." },
+    { author: "@TempoSnob", text: "Only real {genre} is at 175+ BPM. Everything else is lazy." },
+    { author: "@GenreAlchemist", text: "My set blends {genre} with breaks and jungle. Fresh sound." },
+    { author: "@VinylOnly", text: "Digital {genre} lacks the warmth of vinyl pressings." },
+    { author: "@LoFiLover", text: "Low fidelity {genre} is having a moment. Embrace the grain." },
+    { author: "@DarkSide", text: "{genre} should be dark and moody. Not this radio-friendly nonsense." },
+    { author: "@FestivalFriendly", text: "Make it accessible. Not everyone wants to headbang for 8 hours." },
+    { author: "@SubgenreScout", text: "Have you heard of the new micro-genres? Mind-blowing stuff." },
+  ],
+  general: [
+    { author: "@DayJobSurvivor", text: "5 years of 9-5 and music. It can be done. Discipline is key." },
+    { author: "@BurnoutVictim", text: "Had to quit my job. Mental health comes first." },
+    { author: "@IndependentArtist", text: "Never had a day job. Been full-time for 8 years." },
+    { author: "@PartTimeHero", text: "Teaching production part-time funds my releases. Sustainable." },
+    { author: "@TrustFundKid", text: "To be honest, money from family allowed me to focus fully." },
+    { author: "@Hustler", text: "Session work, weddings, bar gigs - you do what you gotta do." },
+    { author: "@SideHustle", text: "Content creation pays the bills. Music is my passion project." },
+    { author: "@OldPro", text: "The game changed. Streaming killed album sales. Adapt." },
+    { author: "@SpotifyStan", text: "Royalty advances saved my career. Keep pushing new releases." },
+    { author: "@BandcampBeliever", text: "Bandcamp Fridays are game changers. Direct fan support works." },
+    { author: "@PatreonPioneer", text: "My patrons get exclusive stems and remixes. Community building." },
+    { author: "@SyncSeller", text: "Licensing music for film/games pays better than streaming." },
+    { author: "@MerchMogul", text: "My vinyl pressing fund is almost there. Physical releases matter." },
+    { author: "@TutorTeacher", text: "Online courses are passive income. Teach what you know." },
+    { author: "@CryptoBro", text: "NFTs for music are the future. Own your digital work." },
+  ],
+};
+
+// Get random comments for a category
+const getRandomComments = (category: ForumCategory, count: number = 5): string[] => {
+  const templates = COMMENT_TEMPLATES[category] || COMMENT_TEMPLATES.general;
+  const shuffled = [...templates].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).map(c => {
+    let text = c.text;
+    if (text.includes("{genre}")) {
+      const genres = ["Techno", "House", "Drum & Bass", "Trance", "Ambient", "Industrial", "Hardcore", "Dubstep"];
+      text = text.replace("{genre}", genres[Math.floor(Math.random() * genres.length)]);
+    }
+    return `${c.author}: ${text}`;
+  });
+};
 
 // Generate a dynamic thread from template
 const generateDynamicThread = (category: ForumCategory, gameState: GameState): any => {
@@ -1301,8 +1490,8 @@ interface ForumThread {
                 <p className="text-slate-400 text-xs font-mono mb-3">{selectedThread.preview}</p>
                 
                 <div className="flex-1 overflow-y-auto space-y-2 mb-3">
-                  {/* Simulated comments */}
-                  {["@SceneRegular: This is so accurate!", "@BedroomProducer: Disagree but respect the take", "@VinylCollector: Someone needs to say it"].map((comment, i) => (
+                  {/* Dynamic comments based on thread category */}
+                  {getRandomComments(selectedThread.category, 6).map((comment, i) => (
                     <div key={i} className="bg-slate-900/50 p-2 rounded text-[10px] text-slate-400 font-mono">
                       {comment}
                     </div>
