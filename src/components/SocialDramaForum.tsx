@@ -7,6 +7,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { MessageSquare, RefreshCw, Send, Radio, UserCheck, Flame, Users, Sparkles, MessageCircleCode } from "lucide-react";
 import { GameState, VirtualArtist } from "../types";
 import { getAllPredefinedArtists, getTopPredefinedArtists } from "../data/artists";
+import { getExtendedLabelsDB } from "../data/recordLabels";
 
 interface SocialDramaProps {
   gameState: GameState;
@@ -173,6 +174,23 @@ const PORTRAITS_DB: { [key: string]: string } = {
   nostalgia_runner: "/src/assets/images/avatar_nostalgia_runner_1779785267478.png"
 };
 
+// Lazy-loaded forum labels (needs to be before CHAT_PROMPT_CATEGORIES)
+let forumLabelsCache: string[] | null = null;
+const getForumLabels = (): string[] => {
+  if (forumLabelsCache) return forumLabelsCache;
+  try {
+    const extendedLabels = getExtendedLabelsDB();
+    if (extendedLabels.length > 0) {
+      forumLabelsCache = extendedLabels.map(label => label.name);
+    }
+  } catch (e) {}
+  if (!forumLabelsCache) {
+    forumLabelsCache = ["Subterranean Clicks", "NeOnlyt Outrun", "Breakbeat Syndicate", "Aurora Heavenly", "Vortex Mainstage"];
+  }
+  return forumLabelsCache;
+};
+const FORUM_LABELS = (): string[] => getForumLabels();
+
 const CHAT_PROMPT_CATEGORIES = [
   {
     id: "praise",
@@ -202,7 +220,7 @@ const CHAT_PROMPT_CATEGORIES = [
     id: "gossip",
     categoryName: "📣 Gossip",
     options: [
-      { text: "Did you hear that rumor about Vortex Records cutting player royalty shares by 35%?", relBonus: 4 },
+      { text: `Did you hear that rumor about ${FORUM_LABELS()[0] || 'Vortex Records'} cutting player royalty shares by 35%?`, relBonus: 4 },
       { text: "The rumor mill says that EDM festival superstar is using anonymous ghost producers from Detroit!", relBonus: 4 },
     ]
   },
@@ -238,7 +256,8 @@ const getProceduralReply = (artistId: string, category: string, relationship: nu
         return prefix + `Low-end mud? That's because of cheap digital algorithms. Run your kick drum through an analog hardware gain booster. Cut everything below 30Hz, let the sub breathe, and bypass your digital limits.`;
       }
       if (category === "gossip") {
-        return prefix + `I wouldn't be surprised. Vortex Records is run by corporate lawyers who don't know the difference between a 909 kick and a laundry tumble. Stick to underground self-releases.`;
+        const badLabel = FORUM_LABELS()[Math.floor(Math.random() * 5)] || FORUM_LABELS()[0] || 'Vortex Records';
+        return prefix + `I wouldn't be surprised. ${badLabel} is run by corporate lawyers who don't know the difference between a 909 kick and a laundry tumble. Stick to underground self-releases.`;
       }
       if (category === "gear") {
         return prefix + `VCOs, obviously! Software is just mathematical emulation trying to fake physical tube warmth. Start with a solid analog dual-oscillator and let it scream through a real transistor staircase filter.`;
@@ -274,7 +293,8 @@ const getProceduralReply = (artistId: string, category: string, relationship: nu
         return prefix + `To get euphoric lead synth power, double your saw waves, detune them heavily, and add a ping-pong stereo delay. Space out the reverb so it floats on top of the sub-bass.`;
       }
       if (category === "gossip") {
-        return prefix + `Vortex is facing major litigation. Independent creators need to stick to collaborative publishing collectives. Keep your royalty splits clear.`;
+        const badLabel = FORUM_LABELS()[Math.floor(Math.random() * 5)] || FORUM_LABELS()[0] || 'Some label';
+        return prefix + `${badLabel} is facing major litigation. Independent creators need to stick to collaborative publishing collectives. Keep your royalty splits clear.`;
       }
       if (category === "gear") {
         return prefix + `Hardware filters have this nostalgic, angelic quality. But modern digital wavetable plugins let you modulate shapes that physical hardware can only dream of. Mix both to touch the heavens!`;
@@ -605,7 +625,7 @@ const FORUM_THREAD_TEMPLATES = {
 
 // Artists for thread mentions
 const FORUM_ARTISTS = ["Acid_Core", "Liquid Viper", "Neon Rider", "Glitch Lord", "SubSec_Zero", "Moko Bass", "Hardcore Hype", "Cosmic Gazer"];
-const FORUM_LABELS = ["Subterranean Clicks", "NeOnlyt Outrun", "Breakbeat Syndicate", "Aurora Heavenly", "Vortex Mainstage"];
+
 const CITIES = ["Berlin", "London", "Detroit", "Amsterdam", "Ibiza", "Tokyo", "Los Angeles", "Chicago"];
 const GEAR_ITEMS = ["Eurorack modular", "Moog Subsequent 37", "TR-808", "Elektron Digitakt", "Ableton Push", "Roland Juno-106", "Korg MS-20", "Teenage Engineering OP-1"];
 
@@ -1027,7 +1047,7 @@ const generateDynamicThread = (category: ForumCategory, gameState: GameState): a
     .replace("{artist}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
     .replace("{artist1}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
     .replace("{artist2}", FORUM_ARTISTS[Math.floor(Math.random() * FORUM_ARTISTS.length)])
-    .replace("{label}", FORUM_LABELS[Math.floor(Math.random() * FORUM_LABELS.length)])
+    .replace("{label}", FORUM_LABELS()[Math.floor(Math.random() * FORUM_LABELS().length)])
     .replace("{city}", CITIES[Math.floor(Math.random() * CITIES.length)])
     .replace("{gear}", GEAR_ITEMS[Math.floor(Math.random() * GEAR_ITEMS.length)])
     .replace("{genre}", "Techno")
@@ -1102,7 +1122,7 @@ const generateInitialThreads = (gameState: GameState) => {
   
   threads.push({
     id: "t2",
-    title: "Ghost producing scandal on Vortex records? Rumors about EDM pop superstars",
+    title: `Ghost producing scandal on ${FORUM_LABELS()[0] || 'Vortex Records'}? Rumors about EDM pop superstars`,
     author: "@SceneSnitch",
     replies: 112,
     hotRating: 95,
