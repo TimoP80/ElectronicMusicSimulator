@@ -7,6 +7,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- **Difficulty Level System** — Scalable challenge with 4 difficulty modes:
+  - 🌱 **Easy**: $2,000 starting money, 1.5x gig earnings, 0.5x burnout rate
+  - ⚡ **Normal**: $550 starting money, balanced gameplay (default)
+  - 🔥 **Hard**: $300 starting money, 0.8x earnings, 1.5x label requirements
+  - 💀 **Nightmare**: $150 starting money, 0.5x gig earnings, 2x burnout, 2x label requirements
+  - Difficulty selector on career launch screen with visual icons and detailed tooltips
+  - Each difficulty affects: starting money/fans, gig earnings, royalties, fan gains, burnout rate, label requirements, gear prices, inspiration depletion
+
+- **Track Length Control** — Creative format selection for compositions:
+  - 📻 **Radio Edit** (2:30-3:30): Streaming-friendly for Spotify/radio
+  - 🎧 **Club Edit** (4:00-5:30): Standard club mix (default)
+  - 🌙 **Extended Mix** (6:00-8:00): Festival/underground sets
+  - 🔮 **Long Play** (10:00-15:00): Ambient/progressive journeys
+  - 🎹 **Megamix** (20:00+): Endurance/DJ sets
+  - Duration stored per track with version name (e.g., "Extended Mix", "Club Mix")
+
+- **Custom Cover Image System**:
+  - Upload custom cover images (PNG, JPG, WEBP) up to 5MB
+  - Real-time preview in LP Sleeve Designer
+  - Library browser for pre-loaded covers in `public/covers/`
+  - Generated AI covers work perfectly (Midjourney, DALL-E, Stable Diffusion)
+  - Stored as base64 data URL for offline portability
+
+### Added
 - **4,574 Predefined Artists** from authentic electronic music scene data:
   - Real-world artists like Scooter, Ferry Corsten, Armin van Buuren, DJ Tiesto
   - 2,328 Trance artists, 884 Psychedelic, 614 Hard Dance, 471 Hardcore
@@ -37,11 +61,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Compilation Series Names** (Trance Stories, The Definitive Trance Anthology, etc.)
 - **Track Version Patterns** (Original Mix, Remix, Radio Edit, etc.)
 - **Release Format Types** (CD Single, Vinyl EP, Web Album, etc.)
-
-### Added
-- `src/data/artists.ts` - Artist pool with 4,574 predefined artists
-- `src/data/recordLabels.ts` - Extended record labels database
-- `src/data/database.ts` - Centralized data access module
 
 ### Added
 - **AI Scene Simulation** - Simulated music scene with:

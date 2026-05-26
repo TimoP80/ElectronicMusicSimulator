@@ -33,6 +33,8 @@ You start as a bedroom producer with an old laptop, basic DAW, and stock earbuds
 - 16 electronic music genres with unique characteristics
 - Detailed track statistics: BPM, Energy, Groove, Sound Design, Mixing Quality, Originality, Catchiness, Danceability, and Complexity
 - Customizable stems: Beat, Bass, Synth, FX, and Vocals
+- **Track Length Formats**: Radio Edit (2:30-3:30), Club Edit (4:00-5:30), Extended Mix (6:00-8:00), Long Play (10:00-15:00), Megamix (20:00+)
+- **Custom Cover Images**: Upload AI-generated covers or choose from library
 - Procedural track naming system
 
 ### Genre Library
@@ -63,6 +65,16 @@ Sign with legendary labels for advances, royalty splits, and promotional support
 - **Aurora Heavenly** — Trance anthems (Prestige: 55)
 - **Vortex Mainstage** — Commercial EDM powerhouse (Prestige: 80)
 
+### Difficulty Modes
+Choose your challenge level before starting a career:
+
+| Mode | Starting Money | Gig Earnings | Burnout Rate | Best For |
+|------|--------------|--------------|--------------|----------|
+| 🌱 Easy | $2,000 | 1.5x | 0.5x | Learning the ropes |
+| ⚡ Normal | $550 | 1.0x | 1.0x | Balanced gameplay |
+| 🔥 Hard | $300 | 0.8x | 1.5x | Veterans |
+| 💀 Nightmare | $150 | 0.5x | 2.0x | True dedication |
+
 ### Global Cities & Venues
 | City | Country | Travel Cost | Genre Boost |
 |------|---------|-------------|-------------|
@@ -74,6 +86,15 @@ Sign with legendary labels for advances, royalty splits, and promotional support
 | Ibiza | Spain | $600 | +40% House |
 | Tokyo | Japan | $1,100 | +35% Experimental |
 | Los Angeles | USA | $1,000 | +40% Synthwave |
+
+### Custom Cover Images
+Create unique track artwork using AI generators:
+1. **Generate covers** with Midjourney, DALL-E, Stable Diffusion, etc.
+2. **Place images** in `public/covers/` folder
+3. **Select in game** — Click "📷 Custom Cover" in the DAW Track Creator
+4. **Choose** between upload or library browser
+
+Supports PNG, JPG, WEBP up to 5MB.
 
 ### Gear & Equipment
 **Laptops & Computers**
