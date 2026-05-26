@@ -12,6 +12,8 @@ import {
 
 import { GameState, Track, ReleasedTrack, MusicGenre, MusicTrend } from "./types";
 import { WORLD_TRENDS, processRelease, rollNextTrend } from "./utils/simulation";
+import { getTopPredefinedArtists } from "./data/artists";
+import { simulateAIScene, updateArtistFame } from "./utils/aiSimulation";
 
 import AudioVisualizer from "./components/AudioVisualizer";
 import DAWTrackCreator from "./components/DAWTrackCreator";
@@ -210,11 +212,10 @@ export default function App() {
     const name = onboardingName.trim() || "DJ BedRoomer";
     
     // Initialize virtual artists pool (top 20 predefined artists as active competitors)
-    const { getTopPredefinedArtists } = require('./data/artists');
     const virtualArtists = getTopPredefinedArtists(20).map(artist => ({
       ...artist,
       relationship: 0,
-      status: artist.fame > 70 ? "rival" : "neutral"
+      status: (artist.fame > 70 ? "rival" : "neutral") as "rival" | "neutral"
     }));
     
     const initial: GameState = {
@@ -620,7 +621,6 @@ export default function App() {
     if (!gameState) return;
 
     // Import AI simulation
-    const { simulateAIScene, updateArtistFame } = require('./utils/aiSimulation');
 
     // Advance calendar by 1 week
     let week = gameState.gameDate.week + 1;
