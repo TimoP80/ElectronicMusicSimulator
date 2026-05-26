@@ -291,17 +291,38 @@ export default function RecordLabelsCatalog({
                         </button>
                       )}
 
-                      <button
-                        onClick={() => {
-                          onSelfRelease(pitchTrackId);
-                          setPitchTrackId("");
-                          setArEmailReceived(null);
-                        }}
-                        className="w-full bg-slate-950 hover:bg-[#111114] text-[#00FF95] border border-[#00FF95]/30 font-sans text-xs py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 cursor-pointer"
-                      >
-                        <Sparkles className="h-3.5 w-3.5" />
-                        Self-Release Independently
-                      </button>
+                      {arEmailReceived && !arEmailReceived.includes("excited") && (
+                        <>
+                          <div className="text-[10px] text-slate-500 text-center py-1">
+                            The label passed on this demo.
+                          </div>
+                          <button
+                            onClick={() => {
+                              onSelfRelease(pitchTrackId);
+                              setPitchTrackId("");
+                              setArEmailReceived(null);
+                            }}
+                            className="w-full bg-slate-950 hover:bg-[#111114] text-[#00FF95] border border-[#00FF95]/30 font-sans text-xs py-2.5 rounded-lg font-bold transition-all flex items-center justify-center gap-1 cursor-pointer"
+                          >
+                            <Sparkles className="h-3.5 w-3.5" />
+                            Self-Release Independently
+                          </button>
+                        </>
+                      )}
+
+                      {arEmailReceived?.includes("excited") && (
+                        <button
+                          onClick={() => {
+                            onSelfRelease(pitchTrackId);
+                            setPitchTrackId("");
+                            setArEmailReceived(null);
+                          }}
+                          className="w-full bg-slate-800 hover:bg-slate-700 text-slate-400 border border-slate-700 font-sans text-xs py-2 rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer"
+                        >
+                          <Sparkles className="h-3.5 w-3.5" />
+                          Skip & Self-Release Instead
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>
