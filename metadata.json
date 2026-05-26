@@ -1,0 +1,6 @@
+{
+  "name": "Electronic Music Career Simulator",
+  "description": "A deep, replayable electronic music artist simulation and career management game. Rise from a bedroom producer in a tiny studio to a global festival headliner, balancing music production, trends, labels, live performances, and studio upgrades.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
