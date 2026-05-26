@@ -239,6 +239,10 @@ export default function App() {
 
   // Save game state whenever it updates
   const saveState = (updated: GameState) => {
+    // Ensure purchasedMusic is always initialized
+    if (!updated.purchasedMusic) {
+      updated = { ...updated, purchasedMusic: [] };
+    }
     setGameState(updated);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
   };
@@ -459,6 +463,53 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
       updated,
       "Studio Hardware Upgraded",
       `Acquired pro hardware module and mounted it into your bedroom rack.`,
+      "system"
+    );
+    saveState(final);
+  };
+
+  // Buy music for DJ mixing
+  const handleBuyMusic = (track: {
+    id: string;
+    title: string;
+    artist: string;
+    genre: string;
+    bpm: number;
+    key: string;
+    energy: number;
+    mood: string;
+    popularity: number;
+    credBonus: number;
+    price: number;
+    isVinyl?: boolean;
+    condition?: string;
+    releaseYear?: number;
+    coverUrl?: string;
+  }) => {
+    if (!gameState) return;
+    if (gameState.stats.money < track.price) {
+      return;
+    }
+
+    const purchasedTrack = {
+      ...track,
+      id: `purchased_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      purchaseDate: new Date().toISOString().split('T')[0],
+    };
+
+    const updated: GameState = {
+      ...gameState,
+      purchasedMusic: [...(gameState.purchasedMusic || []), purchasedTrack],
+      stats: {
+        ...gameState.stats,
+        money: gameState.stats.money - track.price,
+      }
+    };
+
+    const final = appendLog(
+      updated,
+      "Track Added to DJ Library",
+      `Purchased "${track.title}" by ${track.artist} for $${track.price}. Available in live gigs.`,
       "system"
     );
     saveState(final);
@@ -1346,6 +1397,7 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                     onCompleteGig={handleCompleteGig}
                     onTravelToCity={handleTravelToCity}
                     onSaveState={saveState}
+                    onBuyMusic={handleBuyMusic}
                     difficultyMultiplier={diff?.gigEarningsMultiplier || 1}
                     difficultyFanMultiplier={diff?.fanGainMultiplier || 1}
                     difficultyBurnoutMultiplier={diff?.burnoutRateMultiplier || 1}

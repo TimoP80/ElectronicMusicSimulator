@@ -18,6 +18,22 @@ interface GigBookingProps {
   onCompleteGig: (earnings: number, fansGained: number, prestigeGained: number, burnoutAdded: number, gigCount: number) => void;
   onTravelToCity: (cityId: string, cost: number) => void;
   onSaveState?: (updated: GameState) => void;
+  onBuyMusic?: (track: {
+    id: string;
+    title: string;
+    artist: string;
+    genre: string;
+    bpm: number;
+    key: string;
+    energy: number;
+    mood: string;
+    popularity: number;
+    credBonus: number;
+    price: number;
+    isVinyl?: boolean;
+    condition?: string;
+    releaseYear?: number;
+  }) => void;
   difficultyMultiplier?: number; // For adjusting earnings based on difficulty
   difficultyFanMultiplier?: number; // For adjusting fan gains
   difficultyBurnoutMultiplier?: number; // For adjusting burnout rate
@@ -185,6 +201,36 @@ export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, o
     }
   }, [PROFILE_STORAGE_KEY]);
 
+  // Sync purchased music from global game state into local DJ library
+  useEffect(() => {
+    if (gameState?.purchasedMusic && gameState.purchasedMusic.length > 0) {
+      const purchasedTracks: DjTrack[] = gameState.purchasedMusic.map(p => ({
+        id: p.id,
+        title: p.title,
+        artist: p.artist,
+        genre: p.genre,
+        bpm: p.bpm,
+        key: p.key,
+        energy: p.energy,
+        mood: p.mood,
+        popularity: p.popularity,
+        credBonus: p.credBonus,
+        price: p.price,
+        isVinyl: p.isVinyl,
+        condition: p.condition,
+        releaseYear: p.releaseYear
+      }));
+      
+      setDjLibrary(prev => {
+        // Merge purchased tracks, avoiding duplicates
+        const existingIds = new Set(prev.map(t => t.id));
+        const newTracks = purchasedTracks.filter(t => !existingIds.has(t.id));
+        if (newTracks.length === 0) return prev;
+        return [...prev, ...newTracks];
+      });
+    }
+  }, [gameState?.purchasedMusic]);
+
   // Synchronize state variations locally
   const writeDjLocalState = (lib: DjTrack[], cr: typeof crates, ou: string[], eq: typeof equippedUpgrades, rPoints: number, report: string | null) => {
     try {
@@ -245,6 +291,26 @@ export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, o
     if (gameState.stats.money < track.price) {
       alert("In-game liquidity is too low! Produce bedroom beats to gather gig advances or label split money.");
       return;
+    }
+
+    // Call onBuyMusic to update global game state (persisted across sessions)
+    if (onBuyMusic) {
+      onBuyMusic({
+        id: track.id,
+        title: track.title,
+        artist: track.artist,
+        genre: track.genre,
+        bpm: track.bpm,
+        key: track.key,
+        energy: track.energy,
+        mood: track.mood,
+        popularity: track.popularity,
+        credBonus: track.credBonus,
+        price: track.price,
+        isVinyl: track.isVinyl,
+        condition: track.condition,
+        releaseYear: track.releaseYear
+      });
     }
     
     // Deduct player money directly from state

@@ -284,6 +284,26 @@ export interface EventLog {
   type: "system" | "release" | "gig" | "burnout" | "scandal" | "label";
 }
 
+export interface PurchasedTrack {
+  id: string;
+  title: string;
+  artist: string;
+  genre: string;
+  subgenre?: string;
+  bpm: number;
+  key: string;
+  energy: number;
+  mood: string;
+  popularity: number;
+  credBonus: number;
+  price: number;
+  purchaseDate: string;
+  isVinyl?: boolean;
+  condition?: string;
+  releaseYear?: number;
+  coverUrl?: string;
+}
+
 export interface GameState {
   artistName: string;
   pseudonym: string;
@@ -307,6 +327,7 @@ export interface GameState {
   gear: string[]; // Owned GearItem IDs
   tracks: Track[]; // Composed tracks not yet released
   releases: ReleasedTrack[]; // Tracks released
+  purchasedMusic: PurchasedTrack[]; // Tracks bought for DJ mixing
   signedLabelId: string | null;
   playerLabelId: string | null;    // If player owns their own label
   playerLabelName: string | null;  // Name of player's label
