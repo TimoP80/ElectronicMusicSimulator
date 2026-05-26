@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from "react";
-import { Sparkles, Mail, CheckCircle2, ChevronRight, Ban, Award, FileSpreadsheet, Send, DollarSign, RefreshCw, Disc } from "lucide-react";
-import { GameState, Track, RecordLabel } from "../types";
-import { LABELS_DB } from "../utils/simulation";
+import React, { useState, useEffect, useMemo } from "react";
+import { Sparkles, Mail, CheckCircle2, ChevronRight, Ban, Award, FileSpreadsheet, Send, DollarSign, RefreshCw, Disc, Filter, ChevronDown, ChevronUp } from "lucide-react";
+import { GameState, Track, RecordLabel, MusicGenre } from "../types";
+import { LABELS_DB, getAllLabels } from "../utils/simulation";
 
 interface RecordLabelsProps {
   gameState: GameState;
@@ -40,10 +40,46 @@ export default function RecordLabelsCatalog({
   onCreateOwnLabel,
   canCreateOwnLabel
 }: RecordLabelsProps) {
-  const [selectedLabel, setSelectedLabel] = useState<RecordLabel | null>(LABELS_DB[0]);
+  const [selectedLabel, setSelectedLabel] = useState<RecordLabel | null>(null);
   const [pitchTrackId, setPitchTrackId] = useState("");
   const [arEmailReceived, setArEmailReceived] = useState<string | null>(null);
   const [loadingAr, setLoadingAr] = useState(false);
+  
+  // Filtering state
+  const [genreFilter, setGenreFilter] = useState<string>("all");
+  const [prestigeFilter, setPrestigeFilter] = useState<string>("all");
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Get all unique genres from labels
+  const allGenres = useMemo(() => {
+    const genres = new Set<string>();
+    LABELS_DB.forEach(label => {
+      label.preferredGenres.forEach(g => genres.add(g));
+    });
+    return Array.from(genres).sort();
+  }, []);
+
+  // Filter labels based on selected filters
+  const filteredLabels = useMemo(() => {
+    return LABELS_DB.filter(label => {
+      // Genre filter
+      if (genreFilter !== "all" && !label.preferredGenres.includes(genreFilter as MusicGenre)) {
+        return false;
+      }
+      // Prestige filter
+      if (prestigeFilter === "underground" && label.prestige >= 35) return false;
+      if (prestigeFilter === "mid" && (label.prestige < 35 || label.prestige >= 55)) return false;
+      if (prestigeFilter === "prestigious" && label.prestige < 55) return false;
+      return true;
+    });
+  }, [genreFilter, prestigeFilter]);
+
+  // Set initial selected label
+  useEffect(() => {
+    if (!selectedLabel && filteredLabels.length > 0) {
+      setSelectedLabel(filteredLabels[0]);
+    }
+  }, [filteredLabels, selectedLabel]);
 
   // Synchronize pitchTrackId with preSelectedTrackId or fallback to the first track
   useEffect(() => {
@@ -359,15 +395,63 @@ export default function RecordLabelsCatalog({
 
       {/* Record Label Catalogs List */}
       <div className="lg:col-span-8 bg-[#0A0A0C] border border-[#1A1A1E] p-5 rounded-xl space-y-4 shadow-lg">
-        <div>
-          <h2 className="text-base font-sans font-semibold text-slate-100">Electronic Publishers Directory</h2>
-          <p className="text-xs text-slate-400">Pitch finished demos to legal label executives or lock-in seed-funding split contracts.</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-sans font-semibold text-slate-100">Electronic Publishers Directory</h2>
+            <p className="text-xs text-slate-400">Pitch finished demos to legal label executives or lock-in seed-funding split contracts.</p>
+          </div>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-lg text-xs text-slate-300 transition-all"
+          >
+            <Filter size={14} />
+            Filters
+            {showFilters ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          {LABELS_DB.map((label) => {
+        {/* Filter Section */}
+        {showFilters && (
+          <div className="bg-slate-950 border border-slate-800 rounded-lg p-4 space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-1.5">Genre Filter</label>
+                <select
+                  value={genreFilter}
+                  onChange={(e) => setGenreFilter(e.target.value)}
+                  className="w-full bg-[#111114] border border-[#1A1A1E] rounded px-3 py-2 text-white text-xs focus:outline-none"
+                >
+                  <option value="all">All Genres</option>
+                  {allGenres.map(g => (
+                    <option key={g} value={g}>{g}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-1.5">Prestige Level</label>
+                <select
+                  value={prestigeFilter}
+                  onChange={(e) => setPrestigeFilter(e.target.value)}
+                  className="w-full bg-[#111114] border border-[#1A1A1E] rounded px-3 py-2 text-white text-xs focus:outline-none"
+                >
+                  <option value="all">All Levels</option>
+                  <option value="underground">Underground (Prestige &lt; 35)</option>
+                  <option value="mid">Mid-Tier (Prestige 35-55)</option>
+                  <option value="prestigious">Prestigious (Prestige 55+)</option>
+                </select>
+              </div>
+            </div>
+            <div className="text-[10px] text-slate-500 font-mono">
+              Showing {filteredLabels.length} of {LABELS_DB.length} labels
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5 max-h-[600px] overflow-y-auto pr-1">
+          {filteredLabels.map((label) => {
             const minFans = gameState.stats.fans >= label.requirements.minFans;
             const minHype = gameState.stats.hype >= label.requirements.minHype;
+            const meetsRequirements = minFans && minHype;
 
             return (
               <div
@@ -376,48 +460,51 @@ export default function RecordLabelsCatalog({
                   setSelectedLabel(label);
                   setArEmailReceived(null);
                 }}
-                className={`p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group h-64 ${
+                className={`p-3 rounded-xl border transition-all cursor-pointer flex flex-col justify-between group h-52 ${
                   selectedLabel?.id === label.id
                     ? "bg-slate-950 border-purple-500 text-slate-100"
-                    : "bg-slate-950/40 border-slate-805 hover:border-slate-750 text-slate-400"
-                }`}
+                    : "bg-slate-950/40 border-slate-800 hover:border-slate-700 text-slate-400"
+                } ${!meetsRequirements && !selectedLabel ? 'opacity-60' : ''}`}
               >
                 <div>
                   {/* Label landscape brand graphic header */}
-                  <div className="relative h-20 w-full rounded-lg overflow-hidden border border-[#1A1A1E] mb-2.5 bg-black">
+                  <div className="relative h-16 w-full rounded-lg overflow-hidden border border-[#1A1A1E] mb-2 bg-black">
                     <img
                       src={getLabelArtwork(label.id)}
                       alt={label.name}
-                      className="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute top-2 left-2 bg-black/85 backdrop-blur-xs text-[7px] font-mono border border-slate-800 px-1.5 py-0.5 rounded text-white font-bold uppercase tracking-wider">
-                      {label.id === "vortex_records" ? "MAINSTAGE OUTLET" : "UNDERGROUND CUT"}
+                    <div className="absolute top-1.5 left-1.5 bg-black/85 backdrop-blur-xs text-[6px] font-mono border border-slate-800 px-1 py-0.5 rounded text-white font-bold uppercase tracking-wider">
+                      {label.prestige >= 55 ? "MAINSTAGE" : label.prestige >= 35 ? "MIDTIER" : "UNDERGROUND"}
                     </div>
                   </div>
 
                   <div className="flex justify-between items-start mb-1 leading-none">
-                    <span className="font-bold text-xs text-slate-200 block truncate">{label.name}</span>
-                    <span className="text-[8px] font-mono text-purple-400 font-bold bg-purple-950/50 border border-purple-800/30 px-1.5 py-0.5 rounded uppercase flex-shrink-0 select-none">
-                      Level: {label.prestige}
+                    <span className="font-bold text-[11px] text-slate-200 block truncate flex-1 mr-2">{label.name}</span>
+                    <span className="text-[8px] font-mono text-purple-400 font-bold bg-purple-950/50 border border-purple-800/30 px-1.5 py-0.5 rounded uppercase flex-shrink-0">
+                      {label.prestige}
                     </span>
                   </div>
-                  <p className="text-[10px] text-slate-400 leading-snug line-clamp-2 h-7">{label.description}</p>
+                  <p className="text-[9px] text-slate-500 leading-snug line-clamp-2 h-6">{label.description}</p>
                   
                   {/* Genre preference badges */}
                   <div className="flex flex-wrap gap-1 mt-1.5">
-                    {label.preferredGenres.map((g) => (
-                      <span key={g} className="text-[8.5px] font-mono bg-[#050507] border border-[#1A1A1E] px-1.5 py-0.5 rounded text-slate-300">
-                        {g}
+                    {label.preferredGenres.slice(0, 3).map((g) => (
+                      <span key={g} className="text-[7.5px] font-mono bg-[#050507] border border-[#1A1A1E] px-1 py-0.5 rounded text-slate-400">
+                        {g.replace(/_/g, ' ')}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="border-t border-slate-900 pt-2 flex justify-between items-center text-[9.5px] font-mono text-slate-550 mb-0.5 leading-none">
-                  <span>Adv: <strong className="text-emerald-400">${label.signingAdvance}</strong></span>
-                  <span>Split: <strong className="text-slate-350">{(label.royaltySplit * 100).toFixed(0)}/{(100 - label.royaltySplit * 100).toFixed(0)}</strong></span>
-                  <span>Len: <strong className="text-purple-400">{label.dealLength}t</strong></span>
+                <div className="border-t border-slate-900 pt-1.5 flex justify-between items-center text-[8.5px] font-mono text-slate-600 leading-none">
+                  <span className={label.signingAdvance > 0 ? "text-emerald-400/70" : "text-slate-500"}>
+                    ${label.signingAdvance.toLocaleString()}
+                  </span>
+                  <span className="text-slate-500">
+                    {(label.royaltySplit * 100).toFixed(0)}% Royalties
+                  </span>
                 </div>
               </div>
             );
