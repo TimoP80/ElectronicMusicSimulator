@@ -468,6 +468,28 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
     saveState(final);
   };
 
+  // Sell gear that has been upgraded (get partial refund)
+  const handleSellGear = (gearId: string, sellPrice: number) => {
+    if (!gameState) return;
+
+    const updated: GameState = {
+      ...gameState,
+      gear: gameState.gear.filter(id => id !== gearId),
+      stats: {
+        ...gameState.stats,
+        money: gameState.stats.money + sellPrice,
+      }
+    };
+
+    const final = appendLog(
+      updated,
+      "Gear Sold",
+      `Sold downgraded equipment for $${sellPrice}.`,
+      "system"
+    );
+    saveState(final);
+  };
+
   // Buy music for DJ mixing
   const handleBuyMusic = (track: {
     id: string;
@@ -1431,6 +1453,7 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                 <UpgradableGearShop
                   gameState={gameState}
                   onBuyGear={handleBuyGear}
+                    onSellGear={handleSellGear}
                 />
               )}
 

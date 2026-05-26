@@ -4,13 +4,14 @@
  */
 
 import React from "react";
-import { Laptop, Music, Headphones, VolumeX, ShoppingBag, Plus, Sparkles, CheckCircle2, Star } from "lucide-react";
+import { Laptop, Music, Headphones, VolumeX, ShoppingBag, Plus, Sparkles, CheckCircle2, Star, Trash2 } from "lucide-react";
 import { GameState, GearItem } from "../types";
 import { GEAR_DB } from "../data/gear";
 
 interface GearShopProps {
   gameState: GameState;
   onBuyGear: (gearId: string, cost: number) => void;
+  onSellGear: (gearId: string, sellPrice: number) => void;
 }
 
 const getGearArtwork = (itemId: string, category: string): string => {
@@ -41,7 +42,7 @@ const getGearArtwork = (itemId: string, category: string): string => {
   return `https://picsum.photos/seed/${seed}/240/150`;
 };
 
-export default function UpgradableGearShop({ gameState, onBuyGear }: GearShopProps) {
+export default function UpgradableGearShop({ gameState, onBuyGear, onSellGear }: GearShopProps) {
   const [activeGearPitchId, setActiveGearPitchId] = React.useState<string | null>(null);
   const [gearPitches, setGearPitches] = React.useState<{ [key: string]: string }>({});
   const [loadingPitchIds, setLoadingPitchIds] = React.useState<{ [key: string]: boolean }>({});
@@ -90,6 +91,21 @@ export default function UpgradableGearShop({ gameState, onBuyGear }: GearShopPro
       return;
     }
     onBuyGear(item.id, item.cost);
+  };
+
+  // Calculate total stat bonus for a gear item
+  const getGearPower = (item: GearItem): number => {
+    return Object.values(item.statBonus).reduce((sum, val) => sum + (val || 0), 0);
+  };
+
+  // Find the sell value (based on best upgrade in same category)
+  const getSellValue = (item: GearItem): number => {
+    const ownedBetter = gameState.gear.some(gid => {
+      if (gid === item.id) return false;
+      const owned = GEAR_DB.find(g => g.id === gid);
+      return owned && owned.category === item.category && getGearPower(owned) > getGearPower(item);
+    });
+    return ownedBetter ? Math.round(item.cost * 0.4) : 0; // 40% refund if upgraded
   };
 
   const getCategoryIcon = (cat: string) => {
@@ -209,12 +225,23 @@ export default function UpgradableGearShop({ gameState, onBuyGear }: GearShopPro
 
               {/* Trade actions */}
               <div className="mt-4 pt-3 border-t border-slate-950 flex justify-between items-center text-xs font-mono">
-                {isOwned ? (
-                  <div className="flex items-center space-x-1 text-emerald-400 font-bold bg-emerald-950/20 px-2 py-0.5 border border-emerald-900/30 rounded w-full justify-center">
-                    <CheckCircle2 className="h-3.5 w-3.5" />
-                    <span>OWNED STUDIOTOOLS</span>
-                  </div>
-                ) : !canUnlock ? (
+                {isOwned ? (() => {
+                  const sellValue = getSellValue(item);
+                  return sellValue > 0 ? (
+                    <button
+                      onClick={() => onSellGear(item.id, sellValue)}
+                      className="flex items-center justify-center space-x-1.5 text-amber-400 font-bold bg-amber-950/20 px-3 py-1 border border-amber-900/30 rounded w-full hover:bg-amber-900/30 transition-all active:scale-95 cursor-pointer"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                      <span>Sell for ${sellValue}</span>
+                    </button>
+                  ) : (
+                    <div className="flex items-center space-x-1 text-emerald-400 font-bold bg-emerald-950/20 px-2 py-1 border border-emerald-900/30 rounded w-full justify-center">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                      <span>OWNED</span>
+                    </div>
+                  );
+                })() : !canUnlock ? (
                   <div className="text-[9px] text-slate-500 font-sans tracking-wide py-0.5 px-2 bg-slate-950 border border-slate-900 rounded w-full text-center">
                     Requires Level {item.unlockedAtPrestige} Prestige
                   </div>
