@@ -1,0 +1,121 @@
+# Changelog
+
+All notable changes to **Beatmaker Legend** will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## [Unreleased]
+
+---
+
+## [1.3.0] - 2026-05-26
+
+### Added
+- **Comprehensive README documentation** - Complete game documentation including:
+  - Game overview with story and gameplay loop
+  - 16-genre library table with BPM ranges, underground index, and vibes
+  - Record labels catalog (5 labels with prestige, splits, requirements)
+  - Global cities overview (8 cities with travel costs and genre boosts)
+  - Gear & equipment catalog (laptops, DAWs, synthesizers)
+  - Skills tree documentation across 4 categories
+  - Stats explained section
+  - Strategic tips for early, mid, and late game phases
+  - Tech stack and project structure documentation
+
+- **Interactive HTML Game Guide** (`game-guide.html`) - Standalone comprehensive game guide featuring:
+  - Cyberpunk-inspired dark theme with neon accents
+  - Responsive design with sticky navigation
+  - Full genre reference table with underground indices
+  - City cards with travel costs and genre boosts
+  - Label cards with prestige and royalty information
+  - Interactive skills accordion with expandable categories
+  - Strategic tips organized by game phase
+  - Custom fonts (Orbitron, Rajdhani, Share Tech Mono)
+
+### Changed
+- **Mod Editor Layout Overhaul** - Major improvements to the Developer Modding Studio:
+  - Full-screen standalone mode for better focus
+  - Compact sticky header with essential actions
+  - Shortened tab labels for space efficiency (META, GENRES, ARTISTS, etc.)
+  - Sticky navigation tabs for easy access while scrolling
+  - Hidden sidebar in standalone mode to maximize content area
+  - Responsive padding and improved overflow handling
+  - Better grid layout for single-column content display
+  - `standaloneMode` prop added to control layout behavior
+
+### Fixed
+- Improved mod editor visibility and usability
+- Better overflow handling for long content lists
+
+---
+
+## [1.2.0] - 2026-05-20
+
+### Added
+- **Developer Modding Studio** - Full-featured mod editor with:
+  - Mod pack metadata editor
+  - Custom genre definitions (BPM, energy, complexity, underground index)
+  - AI artist blueprint system
+  - Hardware equipment specifications
+  - World/city scene editor
+  - Story event scripting system
+  - Economy parameters configuration
+  - AI behavior node graph editor
+  - Autonomous simulation stress-test lab
+
+### Added
+- **6 Producer Ethos Archetypes**:
+  - Underground Techno Purist
+  - Commercial EDM Superstar
+  - Experimental Sound Designer
+  - Synthwave Nostalgia Runner
+  - UK Garage Selector
+  - Downtempo Ambient Dubber
+
+### Added
+- **16 Music Genres**: Techno, Trance, House, Drum & Bass, Dubstep, Synthwave, Industrial, Ambient, Hardstyle, Experimental, Chiptune, Downtempo, Future Bass, UK Garage, Deep House, Psytrance
+
+### Added
+- **8 Global Cities**: Suburban Bedroom, Berlin, London, Detroit, Amsterdam, Ibiza, Tokyo, Los Angeles
+
+### Added
+- **5 Record Labels**: Subterranean Clicks, NeOnlyt Outrun, Breakbeat Syndicate, Aurora Heavenly, Vortex Mainstage
+
+### Added
+- **Save System**: 3 save slots + export/import functionality
+
+---
+
+## [1.1.0] - 2026-05-15
+
+### Added
+- **DAW Track Creator** - Full track composition system
+- **Audio Visualizer** - Real-time audio visualization
+- **Gig Booking System** - Book performances at venues worldwide
+- **Record Labels Catalog** - Sign with labels for advances and royalty splits
+- **Social Drama Forum** - AI rival interactions and drama events
+- **Skills Tree** - Level up production, engineering, performance, marketing skills
+- **Upgradable Gear Shop** - Purchase equipment and studio gear
+
+### Added
+- **World Trends System** - Dynamic genre popularity shifts
+- **Burnout & Inspiration System** - Track quality affected by rest/production
+- **Event Logging** - Career milestone tracking
+
+---
+
+## [1.0.0] - 2026-05-10
+
+### Added
+- Initial game release
+- Basic career simulation mechanics
+- Core track creation and release cycle
+- Fan and hype tracking system
+
+---
+
+[Unreleased]: https://github.com/TimoP80/ElectronicMusicSimulator/compare/main...HEAD
+[1.3.0]: https://github.com/TimoP80/ElectronicMusicSimulator/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/TimoP80/ElectronicMusicSimulator/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/TimoP80/ElectronicMusicSimulator/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/TimoP80/ElectronicMusicSimulator/releases/tag/v1.0.0
