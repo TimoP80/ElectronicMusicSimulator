@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beatmaker Legend - Game Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #111114;
+      --bg-card: #0d0d10;
+      --border-color: #1a1a1e;
+      --text-primary: #ffffff;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-green: #00ff95;
+      --accent-magenta: #ff00ff;
+      --accent-cyan: #00d4ff;
+      --accent-orange: #ff6b00;
+      --accent-purple: #a855f7;
+      --glow-green: 0 0 20px rgba(0, 255, 149, 0.4);
+      --glow-magenta: 0 0 20px rgba(255, 0, 255, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-green);
+      border-radius: 4px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--bg-primary) 0%, #0f0f18 50%, var(--bg-primary) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 300px;
+      background: radial-gradient(ellipse at center top, rgba(0, 255, 149, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-magenta));
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: var(--glow-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-magenta), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      margin-top: 24px;
+      font-size: 1.5rem;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    /* Navigation */
+    .nav {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 20px;
+    }
+
+    .nav-list {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      overflow-x: auto;
+      padding: 12px 0;
+      scrollbar-width: none;
+    }
+
+    .nav-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: var(--text-secondary);
+      padding: 10px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-link:hover {
+      background: var(--accent-green);
+      color: var(--bg-primary);
+      border-color: var(--accent-green);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-4px);
+      box-shadow: var(--glow-green);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .card-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(0, 255, 149, 0.1);
+      color: var(--accent-green);
+      border: 1px solid rgba(0, 255, 149, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .card-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .card-stats {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    /* Special Card Variants */
+    .card-genre { border-left: 3px solid var(--accent-green); }
+    .card-city { border-left: 3px solid var(--accent-cyan); }
+    .card-label { border-left: 3px solid var(--accent-magenta); }
+    .card-gear { border-left: 3px solid var(--accent-orange); }
+    .card-skill { border-left: 3px solid var(--accent-purple); }
+
+    /* Table Styles */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+    }
+
+    th {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 16px;
+      text-align: left;
+      background: var(--bg-secondary);
+      color: var(--accent-green);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(0, 255, 149, 0.03);
+    }
+
+    /* Info Box */
+    .info-box {
+      background: linear-gradient(135deg, rgba(0, 255, 149, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+      border: 1px solid rgba(0, 255, 149, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .info-box-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-box-content {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Tips List */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .tip-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .tip-number {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--bg-primary);
+      flex-shrink: 0;
+    }
+
+    .tip-content h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .tip-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      margin: 12px 0;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .progress-green { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
+    .progress-magenta { background: linear-gradient(90deg, var(--accent-magenta), var(--accent-purple)); }
+    .progress-orange { background: linear-gradient(90deg, var(--accent-orange), #ff9500); }
+
+    /* Flow Diagram */
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 32px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .flow-step {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .flow-step:hover {
+      border-color: var(--accent-green);
+      transform: scale(1.05);
+    }
+
+    .flow-icon {
+      font-size: 1.5rem;
+    }
+
+    .flow-arrow {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+    }
+
+    /* Accordion */
+    .accordion {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    .accordion-header {
+      background: var(--bg-secondary);
+      padding: 16px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .accordion-header:hover {
+      background: rgba(0, 255, 149, 0.05);
+    }
+
+    .accordion-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .accordion-icon {
+      transition: transform 0.3s ease;
+      color: var(--accent-green);
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 500px;
+    }
+
+    .accordion-body {
+      padding: 20px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      font-size: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 16px;
+      }
+
+      .hero h1 {
+        letter-spacing: 2px;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    /* Index Links */
+    .index-section {
+      margin-bottom: 40px;
+    }
+
+    .index-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px;
+    }
+
+    .index-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .index-link:hover {
+      background: var(--accent-green);
+      color: var(--bg-primary);
+      border-color: var(--accent-green);
+    }
+
+    .index-emoji {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-icon">🎵</div>
+    <h1>BEATMAKER LEGEND</h1>
+    <p class="hero-subtitle">Electronic Music Career Simulator</p>
+    <p class="hero-tagline">Build your legacy. One beat at a time.</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <ul class="nav-list">
+      <li><a href="#overview" class="nav-link">Overview</a></li>
+      <li><a href="#genres" class="nav-link">Genres</a></li>
+      <li><a href="#cities" class="nav-link">Cities</a></li>
+      <li><a href="#labels" class="nav-link">Labels</a></li>
+      <li><a href="#gear" class="nav-link">Gear</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#mechanics" class="nav-link">Mechanics</a></li>
+      <li><a href="#tips" class="nav-link">Tips</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+      <div class="section-header">
+        <div class="section-icon">🎮</div>
+        <div>
+          <h2 class="section-title">Game Overview</h2>
+          <p class="section-subtitle">Your journey from bedroom producer to legend</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">🎯 Your Mission</div>
+        <div class="info-box-content">
+          Start as a bedroom producer with an old laptop and basic DAW. Navigate the global electronic music underground, build a loyal following, sign with legendary labels, perform at iconic venues, and become a beatmaking legend. Master the art of synthesis, understand the scene's trends, and rise through the ranks.
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin: 32px 0 20px; color: var(--accent-cyan);">THE GAMEPLAY LOOP</h3>
+      
+      <div class="flow-container">
+        <div class="flow-step">
+          <span class="flow-icon">🎹</span>
+          <span style="font-weight: 600;">Compose</span>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">📀</span>
+          <span style="font-weight: 600;">Release</span>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">🎤</span>
+          <span style="font-weight: 600;">Gig</span>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">💰</span>
+          <span style="font-weight: 600;">Upgrade</span>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">📈</span>
+          <span style="font-weight: 600;">Repeat</span>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 32px;">
+        <div class="info-box-title">📊 Key Stats</div>
+        <div class="info-box-content">
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Fans - Your follower base</span>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Hype - Buzz level (decays over time)</span>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Prestige - Overall career standing</span>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Inspiration - Track quality potential</span>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Burnout - Exhaustion (affects track quality)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section id="genres" class="section">
+      <div class="section-header">
+        <div class="section-icon">🎛️</div>
+        <div>
+          <h2 class="section-title">Music Genres</h2>
+          <p class="section-subtitle">16 unique electronic music styles</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Genre</th>
+              <th>BPM Range</th>
+              <th>Underground</th>
+              <th>Vibe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Techno</td>
+              <td>125-145</td>
+              <td><span style="color: var(--accent-magenta);">█████████</span> 9/10</td>
+              <td>Industrial, warehouse, hypnotic</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Trance</td>
+              <td>130-138</td>
+              <td><span style="color: var(--accent-orange);">█████</span> 5/10</td>
+              <td>Euphoric, laser shows, spacey</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">House</td>
+              <td>118-126</td>
+              <td><span style="color: var(--accent-orange);">██████</span> 6/10</td>
+              <td>Sunny, soulful, classic groove</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Drum & Bass</td>
+              <td>168-180</td>
+              <td><span style="color: var(--accent-magenta);">████████</span> 8/10</td>
+              <td>High-energy, syncopated breaks</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Dubstep</td>
+              <td>140-144</td>
+              <td><span style="color: var(--accent-orange);">███████</span> 7/10</td>
+              <td>Heavy bass, mechanical</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Synthwave</td>
+              <td>100-120</td>
+              <td><span style="color: var(--accent-orange);">████</span> 4/10</td>
+              <td>Retro-futuristic, neon aesthetics</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Industrial</td>
+              <td>90-130</td>
+              <td><span style="color: var(--accent-magenta);">██████████</span> 10/10</td>
+              <td>Cyber-goth, mechanical</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Ambient</td>
+              <td>60-95</td>
+              <td><span style="color: var(--accent-magenta);">█████████</span> 9/10</td>
+              <td>Meditative, atmospheric</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Hardstyle</td>
+              <td>150-160</td>
+              <td><span style="color: var(--accent-orange);">████</span> 4/10</td>
+              <td>High energy, laser raves</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Experimental</td>
+              <td>80-200</td>
+              <td><span style="color: var(--accent-magenta);">██████████</span> 10/10</td>
+              <td>IDM, glitch, deconstructed</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Chiptune</td>
+              <td>110-150</td>
+              <td><span style="color: var(--accent-magenta);">████████</span> 8/10</td>
+              <td>8-bit, retro gaming</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Downtempo</td>
+              <td>80-105</td>
+              <td><span style="color: var(--accent-orange);">███████</span> 7/10</td>
+              <td>Laid-back, trip-hop</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Future Bass</td>
+              <td>135-160</td>
+              <td><span style="color: var(--accent-orange);">████</span> 4/10</td>
+              <td>Modern, colorful</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">UK Garage</td>
+              <td>128-135</td>
+              <td><span style="color: var(--accent-orange);">███████</span> 7/10</td>
+              <td>2-step, shuffled swing</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Deep House</td>
+              <td>120-125</td>
+              <td><span style="color: var(--accent-orange);">███████</span> 7/10</td>
+              <td>Atmospheric, smooth</td>
+            </tr>
+            <tr>
+              <td style="color: var(--accent-green); font-weight: 600;">Psytrance</td>
+              <td>138-148</td>
+              <td><span style="color: var(--accent-magenta);">████████</span> 8/10</td>
+              <td>Psychedelic, rolling</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box" style="margin-top: 32px;">
+        <div class="info-box-title">💡 Pro Tip</div>
+        <div class="info-box-content">
+          Underground index affects commercial viability vs. scene respectability. High underground genres (Techno, Industrial, Experimental) build reputation faster but yield lower initial returns. Low underground genres (House, Synthwave, Hardstyle) are more accessible but have higher competition.
+        </div>
+      </div>
+    </section>
+
+    <!-- Cities Section -->
+    <section id="cities" class="section">
+      <div class="section-header">
+        <div class="section-icon">🌍</div>
+        <div>
+          <h2 class="section-title">Global Cities</h2>
+          <p class="section-subtitle">8 unique locations to tour and perform</p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Starting</span>
+          </div>
+          <h3 class="card-title">Suburban Bedroom</h3>
+          <p class="card-description">Your safe haven. Make music in your pajamas. Twitch livestream to build initial fanbase.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+15% EXP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 5</span>
+          </div>
+          <h3 class="card-title">Berlin, Germany</h3>
+          <p class="card-description">The Holy Grail of raw underground techno. Legendary door policies, industrial warehouses.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$350</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+40% Techno</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 10</span>
+          </div>
+          <h3 class="card-title">London, UK</h3>
+          <p class="card-description">Capital of jungle breaks and underground garage networks. High energy, dark basements.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$400</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+40% DnB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 15</span>
+          </div>
+          <h3 class="card-title">Detroit, USA</h3>
+          <p class="card-description">Birthplace of Techno. Soulful machines, gritty urban history, deep mechanical grooves.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$800</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+35% Techno</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 18</span>
+          </div>
+          <h3 class="card-title">Amsterdam, Netherlands</h3>
+          <p class="card-description">Euphoric crowds, giant warehouses, world-class staging. Trance and hardstyle capital.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$300</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+35% Trance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 22</span>
+          </div>
+          <h3 class="card-title">Ibiza, Spain</h3>
+          <p class="card-description">Global dance music capital. Luxury terraces, mega-clubs, top-tier royalty structures.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$600</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+40% House</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 25</span>
+          </div>
+          <h3 class="card-title">Tokyo, Japan</h3>
+          <p class="card-description">Neon cyber-corridors, pristine hi-fi sound systems, sound art galleries.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$1,100</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+35% EXP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-city">
+          <div class="card-header">
+            <span class="card-badge">Prestige 30</span>
+          </div>
+          <h3 class="card-title">Los Angeles, USA</h3>
+          <p class="card-description">Hollywood neon, sunset driving synths, pool parties, sync deals territory.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Travel:</span>
+              <span class="stat-value">$1,000</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Boost:</span>
+              <span class="stat-value">+40% Synthwave</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Labels Section -->
+    <section id="labels" class="section">
+      <div class="section-header">
+        <div class="section-icon">🏢</div>
+        <div>
+          <h2 class="section-title">Record Labels</h2>
+          <p class="section-subtitle">5 legendary labels to sign with</p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card card-label">
+          <div class="card-header">
+            <span class="card-badge" style="background: rgba(255, 0, 255, 0.1); color: var(--accent-magenta); border-color: rgba(255, 0, 255, 0.3);">Prestige 15</span>
+          </div>
+          <h3 class="card-title">Subterranean Clicks</h3>
+          <p class="card-description">Berlin underground label specializing in deep hypnotic techno and raw industrial sound designs.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Split:</span>
+              <span class="stat-value">40%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Advance:</span>
+              <span class="stat-value">$200</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Fans:</span>
+              <span class="stat-value">300+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-label">
+          <div class="card-header">
+            <span class="card-badge" style="background: rgba(255, 0, 255, 0.1); color: var(--accent-magenta); border-color: rgba(255, 0, 255, 0.3);">Prestige 25</span>
+          </div>
+          <h3 class="card-title">NeOnlyt Outrun</h3>
+          <p class="card-description">Nostalgic retro indie label providing high-speed synths, Outrun aesthetics, sunset driving tracks.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Split:</span>
+              <span class="stat-value">45%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Advance:</span>
+              <span class="stat-value">$800</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Fans:</span>
+              <span class="stat-value">1,500+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-label">
+          <div class="card-header">
+            <span class="card-badge" style="background: rgba(255, 0, 255, 0.1); color: var(--accent-magenta); border-color: rgba(255, 0, 255, 0.3);">Prestige 40</span>
+          </div>
+          <h3 class="card-title">Breakbeat Syndicate</h3>
+          <p class="card-description">Legendary UK outlet releasing heavy high-bpm breaks, jungle rollers, and dark dubstep stomps.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Split:</span>
+              <span class="stat-value">50%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Advance:</span>
+              <span class="stat-value">$2,500</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Fans:</span>
+              <span class="stat-value">5,000+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-label">
+          <div class="card-header">
+            <span class="card-badge" style="background: rgba(255, 0, 255, 0.1); color: var(--accent-magenta); border-color: rgba(255, 0, 255, 0.3);">Prestige 55</span>
+          </div>
+          <h3 class="card-title">Aurora Heavenly</h3>
+          <p class="card-description">Highly prestigious melodic publishing house for massive trance melodies and epic laser anthems.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Split:</span>
+              <span class="stat-value">50%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Advance:</span>
+              <span class="stat-value">$8,000</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Fans:</span>
+              <span class="stat-value">12,000+</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-label">
+          <div class="card-header">
+            <span class="card-badge" style="background: rgba(255, 0, 255, 0.1); color: var(--accent-magenta); border-color: rgba(255, 0, 255, 0.3);">Prestige 80</span>
+          </div>
+          <h3 class="card-title">Vortex Mainstage</h3>
+          <p class="card-description">Commercial powerhouse releasing crowd-pleasing house, hardstyle, and festival EDM hits worldwide.</p>
+          <div class="card-stats">
+            <div class="stat-item">
+              <span class="stat-label">Split:</span>
+              <span class="stat-value">35%</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Advance:</span>
+              <span class="stat-value">$35,000</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Fans:</span>
+              <span class="stat-value">50,000+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gear Section -->
+    <section id="gear" class="section">
+      <div class="section-header">
+        <div class="section-icon">🎧</div>
+        <div>
+          <h2 class="section-title">Gear & Equipment</h2>
+          <p class="section-subtitle">Upgrade your studio for better track quality</p>
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 0.9rem; margin: 24px 0 16px; color: var(--accent-orange);">LAPTOPS & COMPUTERS</h3>
+      <div class="cards-grid">
+        <div class="card card-gear">
+          <h3 class="card-title">Old Refurbished Laptop</h3>
+          <p class="card-description">Crashes if you put more than 4 plugins. Screen has weird blue line.</p>
+          <div class="card-stats">
+            <span class="card-badge">Free (Starting)</span>
+          </div>
+        </div>
+        <div class="card card-gear">
+          <h3 class="card-title">Custom Multi-Core Studio PC</h3>
+          <p class="card-description">Water-cooled desktop that can run hundreds of virtual synths without clipping.</p>
+          <div class="card-stats">
+            <span class="card-badge">$800</span>
+          </div>
+        </div>
+        <div class="card card-gear">
+          <h3 class="card-title">Quantum Sound Workstation</h3>
+          <p class="card-description">Absolute beast server rack. Automatically strips noise and compiles tracks.</p>
+          <div class="card-stats">
+            <span class="card-badge">$4,500</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 0.9rem; margin: 32px 0 16px; color: var(--accent-orange);">SYNTHESIZERS</h3>
+      <div class="cards-grid">
+        <div class="card card-gear">
+          <h3 class="card-title">25-Key Mini MIDI Keyboard</h3>
+          <p class="card-description">Small plastic keys. Hard to play chords but great for basslines.</p>
+          <div class="card-stats">
+            <span class="card-badge">$40</span>
+          </div>
+        </div>
+        <div class="card card-gear">
+          <h3 class="card-title">FM Synthesizer</h3>
+          <p class="card-description">Lush digital pads, icy brass chords, pristine bell-like tones.</p>
+          <div class="card-stats">
+            <span class="card-badge">$450</span>
+          </div>
+        </div>
+        <div class="card card-gear">
+          <h3 class="card-title">Fat-Bass Analog Monosynth</h3>
+          <p class="card-description">Real analog filters. Incredibly heavy and warm sound.</p>
+          <div class="card-stats">
+            <span class="card-badge">$750</span>
+          </div>
+        </div>
+        <div class="card card-gear">
+          <h3 class="card-title">Vintage Drum Composer 909</h3>
+          <p class="card-description">Legendary device that shaped Techno and House history.</p>
+          <div class="card-stats">
+            <span class="card-badge">$1,200</span>
+          </div>
+        </div>
+        <div class="card card-gear">
+          <h3 class="card-title">Eurorack Modular System</h3>
+          <p class="card-description">Labyrinth of patch cables. Endless experimentation.</p>
+          <div class="card-stats">
+            <span class="card-badge">$3,200</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <div class="section-icon">📈</div>
+        <div>
+          <h2 class="section-title">Skills Tree</h2>
+          <p class="section-subtitle">Level up your abilities across 4 categories</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <span class="accordion-title">🎹 Production Skills</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Oscillator Modulation</strong> — Improves unique sound signature. +15% sound design per level.</p>
+              <p style="margin-top: 12px;"><strong>Creative Sampling</strong> — Digging through old records. +12% catchiness per level.</p>
+              <p style="margin-top: 12px;"><strong>Build-up Drafting</strong> — Epic tension-release arrangements. +10% danceability per level.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span class="accordion-title">🔧 Engineering Skills</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Frequencies Separation (EQ)</strong> — Clearing mud in low-mids. +16% mixing per level.</p>
+              <p style="margin-top: 12px;"><strong>Loudness Maximizing</strong> — Sidechaining and saturation. +12% energy per level.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span class="accordion-title">🎤 Performance Skills</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Seamless Fades & Sweeps</strong> — Smooth club EQ blending. Keeps crowd energy stable.</p>
+              <p style="margin-top: 12px;"><strong>Stage Mic Hype</strong> — Screaming into mic, epic drops. +15% gig payout.</p>
+              <p style="margin-top: 12px;"><strong>Audio-Reactive Laser Setup</strong> — Choreographed lights. +20% prestige from gigs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span class="accordion-title">📱 Marketing Skills</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Viral Social Meme Hacking</strong> — Quirky videos featuring tracks. +25% self-release plays.</p>
+              <p style="margin-top: 12px;"><strong>VIP Guestlist Networking</strong> — Buying drinks for producers. Lower travel fees, better label rates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mechanics Section -->
+    <section id="mechanics" class="section">
+      <div class="section-header">
+        <div class="section-icon">⚙️</div>
+        <div>
+          <h2 class="section-title">Game Mechanics</h2>
+          <p class="section-subtitle">Understanding the simulation</p>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card" style="border-left: 3px solid var(--accent-cyan);">
+          <h3 class="card-title">🌊 World Trends</h3>
+          <p class="card-description">Every few months, trends shift boosting certain genres. Ride the wave for 1.5x hype multipliers. Check the trends panel to know what's hot!</p>
+        </div>
+
+        <div class="card" style="border-left: 3px solid var(--accent-cyan);">
+          <h3 class="card-title">📉 Hype Decay</h3>
+          <p class="card-description">Your hype naturally decays over time. Keep releasing music or performing gigs to maintain visibility. High hype = better gig payouts.</p>
+        </div>
+
+        <div class="card" style="border-left: 3px solid var(--accent-cyan);">
+          <h3 class="card-title">🔥 Burnout System</h3>
+          <p class="card-description">Constant production leads to burnout. High burnout reduces track quality. Rest by taking breaks between production cycles.</p>
+        </div>
+
+        <div class="card" style="border-left: 3px solid var(--accent-cyan);">
+          <h3 class="card-title">💰 Royalties & Revenue</h3>
+          <p class="card-description">Self-releases earn $0.004/stream. Label releases earn $0.008/stream (split per label agreement). Build fans for exponential growth.</p>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 32px;">
+        <div class="info-box-title">🎯 Track Quality Formula</div>
+        <div class="info-box-content">
+          <p>Track quality is calculated from:</p>
+          <ul style="margin-top: 12px; padding-left: 20px;">
+            <li><strong>Gear bonuses</strong> — Equipment upgrades directly improve stats</li>
+            <li><strong>Skill levels</strong> — Skills provide percentage multipliers</li>
+            <li><strong>Secondary genres</strong> — Adding a secondary genre boosts originality</li>
+            <li><strong>Label support</strong> — Signed artists get additional quality boosts</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips" class="section">
+      <div class="section-header">
+        <div class="section-icon">💡</div>
+        <div>
+          <h2 class="section-title">Tips for Success</h2>
+          <p class="section-subtitle">Strategic advice for all game phases</p>
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 20px; color: var(--accent-green);">🚀 Early Game (Months 1-6)</h3>
+      <div class="tips-grid">
+        <div class="tip-item">
+          <div class="tip-number">1</div>
+          <div class="tip-content">
+            <h4>Build Initial Fanbase</h4>
+            <p>Release frequently, even if quality is modest. Consistent output builds organic following.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">2</div>
+          <div class="tip-content">
+            <h4>Save for Headphones</h4>
+            <p>Studio headphones ($190) give immediate mixing quality boost. Best early investment.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">3</div>
+          <div class="tip-content">
+            <h4>Experiment with Genres</h4>
+            <p>Try adding secondary genres for the +25% originality bonus. Stand out from the crowd.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1rem; margin: 32px 0 20px; color: var(--accent-orange);">🌟 Mid Game (Months 6-24)</h3>
+      <div class="tips-grid">
+        <div class="tip-item">
+          <div class="tip-number">4</div>
+          <div class="tip-content">
+            <h4>Target Matching Labels</h4>
+            <p>Sign with labels that match your genre. Early labels like Subterranean Clicks are easier to get.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">5</div>
+          <div class="tip-content">
+            <h4>Gig Before Major Releases</h4>
+            <p>Build hype through performances before dropping important tracks for maximum impact.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">6</div>
+          <div class="tip-content">
+            <h4>Invest in Skills</h4>
+            <p>Skill points provide permanent bonuses. Prioritize skills matching your genre focus.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1rem; margin: 32px 0 20px; color: var(--accent-magenta);">👑 Late Game (Month 24+)</h3>
+      <div class="tips-grid">
+        <div class="tip-item">
+          <div class="tip-number">7</div>
+          <div class="tip-content">
+            <h4>Target Festival Venues</h4>
+            <p>Maximum payouts at festival-tier venues. London, Detroit, and LA festivals pay $14k-$140k.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">8</div>
+          <div class="tip-content">
+            <h4>Manage Burnout</h4>
+            <p>Take strategic rest periods between intense production. Quality > Quantity at this stage.</p>
+          </div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-number">9</div>
+          <div class="tip-content">
+            <h4>Ride Trends</h4>
+            <p>When a trend boosts your genre, release heavily to maximize the 1.5x hype multiplier.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">BEATMAKER LEGEND</div>
+    <p class="footer-text">Build your legacy. One beat at a time.</p>
+    <div class="footer-icons">
+      🎵 🎧 🔊 🎹
+    </div>
+    <p class="footer-text" style="margin-top: 20px; font-size: 0.8rem;">
+      Electronic Music Career Simulator &bull; Powered by React & Gemini AI
+    </p>
+  </footer>
+
+  <script>
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('.nav-link, .index-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
