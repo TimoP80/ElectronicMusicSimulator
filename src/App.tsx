@@ -24,6 +24,7 @@ import SkillsTree from "./components/SkillsTree";
 import UpgradableGearShop from "./components/UpgradableGearShop";
 import DataModEditor from "./components/DataModEditor";
 import AIDashboard from "./components/AIDashboard";
+import ReleaseManagement from "./components/ReleaseManagement";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
 
@@ -97,6 +98,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "editor">("workspace");
   const [preSelectedTrackId, setPreSelectedTrackId] = useState<string>("");
   const [onboardingShowEditor, setOnboardingShowEditor] = useState(false);
+  const [showCreateLabelModal, setShowCreateLabelModal] = useState(false);
 
   // Save slot states
   const [saveSlot1, setSaveSlot1] = useState<GameState | null>(null);
@@ -242,6 +244,8 @@ export default function App() {
       tracks: [],
       releases: [],
       signedLabelId: null,
+      playerLabelId: null,
+      playerLabelName: null,
       tracksDueToLabel: 0,
       currentTrend: WORLD_TRENDS[0],
       log: [
@@ -397,6 +401,39 @@ export default function App() {
     );
     saveState(final);
   };
+
+  // 4b. Start your own record label
+  const handleCreateOwnLabel = () => {
+    setShowCreateLabelModal(true);
+  };
+
+  const handleConfirmCreateLabel = (labelName: string) => {
+    if (!gameState) return;
+
+    const labelId = `player_label_${Date.now()}`;
+    const updated: GameState = {
+      ...gameState,
+      playerLabelId: labelId,
+      playerLabelName: labelName,
+      stats: {
+        ...gameState.stats,
+        prestige: Math.min(100, gameState.stats.prestige + 15)
+      }
+    };
+
+    const final = appendLog(
+      updated,
+      "Record Label Founded!",
+      `Launched your own imprint: "${labelName}". You can now manage releases, sign artists, and build your catalog!`,
+      "label"
+    );
+    saveState(final);
+    setShowCreateLabelModal(false);
+  };
+
+  // Check if player can create their own label
+  const canCreateOwnLabel = gameState && !gameState.playerLabelId && !gameState.signedLabelId && 
+                            gameState.stats.fans >= 500 && gameState.stats.prestige >= 60;
 
   // 5. Release tracks: Self vs. Label
   const executeRelease = async (track: Track, labelId: string | null) => {
@@ -1153,6 +1190,13 @@ export default function App() {
               )}
 
               {activeTab === "releases" && (
+                gameState.playerLabelId ? (
+                  <ReleaseManagement 
+                    gameState={gameState} 
+                    playerLabelId={gameState.playerLabelId}
+                    playerLabelName={gameState.playerLabelName || "My Record Label"}
+                  />
+                ) : (
                 <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-5 rounded-xl space-y-4 shadow-lg">
                   <div>
                     <h2 className="text-base font-display font-bold text-white tracking-tight">Rave Streaming Portal (Soundclash Analytics)</h2>
@@ -1233,6 +1277,7 @@ export default function App() {
                     </p>
                   )}
                 </div>
+                )
               )}
 
               {activeTab === "live" && (
@@ -1252,6 +1297,8 @@ export default function App() {
                   onSelfRelease={handleSelfRelease}
                   preSelectedTrackId={preSelectedTrackId}
                   setPreSelectedTrackId={setPreSelectedTrackId}
+                  onCreateOwnLabel={handleCreateOwnLabel}
+                  canCreateOwnLabel={canCreateOwnLabel}
                 />
               )}
 
@@ -1454,6 +1501,54 @@ export default function App() {
                 className="w-full bg-[#050507] hover:bg-[#111114] text-slate-300 hover:text-white border border-[#1A1A1E] hover:border-slate-700 font-mono text-[11px] py-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-98 text-center"
               >
                 <Database className="h-4 w-4 text-[#FF00FF]" /> Open Mod-Pack Toolkit & Editor
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Create Label Modal */}
+      {gameState && showCreateLabelModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] bg-opacity-50">
+          <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-8 rounded-xl max-w-md w-full shadow-2xl">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <Disc size={20} className="text-[#00FF95]" />
+              Start Your Own Record Label
+            </h3>
+            <p className="text-xs text-slate-400 mb-4">
+              You've achieved enough industry presence to launch your own imprint. Build your catalog, sign artists, and compete in the market!
+            </p>
+            <div className="mb-6">
+              <label className="block text-[10px] font-mono text-[#00FF95] uppercase tracking-tracking-widest mb-2 font-bold">
+                Label Name
+              </label>
+              <input
+                type="text"
+                id="labelNameInput"
+                placeholder="e.g. Phantom Grooves, Electric Soul Records..."
+                maxLength={40}
+                className="w-full bg-[#050507] border border-[#1A1A1E] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#00FF95]/60"
+                autoFocus
+              />
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowCreateLabelModal(false)}
+                className="flex-1 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2.5 rounded-lg text-sm transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  const input = document.getElementById('labelNameInput') as HTMLInputElement;
+                  if (input && input.value.trim()) {
+                    handleConfirmCreateLabel(input.value.trim());
+                    input.value = '';
+                  }
+                }}
+                className="flex-1 bg-[#00FF95] hover:bg-[#00FF95]/90 text-black font-bold px-4 py-2.5 rounded-lg text-sm transition-colors"
+              >
+                Launch Label 🚀
               </button>
             </div>
           </div>

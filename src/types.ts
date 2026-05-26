@@ -271,6 +271,8 @@ export interface GameState {
   tracks: Track[]; // Composed tracks not yet released
   releases: ReleasedTrack[]; // Tracks released
   signedLabelId: string | null;
+  playerLabelId: string | null;    // If player owns their own label
+  playerLabelName: string | null;  // Name of player's label
   tracksDueToLabel: number;
   currentTrend: MusicTrend;
   log: EventLog[];

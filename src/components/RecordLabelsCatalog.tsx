@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Sparkles, Mail, CheckCircle2, ChevronRight, Ban, Award, FileSpreadsheet, Send, DollarSign, RefreshCw } from "lucide-react";
+import { Sparkles, Mail, CheckCircle2, ChevronRight, Ban, Award, FileSpreadsheet, Send, DollarSign, RefreshCw, Disc } from "lucide-react";
 import { GameState, Track, RecordLabel } from "../types";
 import { LABELS_DB } from "../utils/simulation";
 
@@ -15,6 +15,8 @@ interface RecordLabelsProps {
   onSelfRelease: (trackId: string) => void;
   preSelectedTrackId: string;
   setPreSelectedTrackId: (id: string) => void;
+  onCreateOwnLabel: () => void;
+  canCreateOwnLabel: boolean;
 }
 
 const getLabelArtwork = (labelId: string): string => {
@@ -34,7 +36,9 @@ export default function RecordLabelsCatalog({
   onReleaseWithLabel, 
   onSelfRelease,
   preSelectedTrackId,
-  setPreSelectedTrackId
+  setPreSelectedTrackId,
+  onCreateOwnLabel,
+  canCreateOwnLabel
 }: RecordLabelsProps) {
   const [selectedLabel, setSelectedLabel] = useState<RecordLabel | null>(LABELS_DB[0]);
   const [pitchTrackId, setPitchTrackId] = useState("");
@@ -168,6 +172,33 @@ export default function RecordLabelsCatalog({
           ) : (
             <div className="text-slate-500 font-mono text-xs italic py-6 text-center">
               Signed to no label contract. Working as an independent DIY artist.
+            </div>
+          )}
+          {!gameState.signedLabelId && (
+            <div className="pt-2 border-t border-[#1A1A1E]">
+              {canCreateOwnLabel ? (
+                <button
+                  onClick={onCreateOwnLabel}
+                  className="w-full bg-gradient-to-r from-[#00FF95]/20 to-[#FF00FF]/20 hover:from-[#00FF95]/30 hover:to-[#FF00FF]/30 border border-[#00FF95]/30 text-[#00FF95] font-bold px-4 py-3 rounded-lg text-xs transition-all flex items-center justify-center gap-2"
+                >
+                  <Disc className="h-4 w-4" />
+                  Start Your Own Record Label
+                </button>
+              ) : (
+                <div className="bg-[#050507]/50 p-3 rounded-lg text-center">
+                  <p className="text-[10px] text-slate-500">Reach 500 fans and prestige 60+ to start your own imprint</p>
+                  <div className="mt-2 flex gap-2 text-[9px] font-mono">
+                    <div className="flex-1 bg-slate-800/50 rounded p-1.5">
+                      <span className="text-slate-600">Fans: </span>
+                      <span className={gameState.stats.fans >= 500 ? "text-green-400" : "text-slate-400"}>{gameState.stats.fans}/500</span>
+                    </div>
+                    <div className="flex-1 bg-slate-800/50 rounded p-1.5">
+                      <span className="text-slate-600">Prestige: </span>
+                      <span className={gameState.stats.prestige >= 60 ? "text-green-400" : "text-slate-400"}>{gameState.stats.prestige}/60</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
