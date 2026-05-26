@@ -555,3 +555,6 @@ export interface ArtistMemberData {
 export interface ArtistPoolDatabase {
   PreDefinedArtists: PreDefinedArtists;
 }
+
+// Re-export release system types
+export * from "./types/releases";
