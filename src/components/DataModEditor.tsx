@@ -131,6 +131,7 @@ export interface ModPack {
 interface DataModEditorProps {
   gameState: GameState | null;
   setGameState: React.Dispatch<React.SetStateAction<GameState | null>>;
+  standaloneMode?: boolean;
 }
 
 const DEFAULT_MOD_PACK: ModPack = {
@@ -280,7 +281,7 @@ const DEFAULT_MOD_PACK: ModPack = {
   }
 };
 
-export default function DataModEditor({ gameState, setGameState }: DataModEditorProps) {
+export default function DataModEditor({ gameState, setGameState, standaloneMode = false }: DataModEditorProps) {
   const [activeTab, setActiveTab] = useState<
     "meta" | "genres" | "artists" | "gear" | "world" | "events" | "economy" | "nodegraph" | "stress"
   >("meta");
@@ -847,75 +848,106 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
   };
 
   return (
-    <div id="developer_mod_toolkit_wrapper" className="space-y-6 pt-1 animate-fadeIn text-slate-100">
+    <div id="developer_mod_toolkit_wrapper" className={`animate-fadeIn text-slate-100 ${standaloneMode ? 'h-full overflow-y-auto' : 'space-y-6 pt-1'}`}>
       
-      {/* Header Banner - Cyberspace style */}
-      <div className="bg-[#0A0A0E] border border-[#1d1d28] p-5 rounded-2xl relative overflow-hidden shadow-2xl">
-        <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-[#FF00FF]/10 to-transparent pointer-events-none" />
-        <div className="absolute left-1/3 top-1/4 w-[400px] h-[400px] bg-[#00FF95]/3 blurring-circle rounded-full pointer-events-none" />
+      {/* Header Banner - Cyberspace style - hidden in embedded mode */}
+      {!standaloneMode && (
+        <div className="bg-[#0A0A0E] border border-[#1d1d28] p-5 rounded-2xl relative overflow-hidden shadow-2xl">
+          <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-[#FF00FF]/10 to-transparent pointer-events-none" />
+          <div className="absolute left-1/3 top-1/4 w-[400px] h-[400px] bg-[#00FF95]/3 blurring-circle rounded-full pointer-events-none" />
 
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 z-10 relative">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="bg-[#00FF95]/15 border border-[#00FF95]/40 text-[#00FF95] text-[9.5px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                PRO DEV ENV // RAW DATA EDITOR
-              </span>
-              {modPack.metadata.isTotalConversion && (
-                <span className="bg-[#FF00FF]/15 border border-[#FF00FF]/40 text-[#FF00FF] text-[9.5px] font-mono font-bold px-2 py-0.5 rounded tracking-widest uppercase animate-pulse">
-                  Total Conversion Mode
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 z-10 relative">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="bg-[#00FF95]/15 border border-[#00FF95]/40 text-[#00FF95] text-[9.5px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                  PRO DEV ENV // RAW DATA EDITOR
                 </span>
-              )}
+                {modPack.metadata.isTotalConversion && (
+                  <span className="bg-[#FF00FF]/15 border border-[#FF00FF]/40 text-[#FF00FF] text-[9.5px] font-mono font-bold px-2 py-0.5 rounded tracking-widest uppercase animate-pulse">
+                    Total Conversion Mode
+                  </span>
+                )}
+              </div>
+              <h1 className="text-2xl font-display font-extrabold tracking-tight text-white flex items-center gap-2 mt-1">
+                <Database className="h-6 w-6 text-[#00FF95] drop-shadow-[0_0_8px_rgba(0,255,149,0.4)]" />
+                Cyber Raves Modding Toolkit <span className="text-xs font-mono text-slate-500 font-normal">v2.10_Beta</span>
+              </h1>
+              <p className="text-xs text-slate-400 font-sans max-w-2xl">
+                Create electronic microgenres, sculpt custom hardware drum machines, edit economy balance coefficients, customize AI behaviors, and hot-inject mods direct into current save frames.
+              </p>
             </div>
-            <h1 className="text-2xl font-display font-extrabold tracking-tight text-white flex items-center gap-2 mt-1">
-              <Database className="h-6 w-6 text-[#00FF95] drop-shadow-[0_0_8px_rgba(0,255,149,0.4)]" />
-              Cyber Raves Modding Toolkit <span className="text-xs font-mono text-slate-500 font-normal">v2.10_Beta</span>
-            </h1>
-            <p className="text-xs text-slate-400 font-sans max-w-2xl">
-              Create electronic microgenres, sculpt custom hardware drum machines, edit economy balance coefficients, customize AI behaviors, and hot-inject mods direct into current save frames.
-            </p>
+
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={injectModToLiveGameSession}
+                className="bg-emerald-600 hover:bg-emerald-555 border border-emerald-500/20 text-white font-mono font-bold text-xs py-2 px-3.5 rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md shadow-emerald-950/20"
+                title="Hot load data changes into the active game session"
+              >
+                <RefreshCw className="h-3.5 w-3.5 animate-spin-slow text-emerald-200" />
+                HOT-INJECT TO LIVE GAME
+              </button>
+              <button
+                onClick={handleExportMod}
+                className="bg-slate-900 border border-slate-750 hover:bg-slate-800 text-slate-300 font-mono text-xs py-2 px-3.5 rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-1.5"
+              >
+                <Download className="h-3.5 w-3.5" />
+                Export .json Mod
+              </button>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          {/* Info alerts */}
+          {feedbackMsg && (
+            <div className={`mt-4 p-3 rounded-lg text-xs font-mono flex items-center gap-2 animate-bounce border ${
+              feedbackMsg.type === "success" 
+                ? "bg-[#00FF95]/10 border-[#00FF95]/30 text-[#00FF95]" 
+                : "bg-purple-950/20 border-purple-500/30 text-purple-300"
+            }`}>
+              {feedbackMsg.type === "success" ? <CheckCircle2 className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
+              <span>{feedbackMsg.text}</span>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Compact Header for Standalone Mode */}
+      {standaloneMode && (
+        <div className="bg-[#0A0A0E] border border-[#1d1d28] px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+          <div className="flex items-center gap-3">
+            <Database className="h-5 w-5 text-[#00FF95]" />
+            <div>
+              <h1 className="text-base font-display font-bold text-white">Cyber Raves Modding Toolkit</h1>
+              <span className="text-[10px] font-mono text-slate-500">v2.10_Beta</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
             <button
               onClick={injectModToLiveGameSession}
-              className="bg-emerald-600 hover:bg-emerald-555 border border-emerald-500/20 text-white font-mono font-bold text-xs py-2 px-3.5 rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-1.5 shadow-md shadow-emerald-950/20"
-              title="Hot load data changes into the active game session"
+              className="bg-emerald-600 hover:bg-emerald-555 border border-emerald-500/20 text-white font-mono font-bold text-[10px] py-1.5 px-3 rounded-lg transition-all cursor-pointer active:scale-95 flex items-center gap-1.5"
             >
-              <RefreshCw className="h-3.5 w-3.5 animate-spin-slow text-emerald-200" />
-              HOT-INJECT TO LIVE GAME
+              <RefreshCw className="h-3 w-3" />
+              HOT-INJECT
             </button>
             <button
               onClick={handleExportMod}
-              className="bg-slate-900 border border-slate-750 hover:bg-slate-800 text-slate-300 font-mono text-xs py-2 px-3.5 rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-1.5"
+              className="bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-300 font-mono text-[10px] py-1.5 px-3 rounded-lg transition-all cursor-pointer active:scale-95 flex items-center gap-1.5"
             >
-              <Download className="h-3.5 w-3.5" />
-              Export .json Mod
+              <Download className="h-3 w-3" />
+              Export
             </button>
           </div>
         </div>
-
-        {/* Info alerts */}
-        {feedbackMsg && (
-          <div className={`mt-4 p-3 rounded-lg text-xs font-mono flex items-center gap-2 animate-bounce border ${
-            feedbackMsg.type === "success" 
-              ? "bg-[#00FF95]/10 border-[#00FF95]/30 text-[#00FF95]" 
-              : "bg-purple-950/20 border-purple-500/30 text-purple-300"
-          }`}>
-            {feedbackMsg.type === "success" ? <CheckCircle2 className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
-            <span>{feedbackMsg.text}</span>
-          </div>
-        )}
-      </div>
+      )}
 
       {/* Editor Channel Selection / Workspace tabs switcher */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-9 gap-1 bg-slate-950/60 p-1 rounded-xl border border-slate-900 overflow-x-auto">
+      <div className={`${standaloneMode ? 'px-4' : ''} grid grid-cols-2 sm:grid-cols-4 md:grid-cols-9 gap-1 bg-slate-950/60 p-1 rounded-xl border border-slate-900 overflow-x-auto ${standaloneMode ? 'sticky top-[72px] z-40' : ''}`}>
         <button
           onClick={() => setActiveTab("meta")}
           className={`px-3 py-2 text-[10px] font-mono rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${
             activeTab === "meta" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <Settings className="h-3.5 w-3.5" /> METADATA
+          <Settings className="h-3.5 w-3.5" /> META
         </button>
         <button
           onClick={() => setActiveTab("genres")}
@@ -923,7 +955,7 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
             activeTab === "genres" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <Music className="h-3.5 w-3.5" /> GENRE SPECS
+          <Music className="h-3.5 w-3.5" /> GENRES
         </button>
         <button
           onClick={() => setActiveTab("artists")}
@@ -931,7 +963,7 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
             activeTab === "artists" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <User className="h-3.5 w-3.5" /> ARTISTS/AI
+          <User className="h-3.5 w-3.5" /> ARTISTS
         </button>
         <button
           onClick={() => setActiveTab("gear")}
@@ -939,7 +971,7 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
             activeTab === "gear" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <Cpu className="h-3.5 w-3.5" /> HARDWARE
+          <Cpu className="h-3.5 w-3.5" /> GEAR
         </button>
         <button
           onClick={() => setActiveTab("world")}
@@ -947,7 +979,7 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
             activeTab === "world" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <Globe className="h-3.5 w-3.5" /> WORLD SCENE
+          <Globe className="h-3.5 w-3.5" /> WORLD
         </button>
         <button
           onClick={() => setActiveTab("nodegraph")}
@@ -955,7 +987,7 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
             activeTab === "nodegraph" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <GitBranch className="h-3.5 w-3.5" /> AI GRAPHS
+          <GitBranch className="h-3.5 w-3.5" /> AI
         </button>
         <button
           onClick={() => setActiveTab("events")}
@@ -963,7 +995,7 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
             activeTab === "events" ? "bg-[#111114] text-[#00FF95] border border-[#00FF95]/20 font-bold" : "text-slate-400 hover:text-white hover:bg-slate-900/40"
           }`}
         >
-          <Flame className="h-3.5 w-3.5" /> STORY SCRIPTS
+          <Flame className="h-3.5 w-3.5" /> EVENTS
         </button>
         <button
           onClick={() => setActiveTab("economy")}
@@ -975,20 +1007,20 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
         </button>
         <button
           onClick={() => setActiveTab("stress")}
-          className={`px-3 py-2 text-[10px] font-mono rounded-[#FF00FF]/2 py-1 transition-all cursor-pointer flex items-center justify-center gap-1 ${
+          className={`px-3 py-2 text-[10px] font-mono rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${
             activeTab === "stress" ? "bg-[#111114] text-[#FF00FF] border border-[#FF00FF]/20 font-bold" : "text-slate-400 hover:text-[#FF00FF] hover:bg-slate-900/40"
           }`}
           title="Autonomous test simulator with graph forecasting logs"
         >
-          <Terminal className="h-3.5 w-3.5" /> SIMULATOR LAB
+          <Terminal className="h-3.5 w-3.5" /> SIM
         </button>
       </div>
 
       {/* Main Multi-channel Editing Dashboard Panel */}
-      <div id="main_modding_workspace_channel" className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div id="main_modding_workspace_channel" className={`grid grid-cols-1 gap-4 ${standaloneMode ? 'lg:grid-cols-1 px-4 pb-4' : 'lg:grid-cols-12'} ${standaloneMode ? '' : 'p-0'}`}>
         
-        {/* Workspace Central Container Area (Col 9) */}
-        <div className="lg:col-span-9 bg-[#070709] border border-[#1A1A1E] rounded-xl p-5 space-y-6">
+        {/* Workspace Central Container Area */}
+        <div className={`${standaloneMode ? '' : 'lg:col-span-9'} bg-[#070709] border border-[#1A1A1E] rounded-xl p-4 space-y-5 ${standaloneMode ? '' : 'p-5'} ${standaloneMode ? '' : 'space-y-6'}`}>
 
           {/* TAB 1: MOD PACK METADATA */}
           {activeTab === "meta" && (
@@ -2038,69 +2070,71 @@ export default function DataModEditor({ gameState, setGameState }: DataModEditor
 
         </div>
 
-        {/* Workspace Sidebar - Intel & active metadata specs (Col 3) */}
-        <div className="lg:col-span-3 space-y-6">
-          
-          {/* Active Mod Pack stats */}
-          <div className="bg-[#070709] border border-[#1A1A1E] p-4.5 rounded-xl space-y-4 font-mono text-left text-xs">
-            <h3 className="text-[11px] uppercase tracking-wider text-[#00FF95] font-bold flex items-center gap-1.5">
-              <Database className="h-4 w-4 text-[#00FF95]" /> ACTIVE MOD PACK STATS
-            </h3>
+        {/* Workspace Sidebar - Intel & active metadata specs - hidden in standalone */}
+        {!standaloneMode && (
+          <div className="lg:col-span-3 space-y-6">
             
-            <div className="space-y-2 border-b border-slate-900 pb-2 bg-slate-950/40 p-2.5 rounded-lg border">
-              <div className="flex justify-between items-center text-[10.5px]">
-                <span className="text-slate-500 font-medium">Manifest Hook Name:</span>
-                <span className="text-white font-bold max-w-[120px] truncate">{modPack.metadata.name}</span>
+            {/* Active Mod Pack stats */}
+            <div className="bg-[#070709] border border-[#1A1A1E] p-4.5 rounded-xl space-y-4 font-mono text-left text-xs">
+              <h3 className="text-[11px] uppercase tracking-wider text-[#00FF95] font-bold flex items-center gap-1.5">
+                <Database className="h-4 w-4 text-[#00FF95]" /> ACTIVE MOD PACK STATS
+              </h3>
+              
+              <div className="space-y-2 border-b border-slate-900 pb-2 bg-slate-950/40 p-2.5 rounded-lg border">
+                <div className="flex justify-between items-center text-[10.5px]">
+                  <span className="text-slate-500 font-medium">Manifest Hook Name:</span>
+                  <span className="text-white font-bold max-w-[120px] truncate">{modPack.metadata.name}</span>
+                </div>
+                <div className="flex justify-between items-center text-[10.5px]">
+                  <span className="text-slate-500 font-medium">Author Compiler:</span>
+                  <span className="text-white font-bold">{modPack.metadata.author}</span>
+                </div>
+                <div className="flex justify-between items-center text-[10.5px]">
+                  <span className="text-slate-500 font-medium">Active Code base:</span>
+                  <span className="text-cyan-400 font-bold">{modPack.metadata.version}</span>
+                </div>
               </div>
-              <div className="flex justify-between items-center text-[10.5px]">
-                <span className="text-slate-500 font-medium">Author Compiler:</span>
-                <span className="text-white font-bold">{modPack.metadata.author}</span>
-              </div>
-              <div className="flex justify-between items-center text-[10.5px]">
-                <span className="text-slate-500 font-medium">Active Code base:</span>
-                <span className="text-cyan-400 font-bold">{modPack.metadata.version}</span>
+
+              <div className="space-y-2 pt-1 font-mono text-[10.5px]">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Custom Microgenres:</span>
+                  <strong className="text-[#00FF95] bg-[#00FF95]/5 px-1.5 border border-[#00FF95]/20 rounded">{modPack.genres.length} active</strong>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Rival DJ Blueprints:</span>
+                  <strong className="text-purple-400 bg-purple-500/5 px-1.5 border border-purple-500/20 rounded">{modPack.artists.length} spawned</strong>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Custom Synth Modules:</span>
+                  <strong className="text-amber-400 bg-amber-500/5 px-1.5 border border-amber-500/20 rounded">{modPack.gears.length} coded</strong>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Warehouse City Scene:</span>
+                  <strong className="text-cyan-400 bg-cyan-500/5 px-1.5 border border-cyan-500/20 rounded">{modPack.cities.length} mapped</strong>
+                </div>
               </div>
             </div>
 
-            <div className="space-y-2 pt-1 font-mono text-[10.5px]">
-              <div className="flex justify-between items-center">
-                <span className="text-slate-400">Custom Microgenres:</span>
-                <strong className="text-[#00FF95] bg-[#00FF95]/5 px-1.5 border border-[#00FF95]/20 rounded">{modPack.genres.length} active</strong>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-400">Rival DJ Blueprints:</span>
-                <strong className="text-purple-400 bg-purple-500/5 px-1.5 border border-purple-500/20 rounded">{modPack.artists.length} spawned</strong>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-400">Custom Synth Modules:</span>
-                <strong className="text-amber-400 bg-amber-500/5 px-1.5 border border-amber-500/20 rounded">{modPack.gears.length} coded</strong>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-slate-400">Warehouse City Scene:</span>
-                <strong className="text-cyan-400 bg-cyan-500/5 px-1.5 border border-cyan-500/20 rounded">{modPack.cities.length} mapped</strong>
-              </div>
+            {/* Quick-Mod Advice Guide Box */}
+            <div className="bg-[#FF00FF]/5 border border-[#FF00FF]/20 p-4.5 rounded-xl space-y-3 font-mono text-left text-xs">
+              <h4 className="text-[10px] uppercase tracking-wider text-[#FF00FF] font-bold flex items-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5 text-[#FF00FF]" /> MODDING INTEL COMPILER
+              </h4>
+              <ul className="space-y-2 text-[10px] text-slate-300 leading-relaxed font-sans list-disc list-inside">
+                <li>
+                  <strong className="text-white font-semibold">Total Conversion bypass</strong> ignores standard base game lookups. Use it when importing large community total conversions!
+                </li>
+                <li>
+                  Set your <strong className="text-[#00FF95] font-semibold">Base stream royalty coefficient higher</strong> to test extreme sandbox career play or faster studio gear unlocking.
+                </li>
+                <li>
+                  Click the <strong className="text-cyan-400 font-semibold">Hot-Inject to Live Game</strong> button at any time to immediately write your custom specs into the active session frame memory without resetting your level!
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/* Quick-Mod Advice Guide Box */}
-          <div className="bg-[#FF00FF]/5 border border-[#FF00FF]/20 p-4.5 rounded-xl space-y-3 font-mono text-left text-xs">
-            <h4 className="text-[10px] uppercase tracking-wider text-[#FF00FF] font-bold flex items-center gap-1.5">
-              <Sparkles className="h-3.5 w-3.5 text-[#FF00FF]" /> MODDING INTEL COMPILER
-            </h4>
-            <ul className="space-y-2 text-[10px] text-slate-300 leading-relaxed font-sans list-disc list-inside">
-              <li>
-                <strong className="text-white font-semibold">Total Conversion bypass</strong> ignores standard base game lookups. Use it when importing large community total conversions!
-              </li>
-              <li>
-                Set your <strong className="text-[#00FF95] font-semibold">Base stream royalty coefficient higher</strong> to test extreme sandbox career play or faster studio gear unlocking.
-              </li>
-              <li>
-                Click the <strong className="text-cyan-400 font-semibold">Hot-Inject to Live Game</strong> button at any time to immediately write your custom specs into the active session frame memory without resetting your level!
-              </li>
-            </ul>
           </div>
-
-        </div>
+        )}
 
       </div>
 

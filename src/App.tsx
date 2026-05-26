@@ -1266,29 +1266,30 @@ export default function App() {
           </main>
         </>
       ) : onboardingShowEditor ? (
-        /* Editor view on onboarding splash screen */
-        <div className="flex-1 max-w-7xl w-full mx-auto px-4 py-8 z-10 relative flex flex-col min-h-[calc(100vh-140px)] overflow-y-auto">
-          <div className="bg-[#0A0A0C] border border-[#1A1A1E] rounded-3xl p-6 md:p-8 shadow-2xl space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#1A1A1E]">
-              <div className="space-y-1">
-                <h1 className="text-xl md:text-2xl font-display font-bold text-white flex items-center gap-2.5 uppercase tracking-tight">
-                  <Database className="h-6 w-6 text-[#00FF95]" /> Developer Modding Studio & Editor
-                </h1>
-                <p className="text-xs text-slate-400 font-sans">
-                  Design, modify, and inspect custom genres, artists, and script parameters before starting your career.
-                </p>
-              </div>
-              <button
-                onClick={() => setOnboardingShowEditor(false)}
-                className="bg-[#111114] hover:bg-[#1A1A1E] text-slate-300 hover:text-white border border-[#1A1A1E] hover:border-slate-700 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider uppercase cursor-pointer transition-all active:scale-95 self-start sm:self-center"
-              >
-                &larr; Back to Artist Selection
-              </button>
+        /* Editor view - full screen standalone mod editor */
+        <div className="fixed inset-0 z-[100] bg-[#0A0A0C] overflow-hidden flex flex-col">
+          {/* Back button header */}
+          <div className="bg-[#050507] border-b border-[#1A1A1E] px-4 py-3 flex items-center justify-between flex-shrink-0">
+            <button
+              onClick={() => setOnboardingShowEditor(false)}
+              className="flex items-center gap-2 bg-[#111114] hover:bg-[#1A1A1E] text-slate-300 hover:text-white border border-[#1A1A1E] hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all active:scale-95"
+            >
+              <span className="text-lg">←</span>
+              <span>Back to Artist Selection</span>
+            </button>
+            <div className="flex items-center gap-4">
+              <span className="text-[10px] font-mono text-slate-500">MODDING STUDIO // WORKSHOP</span>
+              <div className="h-6 w-px bg-[#1A1A1E]" />
+              <span className="text-xs font-mono text-[#00FF95]">Ready to create!</span>
             </div>
-            
+          </div>
+          
+          {/* Editor content - takes remaining space */}
+          <div className="flex-1 overflow-hidden">
             <DataModEditor
               gameState={null}
               setGameState={setGameState}
+              standaloneMode={true}
             />
           </div>
         </div>
