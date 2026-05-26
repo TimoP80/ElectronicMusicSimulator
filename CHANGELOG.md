@@ -6,6 +6,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- **4,574 Predefined Artists** from authentic electronic music scene data:
+  - Real-world artists like Scooter, Ferry Corsten, Armin van Buuren, DJ Tiesto
+  - 2,328 Trance artists, 884 Psychedelic, 614 Hard Dance, 471 Hardcore
+  - Genre-specific fame and ego calculations
+  - Dynamic relationship system for rivals, mentors, and colleagues
+- **566 Record Labels** from scene database:
+  - Black Hole Recordings, Armada Music, Anjunabeats, Masters Of Hardcore, ID&T
+  - Real founding years and contract terms
+  - Genre-specific prestige calculations
+- **500+ Authentic Track Names** from song database:
+  - Classic trance/electronic names like "Age Of Love", "Airwave", "Communication"
+  - 70% chance to use database names, 30% procedural generation
+- **33 New Music Subgenres**:
+  - Trance: Progressive, Melodic, Tech, Uplifting
+  - Hardcore: Gabber, Speedcore, Terrorcore, Noisecore, Frenchcore
+  - Psytrance: Dark psy, Full On, Goa, Progressive Psytrance
+  - Breakbeat: Big Beat, Nu skool breaks, Raggacore, Chemical breaks
+  - Acid: Acid House, Acid Trance
+  - And more: Suomisaundi, Detroit/Minimal Techno, Schranz
+- **New World Trends** for imported subgenres:
+  - Epic Trance Anthem Revival
+  - Rotterdam Gabber Comeback
+  - 303 Acid Squelch Renaissance
+  - Suomisaundi Global Expansion
+  - Jumpstyle International Party
+  - Dark Psy Forest Energy
+- **Scene Group Database** for authentic release naming conventions
+- **Compilation Series Names** (Trance Stories, The Definitive Trance Anthology, etc.)
+- **Track Version Patterns** (Original Mix, Remix, Radio Edit, etc.)
+- **Release Format Types** (CD Single, Vinyl EP, Web Album, etc.)
+
+### Added
+- `src/data/artists.ts` - Artist pool with 4,574 predefined artists
+- `src/data/recordLabels.ts` - Extended record labels database
+- `src/data/database.ts` - Centralized data access module
+
 ---
 
 ## [1.3.0] - 2026-05-26
