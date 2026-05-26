@@ -84,6 +84,13 @@ export interface Track {
   };
   artworkUrl?: string;
   ideasSpent: number;
+  
+  // Track length settings
+  lengthCategory: 'radio_edit' | 'club_edit' | 'extended' | 'long_play' | 'megamix';
+  durationSeconds: number; // Actual duration in seconds
+  
+  // Version info for releases
+  versionName?: string; // e.g., "Radio Edit", "Extended Mix", "Club Mix"
 }
 
 export interface ReleasedTrack extends Track {

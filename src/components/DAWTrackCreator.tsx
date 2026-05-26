@@ -32,6 +32,53 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
   const [bpmInput, setBpmInput] = useState(135);
   const [artworkStyle, setArtworkStyle] = useState<"neon" | "mono" | "retro" | "liquid">("neon");
 
+  // Track length settings
+  const [lengthCategory, setLengthCategory] = useState<'radio_edit' | 'club_edit' | 'extended' | 'long_play' | 'megamix'>('club_edit');
+
+  // Length category configurations
+  const lengthCategories = [
+    { 
+      id: 'radio_edit' as const, 
+      name: 'Radio Edit', 
+      icon: '📻',
+      description: '2:30-3:30', 
+      durationRange: [150, 210],
+      hint: 'Concise, streaming-friendly format. Perfect for Spotify playlists and radio airplay.'
+    },
+    { 
+      id: 'club_edit' as const, 
+      name: 'Club Edit', 
+      icon: '🎧',
+      description: '4:00-5:30', 
+      durationRange: [240, 330],
+      hint: 'Standard club mix length. The sweet spot for DJ sets and most streaming platforms.'
+    },
+    { 
+      id: 'extended' as const, 
+      name: 'Extended Mix', 
+      icon: '🌙',
+      description: '6:00-8:00', 
+      durationRange: [360, 480],
+      hint: 'Longer journey version. Ideal for extended sets, underground events, and festival drops.'
+    },
+    { 
+      id: 'long_play' as const, 
+      name: 'Long Play', 
+      icon: '🔮',
+      description: '10:00-15:00', 
+      durationRange: [600, 900],
+      hint: 'Deep ambient or progressive journey. For meditation sessions or immersive experiences.'
+    },
+    { 
+      id: 'megamix' as const, 
+      name: 'Megamix', 
+      icon: '🎹',
+      description: '20:00+', 
+      durationRange: [1200, 2400],
+      hint: 'Maximum length for endurance mixes, continuous DJ sets, or avant-garde experiments.'
+    },
+  ];
+
   // AI Assistant states inside DAW Creator
   const [suggestedTitles, setSuggestedTitles] = useState<string[]>([]);
   const [aiProductionTip, setAiProductionTip] = useState<string>("");
@@ -90,6 +137,19 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
       return;
     }
 
+    // Calculate duration based on selected length category
+    const selectedLengthConfig = lengthCategories.find(l => l.id === lengthCategory);
+    const minDuration = selectedLengthConfig?.durationRange[0] || 240;
+    const maxDuration = selectedLengthConfig?.durationRange[1] || 330;
+    const durationSeconds = Math.floor(Math.random() * (maxDuration - minDuration + 1)) + minDuration;
+
+    // Format duration as MM:SS for display
+    const formatDuration = (secs: number) => {
+      const mins = Math.floor(secs / 60);
+      const seconds = secs % 60;
+      return `${mins}:${seconds.toString().padStart(2, '0')}`;
+    };
+
     setComposingProgress(0);
     onDeductInspiration(ideasToSpend);
 
@@ -119,6 +179,20 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
             // Inject global customized parameters
             track.stats.bpm = bpmInput;
             track.artworkUrl = `https://picsum.photos/seed/${encodeURIComponent(track.title)}_${artworkStyle}/300/300`;
+            
+            // Add length category and duration
+            track.lengthCategory = lengthCategory;
+            track.durationSeconds = durationSeconds;
+            
+            // Set version name based on length
+            const versionNames: Record<string, string> = {
+              'radio_edit': 'Radio Edit',
+              'club_edit': 'Club Mix',
+              'extended': 'Extended Mix',
+              'long_play': 'Long Play',
+              'megamix': 'Megamix'
+            };
+            track.versionName = versionNames[lengthCategory] || 'Original Mix';
 
             onComposeTrack(track);
             setComposingProgress(-1);
@@ -379,6 +453,35 @@ export default function DAWTrackCreator({ gameState, onComposeTrack, onDeductIns
                 />
                 <span className="text-[10px] text-slate-500 font-mono">{GENRES_DB[primaryGenre].bpmRange.max}</span>
               </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center text-[11px] font-mono text-slate-400 uppercase tracking-widest mb-2 font-bold">
+                <span>Track Format Length</span>
+                <span className="text-[#FF00FF] font-bold">{lengthCategories.find(l => l.id === lengthCategory)?.icon} {lengthCategories.find(l => l.id === lengthCategory)?.description}</span>
+              </div>
+              <div className="grid grid-cols-5 gap-1.5 bg-[#050507] p-2 rounded-lg border border-[#1A1A1E]">
+                {lengthCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setLengthCategory(cat.id)}
+                    disabled={composingProgress >= 0}
+                    title={cat.hint}
+                    className={`py-1.5 px-1 rounded-lg border text-center transition-all ${
+                      lengthCategory === cat.id
+                        ? "bg-[#111114] border-[#FF00FF] text-[#FF00FF]"
+                        : "bg-[#0A0A0C] border-[#1A1A1E] text-slate-500 hover:text-slate-300 hover:border-slate-700"
+                    }`}
+                  >
+                    <div className="text-base mb-0.5">{cat.icon}</div>
+                    <div className="text-[8px] font-mono font-bold leading-tight">{cat.name.split(' ')[0]}</div>
+                  </button>
+                ))}
+              </div>
+              <p className="text-[8px] text-slate-500 font-mono mt-1">
+                {lengthCategories.find(l => l.id === lengthCategory)?.hint}
+              </p>
             </div>
 
             <div>
