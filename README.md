@@ -2,6 +2,8 @@
   <img src="https://raw.githubusercontent.com/niclaslind/beatmaker-sim/main/public/banner.png" alt="Beatmaker Legend" width="800" onerror="this.style.display='none'" />
 </div>
 
+<img width="1672" height="941" alt="d7ba357d-fd15-4678-b691-60f8d17f2900" src="https://github.com/user-attachments/assets/750ed480-bed5-4f45-b7b5-c37e8d6f0944" />
+
 # 🎵 Beatmaker Legend
 
 ## Electronic Music Career Simulator
