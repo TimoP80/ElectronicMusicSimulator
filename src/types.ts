@@ -97,6 +97,52 @@ export interface ReleasedTrack extends Track {
   socialBuzz: string[];
 }
 
+// Simulated AI Artist Release
+export interface AIRelease {
+  id: string;
+  artistName: string;
+  artistId: string;
+  genre: MusicGenre;
+  trackTitle: string;
+  releaseDate: string; // Game date
+  labelName: string | null;
+  labelId: string | null;
+  format: ReleaseFormat;
+  playCount: number;
+  quality: number; // 0-100 quality score
+  isViral: boolean;
+  hypeGenerated: number;
+  source: "ai_release" | "viral" | "collaboration";
+}
+
+// Release format types
+export type ReleaseFormat = "Vinyl EP" | "CD Single" | "CD Maxi" | "Digital EP" | "Web Album" | "Vinyl LP" | "Cassette";
+
+// Simulated AI News Post
+export interface AINewsPost {
+  id: string;
+  date: string; // Game date
+  headline: string;
+  body: string;
+  category: "release" | "gossip" | "trend" | "festival" | "scandal" | "collab";
+  relatedArtists: string[];
+  relatedLabels: string[];
+  relatedGenres: MusicGenre[];
+  hypeImpact: number; // Positive or negative
+}
+
+// Simulated Label Activity
+export interface LabelActivity {
+  id: string;
+  labelId: string;
+  labelName: string;
+  date: string;
+  type: "signing" | "release" | "tour" | "closure" | "award";
+  description: string;
+  artistName?: string;
+  trackTitle?: string;
+}
+
 export interface RecordLabel {
   id: string;
   name: string;
@@ -231,6 +277,14 @@ export interface GameState {
   currentCityId: string;
   completedGigsCount: number;
   allTimeEarnings: number;
+  
+  // AI Simulation data
+  aiReleases: AIRelease[];      // Simulated releases from other artists
+  aiNews: AINewsPost[];        // Simulated news posts
+  labelActivities: LabelActivity[]; // Simulated label activities
+  
+  // Virtual artists (AI competitors/rivals)
+  virtualArtists: VirtualArtist[];
 }
 
 // Types imported from JSON data files

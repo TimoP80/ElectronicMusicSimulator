@@ -157,3 +157,8 @@ export function getExtendedLabelsCount(): number {
     .filter(label => label.LabelActive.toLowerCase() === 'true')
     .length;
 }
+
+// Get all extended labels (combined with base labels if needed)
+export function getAllExtendedLabels(): RecordLabel[] {
+  return getExtendedLabelsDB();
+}
