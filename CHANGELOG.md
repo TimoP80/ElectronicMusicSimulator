@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- **Expanded Game Guide** — Comprehensive HTML documentation with new articles:
+  - AI Scene Simulation - how the living scene works
+  - World News Browser - news reader features and tips
+  - Release Types & Formats - singles, EPs, albums, catalog numbers
+  - Record Labels Deep Dive - prestige tiers, genre coverage
+  - Dynamic AI Content - Gemini API setup and fallbacks
+  - Difficulty Levels - challenge modes explained
+  - Community Features - virtual artists, remixes, forum
+  - 15 navigation sections for easy access
+
 - **Dynamic AI Text Generation** — AI-powered content across the game engine:
   - `/api/generate-ai-scene-news` - Dynamic scene news headlines
   - `/api/generate-ai-forum-post` - Forum discussion generation
