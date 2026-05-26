@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { 
   Music, Sparkles, Disc, MapPin, Calendar, Heart, ShieldAlert, 
   Trash2, DollarSign, Users, Zap, TrendingUp, Trophy, ArrowUpRight, Award, MessageCircle, HelpCircle, Flame,
-  Database, Globe
+  Database, Globe, Newspaper
 } from "lucide-react";
 
 import { GameState, Track, ReleasedTrack, MusicGenre, MusicTrend } from "./types";
@@ -27,6 +27,7 @@ import AIDashboard from "./components/AIDashboard";
 import ReleaseManagement from "./components/ReleaseManagement";
 import ReleaseSection from "./components/ReleaseSection";
 import VirtualBrowser from "./components/VirtualBrowser";
+import WorldNewsBrowser from "./components/WorldNewsBrowser";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
 
@@ -202,6 +203,7 @@ export default function App() {
   const [onboardingName, setOnboardingName] = useState("");
   const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "editor" | "web">("workspace");
   const [showVirtualBrowser, setShowVirtualBrowser] = useState(false);
+  const [showWorldNews, setShowWorldNews] = useState(false);
   const [preSelectedTrackId, setPreSelectedTrackId] = useState<string>("");
   const [onboardingShowEditor, setOnboardingShowEditor] = useState(false);
   const [showCreateLabelModal, setShowCreateLabelModal] = useState(false);
@@ -971,6 +973,16 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
         />
       )}
       
+      {showWorldNews && (
+        <WorldNewsBrowser
+          isOpen={showWorldNews}
+          onClose={() => setShowWorldNews(false)}
+          news={gameState.aiNews || []}
+          releases={gameState.aiReleases || []}
+          labelActivities={gameState.labelActivities || []}
+        />
+      )}
+      
       {/* Subtle Scanline Retro Overlay */}
       <div className="absolute inset-0 pointer-events-none scanline opacity-[0.03] z-[999]" />
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(255,0,255,0.08),transparent_50%)] z-0" />
@@ -1202,6 +1214,13 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                 <span className="text-[9px] font-mono bg-[#050507] border border-[#1A1A1E] px-1.5 py-0.2 rounded text-[#FF00FF] font-bold">
                   {(gameState.aiReleases || []).length + (gameState.aiNews || []).length}
                 </span>
+              </button>
+              <button
+                onClick={() => setShowWorldNews(true)}
+                className="w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold font-sans flex items-center justify-between transition-all cursor-pointer bg-[#0F0F1A] border border-[#FF00FF]/30 hover:bg-[#1A1A2E] text-[#FF00FF] border-l-4 border-[#FF00FF]"
+              >
+                <span className="flex items-center gap-2"><Newspaper className="h-4 w-4" /> World News</span>
+                <span className="text-[9px] font-mono bg-[#FF00FF]/10 border border-[#FF00FF]/20 px-1.5 py-0.2 rounded text-[#FF00FF] font-bold">NEW</span>
               </button>
 
               <button
