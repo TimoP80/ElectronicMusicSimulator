@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu, dialog } from 'electron';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -6,6 +6,57 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
 
 let mainWindow: BrowserWindow | null = null;
+
+function createAboutMenu() {
+  const aboutInfo = {
+    appName: 'Electronic Music Career Simulator',
+    version: app.getVersion(),
+    author: 'Timo Pitkänen',
+    description: 'A career simulator game where you build your electronic music career from bedroom producer to festival headliner.',
+    website: 'https://github.com/TimoP80/ElectronicMusicSimulator'
+  };
+
+  dialog.showMessageBox(mainWindow, {
+    type: 'info',
+    title: `About ${aboutInfo.appName}`,
+    message: aboutInfo.appName,
+    detail: `Version ${aboutInfo.version}\n\nAuthor: ${aboutInfo.author}\n\n${aboutInfo.description}\n\nGitHub: ${aboutInfo.website}`,
+    buttons: ['OK'],
+    icon: path.join(__dirname, '../public/covers/icon.png')
+  });
+}
+
+function createAppMenu() {
+  const template = [
+    {
+      label: 'File',
+      submenu: [
+        { role: 'quit' }
+      ]
+    },
+    {
+      label: 'About',
+      click: createAboutMenu
+    },
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forceReload' },
+        { role: 'toggleDevTools' },
+        { type: 'separator' },
+        { role: 'resetZoom' },
+        { role: 'zoomIn' },
+        { role: 'zoomOut' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+      ]
+    }
+  ];
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -21,6 +72,8 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.mjs'),
     },
   });
+
+  createAppMenu();
 
   if (isDev) {
     // Load from Vite dev server
