@@ -43,6 +43,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `src/data/recordLabels.ts` - Extended record labels database
 - `src/data/database.ts` - Centralized data access module
 
+### Added
+- **AI Scene Simulation** - Simulated music scene with:
+  - 3-8 AI artist releases per week from predefined artists
+  - 2-5 news posts per week (release, gossip, trend, festival, scandal)
+  - 1-3 label activities per week (signings, releases, tours)
+  - Dynamic virtual artists with fame/ego calculations
+- **Scene Monitor Dashboard** - New UI component showing:
+  - AI releases with quality, play counts, viral status
+  - News feed with hype impact indicators
+  - Label activities (signings, tours, closures)
+  - Clickable website links for artists, labels, releases
+- **Web URLs for Scene Entities**:
+  - Record labels: `{slug}-records.scene`
+  - Artists: `{slug}.scene-artists.com`
+  - Releases: `{artist}-{title}.scene-releases.com`
+
 ---
 
 ## [1.3.0] - 2026-05-26
