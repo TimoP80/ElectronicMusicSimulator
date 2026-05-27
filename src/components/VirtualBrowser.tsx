@@ -1,184 +1,455 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React, { useState } from "react";
-import { Globe, X, ExternalLink, ChevronLeft, ChevronRight, RefreshCw, Home, Star, Calendar, MapPin, Disc, Music } from "lucide-react";
-import { RecordLabel, VirtualArtist, AIRelease } from "../types";
-import { VirtualArtist as VirtualArtistType } from "../types";
-
-// Generate fake URL for an entity
-const getLabelUrl = (label: RecordLabel) => `https://${label.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-records.scene`;
-const getArtistUrl = (artist: VirtualArtistType) => `https://${artist.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.scene-artists.com`;
-const getReleaseUrl = (release: AIRelease, artistName: string) => `https://${artistName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${release.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.scene-releases.com`;
+import React, { useState, useMemo } from "react";
+import { X, ChevronLeft, ChevronRight, RefreshCw, Home, Globe, Flame, TrendingUp, MessageCircle, Search, Music, Disc, AlertTriangle, BarChart3, ExternalLink } from "lucide-react";
+import {
+  search, getNode, getNodesByType, getNodeUrl, getVirality, getTrendState,
+  getWESState, addPostToThread, createThread, recordClick, triggerViralAttempt
+} from "../utils/webEcosystem";
+import { WebNode, SearchIntent, WESThread, ViralityData, TrendState } from "../types";
 
 interface BrowserTab {
   id: string;
   title: string;
-  url: string;
-  type: 'label' | 'artist' | 'release' | 'search' | 'home';
-  data?: any;
+  type: "home" | "search" | "artist" | "label" | "release" | "forum" | "thread" | "trending";
+  nodeId?: string;
+  threadId?: string;
 }
 
-interface VirtualBrowserProps {
-  gameState: any;
+interface Props {
   onClose?: () => void;
+  playerName?: string;
 }
 
-export default function VirtualBrowser({ gameState, onClose }: VirtualBrowserProps) {
+export default function VirtualBrowser({ onClose }: Props) {
   const [tabs, setTabs] = useState<BrowserTab[]>([
-    { id: 'home', title: 'Scene Home', url: 'https://electronic-scene.com', type: 'home' }
+    { id: "home", title: "Scene Web", type: "home" }
   ]);
-  const [activeTabId, setActiveTabId] = useState('home');
-  const [canGoBack, setCanGoBack] = useState(false);
-  const [canGoForward, setCanGoForward] = useState(false);
-  const [addressBar, setAddressBar] = useState('https://electronic-scene.com');
-  const [viewingLabel, setViewingLabel] = useState<RecordLabel | null>(null);
-  const [viewingArtist, setViewingArtist] = useState<VirtualArtistType | null>(null);
-  const [viewingRelease, setViewingRelease] = useState<{ release: AIRelease; artist: string } | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [activeTabId, setActiveTabId] = useState("home");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchIntent, setSearchIntent] = useState<SearchIntent>("general");
   const [isLoading, setIsLoading] = useState(false);
 
   const activeTab = tabs.find(t => t.id === activeTabId);
+  const wes = getWESState();
 
-  // Navigate to a URL
-  const navigateTo = (tab: BrowserTab) => {
+  // Derive layout data from WES state
+  const trendingNodes = useMemo(() => {
+    if (!wes) return [];
+    return [...wes.nodes]
+      .map(n => ({ node: n, score: wes.attention[n.id]?.momentum || 0 }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8);
+  }, [wes, wes?.tick]);
+
+  const viralNodes = useMemo(() => {
+    if (!wes) return [];
+    return Object.entries(wes.virality)
+      .filter(([, v]) => v.state === "viral" || v.state === "peak" || v.state === "gaining")
+      .map(([id, v]) => ({ node: getNode(id), virality: v }))
+      .filter(x => x.node)
+      .slice(0, 6);
+  }, [wes, wes?.tick]);
+
+  const recentForums = useMemo(() => {
+    if (!wes) return [];
+    return [...wes.threads].sort((a, b) => b.createdAt - a.createdAt).slice(0, 6);
+  }, [wes, wes?.tick]);
+
+  const openTab = (tab: BrowserTab) => {
     setIsLoading(true);
-    setAddressBar(tab.url);
-    
-    // Parse URL and determine what to show
-    const url = tab.url.toLowerCase();
-    
-    if (url.includes('-records.scene')) {
-      // Label website
-      const labelName = url.split('-records.scene')[0].replace('https://', '');
-      const label = gameState?.aiNews?.find((l: any) => 
-        l.labelName?.toLowerCase().replace(/[^a-z0-9]+/g, '-') === labelName
-      )?.label || gameState?.labelActivities?.[0]?.label;
-      
-      // Try to find from labels data
-      const matchedLabel = gameState?.virtualArtists?.[0] ? 
-        { 
-          id: '1', 
-          name: labelName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-          genre: 'Electronic',
-          prestige: Math.floor(Math.random() * 40) + 20,
-          foundedYear: 2015,
-          description: 'An underground electronic music label dedicated to pushing the boundaries of sound.',
-          url: tab.url
-        } : null;
-      
-      setViewingLabel(matchedLabel);
-      setViewingArtist(null);
-      setViewingRelease(null);
-      setSearchResults([]);
-    } else if (url.includes('.scene-artists.com')) {
-      // Artist website
-      const artistName = url.split('.scene-artists.com')[0].replace('https://', '').replace(/-/g, ' ');
-      const matchedArtist = gameState?.virtualArtists?.find((a: VirtualArtistType) => 
-        a.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') === url.split('.scene-artists.com')[0].replace('https://', '')
-      );
-      
-      setViewingArtist(matchedArtist || {
-        id: '1',
-        name: artistName.replace(/\b\w/g, l => l.toUpperCase()),
-        genre: 'Techno',
-        fame: Math.floor(Math.random() * 50) + 30,
-        ego: Math.floor(Math.random() * 50) + 20,
-        imageUrl: `https://picsum.photos/seed/${artistName}/200/200`
-      });
-      setViewingLabel(null);
-      setViewingRelease(null);
-      setSearchResults([]);
-    } else if (url.includes('.scene-releases.com')) {
-      setViewingRelease(null);
-      setViewingLabel(null);
-      setViewingArtist(null);
-      setSearchResults([]);
+    const existing = tabs.find(t => t.type === tab.type && t.nodeId === tab.nodeId && t.threadId === tab.threadId);
+    if (existing) {
+      setActiveTabId(existing.id);
     } else {
-      setViewingLabel(null);
-      setViewingArtist(null);
-      setViewingRelease(null);
-      setSearchResults([]);
+      setTabs([...tabs, { ...tab, id: `tab_${Date.now()}` }]);
+      setActiveTabId(`tab_${Date.now()}`);
     }
-    
-    setTimeout(() => setIsLoading(false), 300);
+    setTimeout(() => setIsLoading(false), 150);
   };
 
-  // Open a new tab
-  const openNewTab = (title: string, url: string, type: BrowserTab['type'], data?: any) => {
-    const newTab: BrowserTab = {
-      id: `tab_${Date.now()}`,
-      title,
-      url,
-      type,
-      data
-    };
-    setTabs([...tabs, newTab]);
-    setActiveTabId(newTab.id);
-    navigateTo(newTab);
-  };
-
-  // Close a tab
   const closeTab = (tabId: string) => {
-    if (tabs.length === 1) {
-      onClose?.();
-      return;
-    }
-    const newTabs = tabs.filter(t => t.id !== tabId);
-    setTabs(newTabs);
-    if (activeTabId === tabId) {
-      setActiveTabId(newTabs[newTabs.length - 1].id);
-    }
+    if (tabs.length <= 1) { onClose?.(); return; }
+    const nt = tabs.filter(t => t.id !== tabId);
+    setTabs(nt);
+    if (activeTabId === tabId) setActiveTabId(nt[nt.length - 1].id);
   };
 
-  // Perform search
-  const performSearch = () => {
+  const handleSearch = () => {
     if (!searchQuery.trim()) return;
-    
     setIsLoading(true);
-    const query = searchQuery.toLowerCase();
-    
-    // Search through artists, labels, releases
-    const results: any[] = [];
-    
-    // Search artists
-    gameState?.virtualArtists?.forEach((artist: VirtualArtistType) => {
-      if (artist.name.toLowerCase().includes(query)) {
-        results.push({
-          type: 'artist',
-          name: artist.name,
-          url: getArtistUrl(artist),
-          data: artist
-        });
-      }
-    });
-    
-    // Search in news/activities for labels
-    gameState?.labelActivities?.forEach((activity: any) => {
-      if (activity.label?.toLowerCase().includes(query) || activity.description?.toLowerCase().includes(query)) {
-        results.push({
-          type: 'label',
-          name: activity.label || 'Unknown Label',
-          url: `https://${(activity.label || 'unknown').toLowerCase().replace(/[^a-z0-9]+/g, '-')}-records.scene`,
-          data: activity.label
-        });
-      }
-    });
-    
-    setSearchResults(results);
-    setIsLoading(false);
+    openTab({ id: "search", title: `Search: ${searchQuery}`, type: "search" });
+    // record a click on result nodes as user interacts
+    setTimeout(() => setIsLoading(false), 200);
   };
 
-  // Navigate to home
-  const goHome = () => {
-    const homeTab = tabs.find(t => t.type === 'home');
-    if (homeTab) {
-      setActiveTabId(homeTab.id);
-      navigateTo(homeTab);
+  const viewNode = (node: WebNode) => {
+    if (node.type === "artist_page") openTab({ id: `artist_${node.id}`, title: node.title, type: "artist", nodeId: node.id });
+    else if (node.type === "label_site") openTab({ id: `label_${node.id}`, title: node.title, type: "label", nodeId: node.id });
+    else if (node.type === "release_page" || node.type === "track_page") openTab({ id: `release_${node.id}`, title: node.title, type: "release", nodeId: node.id });
+    else if (node.type === "forum_thread") {
+      const thread = wes?.threads.find(t => t.id === node.metadata?.threadId);
+      if (thread) openTab({ id: `thread_${thread.id}`, title: thread.title, type: "thread", threadId: thread.id });
+    }
+    recordClick(node.id);
+  };
+
+  const renderViralityBadge = (v?: ViralityData) => {
+    if (!v || v.state === "dead" || v.state === "forgotten") return null;
+    const colors: Record<string, string> = {
+      gaining: "text-amber-400 bg-amber-900/20 border-amber-700",
+      viral: "text-rose-400 bg-rose-900/20 border-rose-700",
+      peak: "text-purple-400 bg-purple-900/20 border-purple-700",
+      declining: "text-slate-400 bg-slate-900/20 border-slate-700",
+    };
+    return (
+      <span className={`text-[9px] px-1.5 py-0.5 rounded-full border ${colors[v.state] || ""} font-mono`}>
+        {v.state.toUpperCase()}
+      </span>
+    );
+  };
+
+  const renderSearchResults = () => {
+    if (!searchQuery.trim()) return <p className="text-slate-500 text-sm">Enter a query to search the scene web.</p>;
+    const results = search(searchQuery, searchIntent, 20);
+    if (results.length === 0) return <p className="text-slate-500 text-sm">No results found for "{searchQuery}".</p>;
+    return (
+      <div className="space-y-1">
+        {results.map((r, i) => {
+          const node = r.node;
+          const attn = wes?.attention[node.id];
+          const vir = getVirality(node.id);
+          return (
+            <div key={node.id}
+              onClick={() => viewNode(node)}
+              className="bg-[#111114] rounded-lg px-4 py-3 border border-[#1A1A1E] hover:border-[#00FF95]/40 cursor-pointer transition-all flex items-start gap-4"
+            >
+              <div className="w-8 text-right shrink-0">
+                <span className="text-slate-500 text-xs font-mono">{i + 1}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-white text-sm font-bold truncate">{node.title}</span>
+                  {renderViralityBadge(vir)}
+                  <span className="text-[9px] text-slate-500 font-mono">{node.type.replace("_", " ")}</span>
+                </div>
+                <div className="flex items-center gap-3 text-[10px] text-slate-500 font-mono">
+                  <span>Score: {(r.score * 100).toFixed(0)}</span>
+                  <span>Auth: {(r.authority * 100).toFixed(0)}%</span>
+                  <span>Eng: {(r.engagement * 100).toFixed(0)}%</span>
+                  <span>Fresh: {(r.freshness * 100).toFixed(0)}%</span>
+                  <span>Trend: {r.trendBoost.toFixed(1)}x</span>
+                </div>
+                {attn && (
+                  <div className="flex items-center gap-3 text-[9px] text-slate-600 mt-0.5">
+                    <span>{attn.views} views</span>
+                    <span>{attn.shares} shares</span>
+                    <span>{attn.likes} likes</span>
+                    <span>momentum: {attn.momentum.toFixed(2)}</span>
+                  </div>
+                )}
+              </div>
+              <ExternalLink className="h-3.5 w-3.5 text-slate-600 shrink-0" />
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderNodePage = (nodeId: string) => {
+    const node = getNode(nodeId);
+    if (!node) return <p className="text-slate-500 p-8">Node not found.</p>;
+    const attn = wes?.attention[nodeId];
+    const vir = getVirality(nodeId);
+    return (
+      <div className="max-w-3xl mx-auto p-8">
+        <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-6 mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Music className="h-4 w-4 text-[#00FF95]" />
+            <span className="text-[10px] text-slate-500 font-mono">{node.type.replace("_", " ")}</span>
+            {renderViralityBadge(vir)}
+          </div>
+          <h1 className="text-2xl font-bold text-white mb-2">{node.title}</h1>
+          <p className="text-sm text-slate-400">{node.content}</p>
+          <div className="flex flex-wrap gap-2 mt-3">
+            {node.tags.map(t => <span key={t} className="text-[10px] px-2 py-0.5 bg-[#050507] text-slate-500 rounded-full border border-[#1A1A1E]">{t}</span>)}
+          </div>
+          <a href={getNodeUrl(node)} className="text-[10px] text-slate-600 hover:text-[#00FF95] mt-2 inline-block">{getNodeUrl(node)}</a>
+        </div>
+
+        {/* Attention Stats */}
+        {attn && (
+          <div className="grid grid-cols-4 gap-3 mb-6">
+            {[
+              { label: "Views", value: attn.views, color: "text-blue-400" },
+              { label: "Shares", value: attn.shares, color: "text-green-400" },
+              { label: "Likes", value: attn.likes, color: "text-rose-400" },
+              { label: "Momentum", value: attn.momentum.toFixed(2), color: "text-amber-400" },
+            ].map(s => (
+              <div key={s.label} className="bg-[#111114] rounded-lg p-3 border border-[#1A1A1E] text-center">
+                <div className={`text-lg font-bold font-mono ${s.color}`}>{s.value}</div>
+                <div className="text-[10px] text-slate-500">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {vir && (
+          <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-4">
+            <h3 className="text-white text-sm font-bold mb-2 flex items-center gap-2"><Flame className="h-4 w-4 text-rose-400" /> Virality Profile</h3>
+            <div className="grid grid-cols-3 gap-3 text-xs text-slate-400 font-mono">
+              <span>Score: {vir.score.toFixed(1)}</span>
+              <span>Amplification: {vir.amplificationFactor.toFixed(2)}x</span>
+              <span>Network: {(vir.networkDensity * 100).toFixed(0)}%</span>
+              <span>Influencer: {vir.influencerBoost.toFixed(2)}x</span>
+              <span>Emotion: {(vir.emotionalIntensity * 100).toFixed(0)}%</span>
+              <span>Novelty: {(vir.noveltyFactor * 100).toFixed(0)}%</span>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const renderThread = (threadId: string) => {
+    const thread = wes?.threads.find(t => t.id === threadId);
+    if (!thread) return <p className="text-slate-500 p-8">Thread not found.</p>;
+    const { dynamics } = thread;
+    return (
+      <div className="max-w-3xl mx-auto p-8">
+        <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-6 mb-4">
+          <h1 className="text-xl font-bold text-white mb-2">{thread.title}</h1>
+          <div className="flex items-center gap-4 text-[10px] text-slate-500 font-mono mb-3">
+            <span>Topic: {thread.topic}</span>
+            <span>Posts: {thread.posts.length}</span>
+          </div>
+          {/* Thread Dynamics */}
+          <div className="flex gap-4 mb-4">
+            {[
+              { label: "Toxicity", value: dynamics.toxicity, color: dynamics.toxicity > 0.6 ? "text-rose-400" : "text-slate-400" },
+              { label: "Engagement", value: dynamics.engagement, color: dynamics.engagement > 0.6 ? "text-green-400" : "text-slate-400" },
+              { label: "Polarization", value: dynamics.polarization, color: dynamics.polarization > 0.5 ? "text-amber-400" : "text-slate-400" },
+            ].map(m => (
+              <div key={m.label} className="flex-1">
+                <div className="flex justify-between text-[9px] text-slate-500 mb-1">
+                  <span>{m.label}</span>
+                  <span className={m.color}>{(m.value * 100).toFixed(0)}%</span>
+                </div>
+                <div className="h-1.5 bg-[#050507] rounded overflow-hidden">
+                  <div className={`h-full rounded transition-all ${m.color.replace("text-", "bg-")}`}
+                    style={{ width: `${m.value * 100}%`, opacity: 0.6 }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Posts */}
+        <div className="space-y-2">
+          {thread.posts.map(post => (
+            <div key={post.id} className="bg-[#111114] rounded-lg p-4 border border-[#1A1A1E]">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs font-bold text-[#00FF95]">{post.authorId}</span>
+                <span className="text-[9px] text-slate-600">{new Date(post.timestamp).toLocaleTimeString()}</span>
+              </div>
+              <p className="text-sm text-slate-300">{post.content}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderHome = () => (
+    <div className="max-w-5xl mx-auto p-6 space-y-8">
+      {/* Search */}
+      <div className="bg-[#111114] rounded-2xl p-6 border border-[#1A1A1E]">
+        <h1 className="text-2xl font-bold text-white mb-2 text-center">Scene Web</h1>
+        <p className="text-slate-500 text-xs text-center mb-4 font-mono">Live attention economy simulation</p>
+        <div className="flex gap-2 mb-2">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && handleSearch()}
+            placeholder="Search artists, labels, tracks, forums..."
+            className="flex-1 bg-[#050507] border border-[#1A1A1E] rounded-lg px-4 py-2 text-white text-sm focus:border-[#00FF95] outline-none font-mono"
+          />
+          <button onClick={handleSearch} className="px-6 py-2 bg-[#00FF95] text-black font-bold rounded-lg hover:bg-[#00FF95]/90 text-sm">Search</button>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          {(["general", "music", "artist", "forum", "news", "gossip"] as SearchIntent[]).map(intent => (
+            <button key={intent} onClick={() => { setSearchIntent(intent); handleSearch(); }}
+              className={`text-[10px] px-2.5 py-1 rounded-full border font-mono transition-colors ${
+                searchIntent === intent
+                  ? "bg-[#00FF95]/10 border-[#00FF95] text-[#00FF95]"
+                  : "border-[#1A1A1E] text-slate-500 hover:text-white hover:border-slate-500"
+              }`}
+            >
+              {intent.replace("_", " ")}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        {/* Viral Now */}
+        <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-4">
+          <h2 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <Flame className="h-4 w-4 text-rose-400" /> Viral Now
+          </h2>
+          {viralNodes.length === 0 ? (
+            <p className="text-slate-500 text-xs">No viral content at the moment.</p>
+          ) : (
+            <div className="space-y-2">
+              {viralNodes.map(({ node, virality }) => (
+                <div key={node!.id} onClick={() => viewNode(node!)}
+                  className="bg-[#050507] rounded-lg p-3 border border-rose-900/30 hover:border-rose-500/50 cursor-pointer transition-all"
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-white text-xs font-bold truncate">{node!.title}</span>
+                    {renderViralityBadge(virality)}
+                  </div>
+                  <div className="text-[9px] text-slate-500 font-mono">
+                    Score: {virality!.score.toFixed(1)} | Ampl: {virality!.amplificationFactor.toFixed(1)}x
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Trending Content */}
+        <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-4">
+          <h2 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <TrendingUp className="h-4 w-4 text-[#00FF95]" /> Trending
+          </h2>
+          <div className="space-y-1">
+            {trendingNodes.map(({ node, score }) => (
+              <div key={node.id} onClick={() => viewNode(node)}
+                className="flex items-center justify-between bg-[#050507] rounded px-3 py-2 hover:bg-[#1A1A1E] cursor-pointer transition-all"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="text-[10px] text-slate-500 font-mono shrink-0">
+                    {node.type === "artist_page" ? "🎤" : node.type === "forum_thread" ? "💬" : node.type === "label_site" ? "🏷️" : "📄"}
+                  </span>
+                  <span className="text-white text-xs truncate">{node.title}</span>
+                </div>
+                <span className="text-[9px] text-slate-500 font-mono shrink-0 ml-2">M: {score.toFixed(2)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Active Forums */}
+      <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-4">
+        <h2 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+          <MessageCircle className="h-4 w-4 text-cyan-400" /> Active Discussions
+        </h2>
+        <div className="grid grid-cols-2 gap-2">
+          {recentForums.map(t => (
+            <div key={t.id} onClick={() => openTab({ id: `thread_${t.id}`, title: t.title, type: "thread", threadId: t.id })}
+              className="bg-[#050507] rounded-lg p-3 border border-[#1A1A1E] hover:border-cyan-700/50 cursor-pointer transition-all"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-white text-xs font-bold truncate">{t.title}</span>
+                {t.dynamics.toxicity > 0.6 && <AlertTriangle className="h-3 w-3 text-rose-400 shrink-0" />}
+              </div>
+              <div className="flex items-center gap-3 text-[9px] text-slate-500 font-mono">
+                <span>{t.posts.length} posts</span>
+                <span>Eng: {(t.dynamics.engagement * 100).toFixed(0)}%</span>
+                <span>Tox: {(t.dynamics.toxicity * 100).toFixed(0)}%</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Trend State */}
+      {wes && (
+        <div className="bg-[#111114] rounded-xl border border-[#1A1A1E] p-4">
+          <h2 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+            <BarChart3 className="h-4 w-4 text-purple-400" /> Internet Pulse
+          </h2>
+          <div className="grid grid-cols-3 gap-6">
+            <div>
+              <h3 className="text-[10px] text-slate-500 font-mono mb-2">Genre Trends</h3>
+              <div className="space-y-1">
+                {Object.entries(wes.trends.genres).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([g, v]) => (
+                  <div key={g} className="flex items-center gap-2">
+                    <span className="text-[10px] text-white w-24 truncate">{g}</span>
+                    <div className="flex-1 h-2 bg-[#050507] rounded overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-[#00FF95] to-[#FF00FF] rounded"
+                        style={{ width: `${Math.max(2, v)}%`, opacity: 0.7 }}
+                      />
+                    </div>
+                    <span className="text-[9px] text-slate-500 font-mono w-8 text-right">{v.toFixed(0)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-[10px] text-slate-500 font-mono mb-2">Hot Topics</h3>
+              <div className="space-y-1">
+                {Object.entries(wes.trends.topics).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([t, v]) => (
+                  <div key={t} className="flex items-center gap-2">
+                    <span className="text-[10px] text-white w-24 truncate">{t.replace("_", " ")}</span>
+                    <div className="flex-1 h-2 bg-[#050507] rounded overflow-hidden">
+                      <div className="h-full bg-cyan-400 rounded" style={{ width: `${v}%`, opacity: 0.6 }} />
+                    </div>
+                    <span className="text-[9px] text-slate-500 font-mono w-8 text-right">{v.toFixed(0)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-[10px] text-slate-500 font-mono mb-2">Sentiments</h3>
+              <div className="space-y-1">
+                {Object.entries(wes.trends.sentiments).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([s, v]) => (
+                  <div key={s} className="flex items-center gap-2">
+                    <span className="text-[10px] text-white w-24 truncate">{s}</span>
+                    <div className="flex-1 h-2 bg-[#050507] rounded overflow-hidden">
+                      <div className="h-full bg-amber-400 rounded" style={{ width: `${v}%`, opacity: 0.6 }} />
+                    </div>
+                    <span className="text-[9px] text-slate-500 font-mono w-8 text-right">{v.toFixed(0)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderContent = () => {
+    if (!activeTab) return null;
+    if (isLoading) return (
+      <div className="flex items-center justify-center h-full">
+        <RefreshCw className="h-8 w-8 text-[#00FF95] animate-spin" />
+      </div>
+    );
+    switch (activeTab.type) {
+      case "home": return renderHome();
+      case "search": return (
+        <div className="max-w-4xl mx-auto p-8">
+          <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <Search className="h-4 w-4 text-[#00FF95]" />
+            Results for "{searchQuery}"
+            <span className="text-[10px] text-slate-500 font-mono">({searchIntent})</span>
+          </h2>
+          {renderSearchResults()}
+        </div>
+      );
+      case "artist":
+      case "label":
+      case "release":
+        return activeTab.nodeId ? renderNodePage(activeTab.nodeId) : null;
+      case "thread":
+        return activeTab.threadId ? renderThread(activeTab.threadId) : null;
+      default:
+        return renderHome();
     }
   };
 
@@ -186,395 +457,62 @@ export default function VirtualBrowser({ gameState, onClose }: VirtualBrowserPro
     <div className="fixed inset-0 z-[200] bg-[#0A0A0C] flex flex-col">
       {/* Browser Chrome */}
       <div className="bg-[#111114] border-b border-[#1A1A1E] px-2 py-2 flex items-center gap-2">
-        {/* Navigation buttons */}
-        <button
-          onClick={() => goHome()}
-          className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white transition-colors"
-          title="Home"
-        >
+        <button onClick={() => { setActiveTabId("home"); setSearchQuery(""); }}
+          className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white">
           <Home className="h-4 w-4" />
         </button>
-        <button
-          onClick={() => setCanGoBack(!canGoBack)}
-          className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white transition-colors"
-          title="Back"
-        >
+        <button className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white opacity-30 cursor-not-allowed">
           <ChevronLeft className="h-4 w-4" />
         </button>
-        <button
-          onClick={() => setCanGoForward(!canGoForward)}
-          className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white transition-colors"
-          title="Forward"
-        >
+        <button className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white opacity-30 cursor-not-allowed">
           <ChevronRight className="h-4 w-4" />
         </button>
-        <button
-          className="p-1.5 rounded hover:bg-[#1A1A1E] text-slate-400 hover:text-white transition-colors"
-          title="Refresh"
-        >
-          <RefreshCw className="h-4 w-4" />
-        </button>
-        
-        {/* Address bar */}
         <div className="flex-1 flex items-center bg-[#050507] rounded-lg px-3 py-1.5 border border-[#1A1A1E]">
-          <Globe className="h-3.5 w-3.5 text-[#00FF95] mr-2" />
-          <input
-            type="text"
-            value={addressBar}
-            onChange={(e) => setAddressBar(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && navigateTo({ ...activeTab!, url: addressBar })}
+          <Globe className="h-3.5 w-3.5 text-[#00FF95] mr-2 shrink-0" />
+          <input type="text" value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && handleSearch()}
+            placeholder="Search..."
             className="flex-1 bg-transparent text-xs text-white font-mono focus:outline-none"
           />
         </div>
-        
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="p-1.5 rounded hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 transition-colors"
-        >
+        <button onClick={onClose} className="p-1.5 rounded hover:bg-rose-500/20 text-slate-400 hover:text-rose-400">
           <X className="h-4 w-4" />
         </button>
       </div>
-      
-      {/* Tab bar */}
+
+      {/* Tab Bar */}
       <div className="bg-[#111114] border-b border-[#1A1A1E] px-2 py-1 flex items-center gap-1 overflow-x-auto">
         {tabs.map(tab => (
-          <div
-            key={tab.id}
-            onClick={() => {
-              setActiveTabId(tab.id);
-              navigateTo(tab);
-            }}
+          <div key={tab.id} onClick={() => setActiveTabId(tab.id)}
             className={`flex items-center gap-2 px-3 py-1 rounded-t-lg cursor-pointer text-xs font-mono max-w-[150px] ${
               activeTabId === tab.id
-                ? 'bg-[#0A0A0C] text-white border-t border-[#00FF95]'
-                : 'bg-[#050507] text-slate-400 hover:text-slate-300 border-t border-transparent'
+                ? "bg-[#0A0A0C] text-white border-t border-[#00FF95]"
+                : "bg-[#050507] text-slate-400 hover:text-slate-300 border-t border-transparent"
             }`}
           >
-            <Globe className="h-3 w-3 flex-shrink-0" />
+            <Globe className="h-3 w-3 shrink-0" />
             <span className="truncate">{tab.title}</span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                closeTab(tab.id);
-              }}
-              className="ml-1 hover:text-white"
-            >
+            <button onClick={(e) => { e.stopPropagation(); closeTab(tab.id); }} className="ml-1 hover:text-white">
               <X className="h-3 w-3" />
             </button>
           </div>
         ))}
       </div>
-      
-      {/* Content area */}
-      <div className="flex-1 overflow-auto bg-[#0A0A0C]">
-        {isLoading ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center">
-              <RefreshCw className="h-8 w-8 text-[#00FF95] animate-spin mx-auto mb-2" />
-              <span className="text-slate-400 text-sm font-mono">Loading...</span>
-            </div>
-          </div>
-        ) : viewingLabel ? (
-          /* Label Website */
-          <div className="max-w-4xl mx-auto p-8">
-            <div className="bg-gradient-to-br from-[#1A1A1E] to-[#0A0A0C] rounded-2xl border border-[#1A1A1E] overflow-hidden">
-              {/* Header */}
-              <div className="bg-[#FF00FF]/10 px-8 py-12 text-center border-b border-[#FF00FF]/20">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#FF00FF] to-purple-600 mx-auto mb-4 flex items-center justify-center">
-                  <Disc className="h-12 w-12 text-white" />
-                </div>
-                <h1 className="text-3xl font-display font-bold text-white mb-2">{viewingLabel.name}</h1>
-                <p className="text-slate-400 font-mono text-sm">Est. {viewingLabel.foundedYear} • {viewingLabel.genre}</p>
-                <div className="flex items-center justify-center gap-4 mt-4">
-                  <span className="px-3 py-1 bg-[#FF00FF]/20 text-[#FF00FF] text-xs font-mono rounded-full">
-                    Prestige: {viewingLabel.prestige}
-                  </span>
-                  <a href={viewingLabel.url} className="text-xs text-slate-500 hover:text-[#00FF95] flex items-center gap-1">
-                    {viewingLabel.url} <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
-              </div>
-              
-              {/* Content */}
-              <div className="p-8">
-                <p className="text-slate-300 text-sm leading-relaxed mb-8">
-                  {viewingLabel.description}
-                </p>
-                
-                {/* Latest releases */}
-                <h2 className="text-lg font-display font-bold text-white mb-4 flex items-center gap-2">
-                  <Music className="h-5 w-5 text-[#00FF95]" />
-                  Latest Releases
-                </h2>
-                <div className="grid grid-cols-3 gap-4">
-                  {gameState?.aiReleases?.filter((r: AIRelease) => 
-                    viewingLabel?.name && (r.labelName === viewingLabel.name || !r.labelName)
-                  ).slice(0, 6).map((release: AIRelease, idx: number) => {
-                    const artist = gameState?.virtualArtists?.find((a: VirtualArtistType) => 
-                      a.name === release.artistName
-                    ) || gameState?.virtualArtists?.[idx % (gameState?.virtualArtists?.length || 1)];
-                    const artistName = release.artistName || artist?.name || 'Unknown Artist';
-                    return (
-                      <div
-                        key={release.id || idx}
-                        onClick={() => openNewTab(release.title, getReleaseUrl(release, artistName), 'release', { release, artist: artistName })}
-                        className="bg-[#111114] rounded-lg border border-[#1A1A1E] hover:border-[#00FF95]/50 cursor-pointer transition-all group"
-                      >
-                        <div className="aspect-square bg-black">
-                          <img
-                            src={release.coverUrl || `https://picsum.photos/seed/${release.title}/200/200`}
-                            alt={release.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-2">
-                          <h3 className="text-white text-xs font-bold truncate">{release.title}</h3>
-                          <p className="text-slate-500 text-[10px]">{artistName}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : viewingArtist ? (
-          /* Artist Website */
-          <div className="max-w-4xl mx-auto p-8">
-            <div className="bg-gradient-to-br from-[#1A1A1E] to-[#0A0A0C] rounded-2xl border border-[#1A1A1E] overflow-hidden">
-              {/* Header */}
-              <div className="bg-gradient-to-r from-[#00FF95]/10 to-[#FF00FF]/10 px-8 py-12 border-b border-[#1A1A1E]">
-                <div className="flex items-center gap-6">
-                  <div className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-[#00FF95]/30">
-                    <img
-                      src={viewingArtist.imageUrl || `https://picsum.photos/seed/${viewingArtist.name}/200/200`}
-                      alt={viewingArtist.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h1 className="text-4xl font-display font-bold text-white mb-2">{viewingArtist.name}</h1>
-                    <div className="flex items-center gap-4 text-sm text-slate-400 font-mono mb-3">
-                      <span className="flex items-center gap-1">
-                        <Music className="h-4 w-4" /> {viewingArtist.genre}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Star className="h-4 w-4 text-amber-400" /> Fame: {viewingArtist.fame}
-                      </span>
-                    </div>
-                    <a href={getArtistUrl(viewingArtist)} className="text-xs text-slate-500 hover:text-[#00FF95]">
-                      {getArtistUrl(viewingArtist)}
-                    </a>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Content */}
-              <div className="p-8">
-                {/* Biography */}
-                <div className="mb-8">
-                  <h2 className="text-lg font-display font-bold text-white mb-3">Biography</h2>
-                  <div className="bg-[#111114] rounded-lg p-4 border border-[#1A1A1E]">
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      {viewingArtist.bio || `${viewingArtist.name} is an electronic music producer specializing in ${viewingArtist.primaryGenre}. With a Fame rating of ${viewingArtist.fame} and a distinctive artistic vision, ${viewingArtist.name} has been making waves in the underground scene. Known for ${viewingArtist.ego > 50 ? 'an ambitious approach to production' : 'a refined and thoughtful production style'}, ${viewingArtist.name} continues to push the boundaries of electronic music.`}
-                    </p>
-                  </div>
-                </div>
 
-                {/* Stats */}
-                
-                <div className="grid grid-cols-4 gap-4 mb-8">
-                  <div className="bg-[#111114] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#00FF95]">{viewingArtist.fame}</div>
-                    <div className="text-xs text-slate-500 font-mono">Fame</div>
-                  </div>
-                  <div className="bg-[#111114] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#FF00FF]">{viewingArtist.ego}</div>
-                    <div className="text-xs text-slate-500 font-mono">Ego</div>
-                  </div>
-                  <div className="bg-[#111114] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-amber-400">{viewingArtist.status || (viewingArtist.fame > 70 ? 'Rival' : 'Neutral')}</div>
-                    <div className="text-xs text-slate-500 font-mono">Status</div>
-                  </div>
-                  <div className="bg-[#111114] rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-cyan-400">{viewingArtist.primaryGenre}</div>
-                    <div className="text-xs text-slate-500 font-mono">Primary</div>
-                  </div>
-                </div>
-                
-                {/* Recent Releases */}
-                <h2 className="text-lg font-display font-bold text-white mb-4">Recent Discography</h2>
-                <div className="space-y-2">
-                  {gameState?.aiReleases?.filter((r: AIRelease) => r.artistName === viewingArtist.name).slice(0, 5).map((release: AIRelease, idx: number) => (
-                    <div 
-                      key={release.id || idx} 
-                      onClick={() => openNewTab(release.title, getReleaseUrl(release, viewingArtist.name), 'release', { release, artist: viewingArtist.name })}
-                      className="flex items-center gap-4 bg-[#111114] rounded-lg p-3 border border-[#1A1A1E] hover:border-[#00FF95]/30 cursor-pointer transition-all"
-                    >
-                      <img
-                        src={release.coverUrl || `https://picsum.photos/seed/${release.title}/60/60`}
-                        alt={release.title}
-                        className="w-12 h-12 rounded"
-                      />
-                      <div className="flex-1">
-                        <h3 className="text-white text-sm font-bold">{release.title}</h3>
-                        <p className="text-slate-500 text-xs">Released Week {release.week || idx + 1}</p>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-[#00FF95] text-sm font-mono">{release.quality || 75}%</div>
-                        <div className="text-slate-500 text-[10px]">Quality</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : viewingRelease ? (
-          /* Release Website */
-          <div className="max-w-4xl mx-auto p-8">
-            <div className="bg-gradient-to-br from-[#1A1A1E] to-[#0A0A0C] rounded-2xl border border-[#1A1A1E] overflow-hidden">
-              <div className="flex">
-                <div className="w-80 bg-black">
-                  <img
-                    src={`https://picsum.photos/seed/${viewingRelease.release.title}/300/300`}
-                    alt={viewingRelease.release.title}
-                    className="w-full aspect-square object-cover"
-                  />
-                </div>
-                <div className="flex-1 p-8">
-                  <h1 className="text-3xl font-display font-bold text-white mb-2">{viewingRelease.release.title}</h1>
-                  <h2 className="text-xl text-[#00FF95] mb-6">{viewingRelease.artist}</h2>
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="bg-[#111114] rounded-lg p-3">
-                      <div className="text-slate-500 text-xs mb-1">Quality Score</div>
-                      <div className="text-2xl font-bold text-[#00FF95]">{viewingRelease.release.quality || 75}%</div>
-                    </div>
-                    <div className="bg-[#111114] rounded-lg p-3">
-                      <div className="text-slate-500 text-xs mb-1">Play Count</div>
-                      <div className="text-2xl font-bold text-cyan-400">{viewingRelease.release.playCount?.toLocaleString() || '12,500'}</div>
-                    </div>
-                  </div>
-                  <a href={getReleaseUrl(viewingRelease.release, viewingRelease.artist)} className="text-xs text-slate-500 hover:text-[#00FF95]">
-                    {getReleaseUrl(viewingRelease.release, viewingRelease.artist)}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : searchResults.length > 0 ? (
-          /* Search Results */
-          <div className="max-w-4xl mx-auto p-8">
-            <h2 className="text-xl font-display font-bold text-white mb-6">Search Results for "{searchQuery}"</h2>
-            <div className="space-y-2">
-              {searchResults.map((result, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => openNewTab(result.name, result.url, result.type, result.data)}
-                  className="flex items-center gap-4 bg-[#111114] rounded-lg p-4 border border-[#1A1A1E] hover:border-[#00FF95]/50 cursor-pointer transition-all"
-                >
-                  {result.type === 'artist' ? (
-                    <img
-                      src={`https://picsum.photos/seed/${result.name}/60/60`}
-                      alt={result.name}
-                      className="w-12 h-12 rounded-full"
-                    />
-                  ) : (
-                    <div className="w-12 h-12 rounded bg-[#FF00FF]/20 flex items-center justify-center">
-                      <Disc className="h-6 w-6 text-[#FF00FF]" />
-                    </div>
-                  )}
-                  <div className="flex-1">
-                    <h3 className="text-white font-bold">{result.name}</h3>
-                    <p className="text-slate-500 text-xs">{result.type === 'artist' ? 'Artist' : 'Record Label'}</p>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-slate-500" />
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          /* Home Page / Default */
-          <div className="max-w-4xl mx-auto p-8">
-            {/* Search bar */}
-            <div className="bg-[#111114] rounded-2xl p-6 mb-8 border border-[#1A1A1E]">
-              <h1 className="text-2xl font-display font-bold text-white mb-4 text-center">
-                🔍 Electronic Scene Search
-              </h1>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && performSearch()}
-                  placeholder="Search artists, labels, releases..."
-                  className="flex-1 bg-[#050507] border border-[#1A1A1E] rounded-lg px-4 py-2 text-white text-sm focus:border-[#00FF95] outline-none font-mono"
-                />
-                <button
-                  onClick={performSearch}
-                  className="px-6 py-2 bg-[#00FF95] text-black font-bold rounded-lg hover:bg-[#00FF95]/90 transition-colors"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-            
-            {/* Trending Artists */}
-            <h2 className="text-xl font-display font-bold text-white mb-4">🔥 Trending Artists</h2>
-            <div className="grid grid-cols-4 gap-4 mb-8">
-              {gameState?.virtualArtists?.slice(0, 8).map((artist: VirtualArtistType) => (
-                <div
-                  key={artist.id}
-                  onClick={() => openNewTab(artist.name, getArtistUrl(artist), 'artist', artist)}
-                  className="bg-[#111114] rounded-lg border border-[#1A1A1E] hover:border-[#00FF95]/50 cursor-pointer transition-all group"
-                >
-                  <img
-                    src={artist.imageUrl || `https://picsum.photos/seed/${artist.name}/200/200`}
-                    alt={artist.name}
-                    className="w-full aspect-square object-cover rounded-t-lg"
-                  />
-                  <div className="p-3">
-                    <h3 className="text-white text-sm font-bold truncate">{artist.name}</h3>
-                    <p className="text-slate-500 text-xs">{artist.genre}</p>
-                    <div className="flex items-center gap-2 mt-2 text-[10px]">
-                      <Star className="h-3 w-3 text-amber-400" />
-                      <span className="text-slate-400">{artist.fame} fame</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Hot Labels */}
-            <h2 className="text-xl font-display font-bold text-white mb-4">🏷️ Hot Labels</h2>
-            <div className="grid grid-cols-3 gap-4">
-              {['Subterranean Records', 'Aurora Beats', 'Neon Wave Collective', 'Deep Frequency', 'Stellar Sound', 'Pulse Records'].map((labelName, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => openNewTab(labelName, `https://${labelName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-records.scene`, 'label')}
-                  className="bg-[#111114] rounded-lg border border-[#1A1A1E] hover:border-[#FF00FF]/50 cursor-pointer transition-all p-4"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#FF00FF] to-purple-600 flex items-center justify-center">
-                      <Disc className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold">{labelName}</h3>
-                      <p className="text-slate-500 text-xs">Electronic / Techno</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* Content */}
+      <div className="flex-1 overflow-auto">
+        {wes ? renderContent() : (
+          <div className="flex items-center justify-center h-full text-slate-500 text-sm">
+            Web ecosystem not initialized. Advance a week to seed the web.
           </div>
         )}
       </div>
-      
-      {/* Status bar */}
+
+      {/* Status Bar */}
       <div className="bg-[#111114] border-t border-[#1A1A1E] px-4 py-1 flex items-center justify-between text-[10px] font-mono text-slate-500">
-        <span>Virtual Scene Browser v1.0</span>
-        <span>{tabs.length} tabs open</span>
+        <span>WES v1.0 — {wes?.nodes.length || 0} nodes, {wes?.edges.length || 0} edges, {wes?.threads.length || 0} threads</span>
+        <span>Tick {wes?.tick || 0}</span>
       </div>
     </div>
   );

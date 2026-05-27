@@ -181,8 +181,8 @@ const TrackRow: React.FC<{
         {track.dj.usabilityScore >= 7 && (
           <span className="text-xs text-green-400 bg-green-900/30 px-2 py-1 rounded" title="DJ Friendly">DJ</span>
         )}
-        {track.stemsAvailable && (
-          <span className="text-xs text-blue-400 bg-blue-900/30 px-2 py-1 rounded">Stems</span>
+        {track.ghostProduction && (
+          <span className="text-xs text-purple-400 bg-purple-900/30 px-2 py-1 rounded">Ghost Produced</span>
         )}
         <button onClick={onEdit} className="text-slate-400 hover:text-white">
           <Edit3 size={14} />

@@ -41,13 +41,17 @@ if (apiKey && apiKey !== "MY_GEMINI_API_KEY") {
 // 1. API: Custom AI Review of released electronic tracks
 app.post("/api/generate-ai-review", async (req, res) => {
   const { title, primaryGenre, secondaryGenre, stats, artist, rating } = req.body;
+  console.log(`[API DEBUG] Received request for AI review: title="${title}", primaryGenre="${primaryGenre}", rating=${rating}`);
+  
   if (!title || !primaryGenre || !stats) {
+    console.log("[API DEBUG] Missing required parameters for AI review request");
     return res.status(400).json({ error: "Missing required track parameters" });
   }
 
   const genreStr = secondaryGenre ? `${primaryGenre} combined with ${secondaryGenre}` : primaryGenre;
   
   if (!ai) {
+    console.log("[API DEBUG] Gemini AI not initialized, using fallback for review");
     // Return early fallback if API Key not set
     return res.json({
       review: `[Local Music Club] "A highly solid offering in ${primaryGenre}. The bass beats of '${title}' have nice momentum (Groove: ${stats.groove}/100, Sound Design: ${stats.soundDesign}/100) and represents a promising draft in the current city scene."`,
@@ -56,6 +60,7 @@ app.post("/api/generate-ai-review", async (req, res) => {
   }
 
   try {
+    console.log("[API DEBUG] Calling Gemini AI for review generation");
     const prompt = `Act as an elite, slightly pretentious music critic writing for an alternative underground electronic music outlet (like Resident Advisor or Mixmag). 
       Write a sharp, authentic, single-paragraph review of the track '${title}' by the bedroom producer artist '${artist}'.
       
@@ -75,13 +80,16 @@ app.post("/api/generate-ai-review", async (req, res) => {
       contents: prompt,
       config: {
         temperature: 0.85,
-        systemInstruction: "You write authentic, immersive electronic music journalism. Use human-like slang (stems, floor-fillers, filters, white noise sweeps, analog warmth, bedroom clatter). Avoid generic, cheesy marketing filler words.",
+        systemInstruction: "You write authentic, immersive electronic music journalism. Use human-like slang (stems, floor-filters, filters, white noise sweeps, analog warmth, bedroom clatter). Avoid generic, cheesy marketing filler words.",
       },
     });
 
-    res.json({ review: response.text?.trim() || "A solid record that captures the scene's current vibe." });
+    const reviewText = response.text?.trim() || "A solid record that captures the scene's current vibe.";
+    console.log(`[API DEBUG] Successfully generated AI review (length: ${reviewText.length} chars)`);
+    res.json({ review: reviewText });
   } catch (err: any) {
-    console.error("Gemini review generation error:", err);
+    console.error("[API DEBUG] Gemini review generation error:", err);
+    console.log("[API DEBUG] Falling back to local review generation");
     res.json({
       review: `[Local Blogger] "The drum loops on '${title}' drive the groove cleanly, and the ${primaryGenre} synthesizers create an atmospheric feel. Solid mixing (Quality: ${stats.mixingQuality}/100). Ready for sub-club playback."`,
       isFallback: true
@@ -412,21 +420,21 @@ app.post("/api/generate-ai-scene-news", async (req, res) => {
     });
   }
 
-  try {
-    const prompt = `You are writing breaking news for an underground electronic music scene blog.
-      Generate 1 exciting news headline and short paragraph about what's happening in the ${currentGenre || 'electronic music'} scene right now.
-      
-      Context:
-      - Player prestige level: ${playerPrestige || 25}/100
-      - Hot topic: ${hotTopic || 'new artist breakthrough'}
-      - Scene city: ${sceneCity || 'Berlin'}
-      
-      Return as JSON:
-      {
-        "headline": "Your exciting headline here",
-        "body": "2-3 sentence news paragraph with scene details"
-      }
-      Keep it authentic, use underground music slang, mention specific venues or events. Output raw JSON only.`;
+    try {
+      const prompt = `You are writing breaking news for an underground electronic music scene blog.
+        Generate 1 exciting news headline (short, punchy, max 8 words) and a detailed news paragraph (2-3 sentences) about what's happening in the ${currentGenre || 'electronic music'} scene right now.
+        
+        Context:
+        - Player prestige level: ${playerPrestige || 25}/100
+        - Hot topic: ${hotTopic || 'new artist breakthrough'}
+        - Scene city: ${sceneCity || 'Berlin'}
+        
+        Return as JSON:
+        {
+          "headline": "Your exciting headline here (max 8 words)",
+          "body": "2-3 sentence news paragraph with scene details, including specific venues, artists, or events"
+        }
+        Keep it authentic, use underground music slang, mention specific venues or events. Output raw JSON only.`;
 
     const response = await ai.models.generateContent({
       model: "gemini-3.5-flash",
@@ -661,6 +669,133 @@ app.post("/api/generate-ai-artist-bio", async (req, res) => {
   }
 });
 
+// 13. API: Premium NPC Dialogue with personality, mood & memory context
+app.post("/api/npc/dialogue", async (req, res) => {
+  const { npc, mood, personality, relationship, playerName, playerPrestige, trigger, memorySummaries } = req.body;
+
+  if (!npc || !playerName) {
+    return res.status(400).json({ error: "Missing required NPC dialogue parameters" });
+  }
+
+  if (!ai) {
+    return res.json({ message: null, isFallback: true });
+  }
+
+  try {
+    const moodDesc = mood?.currentEmotion || "neutral";
+    const energyDesc = mood?.energy ? `Energy level: ${mood.energy}/100` : "";
+    const burnoutDesc = mood?.burnout ? `Burnout level: ${mood.burnout}/100` : "";
+    const relDesc = relationship ? `Affinity: ${relationship.affinity}/100, Trust: ${relationship.trust}/100` : "No prior relationship";
+    const memoryContext = memorySummaries?.length > 0 
+      ? `\nMemories of this person: ${memorySummaries.slice(0, 3).map((s: any) => s.summary).join("; ")}`
+      : "";
+
+    const prompt = `You are ${npc.name}, an electronic music ${npc.role || "producer"} in the underground scene.
+
+Your personality:
+- Openness to collaboration: ${personality?.openness || 50}/100
+- Ego: ${personality?.ego || 50}/100
+- Creativity: ${personality?.creativity || 50}/100
+- Commercial tendency: ${personality?.commercialism || 50}/100
+- Emotional intensity: ${personality?.emotionality || 50}/100
+- Sociability: ${personality?.sociability || 50}/100
+
+Your current state:
+- Mood: ${moodDesc}
+- ${energyDesc}
+- ${burnoutDesc}
+
+Your relationship with ${playerName} (prestige: ${playerPrestige}/100):
+${relDesc}${memoryContext}
+
+The conversation trigger is: "${trigger}"
+
+Write a single paragraph reply from ${npc.name} to ${playerName} that:
+- Reflects your personality (high ego = dismissive/pretentious, open = warm, etc.)
+- Reflects your current mood (burnt out = tired, inspired = excited)
+- Matches the relationship (positive affinity = friendly, negative = cold/hostile)
+- Feels authentic to underground electronic music culture
+- References the trigger context naturally
+- Is 1-3 sentences, max 60 words
+- No quotation marks around the text
+- No sign-off with your name`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        temperature: 0.85,
+        systemInstruction: "You are an NPC in an electronic music simulation. Speak in first person, in character. Be concise and authentic.",
+      },
+    });
+
+    res.json({ message: response.text?.trim() || null, isFallback: false });
+  } catch (err: any) {
+    console.error("Gemini NPC dialogue error:", err);
+    res.json({ message: null, isFallback: true });
+  }
+});
+
+// 14. API: Premium AI Event Generation
+app.post("/api/npc/premium-event", async (req, res) => {
+  const { eventType, playerName, npcs, hotGenre, weekDisplay } = req.body;
+
+  if (!eventType || !playerName) {
+    return res.status(400).json({ error: "Missing required event parameters" });
+  }
+
+  if (!ai) {
+    return res.json({ title: null, description: null, isFallback: true });
+  }
+
+  try {
+    const npcContext = npcs?.slice(0, 5).map((n: any) => 
+      `${n.name} (${n.role || "producer"}, ego: ${n.personality?.ego || 50}/100)`
+    ).join(", ") || "Various scene figures";
+
+    const prompt = `You are generating a premium event for an underground electronic music simulation game.
+
+Event type: ${eventType}
+Player: ${playerName} (prestige ${req.body.playerPrestige || 50}/100)
+Current hot genre: ${hotGenre || "techno"}
+Active NPCs: ${npcContext}
+Week: ${weekDisplay || "current"}
+
+Generate a compelling, authentic scene event. Return ONLY valid JSON:
+{
+  "title": "Short punchy event title (max 8 words)",
+  "description": "2-3 sentence event description with scene-specific detail"
+}
+
+If eventType is "interview", describe a music media interview ${playerName} is giving.
+If eventType is "viral", describe a track or moment going viral in underground circles.
+If eventType is "controversy", describe a scene controversy involving ${playerName} and other artists.
+If eventType is "festival_report", describe a major festival's electronic music lineup announcement.
+If eventType is "review", describe a major publication reviewing ${playerName}'s latest work.
+
+Make it feel authentic to underground electronic music culture. Use specific details.`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        temperature: 0.9,
+        systemInstruction: "You write immersive, authentic underground electronic music journalism.",
+      },
+    });
+
+    const data = JSON.parse(response.text?.trim() || "{}");
+    res.json({
+      title: data.title || null,
+      description: data.description || null,
+      isFallback: false
+    });
+  } catch (err: any) {
+    console.error("Gemini premium event error:", err);
+    res.json({ title: null, description: null, isFallback: true });
+  }
+});
 
 // Mounting Vite middleware in development or serving static files in production
 async function startServer() {

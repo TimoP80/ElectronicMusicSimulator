@@ -10,16 +10,25 @@ import {
   Database, Globe, Newspaper
 } from "lucide-react";
 
-import { GameState, Track, ReleasedTrack, MusicGenre, MusicTrend } from "./types";
-import { WORLD_TRENDS, processRelease, rollNextTrend } from "./utils/simulation";
+import { GameState, Track, ReleasedTrack, MusicGenre, MusicTrend, MentalState, ArtistIdentity, SocialNetwork, DJCrate, DJSet, RecoveryMethod } from "./types";
+import { 
+  WORLD_TRENDS, processRelease, rollNextTrend, createDefaultIdentity, 
+  createDefaultMentalState, createDefaultSocialNetwork, createDJCrate, 
+  createFanCommunity, generateForumThread, generateMusicReview, 
+  generateGossip, calculateMonthlyExpenses, 
+  updateMentalState, triggerProductionEvent, attemptRecovery 
+} from "./utils/simulation";
 import { getTopPredefinedArtists } from "./data/artists";
 import { simulateAIScene, updateArtistFame } from "./utils/aiSimulation";
+import { createNPCsFromVirtualArtists } from "./utils/npcSystem";
+import { processWorldTick, applyEventImpact } from "./utils/eventSystem";
+import { seedWebEcosystem, webTick, getWESState, setWESState } from "./utils/webEcosystem";
 
 import AudioVisualizer from "./components/AudioVisualizer";
 import DAWTrackCreator from "./components/DAWTrackCreator";
 import GigBooking from "./components/GigBooking";
 import RecordLabelsCatalog from "./components/RecordLabelsCatalog";
-import SocialDramaForum from "./components/SocialDramaForum";
+import NPCPanel from "./components/NPCPanel";
 import SkillsTree from "./components/SkillsTree";
 import UpgradableGearShop from "./components/UpgradableGearShop";
 import DataModEditor from "./components/DataModEditor";
@@ -28,6 +37,11 @@ import ReleaseManagement from "./components/ReleaseManagement";
 import ReleaseSection from "./components/ReleaseSection";
 import VirtualBrowser from "./components/VirtualBrowser";
 import WorldNewsBrowser from "./components/WorldNewsBrowser";
+import MentalHealthPanel from "./components/MentalHealthPanel";
+import ArtistIdentityPanel from "./components/ArtistIdentityPanel";
+import SocialNetworkPanel from "./components/SocialNetworkPanel";
+import FanCommunityPanel from "./components/FanCommunityPanel";
+import DJCrateManager from "./components/DJCrateManager";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
 
@@ -201,7 +215,7 @@ export default function App() {
   const [selectedEthos, setSelectedEthos] = useState<EthosArchetype>(ETHOS_DB[0]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<DifficultyConfig>(DIFFICULTY_DB[1]); // Default to Normal
   const [onboardingName, setOnboardingName] = useState("");
-  const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "editor" | "web">("workspace");
+  const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "identity" | "dj" | "editor" | "web">("workspace");
   const [showVirtualBrowser, setShowVirtualBrowser] = useState(false);
   const [showWorldNews, setShowWorldNews] = useState(false);
   const [preSelectedTrackId, setPreSelectedTrackId] = useState<string>("");
@@ -231,7 +245,9 @@ export default function App() {
     const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (saved) {
       try {
-        setGameState(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setGameState(parsed);
+        if (parsed.webEcosystem) setWESState(parsed.webEcosystem);
       } catch (e) {
         console.error("Failed to parse saved game state, starting fresh.");
       }
@@ -245,6 +261,9 @@ export default function App() {
     if (!updated.purchasedMusic) {
       updated = { ...updated, purchasedMusic: [] };
     }
+    // Sync WES state before persisting
+    const wes = getWESState();
+    if (wes) updated = { ...updated, webEcosystem: wes };
     setGameState(updated);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
   };
@@ -332,6 +351,14 @@ export default function App() {
       status: (artist.fame > 70 ? "rival" : "neutral") as "rival" | "neutral"
     }));
     
+    const npcs = createNPCsFromVirtualArtists(virtualArtists.map(a => ({
+      name: a.name,
+      primaryGenre: a.primaryGenre,
+      fame: a.fame,
+      ego: a.ego,
+      bio: a.bio
+    })));
+
     const initial: GameState = {
       artistName: name,
       pseudonym: name,
@@ -343,8 +370,8 @@ export default function App() {
         hype: selectedDifficulty.startingHype,
         prestige: selectedDifficulty.startingPrestige,
         money: selectedDifficulty.startingMoney,
-        inspiration: 100, // 0-100
-        burnout: 0,       // 0-100
+        inspiration: 100,
+        burnout: 0,
         skillPoints: 2,
       },
       skills: {
@@ -356,6 +383,7 @@ export default function App() {
       gear: ["old_laptop", "freeware_daw", "budget_headphones"],
       tracks: [],
       releases: [],
+      purchasedMusic: [],
       signedLabelId: null,
       playerLabelId: null,
       playerLabelName: null,
@@ -378,7 +406,42 @@ export default function App() {
       aiReleases: [],
       aiNews: [],
       labelActivities: [],
-      virtualArtists
+      virtualArtists,
+      
+      // Expanded Systems
+      artistIdentity: createDefaultIdentity(name, name),
+      mentalState: createDefaultMentalState(),
+      socialNetwork: createDefaultSocialNetwork(),
+      gossipEvents: [],
+      djCrates: [],
+      djSets: [],
+      stageProduction: [],
+      activeProductionEvents: [],
+      fanCommunities: [],
+      forumThreads: [],
+      musicReviews: [],
+      labelContracts: [],
+      labelPolitics: [],
+      financialObligations: [],
+      careerProgression: {
+        currentPath: "versatile_artist",
+        pathProgress: 0,
+        pathMilestones: ["First track composed"],
+        secondaryPaths: [],
+        allTimeRevenue: 0,
+        biggestHit: "",
+        careerHighlights: ["Started music production journey"],
+        careerRegrets: [],
+        influenceScore: 5,
+        legacyScore: 0
+      },
+      regionalScenes: [],
+      viralMoments: [],
+      npcs,
+      nextNpcInteractionTick: 0,
+      worldEvents: [],
+      sceneTick: 0,
+      webEcosystem: seedWebEcosystem(npcs, WORLD_TRENDS[0].hotGenre, name)
     };
     saveState(initial);
   };
@@ -802,6 +865,8 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
       composedAt: `Year ${gameState.gameDate.year}, Month ${gameState.gameDate.month}, Week ${gameState.gameDate.week}`,
       stems,
       ideasSpent: 4,
+      lengthCategory: "club_edit" as const,
+      durationSeconds: 240 + Math.floor(Math.random() * 120),
     };
 
     const updated: GameState = {
@@ -836,8 +901,69 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
       }
     };
 
-    const final = appendLog(updated, title, desc, "scandal");
+    const gossip = generateGossip("negative", gameState.pseudonym, "drama");
+    const final = appendLog(
+      { ...updated, gossipEvents: [...(updated.gossipEvents || []), gossip] },
+      title, desc, "scandal"
+    );
     saveState(final);
+  };
+
+  // Handle mental health recovery
+  const handleRecovery = (method: string) => {
+    if (!gameState) return;
+    const updatedMental = attemptRecovery(gameState.mentalState, method);
+    const cost = method === "vacation" ? 500 : method === "therapy" ? 150 : method === "studio_retreat" ? 300 : method === "collaboration" ? 100 : 50;
+    
+    if (gameState.stats.money < cost) return;
+    
+    const updated: GameState = {
+      ...gameState,
+      mentalState: updatedMental,
+      stats: {
+        ...gameState.stats,
+        money: gameState.stats.money - cost,
+        burnout: Math.max(0, gameState.stats.burnout - 15),
+      }
+    };
+    
+    saveState(appendLog(updated, "Recovery Action", `Took time for ${method}. Mental state improving.`, "system"));
+  };
+
+  // Handle identity updates
+  const handleIdentityUpdate = (updates: Partial<ArtistIdentity>) => {
+    if (!gameState) return;
+    saveState({
+      ...gameState,
+      artistIdentity: { ...gameState.artistIdentity, ...updates }
+    });
+  };
+
+  // Handle NPC updates
+  const handleUpdateNpcs = (npcs: GameState["npcs"]) => {
+    if (!gameState) return;
+    saveState({ ...gameState, npcs });
+  };
+
+  // Handle DJ crate creation
+  const handleAddCrate = (name: string, genre: string) => {
+    if (!gameState) return;
+    const crate = createDJCrate(name, genre as MusicGenre);
+    saveState({
+      ...gameState,
+      djCrates: [...gameState.djCrates, crate]
+    });
+  };
+
+  // Handle completing a DJ set
+  const handleCompleteDJSet = (setId: string) => {
+    if (!gameState) return;
+    const set = gameState.djSets.find(s => s.id === setId);
+    if (!set) return;
+    saveState({
+      ...gameState,
+      djSets: gameState.djSets.map(s => s.id === setId ? { ...s, completed: true } : s)
+    });
   };
 
   // 10. REST AND MASTER LOOP CYCLE (Increments calendar, recovers stamina, pays streaming passive income!)
@@ -923,9 +1049,77 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
     const newAINews = [...(simulationResult.newNews || []), ...(gameState.aiNews || [])].slice(0, maxStoredAI);
     const newLabelActivities = [...(simulationResult.newActivities || []), ...(gameState.labelActivities || [])].slice(0, maxStoredAI);
 
+    // Update mental state weekly
+    const hadActivity = gameState.releases.length > 0;
+    const updatedMentalState = updateMentalState(
+      gameState.mentalState,
+      { produced: false, gigged: false, rested: true, released: hadActivity, socialized: false },
+      gameState.stats.burnout
+    );
+
+    // Check for random production event
+    const productionEvent = triggerProductionEvent();
+    let newProductionEvents = [...(gameState.activeProductionEvents || [])];
+    let prodEventMsg = "";
+    if (productionEvent) {
+      newProductionEvents = [productionEvent, ...newProductionEvents].slice(0, 5);
+      prodEventMsg = ` | ${productionEvent.message}`;
+    }
+
+    // Update fan communities (add new forum threads periodically)
+    let newForumThreads = [...(gameState.forumThreads || [])];
+    if (Math.random() < 0.3) {
+      const thread = generateForumThread(
+        ["discussion", "review", "praise"][Math.floor(Math.random() * 3)],
+        gameState.pseudonym,
+        gameState.currentTrend.hotGenre
+      );
+      newForumThreads = [thread, ...newForumThreads].slice(0, 20);
+    }
+
+    // Update career progression
+    const updatedCareer = { ...(gameState.careerProgression || { 
+      currentPath: "versatile_artist", pathProgress: 0, pathMilestones: [],
+      secondaryPaths: [], allTimeRevenue: 0, biggestHit: "",
+      careerHighlights: [], careerRegrets: [], influenceScore: 5, legacyScore: 0
+    })};
+    updatedCareer.pathProgress = Math.min(100, updatedCareer.pathProgress + (gameState.releases.length > 0 ? 2 : 0.5));
+    updatedCareer.allTimeRevenue = (updatedCareer.allTimeRevenue || 0) + residualPayout;
+    updatedCareer.influenceScore = Math.min(100, (updatedCareer.influenceScore || 0) + (gameState.stats.prestige > 50 ? 1 : 0.2));
+    updatedCareer.legacyScore = Math.min(100, (updatedCareer.legacyScore || 0) + (gameState.stats.prestige > 75 ? 2 : 0.5));
+
+    // === EVENT SYSTEM TICK ===
+    const weekDisplay = `W${week}.${month}.${year}`;
+    const nextSceneTick = (gameState.sceneTick || 0) + 1;
+    const npcTickResult = await processWorldTick(
+      gameState.npcs || [],
+      weekDisplay,
+      gameState.currentTrend.hotGenre,
+      nextSceneTick,
+      gameState.pseudonym,
+      gameState.stats.prestige
+    );
+
+    const newWorldEvents = npcTickResult.newEvents;
+    const existingEvents = (gameState.worldEvents || []).slice(0, 30);
+    const allEvents = [...newWorldEvents, ...existingEvents];
+
+    // Apply event impacts to state (NPC relationships, stats)
+    let stateAfterEvents: GameState = {
+      ...gameState,
+      npcs: npcTickResult.updatedNpcs,
+    };
+    for (const event of newWorldEvents) {
+      stateAfterEvents = applyEventImpact(event, stateAfterEvents);
+    }
+
+    // Build event summary for log
+    const eventSummaryParts = newWorldEvents.map(e => e.title);
+    const eventSummary = eventSummaryParts.length > 0 ? ` | Scene: ${eventSummaryParts.join(', ')}` : '';
+
     // Build the updated state object
     let updated: GameState = {
-      ...gameState,
+      ...stateAfterEvents,
       gameDate: { year, month, week },
       releases: recalculatedReleases,
       currentTrend: nextTrend,
@@ -933,12 +1127,18 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
       aiNews: newAINews,
       labelActivities: newLabelActivities,
       virtualArtists: updatedVirtualArtists,
+      mentalState: updatedMentalState,
+      activeProductionEvents: newProductionEvents,
+      forumThreads: newForumThreads,
+      careerProgression: updatedCareer,
+      worldEvents: allEvents,
+      sceneTick: nextSceneTick,
       stats: {
-        ...gameState.stats,
+        ...stateAfterEvents.stats,
         inspiration: finalInspiration,
         burnout: finalBurnout,
-        money: gameState.stats.money + Math.round(residualPayout),
-        hype: Math.max(0, gameState.stats.hype - 3), // Hype decays naturally over time (-3% per week)
+        money: stateAfterEvents.stats.money + Math.round(residualPayout),
+        hype: Math.max(0, stateAfterEvents.stats.hype - 3),
       }
     };
 
@@ -952,11 +1152,28 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
     }
     const aiSummary = aiSummaryParts.length > 0 ? ` | AI Scene: ${aiSummaryParts.join(', ')}` : '';
 
+    // === WEB ECOSYSTEM TICK ===
+    const wesOutput = webTick({
+      npcs: updated.npcs || [],
+      hotGenre: updated.currentTrend.hotGenre,
+      playerName: updated.pseudonym,
+    });
+    // Re-sync WES state into game state (they share the same object, but be explicit)
+    const wesState = getWESState();
+    if (wesState) updated.webEcosystem = wesState;
+
+    // Log interesting web events
+    const webEventParts = [
+      ...wesOutput.npcPostEvents.slice(0, 2),
+      ...wesOutput.viralEvents.slice(0, 1),
+    ];
+    const webSummary = webEventParts.length > 0 ? ` | Web: ${webEventParts.join(', ')}` : '';
+
     // Log the rested outcomes
     updated = appendLog(
       updated,
       `Master Loop Calendar Tick: Week ${year}.${month}.${week}`,
-      `Took a baseline break. Refueled +${recoveryInspiration} creative ideas and recovered stress. Passive plays generated $${Math.round(residualPayout)} streaming royalties. ${trendLogMsg}${aiSummary}`,
+      `Took a baseline break. Refueled +${recoveryInspiration} creative ideas and recovered stress. Passive plays generated $${Math.round(residualPayout)} streaming royalties. ${trendLogMsg}${aiSummary}${prodEventMsg}${eventSummary}${webSummary}`,
       "system"
     );
 
@@ -968,8 +1185,8 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
       {/* Virtual Browser Modal */}
       {showVirtualBrowser && (
         <VirtualBrowser
-          gameState={gameState}
           onClose={() => setShowVirtualBrowser(false)}
+          playerName={gameState?.pseudonym}
         />
       )}
       
@@ -1175,7 +1392,7 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                     : "text-slate-400 hover:bg-[#111114]/60 hover:text-white"
                 }`}
               >
-                <span className="flex items-center gap-2"><MessageCircle className="h-4 w-4" /> Forums & Rivalry</span>
+                <span className="flex items-center gap-2"><MessageCircle className="h-4 w-4" /> NPCs & Dialogue</span>
               </button>
 
               <button
@@ -1203,14 +1420,38 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
               </button>
 
               <button
-                onClick={() => setActiveTab("scene")}
+                onClick={() => setActiveTab("identity")}
                 className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold font-sans flex items-center justify-between transition-all cursor-pointer ${
-                  activeTab === "scene"
+                  activeTab === "identity"
                     ? "bg-[#111114] text-[#FF00FF] font-bold border-l-4 border-[#FF00FF] neon-glow"
                     : "text-slate-400 hover:bg-[#111114]/60 hover:text-white"
                 }`}
               >
-                <span className="flex items-center gap-2"><Globe className="h-4 w-4" /> Scene Monitor</span>
+                <span className="flex items-center gap-2">🎨 Artist Identity</span>
+                <span className="text-[9px] font-mono bg-[#FF00FF]/10 border border-[#FF00FF]/20 px-1.5 py-0.2 rounded text-[#FF00FF] font-bold">PERSONA</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("dj")}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold font-sans flex items-center justify-between transition-all cursor-pointer ${
+                  activeTab === "dj"
+                    ? "bg-[#111114] text-[#00FF95] font-bold border-l-4 border-[#00FF95] neon-glow"
+                    : "text-slate-400 hover:bg-[#111114]/60 hover:text-white"
+                }`}
+              >
+                <span className="flex items-center gap-2">🎧 DJ Setup</span>
+                <span className="text-[9px] font-mono bg-[#00FF95]/10 border border-[#00FF95]/20 px-1.5 py-0.2 rounded text-[#00FF95] font-bold">{gameState.djCrates?.length || 0} CRATES</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab("web")}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-xs font-semibold font-sans flex items-center justify-between transition-all cursor-pointer ${
+                  activeTab === "web"
+                    ? "bg-[#111114] text-[#FF00FF] font-bold border-l-4 border-[#FF00FF] neon-glow"
+                    : "text-slate-400 hover:bg-[#111114]/60 hover:text-white"
+                }`}
+              >
+                <span className="flex items-center gap-2"><Globe className="h-4 w-4" /> Scene Browser</span>
                 <span className="text-[9px] font-mono bg-[#050507] border border-[#1A1A1E] px-1.5 py-0.2 rounded text-[#FF00FF] font-bold">
                   {(gameState.aiReleases || []).length + (gameState.aiNews || []).length}
                 </span>
@@ -1459,12 +1700,15 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                 />
               )}
 
-              {activeTab === "social" && (
-                <SocialDramaForum
-                  gameState={gameState}
-                  onModifyRelationship={(id, delta, status) => {}}
-                  onTriggerDrama={handleTriggerDrama}
-                  onCollaborate={handleCollaborate}
+              {activeTab === "social" && gameState && (
+                <NPCPanel
+                  npcs={gameState.npcs || []}
+                  playerName={gameState.pseudonym}
+                  playerFame={gameState.stats.prestige}
+                  playerGenre={gameState.currentTrend.hotGenre}
+                  onUpdateNpcs={handleUpdateNpcs}
+                  worldEvents={gameState.worldEvents || []}
+                  gameWeek={gameState.sceneTick}
                 />
               )}
 
@@ -1483,8 +1727,26 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
                 />
               )}
 
-              {activeTab === "scene" && (
+              {activeTab === "web" && (
                 <AIDashboard gameState={gameState} />
+              )}
+
+              {activeTab === "identity" && gameState && (
+                <ArtistIdentityPanel
+                  identity={gameState.artistIdentity}
+                  prestige={gameState.stats.prestige}
+                  onUpdateIdentity={handleIdentityUpdate}
+                />
+              )}
+
+              {activeTab === "dj" && gameState && (
+                <DJCrateManager
+                  crates={gameState.djCrates || []}
+                  sets={gameState.djSets || []}
+                  onAddCrate={handleAddCrate}
+                  onStartSet={() => {}}
+                  onCompleteSet={handleCompleteDJSet}
+                />
               )}
 
               {activeTab === "editor" && (
@@ -1508,9 +1770,56 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
 
             </div>
 
-            {/* RIGHT COLUMN: Event Logger & Career milestones telemetry */}
+            {/* RIGHT COLUMN: Expanded telemetry panels */}
             <div className="lg:col-span-3 space-y-4 font-mono">
               
+              {/* Mental Health Panel */}
+              <MentalHealthPanel
+                mentalState={gameState.mentalState}
+                onRecover={handleRecovery}
+                money={gameState.stats.money}
+              />
+
+              {/* Social Network Panel */}
+              {gameState.socialNetwork && (
+                <SocialNetworkPanel
+                  socialNetwork={gameState.socialNetwork}
+                  gossipEvents={gameState.gossipEvents || []}
+                  onNetworkAction={() => {}}
+                />
+              )}
+
+              {/* Fan Community Panel */}
+              <FanCommunityPanel
+                communities={gameState.fanCommunities || []}
+                threads={gameState.forumThreads || []}
+                reviews={gameState.musicReviews || []}
+                artistName={gameState.pseudonym}
+              />
+
+              {/* Career Progression */}
+              <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-4 rounded-xl shadow-md">
+                <span className="text-[10px] font-mono text-[#00FF95] font-bold uppercase block mb-2 border-b border-[#1A1A1E] pb-1.5 tracking-wider">CAREER PROGRESSION</span>
+                <div className="space-y-2 text-[10px]">
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">Path:</span>
+                    <span className="text-white font-bold">{gameState.careerProgression.currentPath.replace(/_/g, " ")}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">Influence:</span>
+                    <span className="text-cyan-400">{gameState.careerProgression.influenceScore}%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-400">Legacy:</span>
+                    <span className="text-purple-400">{gameState.careerProgression.legacyScore}%</span>
+                  </div>
+                  <div className="h-1.5 bg-gray-700 rounded overflow-hidden mt-1">
+                    <div className="h-full bg-gradient-to-r from-cyan-500 to-purple-500" 
+                      style={{ width: `${gameState.careerProgression.pathProgress}%` }} />
+                  </div>
+                </div>
+              </div>
+
               {/* Studio equipment HUD */}
               <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-4 rounded-xl space-y-2.5 text-xs shadow-md">
                 <span className="text-[10px] font-mono text-[#00FF95] font-bold uppercase block tracking-wider">HARDWARE STUDIO DOCK</span>
@@ -1529,7 +1838,7 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
               <div className="bg-[#0A0A0C] border border-[#1A1A1E] p-4 rounded-xl shadow-md">
                 <span className="text-[10px] font-mono text-[#00FF95] font-bold uppercase block mb-2 border-b border-[#1A1A1E] pb-1.5 tracking-wider">LIVE TICKER OUTPUT Log</span>
                 
-                <div className="max-h-[350px] overflow-y-auto space-y-3 pr-1 font-mono text-[10px] select-text">
+                <div className="max-h-[250px] overflow-y-auto space-y-3 pr-1 font-mono text-[10px] select-text">
                   {gameState.log.map((log) => (
                     <div key={log.id} className="border-b border-[#050507] pb-2.5 last:border-0 leading-normal">
                       <div className="flex justify-between text-slate-500 text-[9px]">

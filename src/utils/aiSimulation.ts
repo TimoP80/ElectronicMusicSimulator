@@ -46,21 +46,27 @@ export async function generateDynamicReview(
   if (cached) return { review: cached.content, isFallback: false };
 
   try {
+    console.log(`[AI DEBUG] Attempting to generate review for "${title}" (${genre}) with quality ${quality}`);
     const response = await fetch('/api/generate-ai-review', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, primaryGenre: genre, stats, rating: quality })
     });
+    console.log(`[AI DEBUG] Review API response status: ${response.status}`);
     const data = await response.json();
     if (data.review) {
       aiContentCache.set(cacheKey, { content: data.review, timestamp: Date.now() });
+      console.log(`[AI DEBUG] Successfully generated AI review for "${title}"`);
       return { review: data.review, isFallback: data.isFallback || false };
     }
+    console.log(`[AI DEBUG] API returned no review data for "${title}"`);
   } catch (e) {
+    console.log(`[AI DEBUG] AI review generation failed for "${title}":`, e);
     // Fallback to local generation
   }
   
   // Procedural fallback
+  console.log(`[AI DEBUG] Using procedural fallback for review of "${title}"`);
   const review = generateProceduralReview(title, genre, quality, stats);
   return { review, isFallback: true };
 }
@@ -113,16 +119,21 @@ export async function generateDynamicSocial(
   quality: number
 ): Promise<{ tweets: string[]; isFallback: boolean }> {
   try {
+    console.log(`[AI DEBUG] Attempting to generate social for "${title}" by ${artist} (${genre}) with quality ${quality}`);
     const response = await fetch('/api/generate-ai-social', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, primaryGenre: genre, artist, rating: quality })
     });
+    console.log(`[AI DEBUG] Social API response status: ${response.status}`);
     const data = await response.json();
     if (data.tweets) {
+      console.log(`[AI DEBUG] Successfully generated AI social for "${title}"`);
       return { tweets: data.tweets, isFallback: data.isFallback || false };
     }
+    console.log(`[AI DEBUG] API returned no social data for "${title}"`);
   } catch (e) {
+    console.log(`[AI DEBUG] AI social generation failed for "${title}":`, e);
     // Fallthrough to fallback
   }
   
@@ -164,19 +175,25 @@ export async function generateDynamicNews(
   sceneCity: string
 ): Promise<{ headline: string; body: string; isFallback: boolean }> {
   try {
+    console.log(`[AI DEBUG] Attempting to generate scene news for ${genre} in ${sceneCity} with prestige ${playerPrestige}`);
     const response = await fetch('/api/generate-ai-scene-news', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ currentGenre: genre, playerPrestige, hotTopic: 'new releases', sceneCity })
     });
+    console.log(`[AI DEBUG] Scene news API response status: ${response.status}`);
     const data = await response.json();
     if (data.headline) {
+      console.log(`[AI DEBUG] Successfully generated AI scene news for ${genre}`);
       return { headline: data.headline, body: data.body, isFallback: data.isFallback || false };
     }
+    console.log(`[AI DEBUG] API returned no headline data for scene news`);
   } catch (e) {
+    console.log(`[AI DEBUG] AI scene news generation failed:`, e);
     // Fallthrough
   }
   
+  console.log(`[AI DEBUG] Using procedural fallback for scene news`);
   return generateProceduralNews(genre, playerPrestige, sceneCity);
 }
 
@@ -222,19 +239,25 @@ export async function generateDynamicForumPost(
   playerName: string
 ): Promise<{ title: string; content: string; isFallback: boolean }> {
   try {
+    console.log(`[AI DEBUG] Attempting to generate forum post for category '${category}', genre '${genre}', player '${playerName}'`);
     const response = await fetch('/api/generate-ai-forum-post', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category, currentGenre: genre, playerName })
     });
+    console.log(`[AI DEBUG] Forum post API response status: ${response.status}`);
     const data = await response.json();
     if (data.title) {
+      console.log(`[AI DEBUG] Successfully generated AI forum post for category '${category}'`);
       return { title: data.title, content: data.content, isFallback: data.isFallback || false };
     }
+    console.log(`[AI DEBUG] API returned no title data for forum post`);
   } catch (e) {
+    console.log(`[AI DEBUG] AI forum post generation failed:`, e);
     // Fallthrough
   }
   
+  console.log(`[AI DEBUG] Using procedural fallback for forum post`);
   return generateProceduralForumPost(category, genre, playerName);
 }
 

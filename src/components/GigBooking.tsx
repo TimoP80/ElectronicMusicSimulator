@@ -158,7 +158,7 @@ const INITIAL_LIBRARY: DjTrack[] = [
   { id: "init_4", title: "Cyberia Breakbeat", artist: "Strobe Vanguard", genre: "UK Garage", bpm: 132, key: "7A", energy: 4, mood: "Euphoric", popularity: 75, credBonus: 12, isVinyl: false, price: 0, overplayScore: 0, releaseYear: 2026 }
 ];
 
-export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, onSaveState, difficultyMultiplier = 1, difficultyFanMultiplier = 1, difficultyBurnoutMultiplier = 1 }: GigBookingProps) {
+export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, onSaveState, onBuyMusic, difficultyMultiplier = 1, difficultyFanMultiplier = 1, difficultyBurnoutMultiplier = 1 }: GigBookingProps) {
   // Main screen routing tab state
   const [activeTab, setActiveTab] = useState<"gigs" | "stores" | "library" | "booth" | "feed">("gigs");
   
@@ -212,13 +212,14 @@ export default function GigBooking({ gameState, onCompleteGig, onTravelToCity, o
         bpm: p.bpm,
         key: p.key,
         energy: p.energy,
-        mood: p.mood,
+        mood: p.mood as DjTrack["mood"],
         popularity: p.popularity,
         credBonus: p.credBonus,
         price: p.price,
-        isVinyl: p.isVinyl,
-        condition: p.condition,
-        releaseYear: p.releaseYear
+        isVinyl: p.isVinyl || false,
+        condition: p.condition as "Mint" | "VG+" | "VG" | "Good" | undefined,
+        releaseYear: p.releaseYear || 2024,
+        overplayScore: 0
       }));
       
       setDjLibrary(prev => {

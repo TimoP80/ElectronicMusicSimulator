@@ -18,7 +18,7 @@ You start as a bedroom producer with an old laptop, basic DAW, and stock earbuds
 ### Core Gameplay Loop
 - **Compose Tracks** — Use the DAW Track Creator to design unique tracks with BPM, energy, groove, and experimental factors
 - **Release Music** — Choose between independent releases or signing with record labels
-- **Book Gigs** — Travel to cities worldwide and perform at venues matching your prestige
+- **Book Gigs** — Travel to cities worldwide and perform at venues matching your prestige, including expanded streaming platforms (YouTube, Facebook, Trovo, Mixcloud, Twitch) and hundreds of real-world inspired venues
 - **Upgrade Gear** — Invest in hardware synths, studio equipment, and acoustic treatment
 - **Develop Skills** — Level up production, engineering, performance, and marketing abilities
 - **Track Trends** — Navigate the ever-changing world music trends to maximize impact
@@ -74,16 +74,16 @@ Choose your challenge level before starting a career:
 | 💀 Nightmare | $150 | 0.5x | 2.0x | True dedication |
 
 ### Global Cities & Venues
-| City | Country | Travel Cost | Genre Boost |
-|------|---------|-------------|-------------|
-| Suburban Bedroom | Start | $0 | — |
-| Berlin | Germany | $350 | +40% Techno |
-| London | UK | $400 | +40% Drum & Bass |
-| Detroit | USA | $800 | +35% Techno |
-| Amsterdam | Netherlands | $300 | +35% Trance |
-| Ibiza | Spain | $600 | +40% House |
-| Tokyo | Japan | $1,100 | +35% Experimental |
-| Los Angeles | USA | $1,000 | +40% Synthwave |
+| City | Country | Travel Cost | Genre Boost | Notable Venues |
+|------|---------|-------------|-------------|----------------|
+| Suburban Bedroom | Start | $0 | — | Twitch, YouTube, Facebook, Trovo & Mixcloud Livestreams |
+| Berlin | Germany | $350 | +40% Techno | Tresor, Berghain, Kraftwerk Berlin, About Blank, Mauerpark, Lollapalooza Berlin |
+| London | UK | $400 | +40% Drum & Bass | Brixton Archway, Fabric, Corsica Studios, Printworks London, Southwark Park, Glastonbury Festival |
+| Detroit | USA | $800 | +35% Techno | Packard Plant, Magic Stick, Shelter, The Library, Woodward Ave, Detroit Institute of Music, Movement Festival |
+| Amsterdam | Netherlands | $300 | +35% Trance | Canal House, Melkweg, Shelter Amsterdam, Paradiso, De School, Awakenings Festival |
+| Ibiza | Spain | $600 | +40% House | San Antonio Beach, DC-10, Pacha, Amnesia, Ushuaïa, Ush-Plaza, Ibiza Rocks |
+| Tokyo | Japan | $1,100 | +35% Experimental | Shimokitazawa Lounge, Womb, Contact, Shibuya Sound Castle, AgeHa, Ultra Japan |
+| Los Angeles | USA | $1,000 | +40% Synthwave | DTLA Warehouse, Sound Nightclub, Exchange LA, Academy LA, Hollywood Palladium, Memorial Sports Arena, Coachella, EDC Las Vegas |
 
 ### Custom Cover Images
 Create unique track artwork using AI generators:

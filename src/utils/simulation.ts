@@ -3,7 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Track, TrackStats, MusicGenre, RecordLabel, MusicTrend, ReleasedTrack, GameState, EventLog, GearItem } from "../types";
+import { 
+  Track, TrackStats, MusicGenre, RecordLabel, MusicTrend, ReleasedTrack, GameState, 
+  EventLog, GearItem, MentalState, ArtistIdentity, DJCrate, DJSet, DJPerformanceResult, 
+  StageProduction, NPCRelationship, SocialNetwork, GossipEvent, FanCommunity, ForumThread, 
+  FanReaction, MusicJournalReview, LabelContract, LabelPolitics, CareerProgression,
+  FinancialObligation, RevenueStream, RegionalScene, ViralMoment, ProductionEvent,
+  STAGE_PRODUCTIONS, PRODUCTION_EVENTS, RecoveryMethod
+} from "../types";
 import { GENRES_DB } from "../data/genres";
 import { GEAR_DB } from "../data/gear";
 import { 
@@ -959,9 +966,11 @@ export function composeTrack(
     primaryGenre: primary,
     secondaryGenre: secondary,
     stats,
-    composedAt: "Year 1, Month 1, Week 1", // Will be filled with state date
+    composedAt: "Year 1, Month 1, Week 1",
     stems,
-    ideasSpent
+    ideasSpent,
+    lengthCategory: "club_edit",
+    durationSeconds: 240 + Math.floor(Math.random() * 120)
   };
 }
 
@@ -1095,4 +1104,541 @@ export function processRelease(
     reviews,
     socialBuzz
   };
+}
+
+// ============================================
+// ARTIST IDENTITY SYSTEM
+// ============================================
+
+export function createDefaultIdentity(name: string, pseudonym: string): ArtistIdentity {
+  return {
+    pseudonym,
+    stagePersona: "underground",
+    visualAesthetic: "dark_industrial",
+    fashionStyle: "streetwear",
+    socialPersonality: "mysterious",
+    aliases: [pseudonym],
+    bio: `A rising force in the underground electronic scene.`,
+    lore: `Started in a suburban bedroom with nothing but a cracked DAW and determination.`,
+    brandingConsistency: 30,
+    catchphrase: "Keep it underground."
+  };
+}
+
+export function evolveIdentity(current: ArtistIdentity, prestige: number, events: string[]): ArtistIdentity {
+  const evolved = { ...current };
+  if (prestige > 30 && current.stagePersona !== "professional") {
+    evolved.brandingConsistency = Math.min(100, current.brandingConsistency + 10);
+  }
+  if (events.length > 5) {
+    evolved.lore += ` After ${events.length} significant gigs, the artist's story continues to unfold.`;
+  }
+  return evolved;
+}
+
+// ============================================
+// DJ SYSTEM
+// ============================================
+
+export function createDJCrate(name: string, genre: MusicGenre): DJCrate {
+  const bpmMap: Record<string, { min: number; max: number }> = {
+    "Techno": { min: 130, max: 145 },
+    "House": { min: 118, max: 128 },
+    "Drum & Bass": { min: 168, max: 180 },
+    "Trance": { min: 130, max: 145 },
+    "Dubstep": { min: 140, max: 150 }
+  };
+  const bpmRange = bpmMap[genre] || { min: 120, max: 140 };
+  
+  return {
+    id: `crate_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+    name,
+    genre,
+    tracks: [],
+    lastModified: "Just created",
+    energyRange: { min: 40, max: 90 },
+    bpmRange,
+    moodTags: ["versatile"]
+  };
+}
+
+export function addTrackToCrate(crate: DJCrate, trackId: string): DJCrate {
+  return { ...crate, tracks: [...crate.tracks, trackId], lastModified: "Just updated" };
+}
+
+export function calculateDJPerformance(
+  set: DJSet,
+  skillLevels: { [key: string]: number },
+  gearBonuses: { djUsability?: number; hypeGeneration?: number; gigQuality?: number }
+): DJPerformanceResult {
+  const baseSkill = (skillLevels["transition"] || 1) * 5 + (skillLevels["crowd_reading"] || 1) * 5;
+  const gearBoost = (gearBonuses.djUsability || 0) + (gearBonuses.gigQuality || 0);
+  const crowdControl = Math.min(100, baseSkill + gearBoost + Math.random() * 20);
+  const technicalPrecision = Math.min(100, (skillLevels["beatmatching"] || 1) * 8 + Math.random() * 15);
+  const energyPacing = Math.min(100, baseSkill + (skillLevels["arrangement"] || 1) * 5 + Math.random() * 15);
+  const transitionSmoothness = Math.min(100, technicalPrecision * 0.8 + Math.random() * 15);
+  const stageCharisma = Math.min(100, (skillLevels["stage_presence"] || 1) * 10 + Math.random() * 20);
+  const improvisation = Math.min(100, (skillLevels["improvisation"] || 1) * 8 + Math.random() * 15);
+  const riskTaking = Math.min(100, Math.random() * 50 + (crowdControl > 60 ? 20 : 0));
+  
+  const overallScore = Math.round(
+    (crowdControl * 0.2 + technicalPrecision * 0.15 + energyPacing * 0.2 +
+     transitionSmoothness * 0.15 + stageCharisma * 0.15 + improvisation * 0.1 + riskTaking * 0.05)
+  );
+  
+  const crowdPeakEnergy = Math.min(100, overallScore + Math.random() * 15 - 5);
+  const crowdSatisfaction = Math.min(100, overallScore + Math.random() * 10 - set.mistakes * 5);
+  
+  return {
+    overallScore,
+    stats: {
+      crowdControl: Math.round(crowdControl),
+      technicalPrecision: Math.round(technicalPrecision),
+      energyPacing: Math.round(energyPacing),
+      transitionSmoothness: Math.round(transitionSmoothness),
+      stageCharisma: Math.round(stageCharisma),
+      improvisation: Math.round(improvisation),
+      riskTaking: Math.round(riskTaking),
+      genreMatching: Math.round(Math.min(100, 50 + (skillLevels["genre_knowledge"] || 1) * 10))
+    },
+    crowdPeakEnergy: Math.round(crowdPeakEnergy),
+    crowdSatisfaction: Math.round(crowdSatisfaction),
+    fanChange: Math.round((overallScore / 10) + Math.random() * 20),
+    hypeChange: Math.round(overallScore / 5),
+    prestigeChange: overallScore > 70 ? Math.round(overallScore / 10) : 0,
+    moneyEarned: Math.round(overallScore * 10 + Math.random() * 200),
+    encoreAchieved: crowdPeakEnergy > 85,
+    mistakes: set.mistakes,
+    equipmentFailures: []
+  };
+}
+
+// ============================================
+// MENTAL HEALTH SYSTEM
+// ============================================
+
+export function createDefaultMentalState(): MentalState {
+  return {
+    creativeBlock: 0,
+    exhaustion: 0,
+    overexposure: 0,
+    stress: 10,
+    anxiety: 5,
+    confidence: 30,
+    ego: 10,
+    addictionRisk: "none",
+    isolation: 10,
+    creativeState: "flow",
+    recoveryProgress: 100,
+    activeRecoveryMethod: null,
+    blockDuration: 0,
+    breakthroughs: 0
+  };
+}
+
+export function updateMentalState(
+  current: MentalState,
+  actions: { produced?: boolean; gigged?: boolean; rested?: boolean; released?: boolean; socialized?: boolean },
+  burnout: number
+): MentalState {
+  const updated = { ...current };
+  
+  if (actions.produced) updated.exhaustion = Math.min(100, updated.exhaustion + 8);
+  if (actions.gigged) { updated.exhaustion += 12; updated.confidence = Math.min(100, updated.confidence + 5); }
+  if (actions.rested) { updated.exhaustion = Math.max(0, updated.exhaustion - 25); updated.stress = Math.max(0, updated.stress - 20); }
+  if (actions.released) { updated.confidence = Math.min(100, updated.confidence + 8); updated.ego = Math.min(100, updated.ego + 3); }
+  if (actions.socialized) { updated.isolation = Math.max(0, updated.isolation - 15); updated.stress -= 5; }
+  
+  updated.creativeBlock = Math.min(100, (updated.exhaustion + updated.stress) / 2);
+  updated.overexposure = Math.min(100, updated.overexposure + (actions.released ? 5 : -2));
+  updated.anxiety = Math.min(100, Math.max(0, updated.stress * 0.7 + Math.random() * 5));
+  
+  if (updated.exhaustion > 70) {
+    updated.creativeState = "burnt_out";
+    updated.blockDuration += 1;
+  } else if (updated.creativeBlock > 60) {
+    updated.creativeState = "blocked";
+  } else if (Math.random() < 0.1 && updated.confidence > 50) {
+    updated.creativeState = "breakthrough";
+    updated.breakthroughs += 1;
+  } else {
+    updated.creativeState = "flow";
+  }
+  
+  if (updated.ego > 80 && Math.random() < 0.1) {
+    updated.addictionRisk = "moderate";
+  }
+  
+  return updated;
+}
+
+export function triggerProductionEvent(): ProductionEvent | null {
+  for (const event of PRODUCTION_EVENTS) {
+    if (Math.random() < event.probability) {
+      return event;
+    }
+  }
+  return null;
+}
+
+// ============================================
+// SOCIAL & RELATIONSHIP SYSTEM
+// ============================================
+
+export function createDefaultSocialNetwork(): SocialNetwork {
+  return {
+    id: "player_network",
+    name: "Your Network",
+    network: [],
+    reputationScore: 20,
+    controversialScore: 0,
+    connectionsCount: 0,
+    collaboratorsCount: 0,
+    rivalsCount: 0,
+    mentorCount: 0
+  };
+}
+
+export function generateGossip(type: GossipEvent["type"], target: string, sourceId: string): GossipEvent {
+  const gossipTemplates: Record<string, string[]> = {
+    positive: [
+      `${target} just delivered an incredible set at the warehouse last night!`,
+      `Everyone's talking about ${target}'s new production quality. Stunning work.`,
+      `Heard ${target} is signing with a major label. Well deserved!`
+    ],
+    negative: [
+      `Did you hear ${target} completely messed up their set? Equipment issues everywhere.`,
+      `${target} is getting too commercial. Lost their underground edge.`,
+      `Word is ${target} had a huge fight with their label. Drama incoming.`
+    ],
+    rumor: [
+      `Rumor has it ${target} is working with a secret vocalist on a new project.`,
+      `I heard ${target} might be starting their own label.`,
+      `Sources say ${target} is planning a massive tour announcement soon.`
+    ],
+    scandal: [
+      `${target} caught using ghost producers on their latest album.`,
+      `${target} called out by major artist for sample stealing!`,
+      `Leaked emails show ${target} in bitter contract dispute.`
+    ],
+    achievement: [
+      `${target} just hit 100k followers on social media!`,
+      `${target}'s latest release charted in the top 10 underground charts.`,
+      `Massive respect for ${target} - they just donated to a community studio.`
+    ]
+  };
+  
+  const templates = gossipTemplates[type] || gossipTemplates.rumor;
+  const content = templates[Math.floor(Math.random() * templates.length)];
+  
+  return {
+    id: `gossip_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+    date: "Current",
+    type,
+    content,
+    sourceId,
+    targets: [target],
+    impact: type === "scandal" ? -30 : type === "negative" ? -10 : type === "achievement" ? 20 : 5,
+    spreadRadius: Math.floor(Math.random() * 5) + 1
+  };
+}
+
+// ============================================
+// FAN & COMMUNITY SYSTEM
+// ============================================
+
+export function createFanCommunity(artistName: string, platform: FanCommunity["platform"]): FanCommunity {
+  const names: Record<string, string> = {
+    forum: `${artistName} Forum`,
+    subreddit: `r/${artistName.replace(/\s+/g, '')}`,
+    discord: `${artistName} Discord`,
+    facebook_group: `${artistName} Fan Club`,
+    bandcamp: `${artistName} Collectors`,
+    patreon: `${artistName} Inner Circle`
+  };
+  
+  return {
+    id: `community_${Date.now()}`,
+    name: names[platform] || `${artistName} Community`,
+    platform,
+    memberCount: Math.floor(Math.random() * 50) + 10,
+    averageSentiment: 20 + Math.floor(Math.random() * 40),
+    activityLevel: 30 + Math.floor(Math.random() * 40),
+    formedDate: "Recently formed",
+    dedicatedSuperfans: Math.floor(Math.random() * 5) + 1,
+    recentTopics: [],
+    controversies: 0,
+    cultStatus: false
+  };
+}
+
+export function generateForumThread(category: string, artistName: string, genre: string): ForumThread {
+  const topics: Record<string, { titles: string[]; contents: string[] }> = {
+    discussion: {
+      titles: [
+        `What do you think of ${artistName}'s new direction?`,
+        `${genre} scene is absolutely fire right now`,
+        `Hot take: best producers in the ${genre} scene`
+      ],
+      contents: [
+        `Been following ${artistName}'s journey and the evolution is incredible. The way they blend ${genre} with experimental elements is pushing boundaries.`,
+        `The ${genre} scene has so much energy right now. Every week there's a new release that blows my mind. Who else is feeling this?`,
+        `Let's discuss what makes a great ${genre} track. For me it's all about the groove and sound design balance.`
+      ]
+    },
+    review: {
+      titles: [
+        `${artistName} - Latest Release: My Honest Review`,
+        `In-depth analysis of the new ${genre} EP`,
+        `Review thread: what worked and what didn't`
+      ],
+      contents: [
+        `I've been spinning the new release all week. The production quality is a huge step up. Sound design is crisp, mixing is clean. 8/10.`,
+        `The arrangement on this track is clever but the drop feels a bit undercooked. Still a solid release overall.`,
+        `I appreciate the experimental approach even if not everything lands. The second track is a masterpiece.`
+      ]
+    },
+    praise: {
+      titles: [
+        `${artistName} appreciation thread 🎵`,
+        `Just discovered ${artistName} and I'm blown away`,
+        `Why ${artistName} is the most underrated producer`
+      ],
+      contents: [
+        `I can't stop listening to the latest tracks. The attention to detail is insane. This is pure quality.`,
+        `Finally an artist who understands what real underground music should sound like. Respect.`,
+        `The way this producer layers sounds is next level. Learning so much just by listening.`
+      ]
+    }
+  };
+  
+  const cat = topics[category] || topics.discussion;
+  const title = cat.titles[Math.floor(Math.random() * cat.titles.length)];
+  const content = cat.contents[Math.floor(Math.random() * cat.contents.length)];
+  
+  return {
+    id: `thread_${Date.now()}`,
+    title,
+    author: `fan_${Math.floor(Math.random() * 1000)}`,
+    date: "Current",
+    content,
+    replies: Math.floor(Math.random() * 20),
+    likes: Math.floor(Math.random() * 50),
+    sentiment: category === "praise" ? 60 : category === "review" ? 20 : 10,
+    category: category as ForumThread["category"],
+    pinned: Math.random() < 0.1
+  };
+}
+
+export function generateMusicReview(trackTitle: string, genre: string, quality: number): MusicJournalReview {
+  const publications = [
+    { name: "Resident Advisor", author: "RA Staff", type: "magazine" as const, influence: 90 },
+    { name: "Mixmag", author: "Mixmag Editor", type: "magazine" as const, influence: 85 },
+    { name: "DJ Mag", author: "DJ Mag Team", type: "magazine" as const, influence: 80 },
+    { name: "Underground Frequencies", author: "Freya Waves", type: "blog" as const, influence: 50 },
+    { name: "Synth Depot", author: "Modular Max", type: "blog" as const, influence: 40 }
+  ];
+  
+  const pub = publications[Math.floor(Math.random() * publications.length)];
+  
+  let reviewText = "";
+  if (quality >= 80) {
+    reviewText = `"${trackTitle}" is a masterclass in ${genre} production. The sound design is immaculate, the arrangement keeps you locked in from start to finish. Essential listening for anyone serious about the scene. [${pub.name}]`;
+  } else if (quality >= 60) {
+    reviewText = `A solid ${genre} offering that shows promise. While "${trackTitle}" plays it safe in places, the production values are strong and the groove is undeniable. Worth your time. [${pub.name}]`;
+  } else if (quality >= 40) {
+    reviewText = `"${trackTitle}" is a mixed bag. The ideas are there but the execution feels rough around the edges. The mixing could use more polish and the arrangement drags in the middle. [${pub.name}]`;
+  } else {
+    reviewText = `A forgettable ${genre} track that fails to make an impact. "${trackTitle}" sounds rushed and lacks the attention to detail needed to stand out in today's crowded scene. [${pub.name}]`;
+  }
+  
+  return {
+    id: `review_${Date.now()}`,
+    publication: pub.name,
+    author: pub.author,
+    date: "Current",
+    trackId: trackTitle,
+    score: quality,
+    content: reviewText,
+    influence: pub.influence,
+    publicationType: pub.type
+  };
+}
+
+// ============================================
+// LABEL SYSTEM EXPANSION
+// ============================================
+
+export function createLabelContract(label: RecordLabel, advanceAmount: number): LabelContract {
+  return {
+    id: `contract_${Date.now()}`,
+    labelId: label.id,
+    labelName: label.name,
+    signedDate: "Current",
+    expiryDate: "Negotiable",
+    tracksCommitted: label.dealLength,
+    tracksDelivered: 0,
+    exclusivity: "exclusive",
+    royaltySplit: label.royaltySplit,
+    advanceTotal: advanceAmount,
+    advancePaid: 0,
+    marketingBudget: Math.round(advanceAmount * 0.3),
+    remixObligations: 1,
+    remixObligationsMet: 0,
+    terminationClause: "Standard 30-day notice",
+    renewalOption: true,
+    labelFavorability: 50
+  };
+}
+
+export function negotiateAdvance(prestige: number, labelPrestige: number, baseAdvance: number): number {
+  const multiplier = 1 + (prestige / 100) * 0.5;
+  const negotiationSkill = 1;
+  return Math.round(baseAdvance * multiplier * (0.8 + Math.random() * 0.4 * negotiationSkill));
+}
+
+// ============================================
+// ECONOMY & PROGRESSION
+// ============================================
+
+export function calculateMonthlyExpenses(
+  gear: string[],
+  hasManager: boolean,
+  hasStudio: boolean,
+  hasLabel: boolean
+): number {
+  let expenses = 0;
+  expenses += gear.length * 10; // Equipment maintenance
+  if (hasStudio) expenses += 200; // Studio rent
+  if (hasManager) expenses += Math.round(expenses * 0.15); // Manager's cut
+  if (hasLabel) expenses += 50; // Label overhead
+  return expenses + 100; // Base living expenses
+}
+
+export function calculateCareerMilestones(prestige: number): string[] {
+  const milestones: string[] = [];
+  if (prestige >= 5) milestones.push("First release on a real label");
+  if (prestige >= 10) milestones.push("First club gig outside your hometown");
+  if (prestige >= 20) milestones.push("First festival appearance");
+  if (prestige >= 35) milestones.push("International tour completed");
+  if (prestige >= 50) milestones.push("Chart placement in top 100");
+  if (prestige >= 70) milestones.push("Headlined major festival");
+  if (prestige >= 85) milestones.push("Industry legend status achieved");
+  if (prestige >= 95) milestones.push("Inducted into electronic music hall of fame");
+  return milestones;
+}
+
+export function determineCareerPath(
+  genre: MusicGenre,
+  undergroundPreference: number,
+  commercialPreference: number
+): CareerProgression["currentPath"] {
+  if (commercialPreference > 70) return "commercial_superstar";
+  if (undergroundPreference > 70) return "underground_legend";
+  if (genre === MusicGenre.AMBIENT || genre === MusicGenre.EXPERIMENTAL) return "experimental_icon";
+  return "versatile_artist";
+}
+
+// ============================================
+// SCENE SIMULATION
+// ============================================
+
+export function updateRegionalScene(
+  scene: RegionalScene,
+  playerActivity: number,
+  trendGenre: MusicGenre,
+  month: number
+): RegionalScene {
+  const updated = { ...scene };
+  
+  // Scene health fluctuates with activity
+  updated.sceneHealth = Math.min(100, Math.max(0, 
+    scene.sceneHealth + (Math.random() - 0.5) * 10 + (scene.dominantGenre === trendGenre ? 5 : -2)
+  ));
+  
+  // Underground vs commercial balance shifts
+  updated.undergroundActivity = Math.min(100, Math.max(0, 
+    scene.undergroundActivity + (Math.random() - 0.5) * 8
+  ));
+  
+  // Add seasonal trends
+  if (month >= 6 && month <= 8) {
+    updated.commercialPresence = Math.min(100, updated.commercialPresence + 5); // Summer festival season
+  }
+  
+  return updated;
+}
+
+export function generateViralMoment(genre: MusicGenre, playerName: string, trackTitle: string): ViralMoment {
+  const triggers = [
+    `TikTok dance challenge using ${trackTitle}`,
+    `${playerName}'s Boiler Room set goes viral`,
+    `Celebrity shares ${trackTitle} on social media`,
+    `${trackTitle} featured in popular gaming stream`,
+    `Unexpected remix of ${trackTitle} blows up`
+  ];
+  
+  return {
+    id: `viral_${Date.now()}`,
+    date: "Current",
+    trigger: triggers[Math.floor(Math.random() * triggers.length)] || "Viral social media moment",
+    genre,
+    reach: 40 + Math.floor(Math.random() * 50),
+    duration: 2 + Math.floor(Math.random() * 4),
+    impact: {
+      fameChange: 5 + Math.floor(Math.random() * 15),
+      hypeChange: 10 + Math.floor(Math.random() * 20),
+      fanChange: 100 + Math.floor(Math.random() * 900),
+      moneyChange: 50 + Math.floor(Math.random() * 200)
+    },
+    source: "Social Media",
+    description: `${trackTitle} by ${playerName} is taking over social media! The ${genre} track has gone viral through organic sharing and community engagement.`
+  };
+}
+
+// ============================================
+// CREATIVE BLOCK & RECOVERY
+// ============================================
+
+export function attemptRecovery(current: MentalState, method: string): MentalState {
+  const updated = { ...current };
+  
+  switch (method) {
+    case "vacation":
+      updated.exhaustion = Math.max(0, updated.exhaustion - 40);
+      updated.stress = Math.max(0, updated.stress - 35);
+      updated.confidence = Math.min(100, updated.confidence + 10);
+      break;
+    case "therapy":
+      updated.anxiety = Math.max(0, updated.anxiety - 30);
+      updated.isolation = Math.max(0, updated.isolation - 20);
+      updated.creativeBlock = Math.max(0, updated.creativeBlock - 15);
+      break;
+    case "studio_retreat":
+      updated.exhaustion = Math.max(0, updated.exhaustion - 20);
+      updated.creativeBlock = Math.max(0, updated.creativeBlock - 25);
+      if (Math.random() < 0.3) updated.creativeState = "breakthrough";
+      break;
+    case "collaboration":
+      updated.isolation = Math.max(0, updated.isolation - 30);
+      updated.creativeBlock = Math.max(0, updated.creativeBlock - 20);
+      updated.confidence = Math.min(100, updated.confidence + 5);
+      break;
+    case "genre_switch":
+      updated.creativeBlock = Math.max(0, updated.creativeBlock - 30);
+      updated.exhaustion = Math.max(0, updated.exhaustion - 10);
+      break;
+    default:
+      updated.exhaustion = Math.max(0, updated.exhaustion - 10);
+  }
+  
+  updated.activeRecoveryMethod = method as RecoveryMethod;
+  updated.recoveryProgress = Math.min(100, updated.recoveryProgress + 15);
+  
+  if (updated.creativeBlock < 30 && updated.exhaustion < 40) {
+    updated.creativeState = "flow";
+    updated.blockDuration = 0;
+  }
+  
+  return updated;
 }

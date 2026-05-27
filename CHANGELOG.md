@@ -17,6 +17,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Community Features - virtual artists, remixes, forum
   - 15 navigation sections for easy access
 
+- **Web Ecosystem Simulator (WES)** — Living attention economy simulation with 7 engines:
+  - **Content Graph Engine** — Weighted directed graph of artist pages, label sites, release pages, forum threads, blog posts, news articles, reviews. SEO-like link authority with backlink tracking.
+  - **Attention Economy Engine** — Nodes tracked by views, clicks, dwell time, shares, likes, backlinks with decay rate and momentum. Scoring formula: `(views×0.2 + clicks×0.3 + shares×0.5 + backlinks×0.7 + dwell×0.4) × momentum × trendMultiplier`. Random resurgence when content is rediscovered.
+  - **Search & Ranking Engine** — Full-text search across all nodes with 8 search intents (news, music, forum, artist, label, gossip, track_releases, general). Ranking = `relevance × authority × freshness × engagement × trendBoost`. Intent-based weighting for biased results.
+  - **Virality Simulation Engine** — State machine: dead→gaining→viral→peak→declining→forgotten. Virality formula: `shares × amplificationFactor × networkDensity × (1+influencerBoost) × (1+emotionalIntensity) × (1+noveltyFactor)`. Viral spikes temporarily override decay.
+  - **Trend System** — Genre trends, hot topics, and sentiment tracking. Trends decay/boost each tick, feed into ranking multipliers and NPC behavior.
+  - **Forum/Thread System** — Threads with toxicity/engagement/polarization dynamics that evolve as posts are added. Can escalate to heated or polarized states.
+  - **NPC Web Behavior** — NPCs post content based on sociability. High-ego NPCs trigger controversial posts (30% chance) with viral attempts. Positive posts create blog nodes.
+  - **Content Lifecycle** — creation→discovery→growth→viral_spike→saturation→decay→archive with time-based stage transitions.
+
+- **Virtual Browser 2.0** — Fully rewritten to use live WES engine data:
+  - Home page with trending content, viral feed, active forum discussions, live "Internet Pulse" panel (genre trends, hot topics, sentiment gauges)
+  - Search with intent selector and ranked results showing score breakdown (authority%, engagement%, freshness%, trend boost)
+  - Node pages (artist/label/release) with attention stats grid and virality profile
+  - Thread view with live dynamics bars (toxicity, engagement, polarization)
+  - Status bar showing live node/edge/thread count and tick counter
+  - No longer depends on `gameState` prop — reads directly from WES singleton
+
+- **NPC Simulation System** — Complete NPC framework with:
+  - 10 NPC archetypes (techno_purist, experimental, commercial, underground_legend, rising_star, mentor, rival, scene_elder, industry_shark, bedroom_producer)
+  - Big-5 personality model (openness, ego, creativity, commercialism, emotionality, sociability) with archetype-based jitter
+  - Mood engine with energy, burnout, inspiration and emotional states (neutral, excited, angry, burnt_out, inspired)
+  - Relationship system with affinity, trust, history tracking across all NPC pairs
+  - Memory system with structured events, summaries, and weight decay/consolidation
+  - Procedural dialogue with 5 interaction types (greeting, collaboration, conflict, random_chat, farewell)
+
+- **Event Generation Pipeline** — World event system with:
+  - NPC tick (mood decay, goal progress, NPC action generation)
+  - Scene event generation (industry, NPC interaction, trend, controversy)
+  - Event impact application (stats, NPC relationships)
+  - Premium AI event generation every 8 ticks (interview, review, viral, controversy, festival_report)
+
+- **Premium AI Layer** — Gemini-powered enhancement for rare events:
+  - `POST /api/npc/dialogue` — NPC dialogue with personality/mood/relationship/memory context
+  - `POST /api/npc/premium-event` — Premium event generation (interview, review, viral, controversy, festival_report)
+  - Client-side NPC AI module (`npcAI.ts`) with 10-minute LRU cache (200 entries)
+  - 5% dialogue spike: AI-enhanced character dialogue with full context
+  - Graceful degradation when AI is unavailable (falls back to procedural)
+
 - **Dynamic AI Text Generation** — AI-powered content across the game engine:
   - `/api/generate-ai-scene-news` - Dynamic scene news headlines
   - `/api/generate-ai-forum-post` - Forum discussion generation

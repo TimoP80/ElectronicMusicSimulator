@@ -8,8 +8,8 @@ import { MusicGenre } from "../types";
 interface Release {
   releaseId: string;
   title: string;
-  trackId: string;
-  primaryGenre: string;
+  trackId?: string;
+  primaryGenre: MusicGenre | string;
   secondaryGenre?: string;
   stats: {
     bpm: number;
@@ -27,12 +27,15 @@ interface Release {
   catalogNumber?: string;
   labelName?: string;
   releaseType?: 'single' | 'ep' | 'album' | 'remix_ep';
+  id?: string;
+  genre?: string;
+  hypeBoost?: number;
 }
 
 interface Track {
   id: string;
   title: string;
-  primaryGenre?: string;
+  primaryGenre?: MusicGenre | string;
   secondaryGenre?: string;
   stats?: {
     bpm: number;
@@ -41,20 +44,16 @@ interface Track {
     catchiness: number;
     groove: number;
   };
-}
-
-interface GameState {
-  tracks: Track[];
-  releases: Release[];
-  stats: { money: number };
-  signedLabelId?: string;
-  remixRequests?: any[];
-  virtualArtists?: any[];
+  composedAt?: string;
+  stems?: any;
+  ideasSpent?: number;
+  lengthCategory?: string;
+  durationSeconds?: number;
 }
 
 interface ReleaseSectionProps {
-  gameState: GameState;
-  onUpdateState: (state: GameState) => void;
+  gameState: any;
+  onUpdateState: (state: any) => void;
 }
 
 // Helper to generate catalog number
