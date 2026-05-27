@@ -45,6 +45,61 @@ import DJCrateManager from "./components/DJCrateManager";
 
 const LOCAL_STORAGE_KEY = "beatmaker_simulator_state_v1";
 
+// Migrate saved state to fill missing fields from older versions
+function migrateState(state: any): GameState {
+  if (!state.careerProgression) {
+    state.careerProgression = {
+      currentPath: "versatile_artist",
+      pathProgress: 0,
+      pathMilestones: [],
+      secondaryPaths: [],
+      allTimeRevenue: 0,
+      biggestHit: "",
+      careerHighlights: [],
+      careerRegrets: [],
+      influenceScore: 5,
+      legacyScore: 0
+    };
+  }
+  if (!state.stats) state.stats = { fans: 0, hype: 50, prestige: 10, money: 500, inspiration: 100, burnout: 0, skillPoints: 2 };
+  if (!state.forumThreads) state.forumThreads = [];
+  if (!state.musicReviews) state.musicReviews = [];
+  if (!state.fanCommunities) state.fanCommunities = [];
+  if (!state.activeProductionEvents) state.activeProductionEvents = [];
+  state.mentalState = {
+    creativeBlock: 0, exhaustion: 0, overexposure: 0, stress: 0, anxiety: 0,
+    confidence: 50, ego: 30, addictionRisk: "none", isolation: 0,
+    creativeState: "flow", recoveryProgress: 0, activeRecoveryMethod: null,
+    blockDuration: 0, breakthroughs: 0, mentalHealthHistory: [],
+    ...(state.mentalState || {})
+  };
+  state.artistIdentity = {
+    pseudonym: state.pseudonym || state.artistName || "Artist",
+    stagePersona: "underground",
+    visualAesthetic: "dark_industrial",
+    fashionStyle: "streetwear",
+    socialPersonality: "mysterious",
+    aliases: [],
+    bio: "",
+    lore: "",
+    brandingConsistency: 30,
+    ...(state.artistIdentity || {})
+  };
+  state.socialNetwork = {
+    id: "", name: "", network: [], reputationScore: 0, controversialScore: 0,
+    connectionsCount: 0, collaboratorsCount: 0, rivalsCount: 0, mentorCount: 0,
+    ...(state.socialNetwork || {})
+  };
+  if (!state.viralMoments) state.viralMoments = [];
+  if (!state.regionalScenes) state.regionalScenes = [];
+  if (!state.npcs && !state.virtualArtists?.length) state.npcs = [];
+  if (!state.pseudonym) state.pseudonym = state.artistName || state.artistIdentity?.pseudonym || "DJ BedRoomer";
+  if (!state.artistName) state.artistName = state.pseudonym;
+  if (!state.worldEvents) state.worldEvents = [];
+  if (!state.webEcosystem) state.webEcosystem = null;
+  return state;
+}
+
 // Primary Creator Class Archetypes
 interface EthosArchetype {
   id: string;
@@ -217,6 +272,7 @@ export default function App() {
   const [onboardingName, setOnboardingName] = useState("");
   const [activeTab, setActiveTab] = useState<"workspace" | "releases" | "live" | "labels" | "social" | "shop" | "skills" | "identity" | "dj" | "editor" | "web">("workspace");
   const [showVirtualBrowser, setShowVirtualBrowser] = useState(false);
+  const [browserSearch, setBrowserSearch] = useState("");
   const [showWorldNews, setShowWorldNews] = useState(false);
   const [preSelectedTrackId, setPreSelectedTrackId] = useState<string>("");
   const [onboardingShowEditor, setOnboardingShowEditor] = useState(false);
@@ -246,8 +302,15 @@ export default function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        setGameState(parsed);
-        if (parsed.webEcosystem) setWESState(parsed.webEcosystem);
+        const migrated = migrateState(parsed);
+        // Generate NPCs from virtual artists if missing
+        if (!migrated.npcs?.length && migrated.virtualArtists?.length) {
+          migrated.npcs = createNPCsFromVirtualArtists(migrated.virtualArtists.map((a: any) => ({
+            name: a.name, primaryGenre: a.primaryGenre, fame: a.fame, ego: a.ego, bio: a.bio
+          })));
+        }
+        setGameState(migrated);
+        if (migrated.webEcosystem) setWESState(migrated.webEcosystem);
       } catch (e) {
         console.error("Failed to parse saved game state, starting fresh.");
       }
@@ -286,7 +349,13 @@ export default function App() {
       const saved = localStorage.getItem(key);
       if (saved) {
         const loaded = JSON.parse(saved);
-        saveState(loaded);
+        const migrated = migrateState(loaded);
+        if (!migrated.npcs?.length && migrated.virtualArtists?.length) {
+          migrated.npcs = createNPCsFromVirtualArtists(migrated.virtualArtists.map((a: any) => ({
+            name: a.name, primaryGenre: a.primaryGenre, fame: a.fame, ego: a.ego, bio: a.bio
+          })));
+        }
+        saveState(migrated);
         alert(`Game state loaded from Slot ${slotNumber}!`);
       } else {
         alert("This slot is empty.");
@@ -1185,8 +1254,9 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
       {/* Virtual Browser Modal */}
       {showVirtualBrowser && (
         <VirtualBrowser
-          onClose={() => setShowVirtualBrowser(false)}
+          onClose={() => { setShowVirtualBrowser(false); setBrowserSearch(""); }}
           playerName={gameState?.pseudonym}
+          initialSearch={browserSearch}
         />
       )}
       
@@ -1728,7 +1798,13 @@ const getDifficultyConfig = (difficultyId: string): DifficultyConfig | undefined
               )}
 
               {activeTab === "web" && (
-                <AIDashboard gameState={gameState} />
+                <AIDashboard
+                  gameState={gameState}
+                  onOpenBrowser={(search) => {
+                    setBrowserSearch(search);
+                    setShowVirtualBrowser(true);
+                  }}
+                />
               )}
 
               {activeTab === "identity" && gameState && (

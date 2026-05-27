@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
 
-let mainWindow: BrowserWindow | null = null;
+let mainWindow = null;
 
 function createAboutMenu() {
   const aboutInfo = {

@@ -351,6 +351,9 @@ export async function generateDialogueResponseWithAI(
 export function generateDialogueResponse(ctx: DialogueContext): DialogueResponse {
   const { npc, relationship, trigger } = ctx;
 
+  // Custom message uses a separate handler
+  if (trigger === "custom_message") return customDialogue(npc, ctx);
+
   if (relationship.historyLevel === "none") {
     return templateGreeting(npc, ctx);
   }
@@ -433,5 +436,22 @@ function neutralDialogue(npc: NPC, ctx: DialogueContext): DialogueResponse {
     tone: "neutral",
     intent: "discussion",
     relationshipDelta: 1
+  };
+}
+
+function customDialogue(npc: NPC, ctx: DialogueContext): DialogueResponse {
+  const responses = [
+    `Interesting take. I've been thinking about that lately too.`,
+    `Yeah, I see what you mean. The scene's been shifting that direction.`,
+    `Huh, hadn't considered that angle. You might be onto something.`,
+    `Not sure I agree, but I respect the perspective.`,
+    `That's... actually a solid point. Keep talking.`,
+    `*nods thoughtfully* Go on.`,
+  ];
+  return {
+    message: randomFrom(responses),
+    tone: npc.personality.ego > 60 ? "reserved" : "thoughtful",
+    intent: "discussion",
+    relationshipDelta: 2
   };
 }

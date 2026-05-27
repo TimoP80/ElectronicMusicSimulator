@@ -12,6 +12,7 @@ import { MusicGenre } from '../types';
 
 interface AIDashboardProps {
   gameState: GameState;
+  onOpenBrowser?: (searchTerm: string) => void;
 }
 
 // Genre colors for badges
@@ -53,7 +54,7 @@ const getReleasePage = (release: AIRelease): string => {
   return `https://${artistSlug}-${slug}.scene-releases.com`;
 };
 
-export const AIDashboard: React.FC<AIDashboardProps> = ({ gameState }) => {
+export const AIDashboard: React.FC<AIDashboardProps> = ({ gameState, onOpenBrowser }) => {
   const [activeTab, setActiveTab] = useState<'releases' | 'news' | 'labels'>('releases');
 
   const aiReleases = gameState.aiReleases || [];
@@ -137,41 +138,35 @@ export const AIDashboard: React.FC<AIDashboardProps> = ({ gameState }) => {
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <a
-                          href={getArtistWebsite(release.artistName)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm font-medium text-[#00FF95] hover:underline truncate"
+                        <button
+                          onClick={() => onOpenBrowser?.(release.artistName)}
+                          className="text-sm font-medium text-[#00FF95] hover:underline truncate text-left bg-transparent border-none cursor-pointer"
                         >
                           {release.artistName}
-                        </a>
+                        </button>
                         {release.isViral && (
                           <span className="px-1.5 py-0.5 rounded text-[10px] bg-red-600/20 text-red-400 border border-red-600/30">
                             🔥 VIRAL
                           </span>
                         )}
                       </div>
-                      <a
-                        href={getReleasePage(release)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-gray-300 hover:text-white block truncate"
+                      <button
+                        onClick={() => onOpenBrowser?.(`${release.artistName} ${release.trackTitle}`)}
+                        className="text-xs text-gray-300 hover:text-white block truncate text-left bg-transparent border-none cursor-pointer w-full"
                       >
                         "{release.trackTitle}"
-                      </a>
+                      </button>
                       <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-500">
                         <span className={`px-1.5 py-0.5 rounded ${getGenreColor(release.genre)}`}>
                           {release.genre}
                         </span>
                         {release.labelName && (
-                          <a
-                            href={getLabelWebsite(release.labelName)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-purple-400 hover:underline"
+                          <button
+                            onClick={() => onOpenBrowser?.(release.labelName)}
+                            className="text-purple-400 hover:underline text-left bg-transparent border-none cursor-pointer"
                           >
                             {release.labelName}
-                          </a>
+                          </button>
                         )}
                         <span className="text-gray-600">•</span>
                         <span>{release.format}</span>
@@ -275,14 +270,12 @@ export const AIDashboard: React.FC<AIDashboardProps> = ({ gameState }) => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <a
-                          href={getLabelWebsite(activity.labelName)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-medium text-purple-400 hover:underline"
+                        <button
+                          onClick={() => onOpenBrowser?.(activity.labelName)}
+                          className="text-xs font-medium text-purple-400 hover:underline text-left bg-transparent border-none cursor-pointer"
                         >
                           {activity.labelName}
-                        </a>
+                        </button>
                         <span className="text-[10px] uppercase tracking-wider text-gray-500">
                           {activity.type}
                         </span>

@@ -145,7 +145,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Release Format Types** (CD Single, Vinyl EP, Web Album, etc.)
 
 ### Added
-- **AI Scene Simulation** - Simulated music scene with:
+- **Scene Monitor links now open in Virtual Browser** — All artist, track, and label links in the Scene Monitor (AIDashboard) now open in the internal WES-powered VirtualBrowser instead of the real browser. `onOpenBrowser` callback passes search terms to VirtualBrowser, which auto-navigates on open. `initialSearch` prop added to VirtualBrowser for auto-search on mount.
+
+- **NPC dialogue preset button action logging** — When clicking preset interaction buttons (Greet, Collaborate, Conflict, Chat, Farewell) in NPCPanel, the player's action is now logged to the chat log before the NPC responds, showing both sides of the conversation (e.g. "👋 Greeted ...", "🤝 Proposed collaboration to ...").
+
+- **Save migration pseudonym fallback** — `migrateState` now ensures `pseudonym` is never undefined by falling back through `artistName` → `artistIdentity.pseudonym` → string default, preventing "undefined" player names in old saves.
+
+### Changed
+- **NPC dialogue improvements** — `handleInteract` now fires synchronous deterministic response immediately, then attempts async AI upgrade in background (replaces last log entry if AI response differs).
+- **Custom message input in NPCPanel** — Text input + Send button below action buttons; adds player message to chat log with `playerName` then calls `generateDialogueResponse("custom_message")`.
   - 3-8 AI artist releases per week from predefined artists
   - 2-5 news posts per week (release, gossip, trend, festival, scandal)
   - 1-3 label activities per week (signings, releases, tours)

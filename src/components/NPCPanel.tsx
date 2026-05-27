@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { NPC, NPCMood, NPCPersonality, DialogueResponse, DialogueContext, NPCRelationshipData, WorldEvent, EventSeverity } from "../types";
-import { generateDialogueResponseWithAI, createDialogueContext, updateRelationship, addMemoryEvent, consolidateMemories } from "../utils/npcSystem";
+import { generateDialogueResponse, generateDialogueResponseWithAI, createDialogueContext, updateRelationship, addMemoryEvent, consolidateMemories } from "../utils/npcSystem";
 
 interface Props {
   npcs: NPC[];
@@ -55,11 +55,44 @@ export default function NPCPanel({ npcs, playerName, playerFame, playerGenre, on
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [chatLog, setChatLog] = useState<{ from: string; msg: string }[]>([]);
   const [lastResponse, setLastResponse] = useState<DialogueResponse | null>(null);
+  const [customMsg, setCustomMsg] = useState("");
+  const [eventTab, setEventTab] = useState<"chat" | "events">("chat");
 
   const selected = useMemo(() => npcs.find(n => n.id === selectedId), [npcs, selectedId]);
 
+  const processResponse = (response: DialogueResponse, npc: NPC) => {
+    setLastResponse(response);
+    setChatLog(prev => [...prev, { from: npc.name, msg: response.message }]);
+    let updated = { ...npc };
+    updated.relationships = updateRelationship(
+      updated.relationships,
+      playerName,
+      { affinity: response.relationshipDelta, trust: Math.abs(response.relationshipDelta) }
+    );
+    if (response.memoryEvent) {
+      updated = addMemoryEvent(updated, response.memoryEvent);
+    }
+    updated.memory = consolidateMemories(updated.memory);
+    const newNpcs = npcs.map(n => n.id === npc.id ? updated : n);
+    onUpdateNpcs(newNpcs);
+  };
+
   const handleInteract = (trigger: DialogueContext["trigger"]) => {
     if (!selected) return;
+
+    // Log player action for preset buttons
+    if (trigger !== "custom_message") {
+      const actionLabels: Record<string, string> = {
+        greeting: `👋 Greeted ${selected.name}`,
+        collaboration_request: `🤝 Proposed collaboration to ${selected.name}`,
+        random_chat: `💬 Started a chat with ${selected.name}`,
+        conflict: `⚔️ Provoked ${selected.name}`,
+        farewell: `👋 Said farewell to ${selected.name}`,
+        custom_message: "",
+      };
+      setChatLog(prev => [...prev, { from: playerName || "You", msg: actionLabels[trigger] || trigger }]);
+    }
+
     const ctx = createDialogueContext(
       selected,
       { fame: playerFame, genre: playerGenre, name: playerName },
@@ -68,24 +101,37 @@ export default function NPCPanel({ npcs, playerName, playerFame, playerGenre, on
     ctx.sceneState.genreTrends = {};
     ctx.sceneState.currentEvents = [];
 
-    generateDialogueResponseWithAI(ctx, gameWeek ?? 0).then(response => {
-      setLastResponse(response);
-      setChatLog(prev => [...prev, { from: selected!.name, msg: response.message }]);
+    // Synchronous deterministic response immediately
+    const immediate = generateDialogueResponse(ctx);
+    processResponse(immediate, selected);
 
-      let updated = { ...selected! };
-      updated.relationships = updateRelationship(
-        updated.relationships,
-        playerName,
-        { affinity: response.relationshipDelta, trust: Math.abs(response.relationshipDelta) }
-      );
-      if (response.memoryEvent) {
-        updated = addMemoryEvent(updated, response.memoryEvent);
+    // Async AI upgrade in background (fire-and-forget)
+    generateDialogueResponseWithAI(ctx, gameWeek ?? 0).then(aiResponse => {
+      if (aiResponse && aiResponse.message !== immediate.message) {
+        // Replace last log entry with AI response
+        setChatLog(prev => [...prev.slice(0, -1), { from: selected!.name, msg: aiResponse.message }]);
+        setLastResponse(aiResponse);
+        let updated = { ...selected! };
+        updated.relationships = updateRelationship(
+          updated.relationships,
+          playerName,
+          { affinity: aiResponse.relationshipDelta, trust: Math.abs(aiResponse.relationshipDelta) }
+        );
+        if (aiResponse.memoryEvent) {
+          updated = addMemoryEvent(updated, aiResponse.memoryEvent);
+        }
+        updated.memory = consolidateMemories(updated.memory);
+        const newNpcs = npcs.map(n => n.id === selected!.id ? updated : n);
+        onUpdateNpcs(newNpcs);
       }
-      updated.memory = consolidateMemories(updated.memory);
-
-      const newNpcs = npcs.map(n => n.id === selected!.id ? updated : n);
-      onUpdateNpcs(newNpcs);
     });
+  };
+
+  const handleSendCustom = () => {
+    if (!customMsg.trim() || !selected) return;
+    setChatLog(prev => [...prev, { from: playerName, msg: customMsg.trim() }]);
+    handleInteract("custom_message");
+    setCustomMsg("");
   };
 
   const getAffinityColor = (v: number) => {
@@ -94,8 +140,6 @@ export default function NPCPanel({ npcs, playerName, playerFame, playerGenre, on
     if (v > -30) return "text-orange-400";
     return "text-red-400";
   };
-
-  const [eventTab, setEventTab] = useState<"chat" | "events">("chat");
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -299,6 +343,23 @@ export default function NPCPanel({ npcs, playerName, playerFame, playerGenre, on
                 <button onClick={() => handleInteract("collaboration_request")} className="bg-purple-900/20 border border-purple-700/30 text-purple-400 text-[10px] px-3 py-2 rounded-lg hover:bg-purple-900/30 transition cursor-pointer">🤝 Collaborate</button>
                 <button onClick={() => handleInteract("random_chat")} className="bg-cyan-900/20 border border-cyan-700/30 text-cyan-400 text-[10px] px-3 py-2 rounded-lg hover:bg-cyan-900/30 transition cursor-pointer">💬 Chat</button>
                 <button onClick={() => handleInteract("conflict")} className="bg-red-900/20 border border-red-700/30 text-red-400 text-[10px] px-3 py-2 rounded-lg hover:bg-red-900/30 transition cursor-pointer">⚔️ Provoke</button>
+              </div>
+            )}
+            {/* Custom message input */}
+            {selected && (
+              <div className="flex gap-2 mt-2">
+                <input
+                  type="text"
+                  value={customMsg}
+                  onChange={e => setCustomMsg(e.target.value)}
+                  onKeyDown={e => e.key === "Enter" && handleSendCustom()}
+                  placeholder="Type a custom message..."
+                  className="flex-1 bg-[#050507] border border-[#1A1A1E] rounded-lg px-3 py-2 text-white text-[11px] focus:border-[#00FF95] outline-none font-mono"
+                />
+                <button onClick={handleSendCustom}
+                  className="px-3 py-2 bg-[#00FF95] text-black font-bold rounded-lg text-[10px] hover:bg-[#00FF95]/90 transition cursor-pointer shrink-0">
+                  Send
+                </button>
               </div>
             )}
             {!selected && (

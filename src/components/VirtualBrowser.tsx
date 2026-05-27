@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, RefreshCw, Home, Globe, Flame, TrendingUp, MessageCircle, Search, Music, Disc, AlertTriangle, BarChart3, ExternalLink } from "lucide-react";
 import {
   search, getNode, getNodesByType, getNodeUrl, getVirality, getTrendState,
@@ -17,9 +17,10 @@ interface BrowserTab {
 interface Props {
   onClose?: () => void;
   playerName?: string;
+  initialSearch?: string;
 }
 
-export default function VirtualBrowser({ onClose }: Props) {
+export default function VirtualBrowser({ onClose, initialSearch }: Props) {
   const [tabs, setTabs] = useState<BrowserTab[]>([
     { id: "home", title: "Scene Web", type: "home" }
   ]);
@@ -72,6 +73,20 @@ export default function VirtualBrowser({ onClose }: Props) {
     setTabs(nt);
     if (activeTabId === tabId) setActiveTabId(nt[nt.length - 1].id);
   };
+
+  // Auto-search on mount if initialSearch is provided
+  useEffect(() => {
+    if (initialSearch) {
+      setSearchQuery(initialSearch);
+    }
+  }, []);
+
+  // Run search when searchQuery changes from initialSearch
+  useEffect(() => {
+    if (initialSearch && searchQuery === initialSearch) {
+      handleSearch();
+    }
+  }, [searchQuery]);
 
   const handleSearch = () => {
     if (!searchQuery.trim()) return;

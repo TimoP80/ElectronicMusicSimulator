@@ -1318,7 +1318,7 @@ export interface DialogueContext {
     genreTrends: Record<string, number>;
     currentEvents: string[];
   };
-  trigger: "greeting" | "collaboration_request" | "conflict" | "random_chat" | "farewell";
+  trigger: "greeting" | "collaboration_request" | "conflict" | "random_chat" | "farewell" | "custom_message";
 }
 
 export interface DialogueResponse {
